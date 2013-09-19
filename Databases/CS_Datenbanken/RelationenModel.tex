@@ -1,0 +1,23 @@
+\section{Relationenmodell (E. F. Codd (1970))}
+
+\begin{description}
+	\item [Domäne] Auch Wertebereich oder Datentyp: definiert die zulässigen Werte (Ganze Zahlen, Zeichenketten, \dots)
+	als Mengen und sind nicht weiter strukturiert.
+	\item [Attribut] besteht aus zwei Teilen: einem Namen und einer Domäne. Attribute können den Wert \texttt{NULL} haben.
+	\item [Tupel] bezeichnet ein atomares Datenelement aus gewerteten zusammengehörenden Attributen
+	\item [Relation] besteht aus zwei Teilen:
+	\begin{enumerate}
+		\item Schema, Heading, Intension: Name, Namen und Typen der Attribute
+		\item Instanz, Extension: Zeilen (n-Tupel von Werten)
+	\end{enumerate}
+	Grundsätzlich ist eine Relation $R$ eine Teilmenge des kartesischen Produkts verschiedener Mengen (hier der Wertebereiche).
+	$R \subseteq W_1, \times W_2 \dots \times W_n$. Dargestellt als $R(A_1, A_2, \dots, A_n)$ ($A_i$ steht für Attribut $i$).
+	Relationen sind äquivalent ($R_1 \sim R_2$) wenn sie die gleichen Attribute enthalten. Relationen sind dublikatfrei, ungeordnet, 
+	endlich und in der ersten Normalform (alle Attribute haben atomare Typen). Als Tabelle: Spalten entsprechen Attributen, die Anzahl der Spalten entspricht dem Grad,
+	die Zeilen entsprechen Tupeln und der Anzahl der Zeilen entspricht der Kardinalität.
+	\item [Beziehung] Eine Beziehung zwischen Relationen werden über Attribute und ihre Werte hergestellt.
+	\item [Schlüssel] identifizieren eindeutig Tupel einer Relation. Sie sind ein Attribut oder eine Attributskombination,
+	die jedes Tupel eindeutig identifiziert und deren Wert sich während der Existenz des Tupels nicht ändert.
+\end{description}
+
+

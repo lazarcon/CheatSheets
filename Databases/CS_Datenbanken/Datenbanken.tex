@@ -1,0 +1,180 @@
+\documentclass[10pt,landscape]{scrartcl}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+% Umlaute ermöglichen
+\usepackage[T1]{fontenc}
+% Format dieses Dokuments
+\usepackage[utf8]{inputenc}
+% Deutsche Trennungsregeln
+\usepackage[ngerman]{babel}
+\usepackage[babel,german=quotes]{csquotes}
+\hyphenation{eine einer eines Entwurf}
+\usepackage{listings}
+\lstset{emph={%  
+    wiederhole, bis, solange, setze, gebe%
+    },emphstyle={\bfseries}%
+}
+%%\usepackage{color}
+%\definecolor{lightgrey}{gray}{0.75}
+%\definecolor{darkgrey}{gray}{0.25}
+
+\usepackage{amssymb,amsmath}
+
+%% TIKS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{tikz-er2}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shadows}
+
+\tikzstyle{every entity} = [top color=white, bottom color=blue!30, draw=blue!50!black!100, drop shadow]
+\tikzstyle{every weak entity} = [drop shadow={shadow xshift=.7ex, shadow yshift=-.7ex}]
+\tikzstyle{every attribute} = [top color=white, bottom color=yellow!20, draw=yellow, node distance=1cm, drop shadow,align=center]
+\tikzstyle{every relationship} = [top color=white, bottom color=red!20, draw=red!50!black!100, drop shadow,align=center]
+\tikzstyle{every isa} = [top color=white, bottom color=green!20, draw=green!50!black!100, drop shadow]
+
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{lightgrey}{gray}{0.75}
+\definecolor{darkgrey}{gray}{0.25}
+\lstloadlanguages{SQL} 
+\lstset{% general command to set parameter(s)
+basicstyle=\footnotesize, 										% print whole listing small
+keywordstyle=\color{black}\bfseries, 	% bold black keywords
+identifierstyle=, 										% nothing happens
+commentstyle=\color{darkgrey},				% grey comments
+stringstyle=\ttfamily, 								% typewriter type for strings
+showstringspaces=false								% no special string spaces
+%numbers=left, 												% show line numbers
+%numberstyle=\tiny,										% make line numbers tiny (or small, or large), 
+%stepnumber=1, 												% counter for line numbers
+%numbersep=5pt												% offset of linenumbers
+%backgroundcolor=\color{lightgrey}			% backgroundcolor
+}
+\lstset{tabsize=4, breaklines=true}
+\lstset{
+  literate=	{ö}{{\"o}}1
+           	{ä}{{\"a}}1
+           	{ü}{{\"u}}1
+		   	{Ö}{{\"O}}1
+		  	{Ä}{{\"A}}1
+		   	{Ü}{{\"U}}1
+}
+\lstset{language=SQL}
+
+\usepackage{ulem}
+
+\usepackage{hyperref}
+%\pdfoutput=1
+\hypersetup{
+	pdfauthor   = {Lazari, Constantin},
+	pdftitle    = {Informatik Cheat Sheet (2/4)},
+	pdfsubject  = {Informatik},
+	pdfkeywords = {},
+	pdfcreator  = {Kile},		% Texnic Center oder Kile z.B.
+	pdfproducer = {pdflatex},
+	colorlinks  = false		% Links nicht farbig hervorheben (sieht Scheisse aus).
+} 
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+ 
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\newcommand{\msout}[1]{\text{\sout{\ensuremath{#1}}}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+
+\setlength{\parskip}{0pt plus 0.5ex}
+
+\def\ojoin{\setbox0=\hbox{$\bowtie$}%
+  \rule[-.02ex]{.25em}{.4pt}\llap{\rule[\ht0]{.25em}{.4pt}}}
+\def\leftouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie}}
+\def\rightouterjoin{\mathbin{\bowtie\mkern-5.8mu\ojoin}}
+\def\fullouterjoin{\mathbin{\ojoin\mkern-5.8mu\bowtie\mkern-5.8mu\ojoin}}
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+	\raggedright
+	\footnotesize
+	\begin{multicols}{3}
+
+
+	% multicol parameters
+	% These lengths are set only within the two main columns
+	%\setlength{\columnseprule}{0.25pt}
+	\setlength{\premulticols}{1pt}
+	\setlength{\postmulticols}{1pt}
+	\setlength{\multicolsep}{1pt}
+	\setlength{\columnsep}{2pt}
+	\newlength{\MyLenA}
+	\newlength{\MyLenB}
+
+	\begin{center}
+	\Large{\textbf{Datenbanken Cheat Sheet}} \\
+	\end{center}
+
+	\input{begriffe}
+	
+	\input{RelationenModel}
+	
+	\input{RelationaleAlgebra}
+	
+	\input{FunktionaleAbhaengigkeit}
+	
+	\input{DatenbankEntwicklung}
+	
+	\input{Datenmodellierung}
+	
+	\input{PhysischerEntwurf}
+	
+	\input{SQL}
+	
+	\rule{0.3\linewidth}{0.25pt}\\
+	\scriptsize
+	Copyright \copyright\ 2012 Constantin Lazari\\
+	% Should change this to be date of file, not current date.
+	Revision: 1.0, Datum: \today\\
+	\end{multicols}
+\end{document}

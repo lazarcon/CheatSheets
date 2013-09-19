@@ -1,0 +1,93 @@
+\section{Datenmodellierung}
+Daten- und funktionale Anforderungen definieren. Anschliessend auf die Daten Abstraktionskonzepte anwenden:
+Klassifikation (gleiche oder ähnliche \enquote{Dinge}), Aggregation (Zusammenfassen von \enquote{Dingen}, Name, Strasse, \dots zu Adresse),
+Generalisierung und Spezialisierung (Verallgemeinerung, Teilmengenbeziehungen, Zerlegung in disjunkte Untermengen).
+
+Bei der Modellierung gilt es sich auf den Anwendungsbereich zu beschränken. Die Modellierung muss unabhängig von der 
+späteren Implementierung sein.
+
+\subsection{Entity-Relationship-Model (P. P. S. Chen, 1976)}
+\begin{description}
+	\item [Entität] Ein  konkretes  oder  abstraktes  Objekt  der  realen  oder  einer  
+Vorstellungswelt, welches eindeutig identifiziert werden kann. Eine Entität hat Attribute (Bsp. Herr Aebi). 
+	\item [Entitätsmenge] Gleichartige Entitäten, d.h. Entitäten mit denselben Eigenschaften (Bsp. Personen).
+	\item [Identifikationsschlüssel] Ein Attribut oder eine Menge von Attributen, welche eine Entität eines
+Entitätstyps innerhalb dieses Typs eindeutig identifiziert (Bsp. Personalnummer)
+	\item [Beziehung] Eine Beziehung zwischen Entitäten $e_1, e_2, \dots, e_n (n \geq 2)$ ist ein $n$-
+Tupel, wobei jedes $e_i$ eine Entität eines Entitätstyps $E_i (1 \leq i \leq n)$ ist. Wenn derselbe Entitätstyp mehrfach 
+vorkommt ($E_i$ und $E_j$ mit $i \neq j$), dann müssen deren verschiedene Rollen mit Hilfe zusätzlicher
+Rollennamen bezeichnet werden.\\
+	Gleichartige Beziehungen werden zu einem Beziehungstyp zusammengefasst (Bsp. Person als Autor eines Buches)
+	Identifikationsattribute einer Entität, die an einer Beziehung beteiligt ist, gehört implizit zur Beziehung.
+	Eine Beziehung kann darüber hinaus weitere Attribute haben. Der Identifikationschlüssel einer Beziehung wird
+	aus Identifikationsattributen, der an der Beziehung beteiligten Entitätstypen gebildet.
+	\item[Generalisierung (is-a)] Eine Generalisierung ist ein Enitätstyp $G$ der die gemeinsamen Attribute der
+	spezialisierten Entitäten $E_1, E_2, \dots, E_n$ umfasst.
+	Eine Spezialisierung ist disjunkt, wenn $\bigcap (E_1, E_2, \dots, E_n) = \emptyset$. Ansonsten ist er überdeckend.
+\end{description}
+
+\begin{center}
+\scalebox{.87}{
+\begin{tikzpicture}[node distance=1cm, every edge/.style={link}]
+	\node[entity] (entity) {Entität};
+	\node[attribute] (key) [above left=of entity] {\key{Schlüssel}} edge (entity);
+	\node[attribute] (attribute) [left=of entity] {Attribut} edge (entity);
+	\node[multi attribute] (mattribute) [below left=of entity] {Multiattribut} edge (entity);
+	\node[relationship] (rel) [right=of entity] {Beziehung} edge (entity);
+	\node[attribute] (relAttr) [below=of rel] {Bez.-Attribut} edge (rel);
+	\node[isa] (isa) [below=of entity] {ISA} edge (entity);
+\end{tikzpicture}
+}
+\end{center}
+
+\subsection{Beziehungstypen (Kardinalität)}
+\begin{description}
+	\item [1:1] Jedem Element aus $E_1$ ist höchstens 1 Element aus $E_2$ zugeordnet
+	\item [1:M] Jedem Element aus $E_1$ können beliebig viele Elementa aus $E_2$ zugeordnet sein,
+	jedem Element aus $E_2$ aber höchstens ein Element aus $E_1$
+	\item [M:M] Jedem Element aus $E_1$ können beliebig viele Elemente aus $E_2$ zugeordnet sein
+	und umgekehrt. Diese Beziehungen müssen für Datenbanken aufgelöst werden.
+\end{description}
+
+Attribute werden aus Gründen der Übersichtlichkeit im ERM oft weggelassen und in ergänzenden Dokumenten festgehalten.
+Die Details entstehen in der Regel beim logischen Entwurf. Der Entwurf ist ein iterativer Prozess an dem mehrere
+Personen beteiligt sein sollten.  
+
+\section{Logischer Entwurf}
+Grundsätzlich wird aus einer Entität eine Relation, ebenso wird aus einer Beziehung eine Relation. Mehrwertige Attribute
+werden aufgeteilt (zusätzliche Relationen), M:M Beziehungen werden mit Zwischentabellen aufgelöst (zusätzliche Relationen).
+
+Am Ende steht ein logisches Schema, das in SQL (DDL) formuliert ist.
+
+\subsection{Normalisierung}
+Unsachgemässe Entwürfen können zu Mutationsanomalien (unerwünschte Auswirkung von Änderungen) führen. Durch
+Normalisierung wird dies verhindert.
+
+Anwendungswissen für die Normalisierung: Repetitionsgruppen (was kommt wie oft vor?), Schlüssel, funktionale Abhängigkeiten,
+Codierungen.
+
+\begin{description}
+	\item [1. Normalform] Alle Attribute enthalten nur atomare Werte (mehrwertige Attribute werden in Tupel umgewandelt)
+	\item [2. Normalform] Eine Relation ist in der zweiten Normalform, wenn die erste Normalform vorliegt 
+	und jedes Nichtschlüsselattribut vom Primärschlüssel voll funktional abhängig ist. (Mehrere Tabellen entstehen)
+	\item [3. Normalform] Die dritte Normalform ist erreicht, wenn sich das Relationenschema in 2NF befindet, und jedes 
+	Nichtschlüsselattribut von keinem Schlüsselattribut transitiv abhängt.
+\end{description}
+
+\subsubsection{1NF $\rightarrow$ 2NF}
+\begin{enumerate}
+	\item Bestimme alle Nichtschlüsselmerkmale, die bereits von einem Teilschlüssel funktional abhängig sind.
+	\item Bilde aus den Teilschlüsseln und allen von ihnen funktional abhängigen Nichtschlüsselmerkmalen eigene Tabellen.
+	\item Entferne aus der ursprünglichen Tabelle alle nicht voll funktional abhängigen Nichtschlüsselmerkmale.
+\end{enumerate}
+
+\subsubsection{2NF $\rightarrow$ 3NF}
+\begin{enumerate}
+	\item Bestimme alle vom Schlüssel transitiv abhängigen Nichtschlüsselmerkmale.
+	\item Bilde aus diesen transitiv abhängigen Nichtschlüsselmerkmalen und den Nichtschlüsselmerkmalen, 
+	von denen sie funktional abhängig sind, eigene Tabellen.
+	\item Entferne aus der ursprünglichen Tabelle alle transitiv abhängigen Nichtschlüsselmerkmale.
+\end{enumerate}
+
+Durch Normalisierung werden Redundanzen vermindert und Anomalien vermieden. Allerdings entstehen so 
+viele kleine Relationen, die einen hohen Verarbeitungsaufwand nach sich ziehen (Update-Query-Tradeoff).

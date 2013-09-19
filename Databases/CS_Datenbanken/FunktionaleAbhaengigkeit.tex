@@ -1,0 +1,18 @@
+\section{Funktionale Abhängigkeit}
+Das Attribut bzw. die Attributskombination $Y$ ist funktional abhängig vom
+Attribut bzw. von der Attributskombination $X$ derselben Relation $R$, wenn
+zu einem bestimmten Wert von $X$ höchstens ein Wert von $Y$ möglich ist ($X \rightarrow Y$)
+
+\subsection{Regeln}
+\settowidth{\MyLenA}{Pseudotransitivität~~}
+\begin{tabular}{
+	@{}p{\the\MyLenA}%
+	@{}p{\linewidth-\the\MyLenA}}
+	Projektivität & $(\{Y\} \subseteq \{X\}) \Rightarrow (X \rightarrow Y)$\\
+	Distributivität & $(X \rightarrow YZ) \Rightarrow (X \rightarrow Y, X \rightarrow Z)$\\
+	Additivität & $(X \rightarrow Y, X \rightarrow Z) \Rightarrow (X \rightarrow YZ)$\\
+	Transitivität & $(X \rightarrow Y, Y \rightarrow Z) \Rightarrow (X \rightarrow Z)$\\
+	Pseudotransitivität & $(X \rightarrow Y, YW \rightarrow Z) \Rightarrow (XW \rightarrow Z)$\\
+	Akkumulation & $(X \rightarrow YZ, Z \rightarrow W) \Rightarrow (X \rightarrow YZW)$\\
+	Erweiterung & $(X \rightarrow Y, W \rightarrow Z) \Rightarrow (XW \rightarrow YZ)$\\
+\end{tabular}

@@ -1,0 +1,193 @@
+\section{SQL (IBM 1974)}
+Zwar gibt es einen Standard, doch eingesetzte Systeme sind proprietär. Einerseits aus kommerziellen, andererseits aus
+Trägheitsgründen - das SQL-Komitee hingt den Bedürfnissen des Marktes hinterher.
+
+Leider ist SQL für \enquote{reale} Anwendungen zu wenig mächtig. (Keine Benutzerschnittstellen, komplexe Berechnungen nicht möglich,
+Zugriff auf Geräte nicht möglich, Vernetzung problematisch) $\Rightarrow$ SQL wird mit Programmiersprachen (Java/JPA) kombiniert.
+
+\subsection{Data Definition Language (DDL)}
+Erzeugen und Ändern von Datenbank-Objekten.
+
+Als erstes Datenbanken erzeugen:
+\begin{lstlisting}
+	CREATE DATABASE IF NOT EXISTS database
+\end{lstlisting}
+
+\subsubsection{Datentypen}
+\begin{itemize}\itemsep0em
+	\item Zahlen (Ganze (\texttt{integer, bigint}), Fix- (\texttt{decimal(p,s), numeric(p,s)}) und Fliesskomma (\texttt{float(p), real(p)}))
+	\item Zeichenketten (\texttt{char(n), varchar(n)})
+	\item Kalenderdaten (\texttt{date, time, datetime})
+	\item Sonstige (herstellerabhängig)
+\end{itemize}
+
+\begin{lstlisting}
+CREATE TABLE Products(
+	PNo INTEGER PRIMARY KEY,
+	Descr CHAR(30) NOT NULL UNIQUE,
+	Weight FLOAT CHECK(Weight > 0.0),
+	...
+);
+CREATE TABLE Orders(
+	OrdNo INTEGER,
+	...,
+	PNo INTEGER	NOT NULL REFERENCES Products(PNo),
+	CNo INTEGER	NOT NULL REFERENCES Customers(CNo),
+	Status CHAR(7) DEFAULT 'ordered',
+	ValidDate DATETIME NOT NULL,
+	CONSTRAINT PK_Orders PRIMARY KEY(OrdNo),
+	UNIQUE (ValidDate,PNo,CNo)
+);
+ALTER TABLE table ADD COLUMN newColumn datatype;
+DROP TABLE table;
+\end{lstlisting}
+
+
+\subsection{Data Manipulation Language (DML)}
+\subsubsection{Insert}
+\begin{lstlisting}
+INSERT INTO table (columnA, columnB) VALUES ("value1", "value2");
+INSERT INTO table (columnA, columnB) 
+	SELECT field1, field2 FROM tableB WHERE ...;
+\end{lstlisting}
+Würden Integritätsbedingungen verletzt, wird nichts geändert. Fehlende Attribute werden mit dem Default Wert oder \texttt{NULL} gefüllt.
+
+\subsubsection{Update}
+\begin{lstlisting}
+UPDATE table SET field = "value" WHERE ...;
+UPDATE table SET field = field + 1;
+\end{lstlisting}
+Würden Integritätsbedingungen verletzt, wird nichts geändert.
+
+\subsubsection{Delete}
+\begin{lstlisting}
+DELETE FROM table WHERE ...;
+\end{lstlisting}
+Würden Integritätsbedingungen verletzt, wird nichts geändert.
+
+\subsubsection{Select}
+\begin{lstlisting}
+SELECT * | [ALL | DISTINCT] expression [[AS] column-alias][,...]
+FROM table [[AS] alias]
+[,|CROSS JOIN table [[AS] alias] |
+	NATURAL [INNER|OUTER]{LEFT|RIGHT|FULL}]
+	JOIN table [[AS] alias]
+	|[INNER|OUTER]{LEFT|RIGHT|FULL}]
+	JOIN table [[AS] alias]
+	{ON condition | USING (col-list)}
+|UNION join-table [[AS] alias] [,...]]
+[WHERE col-condition]
+[GROUP BY colname [,...]
+[HAVING group-condition]]
+[UNION|INTERSECT|EXCEPT ...]
+[ORDER BY col [ASC|DESC][,...]];
+
+SELECT Name
+FROM Customers AS c,
+	(SELECT CNo FROM Orders
+	WHERE Status <> 'paid' AND
+	Validdate < DATE '2003-10-01') AS o
+WHERE o.CNo = c.CNo
+
+/* Join mit ON */
+SELECT Name FROM Customers c 
+JOIN Orders o ON o.CNo = c.CNo
+WHERE Status <> 'paid' AND Validdate < DATE '2003-10-01'
+
+/* Join mit USING */
+SELECT Name FROM Customers 
+JOIN Orders USING(CNo)
+WHERE Status <> 'paid' AND Validdate < DATE '2003-10-01'
+
+/* NATURAL JOIN */
+SELECT Name FROM Customers 
+NATURAL JOIN Orders 
+WHERE Status <> 'paid' AND Validdate < DATE '2003-10-01'
+\end{lstlisting}
+
+\textbf{Regeln für \texttt{NULL}}
+\begin{align*}
+	\neg \mbox{\texttt{NULL}}& = \mbox{\texttt{NULL}} & &\\
+	\mbox{\texttt{NULL}} \vee \mbox{\texttt{NULL}}& = \mbox{\texttt{NULL}} &
+	\mbox{\texttt{NULL}} \wedge \mbox{\texttt{NULL}}& = \mbox{\texttt{NULL}}\\
+	\mbox{false} \vee \mbox{\texttt{NULL}} & = \mbox{\texttt{NULL}} & 
+	\mbox{false} \wedge \mbox{\texttt{NULL}} & = \mbox{false}\\
+	\mbox{true} \vee \mbox{\texttt{NULL}} & = \mbox{true} & 
+	\mbox{true} \wedge \mbox{\texttt{NULL}} & = \mbox{\texttt{NULL}}\\	
+\end{align*}
+
+\textbf{Selektionsprädikate}
+\settowidth{\MyLenA}{\texttt{BETWEEN}~~}
+\begin{tabular}{
+	@{}p{\the\MyLenA}%
+	@{}p{\linewidth-\the\MyLenA}}
+	\texttt{IN} & \lstinline$SELECT * FROM table WHERE field IN ('value1','value2');$\\
+	\texttt{LIKE} & \lstinline$SELECT * FROM table WHERE field LIKE 'value%';$\\
+	\texttt{BETWEEN} & \lstinline$SELECT * FROM table WHERE field BETWEEN lower AND upper;$\\
+	\texttt{IS NULL} & \lstinline$SELECT * FROM table WHERE field IS NOT NULL;$\\
+\end{tabular}
+
+Aggregatfunktionen: \lstinline$[COUNT|SUM|AVG|MIN|MAX](field)$
+\texttt{COUNT} eleminiert Duplikate nicht, zählt \texttt{NULL}-Wert mit. Die anderen Aggregatfunktionen ignorieren
+\texttt{NULL}-Werte.
+
+Gruppen sind eine Multimenge von Tupeln mit denselben Werten für das Gruppierungskriterium. \texttt{HAVING} entspricht
+der \texttt{WHERE}-Klausel.
+
+\subsection{Data Controll Language}
+Rechte Vergabe (\texttt{GRANT, REVOKE}), Schutz vor Ausfällen. Job des Datenbankadministrators.
+
+\subsection{Transaktionen}
+Eine Transaktion ist eine Folge von Schreib- und Lese-Zugriffen, die eine geschlossene Arbeitseinheit bilden.
+
+\subsubsection{Multiuser}
+Ein DBMS simuliert gleichzeitigen Zugriff, weil nur ein Zugriff pro CPU pro Zeit möglich ist. Es behandelt Fehler
+automatisch und startet nach schwerwiegenden Fehlern neu.
+
+Nutzer erhalten alternierend kurze Prozessorzeit. Dadurch laufen während des Prozesses eines Benutzers auch die 
+Prozesse anderer Nutzer ab. So können inkonsistente Datenbestände entstehen, was das DBMS mit Transaktionen verhindert.
+Mögliche Probleme:
+\begin{description}
+	\item [Lost-Update] Überschreiben bereits getätigter Updates (ohne neuerliches Read) $\Rightarrow$ Für Dauer
+	der Transaktion sperren.
+	\item [Dirty-Read] Lesen von Veränderungen durch später abgebrochene Transaktionen $\Rightarrow$ Nur bestätigte
+	Transaktionen berücksichtigen.
+	\item [Phantom-Read] Lesen von zwischenzeitlich von anderen Transaktionen durchgeführten Veränderungen. $\Rightarrow$
+	Nur Datenbankzustand zu Beginn einer Transaktion verwenden.
+\end{description}
+Gleichzeitige Zugriffe werden durch Ablaufpläne (Schedules) modelliert.
+
+\subsubsection{ACID-Prinzip}
+A - Atomarität - Zusammenhängende Aktionen ganz oder gar nicht ausführen.\\
+C - Consistency - Alle Aktionen hinterlassen die DB in einem konsistenten Zustand.\\
+I - Isolation - Transaktionen laufen unabhängig von einander ab.\\
+D - Durability - Resultate bleiben nach Transaktion persistent.\\
+
+Commit - Transaktion durchführen, Rollback = Abbruch:
+\begin{lstlisting}[language=SQL]
+BEGIN TRANSACTION
+COMMIT TRANSACTION
+ROLLBACK TRANSACTION
+\end{lstlisting}
+
+\subsection{Transaktionsverarbeitung}
+Datenobjekte werden gesperrt. Problem: Deadlock - gegenseitiges Warten auf Freigabe von Sperren. Solche Zyklen werden
+vom DBMS erkannt. 
+
+\subsection{Integritätssicherung}
+Sicherstellen, dass nur \enquote{richtige} Daten in die DB gelangen. Die Menge der konsistenten Zustände wird eingeschränkt.
+Integritätsicherung ist eine zentrale Aufgabe eines DBMS.
+
+\subsubsection{Möglichkeiten}
+\begin{itemize}
+	\item Attribut-Bedingungen (Datentyp, \texttt{NOT NULL, CHECK})
+	\item Wertebereichsbedingungen (\texttt{CREATE DOMAIN \dots AS \dots CHECK ()})
+	\item Tupel-Bedingungen (\texttt{CHECK})
+	\item Relationen-Bedingungen (\texttt{PRIMARY KEY})
+	\item Referenzielle Bedingungen (\texttt{FOREIGN KEY \dots REFERENCES \dots})
+\end{itemize}
+
+Einschränkungen können auch verzögert aktiviert werden:
+\begin{lstlisting}[language=SQL]
+CREATE TABLE ... CONSTRAINT field ... INITIALLY {DEFERRED|IMMEDIATE}
+\end{lstlisting}

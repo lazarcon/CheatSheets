@@ -1,0 +1,27 @@
+\section{Datenbank-Entwicklung}
+\settowidth{\MyLenA}{Anforderungsanalyse~~}
+\begin{tabular}{
+	@{}p{\the\MyLenA}%
+	@{}p{\linewidth-\the\MyLenA}}
+	Anforderungsanalyse, Spezifikation & Datenanforderungen durch Interviews, Fragebögen ermitteln\\
+	Konzeptioneller Entwurf & Konzeptionelles Model beschreiben (DBMS unabhängig) $\Rightarrow$ Konzeptionelles Schema\\
+	Logischer Entwurf & Logisches Schema aus dem Datenmodell erstellen, optimieren, externe Schemas definieren (DBMS abhängig) $\Rightarrow$ Logisches Schema\\ 
+	Physischer Entwurf & Internes Schema definieren (DBMS abhängig) $\Rightarrow$ Physisches Schema\\
+	Deklaration Schemas & In der DDL des DBS\\
+\end{tabular}
+
+Kriterien: Vollständigkeit, Korrektheit, minimale Redundanzen, Lesbarkeit, Erweiterbarkeit, Normalisierung.
+
+Refactoring eines Modelles ist sehr aufwändig und wird deswegen kaum gemacht. Daher am besten mit einem kleinen
+Kernteam (Business Spezialist (Anforderungen/Konzept), Datenmodellierer(Konzept/Logik), Datenbank Designer(Logik/Physisches Model)) arbeiten, das Entwürfe macht, die von einem grösseren Team
+(Datenbankspezialisten, Projektmanager, Auftraggeber) evaluiert werden.
+
+\begin{description}
+	\item [Konzeptionelles Modell] weitgehend technologie-unabhängige Spezifikation der Daten, die in der Datenbank
+		gespeichert werden sollen
+	\item [Logisches Modell] Übersetzung des konzeptionellen Schemas in Strukturen, 
+		die mit einem konkreten DBMS implementiert werden können
+	\item [Physisches Modell] alle Anpassungen, die nötig sind um eine befriedigende Leistung im Betrieb zu erreichen
+		(Datenverteilung,  Indexierung,  ...)
+\end{description}
+
