@@ -1,0 +1,20 @@
+\section{3xx - Redirect}
+\begin{description}\itemsep0em
+	\item [300 - Multiple Choices] Indicates multiple options for the resource that the client may follow. It, for instance, could be used to present different format options for video, list files with different extensions, or word sense disambiguation.
+
+	\item [301 - Moved Permanently] This and all future requests should be directed to the given URI.
+
+	\item [302 - Found] This is an example of industry practice contradicting the standard. The HTTP/1.0 specification (RFC 1945) required the client to perform a temporary redirect (the original describing phrase was \enquote{Moved Temporarily}), but popular browsers implemented 302 with the functionality of a 303 See Other. Therefore, HTTP/1.1 added status codes 303 and 307 to distinguish between the two behaviours.[7] However, some Web applications and frameworks use the 302 status code as if it were the 303.
+
+	\item [303 - See Other] The response to the request can be found under another URI using a GET method. When received in response to a POST (or PUT/DELETE), it should be assumed that the server has received the data and the redirect should be issued with a separate GET message.
+
+	\item [304 - Not Modified] Indicates the resource has not been modified since last requested. Typically, the HTTP client provides a header like the If-Modified-Since header to provide a time against which to compare. Using this saves bandwidth and reprocessing on both the server and client, as only the header data must be sent and received in comparison to the entirety of the page being re-processed by the server, then sent again using more bandwidth of the server and client.
+
+	\item [305 - Use Proxy] Many HTTP clients (such as Mozilla and Internet Explorer) do not correctly handle responses with this status code, primarily for security reasons.
+	
+	\item [306 - Switch Proxy] No longer used. Originally meant \enquote{Subsequent requests should use the specified proxy.}
+
+	\item [307 - Temporary Redirect] In this case, the request should be repeated with another URI; however, future requests should still use the original URI.[2] In contrast to how 302 was historically implemented, the request method is not allowed to be changed when reissuing the original request. For instance, a POST request repeated using another POST request.
+
+	\item [308 - Permanent Redirect] The request, and all future requests should be repeated using another URI. 307 and 308 (as proposed) parallel the behaviours of 302 and 301, but do not allow the HTTP method to change. So, for example, submitting a form to a permanently redirected resource may continue smoothly.
+\end{description}

@@ -1,0 +1,24 @@
+\section{2xx - Success}
+\begin{description}\itemsep0em
+	\item [200 - OK] Standard response for successful \texttt{HTTP} requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action.
+
+	\item [201 - Created]	The request has been fulfilled and resulted in a new resource being created.
+
+	\item [202 - Accepted] The request has been accepted for processing, but the processing has not been completed. The request might or might not eventually be acted upon, as it might be disallowed when processing actually takes place.
+
+	\item [203 - Non-Authoritative Information] The server successfully processed the request, but is returning information that may be from another source.
+
+	\item [204 - No content] The server successfully processed the request, but is not returning any content.
+
+	\item [205 - Reset content] The server successfully processed the request, but is not returning any content. Unlike a 204 response, this response requires that the requester reset the document view.
+
+	\item [206 - Partial content] The server is delivering only part of the resource due to a range header sent by the client. The range header is used by tools like wget to enable resuming of interrupted downloads, or split a download into multiple simultaneous streams.
+
+	\item [207 - Multi-Status (WebDAV)] The message body that follows is an XML message and can contain a number of separate response codes, depending on how many sub-requests were made.
+
+	\item [208 - Already Reported (WebDAV)] The members of a DAV binding have already been enumerated in a previous reply to this request, and are not being included again.
+
+	\item [226 - IM Used] The server has fulfilled a GET request for the resource, and the response is a representation of the result of one or more instance-manipulations applied to the current instance.
+
+	\item [230 - Authentication Successful] The client's authentication attempt was successful.
+\end{description}

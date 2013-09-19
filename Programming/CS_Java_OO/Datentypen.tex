@@ -1,0 +1,370 @@
+\section{Datentypen}
+\begin{itemize}\itemsep0em
+	\item einfacher, elementarer, primitiver Datentypen
+	\begin{itemize}
+		\item boolean: Boolean (1 Bit, [\texttt{true, false}])
+		\item numerisch:
+		\begin{itemize}
+			\item ganzzahlige
+			\begin{itemize}
+				\item byte: Byte (8 Bit $[-2^7, 2^7-1]$)
+				\item char: Character (16 Bit, $65\,536$ Unicode-Zeichen)
+				\item short: Short (16 Bit $[-2^{15}, 2^{15}-1]$)
+				\item int: Integer (32 Bit $[-2^{31}, 2^{31}-1]$)
+				\item long: Long (64 Bit $[-2^{63}]m 2^{63}-1]$)
+			\end{itemize}
+			\item kommastellige
+			\begin{itemize}
+				\item float: Float (32 Bit $[\pm\ 3.4 \cdot 10^{28}]$)
+				\item double: Double (64 Bit $[\pm\ 1.7 \cdot 10^{308}]$)
+			\end{itemize}
+		\end{itemize}
+	\end{itemize}
+	\item Referenztypen
+	\begin{itemize}
+		\item Arrays: geordnete Gruppe gleicher Datentypen
+		\item Klassen: Datentyp, der sich aus anderen Datentypen und Methoden zusammensetzt
+		\item Interfaces: Datentyp, der Anforderungen definiert
+	\end{itemize}
+\end{itemize}
+Primitive Zahl-Datentypen können \texttt{unsigned} sein. Dann nehmen sie nur positive Werte an. Die obere Grenze ist dann doppelt so hoch.\\
+\texttt{void} ist kein Datentyp, sondern ein Kennzeichen für Methoden ohne Rückgabewert.
+
+\section{Operatoren}
+\begin{description}\itemsep0em
+	\item [Unäre, monadische] haben einen Operanden: \texttt{index++}
+	\item [Binäre, dyadische] haben zwei Operanden: \texttt{row * col}
+	\item [Ternäre, tryadische] haben drei Operanden: \texttt{finished ? 42 : 71}
+\end{description}
+
+\subsection{Auswertungsreihenfolge}
+\begin{enumerate}
+	\item Klammerausdrücke
+	\item Unäre Operatoren von links nach rechts
+	\item Binäre Operatoren von links nach rechts
+\end{enumerate}
+
+\subsection{Inkrement/Dekrement Operatoren ($++/--$)}
+\begin{description}\itemsep0em
+	\item [links] erhöhen, dann rechnen (\texttt{(a = 1: b = ++a //b = 2, a = 2})
+	\item [rechts] rechnen, dann erhöhen (\texttt{(a = 1: b = a++ //b = 1, a = 2)})
+\end{description}
+
+\section{Arithmetische Operatoren}
+\settowidth{\MyLenA}{[\texttt{>>>}]~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+$+$ & Addition: $1 + 2 = 3$ \\
+$-$ & Subtraktion: $3 - 2 = 1$\\
+$*$ & Multiplikation: $2 * 3 = 6$\\
+$/$ & Division: $6 / 3 = 2$\\
+$\%$ & Modulo: $3 \% 2 = 1$\\
+\end{tabular}
+
+\subsection{Bit-Operationen}
+\settowidth{\MyLenA}{[\texttt{>>>}]~~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+$\sim$ & Negation: $\sim0111 \to 1000$\\
+$\&$ & Bitweises \enquote{und}: $0101 \& 0011 = 0001$\\
+$|$ & Bitweises \enquote{oder}: $0101 | 0011 = 0111$\\
+$\hat\ $ & Bitweises \enquote{entweder/oder}, XOR: $0010 \hat\ 1010 = 1000$\\
+$<<$ & Bitweise Linksverschiebung (*2): $01001111 <<  1 = 10011110$\\
+$>>$ & Bitweise Rechtsverschiebung (/2): $01001111 >>  1 = 00100111$\\
+$>>>$ & Vorzeichenlose Rechtsvers: $11110000 >>> 2 = 00111100$\\
+\end{tabular}
+
+\subsection{Weitere Operatoren}
+\settowidth{\MyLenA}{[Bedingungsoperator]~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+Bedingungsoperator & Ist $A$ wahr, dann $B$ sonst $C$: \texttt{A ? B : C}\\
+\texttt{[x]} & Zugriff auf das $x$-te Element eines Arrays\\
+\texttt{new} & Erzeugt ein neues Objekt\\
+casting & \texttt{(MyClass) object} wandelt \texttt{object} in den Typ \texttt{MyClass} um. Kann eine \texttt{ClassCastException} werfen\\
+. & Zugriff auf eine Methode: \texttt{myObject.doSomething()}\\
+\texttt{instanceof} & Prüft, ob ein Objekt zu einem Datentyp gehört: \texttt{myObj instanceof String}\\
+\end{tabular}
+
+\section{Kontrollstrukturen}
+\subsection{Verzweigungen}
+\begin{description}\itemsep0em
+	\item [if \dots else] Wenn \dots, dann \dots Anweisung
+	\begin{lstlisting}[language=Java]
+if (value == expected) {
+	// do this
+} else if (value > expected) {
+	// do that
+} else {
+	// do something completly different
+} 
+	\end{lstlisting}
+	\texttt{else} und \texttt{else if} sind optional
+	\item [switch] Fall Unterscheidung, funktioniert für Integer (=Enums) und seit Java 7 auch für Strings:
+	\begin{lstlisting}
+switch (value) {
+	case "a":
+		// do this
+		break;
+	case "b":
+	default:
+		// same as for b;
+}
+	\end{lstlisting}
+Trifft ein Fall zu, werden alle weitere Anweisungen ohne weitere \texttt{case}-Prüfungen durchgeführt, bis ein \texttt{break} oder \texttt{return} zum Verlassen der Struktur auffordert.
+\end{description}
+
+\subsection{Schleifen}
+\begin{description}
+
+\item [while] Wird solange wiederholt, wie die Bedingung wahr ist:
+\begin{lstlisting}[language=Java]
+while (condition) {
+	// do something
+}
+\end{lstlisting}
+Wird eventuell gar nicht ausgeführt.
+
+
+\item [do \dots while] Wird solange wiederholt, wie die Bedingung wahr ist:
+\begin{lstlisting}[language=Java]
+do {
+	// do something
+} while (condition)
+\end{lstlisting}
+wird mindestens ein mal ausgeführt
+
+\item [for (\dots; \dots; \dots)] Vorbestimmte Anzahl Wiederholungen:
+\begin{lstlisting}[language=Java]
+for(intital = x; initial < end; ++initial) {
+	// do something
+}
+\end{lstlisting}
+
+\item [foreach] Wird mit jedem Element einer Menge durchgeführt:
+\begin{lstlisting}[language=Java]
+for(MyItem item : myCollection) {
+	// do something
+}
+\end{lstlisting}
+\end{description}
+
+\subsubsection{break/continue}
+Schleifendurchläufe können mit \texttt{break} abgebrochen werden.
+Mit Hilfe von \texttt{continue} \textit{myLabel} kann zu einer Stelle im Code gesprungen werden.
+Ist kein \textit{myLabel} definiert, wird zum Anfang der Schleife gesprungen.
+\begin{lstlisting}[language=Java]
+int index = 0;
+label:
+while (index == 0) {
+	for(index = 1; index < 10; ++index) {
+		// do something
+		continue label;
+	}
+}
+\end{lstlisting}
+
+\section{Arrays}
+\begin{lstlisting}[language=Java]
+int[] wert1; // 1-dimensionales Array von Integern
+int wert2[]; // 1-dimensionales Array von Integern
+wert1 = new int[10]; // Erzeugt ein mit 0 gefülltes Array aus 10 Integern
+wert2 = {1, 2, 3}; // Füllt die Werte 1, 2 und 3 in das Array
+int[][] feld = new int[8][8]; // Erzeugt 2-dimensionales Array
+int feld[][] = {{1, 2, 3}, {4, 5, 6}}; // Erzeugt ein 2x3-Array 
+\end{lstlisting}
+
+\section{Klasse}
+\begin{description}\itemsep0em
+	\item[Klassendeclaration] \texttt{(public|protected|private|) (abstract) class} \textit{MyClass} \texttt{(<T (extends R)>) (extends} \textit{Parent}\texttt{(<T (extends R)>)) (implements} \textit{Interface1, \dots} \texttt{)}
+	\item[Datenfelder, Attribute] \texttt{(public|protected|private|)(final)}\\\texttt{(static|transient|synchronized) AClass }\texttt{aClass}\texttt{;}
+	\item[Methoden] \texttt{(public|protected|private|)(final)(<T>)} \textit{ReturnType doSomething}\texttt{((final)}\textit{ ParameterType parameter, \dots}\texttt{)}\texttt{ (throws }\textit{Exception1, \dots}\texttt{)}
+	\item[Innere Klassen] wie Klasse an sich
+\end{description}
+ReturnType \texttt{void} steht für keine Rückgabe.
+
+\subsection{Modifikatoren}
+\subsubsection{Sichtbarkeit/Zugriff}
+\begin{description}\itemsep0em
+	\item [public] für alle sichtbar
+	\item [protected] für die Klasse und ihre Kinder sichtbar
+	\item [private] nur für die Klasse sichtbar
+	\item [ohne Bezeichner] Nur innerhalb des Java-Paketes (\texttt{ch.zhaw.example}) sichtbar
+\end{description}
+
+\subsubsection{Besonderes}
+\begin{description}\itemsep0em
+	\item[final] 
+	bedeutet bei primitiven Datentypen, dass sie so bleiben (Konstante), bei Nicht-Primitiven, dass die Referenz erhalten bleibt, der Inhalt sich aber ändern kann.\\
+	\item[static] 
+	Ist nicht von der Klasse abhängig und für alle abgeleiteten Klassen gleich.\\
+
+	\item [transient] 
+	wird bei der Serialisierung nicht gespeichert
+	
+	\item [synchronized] 
+	kann nur von einem Thread manipuliert werden
+\end{description}
+
+\subsection{Methoden}
+\begin{itemize}\itemsep0em
+	\item primitiven Datentypen werden als Wert übergeben (Call-by-value)
+	\item nicht-primitive Datentypen werden als Referenz übergeben (Call-by-reference)
+\end{itemize}
+
+\subsubsection{Überladen}
+Methoden müssen sich lediglich in ihrer Signatur, d.\,h. der kompletten Deklaration unterscheiden. Erlaubt ist also das Überladen:
+\begin{lstlisting}[language=Java]
+public int quadrat(final int x) {
+	return x * x;
+}
+public int quadrat(final float x) {
+	return x * x;
+}
+\end{lstlisting}
+(Unterscheidung bei den Parametern). Aber für generische Datentypen (\texttt{List<T>}) funktioniert das nicht:
+\begin{lstlisting}[language=Java]
+public void manipulate(final List<String> strings) {
+	// do something with strings
+}
+public void manipulate(final List<Integer> integers) {
+	// do something with integers
+}
+\end{lstlisting}
+funktioniert nicht. (Der Datentyp ist in beiden Fällen \texttt{List})
+
+\subsubsection{Polymorphie}
+Erbende Klassen können Methoden ihrer Elternklasse überschreiben.
+
+\section{Strings (Zeichenketten)}
+\begin{itemize}\itemsep0em
+	\item Sind eine Folge von Einzelzeichen: \texttt{"Hallo" = 'h', 'a', 'l', 'l', 'o'}.
+	\item Explizites Erzeugen: \texttt{String string = new String("Hallo");}
+	\item Implizites Erzeugen: \texttt{String string = "Hallo";}
+	\item Strings sind Konstant und können im Grunde genommen nicht verändert werden.
+	\item Wird eine existierende String-Variable manipuliert, wird dabei ein neuer String erzeugt.
+	\item Vergleiche über \texttt{myString.equals(anotherString)}
+\end{itemize}
+
+\subsection{String.format}
+Mit Hilfe von \texttt{String.format(String format, Object\dots args} können komplizierte Strings zusammengesetzt werden.
+\begin{description}
+	\item [\%n] ergibt das/die Zeichen für den Zeilenvorschub (Betriebssystem-abhängig)
+	\item [\%\%] ergibt ein Prozentzeichen (\textbackslash\textbackslash) ergibt einen \textbackslash
+	\item [\%s] ergibt einen String, \texttt{null}$\mapsto$\texttt{null}
+	\item [\%b (\%B)] ergibt einen Boolean mit \texttt{true|false}, \%B ergibt \texttt{TRUE|FALSE}. \texttt{NULL} ergibt immer \texttt{false}, alles anderen nicht-Booleans ergeben \texttt{true}
+	\item [\%c] erbibt ein Zeichen (aus Character, Byte oder Short), \%C schreibt das Zeichen in Grossbuchstaben
+	\item [\%d, \%x (\%X), \%o] ergibt einen Dezimalwert (\%d), einen Hexadezimalwert (\%x, \%X) und einen Oktalwert (\%o) für die Typen Byte, Short, Integer, Long und BigInteger
+	\item [\%f, \%e (\%E), \%g (\%G), \%a (\%A)] wie vorher, erlaubt aber zusätzlich die Typen Float und Double
+	\item [\%t, \%T] formatiert ein Datum der Typen Long, Calendar und Date. \%t benötigt ein Suffix.
+	\item [\%h, \%H] gibt den Hash-Code aus. \texttt{null} $\mapsto$ \texttt{null}
+\end{description}
+Beispiele:
+\begin{lstlisting}[language=Java]
+int i = 123; 
+String.format("|%d|   |%d|%n", i, -i); // |123|   |-123| 
+String.format("|%5d| |%5d|%n" , i, -i); // |  123| | -123| 
+String.format("|%-5d| |%-5d|%n" , i, -i); // |123  | |-123 | 
+String.format("|%+-5d| |%+-5d|%n" , i, -i); // |+123 | |-123 | 
+String.format("|%05d| |%05d|%n%n", i, -i); // |00123| |-0123| 
+
+String.format("|%X| |%x|%n", 0xabc, 0xabc ); // |ABC| |abc| 
+String.format("|%08x| |%#x|%n%n", 0xabc, 0xabc ); // |00000abc| |0xabc| 
+
+double d = 12345.678; 
+String.format("|%f| |%f|%n", d, -d); // |12345,678000| |-12345,678000| 
+String.format("|%.2f| |%.2f|%n", d, -d); // |12345,68| |-12345,68| 
+String.format("|%,10f| |%,10f|%n", d, -d ); // |1234,567800| |-1234,567800| 
+String.format("|%10.2f| |%10.2f|%n", d, -d); // |  12345,68| | –12345,68| 
+String.format("|%010.2f| |%010.2f|%n", d, -d); // |0012345,68| |-012345,68| 
+
+String s = "Monsterbacke"; 
+String.format("%n|%s|%n", s); // |Monsterbacke| 
+String.format("|%20s|%n", s); // |        Monsterbacke| 
+String.format("|%-20s|%n", s); // |Monsterbacke        | 
+String.format("|%7s|%n", s); // |Monsterbacke| 
+String.format("|%.7s|%n", s ); // |Monster| 
+String.format("|%20.7s|%n", s); // |             Monster| 
+
+Date t = new Date(); 
+String.format("%tT%n", t); // 11:01:39 
+String.format("%tD%n", t); // 05/23/06 
+String.format("%1$te. %1$tb%n", t); // 23. Mai 
+\end{lstlisting}
+
+\subsection{StringBuffer}
+Dient dem effizienten Zusammensetzen von Strings.
+Intitialisierung:
+\begin{itemize}\itemsep0em
+	\item \texttt{StringBuffer buffer = new StringBuffer();}: Leerer StringBuffer
+	\item \texttt{StringBuffer buffer = new StringBuffer(10);}: Leerer StringBuffer der Länge 10
+	\item \texttt{StringBuffer buffer = new StringBuffer("Hallo");}: StringBuffer mit dem Startwort \enquote{Hallo}
+\end{itemize}
+
+Verwendungsbeispiel:
+\begin{lstlisting}[language=Java]
+public String toString(final List<Item> list) {
+	final StringBuffer buffer = new StringBuffer();
+	for(final Item item : list) {
+		buffer.append(item.toString());
+		buffer.append(',');
+	}
+	// Delete last comma
+	buffer.deleteCharAt(buffer.lastIndexOf(','));
+	return buffer.toString();
+}
+\end{lstlisting}
+
+\section{Nachrichten}
+In der OOP bezeichnet \enquote{Nachricht senden} den Aufruf einer Methode eines Objektes durch ein anderes Objekt.
+
+\begin{lstlisting}[language=Java]
+myObject.doSomething(); // Aktuelle Klasse sendet myObject die Nachricht doSomething
+\end{lstlisting}
+
+\begin{itemize}\itemsep0em
+	\item Alle Objekte Nachrichten zusenden, egal von welcher Klasse
+	\item Objekte können sich selbst Nachrichten zusenden (\texttt{this.})
+	\item Der Sender wartet bis der Empfänger die Nachricht verarbeitet hat.
+\end{itemize}
+
+\section{Vererbung}
+\begin{itemize}\itemsep0em
+	\item eine Klasse übernimmt durch Vererbung (alle) Eigenschaften und das Verhalten einer Klasse
+	\item die vererbende Klasse heisst Basisklasse (Superklasse)
+	\item die verbende Klasse ist der allgemeinere Fall (generalisiert)
+	\item die erbende Klasse heisst Subklasse (Ableitung)
+	\item die erbende Klasse ist spezialisiert
+	\item eine erbende Klasse ist auch ein Objekt vom Typ Superklasse
+	\item eine mit \texttt{final} deklarierte Klasse kann keine Kinder haben (Bsp. \texttt{java.lang.String})
+	\item Falls K nicht eine Art von E ist, soll K auch nicht von E erben! (Grady Booch)
+	\item Jede Klasse erbt mindestens von der Klasse \texttt{Object} das folgende:
+	\begin{itemize}
+		\item \texttt{clone()} gibt eine Referenz auf eine Kopie von sich selbst zurück
+		\item \texttt{equals(Object object)} Prüft zwei Objekte auf Gleichheit (i.\,d.\,R. auf gleiche Speicherplatz-Referenz)
+		\item \texttt{hashCode()} HashCode des Objekts
+		\item \texttt{finalize()} wird aufgerufen wenn das Objekt aufgelöst wird (Garbage Collector)
+		\item \texttt{getClass()} Meta-Informationen zur Klasse des Objekts
+		\item \texttt{toString()} Beschreibung des Objektes als String (i.\,d.\,R. der HashCode)
+	\end{itemize}
+\end{itemize}
+
+\section{Konstruktoren}
+\begin{itemize}\itemsep0em
+	\item führen die zum Erzeugen des Objektes notwendigen Arbeiten durch
+	\item heissen gleich wie die Klasse
+	\item haben keinen Rückgabewert
+	\item werden nicht vererbt
+	\item können weitere eigene (\texttt{this()}) oder Eltern-Konstruktoren (\texttt{super()})aufrufen. Ein solcher Aufruf muss aber die erste Anweisung im Konstruktor sein
+	\item können benutzt werden um die Instantiierung eines Objektes zu verhindern.
+	Dazu wird der Konstruktor als \texttt{private} deklariert
+	\item hat eine Kind-Klasse keinen Konstruktor wird automatisch der Default-Konstruktor der Elternklasse ausgeführt
+\end{itemize}
+
+\subsection{Instantiierung}
+\begin{enumerate}\itemsep0em
+	\item einer Referenzvariablen wird der Wert \texttt{null} zugewiesen
+	\item mit \texttt{new} wird eine Objekt der Klasse im Heap-Speicher angelegt
+	\item der Konstruktor wird aufgerufen
+	\item der \texttt{new} Operator gibt eine Referenz auf das erzeugt Objekt zurück
+\end{enumerate}

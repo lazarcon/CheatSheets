@@ -1,0 +1,214 @@
+\section{Threads}
+Ein Thread ist ein separater Ausführungsstrang: Jeder Thread hat seinen eigenen Aufruf-Stack $\rightarrow$ Ein \java{Thread}-Objekt repräsentiert einen solchen Ausführungsstrang.
+
+Ein \java{Thread} braucht eien Job der as \java{Runnable} Interface implementiert.
+
+\subsection{Zustände von Threads}
+\begin{description}
+	\item [\java{NEW}] instantiert, \java{start()} wurde aber noch nicht aufgerufen
+	\item [\java{RUNNABLE}] Die \java{start()} Methode wurde aufgerufen, ein neuer Stack wurde erzeugt, der Thread wartet darauf vom Thread-Scheduler ausgeführt zu werden.
+	\item [\java{RUNNING}] Der Thread läuft
+	\item [\java{BLOCKED}] Der Thread ist vorrüber nicht lauffähig (wartet auf Ergebnisse, schläft, wartet auf ein gesperrtes Objekt)
+\end{description}
+
+\subsection{Wissenswertes}
+\begin{itemize}\itemsep0em
+	\item Threads können einen Namen haben (\java{myThread.setName()})!
+	\item Die Arbeitsweise des Thread-Schedulers ist nicht vorhersebar bzw. garantiert
+	\item Die Methode \java{Thread.sleep()} zwingt einen Thread den Zustand \java{RUNNING} aufzugeben. Anderen Threads dadurch eine Chance ausgeführt zu werden.
+	\item Threads können Problemen verursachen, wenn zwei oder mehrere Threads Zugriff
+	auf das gleiche Objekt haben (siehe Locks)
+	\item \java{synchronized} schützt davor, dass mehrere Threads gleichzeitig den
+	selben Block durchlaufen.	
+	\item Um Objekte theadsicher zu machen, müssen Anweisungen zu atomaren Prozessen gemacht werden.
+	\item Selbst wenn ein Objekt mehrere synchronisierte Methoden hat, gibt es nur einen Schlüssel. Solange sich irgendein Thread in einer synchronisierten Methode in diesem Objekt befindet, kann kein Thread in irgendeine andere synchronisierte Mehtode desselben Objekts eintreten.
+\end{itemize}
+
+\subsection{Locks}
+Anweisungen, die nur von einem Thread gleichzeitig durchlaufen werden dürfen beginnen mit \java{lock()} und enden mit \java{unlock()}.
+
+\begin{lstlisting}[language=Java]
+public class ReentrantLockedExample implements Runnable {
+	private final Lock lock = new ReentrantLock();
+
+	@Override
+	public void run() {  
+		// uncritical code ...
+		lock.lock();
+		// critical actions
+		lock.unlock();
+		// sum more uncritical code
+	}
+}	
+\end{lstlisting}
+
+\java{ReentrantLock} bietet nützliche Methoden wie \java{isLocked(), getQueueLength(), tryLock()}, \dots
+ 
+% Aufruf:
+% \begin{lstlisting}[language=Java]
+% public void doParallel() {
+%     ReentrantLockedExample job = new ReentrantLockedExample();
+%     
+%     Thread a = new Thread(job);
+%     Thread b = new Thread(job);
+%     a.start();
+%     b.start();
+%     try {
+%       Thread.sleep(2000);
+%     } catch (InterruptedException e) {
+%       e.printStackTrace();
+%     }
+%   }
+% \end{lstlisting}
+
+Mit der Implementierung \java{ReentrantReadWriteLock} kann Code erstellt werden, der es erlaubt, dass mehrere Threads in einen gemeinsamen Abschnitt eintreten können, der zum Lesen deklariert wurde. Der Block zum Schreiben ist dann gelockt.
+
+Bei Eintritt in einen Block der zum Schreiben deklariert wurde, werden alle anderen Blöcke (lesen/schreiben) für andere Threads gelockt.
+
+\subsection{Wait/Notifiy}
+Jedes Objekt besitzt die Methoden \java{wait()} und \java{notify()}. Ein Thread der über das Monitor-Objekt verfügt, kann diese Methoden aufrufen und sich so in einen Wartezustand versetzen oder einen anderen Thread aufwecken. Beispiele
+\begin{lstlisting}[language=Java]
+public class Waiter implements Runnable {
+	private Object monitor;
+
+	public Waiter(Object monitor) {
+		this.monitor = monitor;
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			synchronized (monitor) {
+				System.out.println("warte bis geweckt ..."); 
+				try {
+					monitor.wait();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				System.out.println("... wurde geweckt");
+			}
+		}
+	}
+}
+
+public class Notifier implements Runnable {
+	private Object monitor;
+
+	public Notifier(Object monitor) {
+		this.monitor = monitor;
+	}
+
+	@Override
+	public void run() {
+		while (true) {
+			System.out.println("kleine pause ...");
+			try {
+				Thread.sleep(3000);
+				System.out.println("weiter gehts ...");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			synchronized (monitor) {
+				// Monitor benachrichtigen:
+				monitor.notify();
+			}
+		}
+	}
+}
+\end{lstlisting}
+
+\subsection{ExecutorService}
+Der ExecutorService erlaut es Thread-Pools anzulegen. Ein und derselbe Thread kann
+dann mehrmals gestartet werden (Methode: \java{execute()})
+
+\begin{lstlisting}[language=Java]
+public void usePool() {
+	final ExecutorService executor = Executors.newCachedThreadPool();
+	final Runnable1 r1 = new MyRunnable1();
+	final Runnable2 r2 = new MyRunnable2();
+
+	executor.execute(r1);
+	executor.execute(r2);
+
+	try {
+		Thread.sleep(500);
+		System.out.println("Sleeping ...");
+		Thread.sleep(500);
+	} catch (InterruptedException e) {
+		e.printStackTrace();
+	}
+
+	executor.execute(r1);
+	executor.execute(r2);
+
+	executor.shutdown();
+}
+\end{lstlisting}
+
+Mit dem \java{Callable<T>}-Interface kann dem Aufrufer ein Rückgabewert zurückgegeben werden.
+
+\begin{lstlisting}[language=Java]
+public void useCallable() {
+	final ExecutorService executorService = Executors.newCachedThreadPool();
+	final Collection<Callable<Integer>> tasks =
+		new ArrayList<Callable<Integer>>();
+
+	tasks.add(new MyCallable(21));
+	tasks.add(new MyCallable(35));
+
+	List<Future<Integer>> result = null;
+	try {
+		result = executorService.invokeAll(tasks);
+	} catch (InterruptedException e1) {
+		e1.printStackTrace();
+	}
+
+	// Die Ergebnisse stehen in Future:
+	for (Future<Integer> future : result) {
+		try {
+			System.out.println(future.get());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+		}
+	}
+	executorService.shutdown();
+}
+\end{lstlisting}
+
+\subsection{Timed Tasks}
+Die Implementierung von zeitgesteuerten Abläufen nimmt uns zum Teil die Java-Bibliothek ab, die dazu die Klassen
+\begin{itemize}
+	\item \java{java.util.Timer}
+	\item \java{java.util.TimerTask}
+\end{itemize}
+anbietet. Sie helfen bei der zeitgesteuerten Ausführung. Ein \java{TimerTask} ist eine Klasse, die uns \java{Runnable} implementieren lässt und Operationen umfasst, die zu einem Zeitpunkt oder in einer beliebigen Wiederholung ausgeführt werden sollen
+
+\begin{lstlisting}[language=Java]
+public class Task extends TimerTask {
+	@Override
+	public void run() {
+		// do something
+	}
+}	
+\end{lstlisting}
+
+Verwendung:
+\begin{lstlisting}[language=Java]
+public void doTimedStuff() {
+	final Timer timer = new Timer();
+
+	// Start in 2 Sekunden
+	timer.schedule(new Task("Task 1"), 2000);
+
+	// Start in einer Sekunde dann Ablauf alle 5 Sekunden
+	timer.schedule(new Task("Task 2"), 1000, 5000);
+
+	// Start am ... (Datum)
+	final Calendar c = Calendar.getInstance();
+	c.add(Calendar.SECOND, 15); // Zeitpunkt setzen
+	Date d = c.getTime();
+	timer.schedule(new Task("Task 3"), d);
+}	
+\end{lstlisting}

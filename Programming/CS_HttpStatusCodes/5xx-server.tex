@@ -1,0 +1,13 @@
+\section{5xx - Server}
+\begin{description}\itemsep0em
+	\item [500 - Internal Server Error] A generic error message, given when no more specific message is suitable.
+	\item [501 - Not Implemented] The server either does not recognize the request method, or it lacks the ability to fulfill the request.
+	\item [502 - Bad Gateway] The server was acting as a gateway or proxy and received an invalid response from the upstream server.
+	\item [503 - Service Unavailable] The server is currently unavailable (because it is overloaded or down for maintenance). Generally, this is a temporary state.
+	\item [504 - Gateway Timeout] - The server was acting as a gateway or proxy and did not receive a timely response from the upstream server.
+	\item [505 - HTTP Version Not Supported] The server does not support the HTTP protocol version used in the request.
+	\item [507 - Insufficient Storage (WebDAV)] The server is unable to store the representation needed to complete the request.
+	\item [508 - Loop Detected (WebDAV)] The server detected an infinite loop while processing the request (sent in lieu of 208).
+	\item [511 - Network Authentication Required] The client needs to authenticate to gain network access. Intended for use by intercepting proxies used to control access to the network (e.g. "captive portals" used to require agreement to Terms of Service before granting full Internet access via a Wi-Fi hotspot).
+	\item [531 - Access Denied] The client's authentication attempt was not successful.
+\end{description}
