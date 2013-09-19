@@ -1,0 +1,23 @@
+NON-COMMERCIAL USE END-USER LICENSE AGREEMENT FOR CheatSheets
+
+By installing, copying or otherwise using CheatSheets or any of its subdirectories, you agree to be bound by the terms of the Non-Commercial Use End-User License Agreement (EULA). If you do not agree with the terms of this EULA, you may not use or copy the software product.
+
+1. NON-COMMERCIAL USE: This EULA intends to make it easy for developers and end users to use CheatSheets for Non-Commercial Purposes, where "Non-Commercial Purposes" means:
+
+To evaluate CheatSheets and to do exploratory or educational development and "proof of concept" prototyping, whether at home for personal use or at work as a prototyping tool, and where "Non-Commercial Purposes" specifically excludes use for commercial gain, whether to be sold or to be used within a company, partnership, organization or entity that transacts commercial business.
+
+2. GRANT OF LICENSE: This EULA grants you the following non-exclusive rights:
+
+Content: You may use the CheatSheets on any number of computers, either standalone, or on a network, so long as every use of the CheatSheets is for NON-COMMERCIAL USE.
+
+Unless expressly permitted under this EULA, you will not:
+
+alter, remove, hide or cover proprietary notices in or on CheatSheets.
+
+use the CheatSheets for anything that is intended to create or could, in the event of malfunction or failure, cause personal injury or property damage.
+
+make use of the CheatSheets for commercial gain, whether directly, indirectly or incidentally.
+
+3. LIABILITY:
+
+THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL JOHN BRIDGES OR DIGI-PRODUCTS LTD. BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
