@@ -1,0 +1,201 @@
+\section{Komplexitätstheorie}
+(Kleene, Rabin, Scott, 70er Jahre)
+\begin{description}\itemsep0em
+	\item [Effizienz] Die Effizienz eines Algorithmus bemisst sich nach Laufzeit und Speicherplatzbedarf
+	\item [Laufzeiteffizienz] 
+	wird über eine Funktion $f(n)$ in Abhängigkeit der Eingabewerte $n$ beschreiben und bestimmt die obere Schranke
+\end{description}
+
+\subsection{Laufzeitvergleiche}
+\begin{itemize}\itemsep0em
+	\item müssen unabhängig von Soft- und Hardware sein
+	\item betrachten besonders das Verhalten für alle grosse Eingaben
+	\item ausschlaggebend ist der schlechteste Fall -- die obere Schranke
+	\item erfolgen mit Hilfe der 
+	\begin{itemize}
+		\item $\Omega$-Notation: untere Schranke (d.\,h. mindestens so lang)
+		\item O-Notation: obere Schranke (d.\,h. höchstens so lang) 
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{$\Omega$-Notation}
+Die untere Schranke lässt sich nur schwer bestimmen, weil gezeigt werden muss, dass alle Algorithmen mindestens diese Komplexität besitzen. Formell:
+%Die $\Omega$-Notation ermöglicht eine Abschätzung der minimalen Laufzeit. Formell:
+\begin{equation*}
+	\Omega(f(n)) = \{g: \mathbb{N} \to \mathbb{N} | \exists\, n_0 > 0 \wedge \exists\, c > 0 : \forall\, n \geq n_0 : |g(n)| \geq c \cdot |f(n)|\}
+\end{equation*}
+
+
+\subsubsection{O-Notation} 
+(\textit{asymptotische Laufzeitkomplexität}) ermöglicht eine Abschätzung der Laufzeit bei unendlich grossen Eingaben. Formell:
+\begin{equation*}
+	\mathcal{O}(f(n)) = \{g: \mathbb{N} \to \mathbb{N} | \exists\, n_0 > 0 \wedge \exists\, c > 0 : \forall\, n \geq n_0 : |g(n)| \leq c \cdot |f(n)|\}
+\end{equation*}
+$\mathcal{O}(f(n))$ ist eine Menge von Funktionen, für die gilt: Es gibt zwei Konstanten $c$ und $n_0$, so dass für alle $n > n_0$ gilt, $g(n)$ und $f(n)$ unterscheiden sich im Wachstum um den Faktor $c$.
+\vfill
+\settowidth{\MyLenA}{$g(n) \in \mathcal{O}(n \cdot \log n)$~~}
+\settowidth{\MyLenB}{Wurzelfunktion~~}
+\begin{tabular}{
+	@{}p{\the\MyLenA}%
+	@{}p{\the\MyLenB}%
+	@{}p{\linewidth - \the\MyLenA - \the\MyLenB}
+}
+	\multicolumn{1}{c}{\textbf{Notation}} & \multicolumn{1}{c}{\textbf{Bedeutung}} & \multicolumn{1}{c}{\textbf{Beispiel}}\\
+	$g(n) \in \mathcal{O}(1)$ & beschränkt & Array-Zugriff, Zuweisung\\
+	$g(n) \in \mathcal{O}(\log_x n)$ & logarithmisch & binäre Suche\\
+	$g(n) \in \mathcal{O}(\sqrt[x]{n})$ & Wurzelfunktion & \enquote{naiver} Primzahlentest\\
+	$g(n) \in \mathcal{O}(n)$ & linear & sequentielle Suche\\
+	$g(n) \in \mathcal{O}(n \cdot \log n)$ & beschränkt & Mergesort\\
+	$g(n) \in \mathcal{O}(n^x)$ & polynominell & Bubblesort\\
+	$g(n) \in \mathcal{O}(x^n)$ & exponentiell & Erfüllbarkeit der Aussagenlogik\\
+	$g(n) \in \mathcal{O}(n!)$ & faktoriell & Handlungsreisender\\
+\end{tabular}
+~\\
+Algorithmen mit mindestens exponentiellen gelten als nicht praktikabel. Wenig praktikabel sind
+Algorithmen der Klasse $\mathcal{O}(n^x)$ für $x > 3$. 
+
+\paragraph{Rechenregeln}
+\begin{align*}
+	\mathcal{O}(\mathcal{O}(f(n))) &\in \mathcal{O}(f(n))&
+	\mbox{Polynom vom Grad } x &\in \mathcal{O}(n^x)\\
+	c + \mathcal{O}(f(n)) &\in \mathcal{O}(f(n))&
+	\mathcal{O}(f(n)) + \mathcal{O}(g(n)) &\in \mathcal{O}(\mbox{max}(f(n), g(n)))\\
+	c \cdot \mathcal{O}(f(n)) &\in \mathcal{O}(f(n))&
+	\mathcal{O}(f(n)) \cdot \mathcal{O}(g(n)) &\in \mathcal{O}((f(n) \cdot g(n)))
+\end{align*}
+
+\paragraph{Beispiel Bestimmung O-Notation}
+\settowidth{\MyLenA}{~~~~\texttt{// vier Zuweisung/Berechnungen}~~}
+\begin{tabular}{
+	@{}p{\the\MyLenA}
+	@{}p{\linewidth - \the\MyLenA}%
+}
+\texttt{function(int a, int b)} & $\Rightarrow 2 \cdot c_0 \Rightarrow \underline{\mathcal{O}(1)}$\\
+~~\texttt{int x, y, z} & $\Rightarrow 3 \cdot c_1 \Rightarrow \underline{\mathcal{O}(1)}$\\
+~~\texttt{for x = a to 0 do} & $\Rightarrow a \cdot (4 \cdot c_2) \Rightarrow \underline{\mathcal{O}(n)}$\\
+~~~~\texttt{// vier Zuweisung/Berechnungen} & $\Rightarrow 4 \cdot c_2 \Rightarrow \mathcal{O}(1)$\\
+~~\texttt{end for} & \\
+~~\texttt{for x = b to a} & 
+$\Rightarrow (b - a) \cdot (a \cdot (1 \cdot c_3) + 2 \cdot c_4 + 4 \cdot c_5) \Rightarrow \underline{\mathcal{O}(n^2)}$\\
+~~~~\texttt{for y = a to 0} & $\Rightarrow a \cdot (1 \cdot c_3)\Rightarrow \mathcal{O}(n)$\\
+~~~~~~\texttt{z = z + 1} & $\Rightarrow 1 \cdot c_3 \Rightarrow \mathcal{O}(1)$\\
+~~~~\texttt{end for} & \\
+~~~~\texttt{// zwei Dateizugriffe} & $\Rightarrow 2 \cdot c_4 \Rightarrow \mathcal{O}(1)$\\
+~~~~\texttt{// vier Ausgabebefehle} & $\Rightarrow 4 \cdot c_5 \Rightarrow \mathcal{O}(1)$\\
+~~\texttt{end for} & \\
+\texttt{end function} & \\
+\end{tabular}
+$\Rightarrow \mathcal{O}(1) + \mathcal{O}(1) + \mathcal{O}(n) + \mathcal{O}(n^2) \in \mathcal{O}(n^2)$
+
+% \textit{Beispiel:} $g(n) = n^2 + n + a$\\
+% $a$ ist eine Konstante und kann vernachlässigt werden:
+% \begin{align*}
+% 	n^2 + n &\leq 2 \cdot n^2 &(c = 2\mbox{ eingeführt, Klasse }n^2\\
+% 	n^2 + n &\leq n^2 + n^2 &&| - n^2\\
+% 	n &\leq n^2 &&| \div n^2\\
+% 	1 &\leq n && \Rightarrow n_0 = 1, c = 2
+% \end{align*}
+% Für $n_0 = 1$ und $c = 2$ ist $g(n) \in \mathcal{O}(n^2)$
+
+%Die Bestimmung der Komplexitätsklasse ergibt sich (Daumenregel) aus dem am schnellsten wachsenden Term der Funktion.
+
+% \textit{Code-Beispiel:} Aufsummieren aller Zahlen bis $n$ 
+% \lstset{numbers=none, language=ada, tabsize=2}
+% \begin{center}
+% \begin{tabular}{lcl}
+% \multicolumn{1}{c}{\textbf{Schleife}} & & \multicolumn{1}{c}{\textbf{Direkt}} \\ 
+% \begin{minipage}{0.4\linewidth}
+% \begin{lstlisting}
+% sum(n): 
+% 	sum = 0; // a
+% 	loop n do
+% 		sum = sum + n // b
+% 	end
+% \end{lstlisting}	
+% \end{minipage}
+% &
+% ~
+% &
+% \begin{minipage}{0.4\linewidth}
+% \begin{lstlisting}
+% sum(n): 
+% 	sum = n * (n + 1)/2 // c
+% \end{lstlisting}			
+% \end{minipage}
+% \\
+% $g(n) = a + n \cdot b$
+% &&
+% $g(n) = c$\\
+% $\Rightarrow g(n) \in \mathcal{O}(n)$ & & $\Rightarrow g(n) \in \mathcal{O}(1)$\\
+% \end{tabular}
+% \end{center}
+\subsection{Problemklassen}
+\begin{description}\itemsep0em
+	\item [Einfaches Problem] 
+	in polynominaler Zeit lösbar
+	
+	\item [Schwieriges Problem] 
+	nur in mindestens exponentieller Zeit (d.\,h. nur für \enquote{kleine} Eingabewerte) lösbar
+	
+	Es gibt bei den schwierigen Problemen eine Unterklasse von Problemen, die mit einer nicht-deterministischen TM in polynominaler Zeit gelöst werden können (d.\,h. es ist schwer eine Lösung zu finden, aber einfach diese zu verifizieren)
+
+	\item [P]
+	Eine Sprache $L$ ist in der Klasse P enthalten, wenn $L = L(\mathcal{M})$ für eine deterministische TM $\mathcal{M}$ mit einer polynominalen Zeitkomplexität $T(n)$ gilt. D.\,h. $\mathcal{M}$ kann für $w \in \Sigma^*$ mit polynominalen Zeitaufwand prüfen, ob $w \in L$.
+
+	\item [NP]
+	Eine Sprache $L$ ist in der Klasse NP enthalten, wenn $L = L(\mathcal{M})$ für eine nichtdeterministische TM mit einer polynominalen Zeitkomplexität $T(n)$ gilt und für jede Eingabe der Länge $n$ es keine Folge mit mehr als $T(n)$ Bewegungen in $\mathcal{M}$ gibt. D.\,h. $\mathcal{M}$ \enquote{rät} die richtige Lösung und prüft diese mit polynominalen Zeitaufwand.
+
+	Offensichtlich gilt P $\subset$ NP. Die offene Frage ist: 
+	\begin{equation*}
+	\mbox{P} \overset{?}{=} \mbox{NP}
+	\end{equation*}
+\end{description}
+~\\\vfill
+\begin{description}
+	\item [NP-schwierig] 
+	Eine Sprache $L$ heisst NP-schwierig, wenn für jede Sprache $L' \in$ NP eine Polynominalzeitreduktion von $L'$ auf $L$ existiert. D.\,h. $L$ ist mindestens so schwierig, wie alle Probleme in NP (die übrigens alle gleich schwierig sind)
+
+	\item[NP-vollständig (NPC)]
+	Eine Sprache $L$ heisst NP-vollständig (NP-complete) wenn $L \in $ NP und für jede Sprache $L' \in $ NP eine Polynominalzeitreduktion von $L'$ auf $L$ existiert. D.\,h. im Gegensatz zu NP-schwierig existiert immerhin eine Lösung in NP.
+
+	\item[Polynominalzeitreduktion]
+	Ein Algorithmus der ein Problem $P_1$ auf ein Problem $P_2$ reduziert darf höchstens polynominale Zeit verwenden. D.\,h. Der Algorithmus zum lösen von $P_2$ unterscheidet sich nur polynominal von dem von $P_1$. Darus folgt:
+	\begin{equation*}
+		P_1 \in \mbox{NP} \Rightarrow P_2 \in \mbox{NP}
+	\end{equation*} 
+\end{description}
+
+\subsection{Beweistechnik $L \in$ NP}
+Via (transitiver) Polynominalzeitreduktion reduziert man ein Problem soweit, bis man bei einem bekannten NP-vollständigen Problem angelangt ist.
+
+\subsection{Bekannte NP-vollständige-Probleme}
+\begin{description}\itemsep0em
+	\item [SAT]
+	Das \enquote{satisfiable} Problem (Erfüllbarkeitsproblem): Gibt es eine Belegung der Variablen eines aussagelogischen Ausdrucks, so dass der Ausdruck wahr wird. (Satz von Cook, 1971)
+	\item [TST]
+	Das Travelling Salesman Problem (kürzest mögliche Verbindung von verschiedenen Punkten)
+	\item [\enquote{Färbungsproblem}] 
+	Wieviele Farben sind mindestens notwendig, um eine Landkarte so einzufärben, dass benachbarte Länder immer unterschiedliche Farben haben?
+	\item [\enquote{Rucksack}-Problem] Wie fülle ich einen Rucksack so, des Inhalts maximal, sein Gewicht aber minimal wird?
+\end{description}
+
+Lösungsalgorithmen sind für diese Probleme bekannt, doch sie erfordern exponentiellen Zeitaufwand. Es gelten: 
+\begin{enumerate}\itemsep0em
+	\item jedes NP-vollständige Problem ist höchstens so schwierig wie das SAT-Problem
+	\item alle NP-vollständigen Probleme sind mindestens so schwierig wie das SAT-Problem
+\end{enumerate}
+%. Und ebenfalls, . Somit sind alle NP-vollständigen Probleme gleich schwierig. Kann also für nur ein einziges NP-vollständiges Problem gezeigt werden, dass es in polynominaler Zeit lösbar ist, ist %die Frage P $\overset{?}{=}$ NP mit \enquote{ja} zu beantworten.
+
+\subsection{Lösungsstrategien für NP-vollständige Probleme}
+\begin{itemize}\itemsep0em
+	\item Näherungsverfahren/Heuristiken, so dass 
+	\begin{itemize}\itemsep0em
+		\item fast alle Lösungen optimal sind
+		\item alle Lösungen fast optimal sind
+	\end{itemize}
+	\item Generierung von zufälligen Lösungen, bis man keine bessere mehr findet
+	\item Optimierung des Basiswerts $x$, so dass $1 \leq x \leq 2$
+	\item Exakte Algorithmen für kleine $n$
+	\item \enquote{Lokale Suche} (neu, noch ohne Relevanz)
+\end{itemize}
+

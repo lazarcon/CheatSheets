@@ -1,0 +1,279 @@
+\section{Berechenbarkeit/Rekursionstheorie}
+(Kurt Gödel, Alonzo Church, Alan Turing, 30er Jahre)
+\begin{equation*}
+	\mbox{Computer} \Leftrightarrow \mbox{Turing-Maschine}
+\end{equation*}
+
+% \begin{proof}
+% 	~\\
+% 	\begin{itemize}\itemsep0em
+% 		\item [\enquote{$\Rightarrow$}] Elemente der Turing-Maschine $\mathcal{M}$ werden simuliert:
+% 		\begin{itemize}\itemsep0em
+% 			\item $\mathcal{M}$ hat eine endliche Zahl von Zuständen\\
+% 			$\mapsto$ Zeichenreihen fester Länge im Speicher
+% 			\item $\mathcal{M}$ hat eine endliche Zahl von Zustandsübergängen\\
+% 			$\mapsto$ Tabellen im Speicher
+% 			\item $\mathcal{M}$ hat eine endliche Zahl von Bandsymbolen\\ 
+% 			$\mapsto$ Zeichenreihen fester Länge
+% 			\item $\mathcal{M}$ hat ein unendliches Band\\
+% 			$\mapsto$ einer unendlichen Menge von Wechseldatenspeichern
+% 		\end{itemize}
+% 		$\Rightarrow$ ein Computer kann alles, was $\mathcal{M}$ kann
+% 		\item [\enquote{$\Leftarrow$}] 	Gegeben sei eine Turing-Maschine mit $4+n$ Bändern:
+% 		\begin{itemize}\itemsep0em
+% 			\item Band 1 simuliere den Speicher eines Computers
+% 			\item Band 2 simuliere den Programmzähler
+% 			\item Band 3 simuliere die Speicheradressen
+% 			\item Band 4 simuliere die Eingabedaten
+% 			\item $n$ weitere Bänder für notwendigen Berechnungen
+% 		\end{itemize}
+% 		unter diesen Bedingungen kann gezeigt werden, dass eine Turing-Maschine jede grundlegende Operation eines Computers simulieren kann $\Rightarrow$ Eine Turing-Maschine kann alles, was ein Computer kann\qedhere
+% 	\end{itemize}
+% \end{proof}
+
+\begin{description}\itemsep0em
+	\item [Berechenbarkeit] 
+	Eine Funktion $f$ ist berechenbar, wenn es eine TM $\mathcal{M}$ gibt, die $f$ berechnet. D.\,h. es kann ein Algorithmus gefunden werden, der $f$ berechnet
+
+	Jede TM kann \textit{partiell rekursive Funktionen}/rekursive aufzählbare Sprachen berechnen/erkennen
+
+	\item [Primitiv rekursive Funktion] Eine Funktion, die über mindestens ein Abbruchkriterium verfügt und sich selbst aufruft. Für primitiv rekursive Funktionen gilt: Eine TM hält für alle Eingaben. Beispiele: Addition, Multiplikation, Potenz, Fibonacci-Zahlen
+	
+	\item [Partiell rekursive Funktion ($\mu$-rekursive Funktion)]
+	Eine Funktion, welche die primitiv rekursiven Funktionen um den $\mu$-Operator erweitert. Der $\mu$ bildet dabei eine $k + 1$ stellige Funktion auf ein $k$ stellige ab. (Beispiele: Nachfolgerfunktion $\sigma(n) = n + 1$, Ackermannfunktion (s.\,u.)). Somit gilt:
+	\begin{equation*}
+		\mbox{primitiv rekursive Funktionen} \subsetneq \mu-\mbox{rekursive Funktionen}
+	\end{equation*}
+	
+	\item [Rekursiv aufzählbar] 
+	Es gibt einen Algorithmus, um allen Elementen einer Menge eine natürliche Zahl $n$ zuzuordnen
+
+	\item [Church'sche These]
+	Die Klasse der Turing-berechenbaren Funktionen ist genau die Klasse der \enquote{intuitiv} berechenbaren Funktionen	
+
+	\item[Rekursive Sprache]
+	Eine Sprache $L$ heisst rekursiv, wenn $L = L(\mathcal{M})$ für eine TM $\mathcal{M}$ ist und für jedes $w$ gilt:
+	\begin{itemize}\itemsep0em
+		\item $w \in L \Rightarrow \mathcal{M}$ hält und akzeptiert
+		\item $w \notin L \Rightarrow \mathcal{M}$ hält und akzeptiert nicht
+	\end{itemize}
+\end{description}
+
+\subsection{Programm-Typen}
+Als Beispiel ist jeweils die Addition von $x$ + $y$ aufgeführt.
+\subsubsection{GOTO-Programme}
+Endliche Anzahl von Variablen $a_1, \dots a_n$ und Konstanten $K_1, \dots K_n$\\
+Jede Anweisung (Zeile) ist nummeriert\\
+Fünf verschiedene Anweisungen:
+\lstset{numbers=left, stepnumber=1, firstnumber=1, numberfirstline=true, language=ada}
+\begin{tabular}{lcl}
+\begin{minipage}{0.55\linewidth}
+	\begin{enumerate}\itemsep0em
+		\item Zuweisung \& \enquote{$+$}: $a = a + K$
+		\item Zuweisung \& \enquote{$-$}: $a = a - K$
+		\item Sprunganw. (GOTO Zeile $n$)
+		\item Verzweigung (\texttt{IF} \dots\ \texttt{ELSE})
+		\item Stopp-Anweisung
+	\end{enumerate}
+\end{minipage}
+& ~
+&
+\begin{minipage}{0.35\linewidth}
+\begin{lstlisting}
+k := x
+l := y
+k := k + 1
+l := l - 1
+if (l > 0) goto 3
+end
+\end{lstlisting}
+\end{minipage}
+\end{tabular}
+GOTO-Programme stehen für unstrukturierten Code (Programmiersprache BASIC). Es gilt:
+\begin{equation*}
+	\mbox{GOTO-Programme} \Leftrightarrow \mbox{Turing-Maschine}
+\end{equation*}
+
+
+\subsubsection{WHILE-Programme}
+\lstset{numbers=none, language=ada}
+Endliche Anzahl Variablen $a_1, \dots a_n$ und Konstanten $K_1, \dots K_n$\\
+Drei verschiedene Anweisungen:\\
+\begin{tabular}{lcl}
+\begin{minipage}{0.55\linewidth}
+	\begin{enumerate}\itemsep0em
+		\item Zuweisung \& \enquote{$+$}: $a = a + K$
+		\item Zuweisung \& \enquote{$-$}: $a = a - K$
+		\item Bedingte Schleife\\ (\texttt{WHILE} \dots\ \texttt{DO} \dots\ \texttt{END})
+	\end{enumerate}
+~\\
+\end{minipage}
+& ~
+&
+\begin{minipage}{0.35\linewidth}
+\begin{lstlisting}
+k := x
+l := y
+while (l > 0) do
+k := k + 1
+l := l - 1
+end
+\end{lstlisting}
+\end{minipage}
+\end{tabular}
+Jedes beliebige WHILE-Programm kann durch eine WHILE-Programm mit genau einer Schleife ersetzt werden!
+
+WHILE-Programmen stehen für strukturierten Code (Programmiersprachen Pascal, C, Java, \dots). Es gilt:
+\begin{equation*}
+	\mbox{WHILE-Programme} \Leftrightarrow \mbox{GOTO-Programme}
+\end{equation*}
+
+\subsubsection{LOOP-Programme}
+Endliche Anzahl Variablen $a_1, \dots a_n$ und Konstanten $K_1, \dots K_n$\\
+Drei verschiedene Anweisungen:
+\begin{tabular}{lcl}
+\begin{minipage}{0.6\linewidth}
+	\begin{enumerate}\itemsep0em
+		\item Zuweisung \& \enquote{$+$}: $a = a + K$
+		\item Zuweisung \& \enquote{$-$}: $a = a - K$
+		\item Feste Schleife (\texttt{LOOP DO} \dots\ \texttt{END})\\
+		Die Anzahl der Schleifen ist zu Beginn festgelegt (\texttt{FOR NEXT})
+	\end{enumerate}
+\end{minipage}
+& ~
+&
+\begin{minipage}{0.35\linewidth}
+\begin{lstlisting}
+k := x
+l := y
+loop l do
+k := k + 1
+end
+\end{lstlisting}
+\end{minipage}
+\end{tabular}
+Es gilt:
+\begin{itemize}\itemsep0em
+	\item [$\to$] Jedes \texttt{LOOP}-Programm kann durch ein \texttt{WHILE}- oder \texttt{GOTO}-Programm ersetzt werden
+	\item [$\to$] Nicht jedes \texttt{WHILE}-/\texttt{GOTO}-Programm kann durch ein \texttt{LOOP}-Programm ersetzt werden
+	\item [$\to$] \texttt{LOOP}-Programme entsprechen den primitiv rekursiven Funktionen und terminieren immer
+	\item [$\to$] \texttt{GOTO}-/\texttt{WHILE}-Programme entsprechen den $\mu$-rekursiven Funktionen und terminieren nicht immer
+\end{itemize}
+
+\subsection{Partiell rekursive Funktionen }
+Mit Hilfe von struktureller Induktion und Widerspruch kann gezeigt werden, dass es Funktionen (z.\,B. Ackermannfunktion) gibt, die schneller wachsen als primitiv rekursive Funktionen. 
+Die Ackermannfunktion ist rekursiv, aber nicht primitiv rekursiv.
+\begin{align*}
+	a(0, m) & = m + 1\\
+	a(n + 1, 0)& = a(n, 1)\\
+	a(n + 1, m + 1) & = a(n, a(n + 1, m))
+\end{align*}
+
+\section{Entscheidbarkeit}
+Die Entscheibarkeit eines Problems $L$ lässt sich unterteilen:
+\begin{description}\itemsep0em
+	\item [Entscheibar] sind alle Probleme/Sprachen, die rekursiv sind. D.\,h. eine TM hält für alle rekursiven Eingaben.
+	\item [Semi-entscheidbar] sind alle Probleme/Sprachen, die zwar rekursiv aufzählbar, aber nicht rekursiv sind.
+	D.\,h. eine TM hält für alle rekursiv aufzählbaren Eingaben.
+	\item [Unentscheidbar] sind alle Probleme/Sprachen, die nicht rekursiv aufzählbar sind. 
+\end{description}
+
+% \begin{center}
+% 	\begin{tabular}{lp{0.35\linewidth}|p{0.35\linewidth}}
+% 		& \multicolumn{1}{c|}{\textbf{Entscheidbar}} & \multicolumn{1}{c}{\textbf{Unentscheidbar}}\\\cline{2-3}
+% 	$L$ = Sprachtyp & rekursiv & nicht rekursiv \\
+% 	TM		& hält für alle Eingaben & hält für mindestens eine Eingabe nicht
+% 	\end{tabular}
+% \end{center}
+% Semi-entscheidbar heisst, 
+
+\subsection{Unentscheidbare Probleme}
+\subsubsection{Diagonalisierungssprache $L_d$ (codiert eine TM)}
+Bildung:
+
+%Für eine TM existieren i.\,d.\,R. viele Codierungen. (Reihenfolge der $\delta$). Es gibt Zahlen, die ergeben keine oder keine sinnvolle TM. Für diese wird angenommen, dass die TM nur einen Zustand hat und für jede Eingabe hält, ohne zu akzeptieren.
+
+Jede $\mathcal{M}_i$ lässt sich als Zeichenreihe $w_i$ darstellen (Codierung TM). In einer Tabelle mit allen $w_i$ als Zeilen und $w_i$ als Spalten steht in Zelle $z, s$ ob $\mathcal{M}_z \mathcal{M}_s$ als Eingabe akzeptiert (Wert: $1$) oder nicht (Wert: $0$) $L_d$ ist die Sprache aus allen denen Wörtern, die Turing-Maschinen codieren, die sich selbst nicht als Eingabewort akzeptieren. 
+\begin{equation*}
+L_d = \{w_i | w_i \notin L(\mathcal{M}_i)\}
+\end{equation*}
+$\Rightarrow L_d$ ist nicht rekursiv aufzählbar $\Rightarrow$ nicht entscheidbar.\\
+
+%$L_d$ kann nicht rekursiv aufzählbar sein, weil $\mathcal{M}_i$ nicht zu gleich $w_i$ akzeptieren (d.\,h. es wäre aufzählbar) und nicht akzeptieren ($w_i$ ist genau so definiert) kann.
+
+\subsection{Semi-entscheidbare Probleme}
+\subsubsection{Halteproblem}
+\begin{satz}
+	Es ist unentscheidbar, ob eine TM für jedes codierte Paar $(c(\mathcal{M}), w)$ als Eingabe hält oder nicht.
+\end{satz}
+$\mathcal{M}$ hält nur für Paare bei denen $w \in L_U$ ist.
+% 
+% Sei $L_U$ die Menge aller Zeichenreihen, die sich aus der Konkatenation einer codierten TM $\mathcal{M}$, \enquote{111} und einem von $\mathcal{M}$ akzeptierten Eingabewort ergeben.
+% (z.\,B. $c(\mathcal{M}) = 0100100010100\,11\,000101010010, w=11$\\$ \Rightarrow 0100100010100\,11\,000101010010\,111\,11 \in L_U$). Folgendes lässt sich dann beweisen:
+% \begin{enumerate}\itemsep0em
+% 	\item Es existiert eine \textit{universelle} TM $U$, die $L_U$ akzeptiert d.\,h. $L_U \in L(U)$.
+% 	\item $L_U$ ist rekursiv aufzählbar.
+% 	\item $L_U$ ist nicht rekursiv.
+% \end{enumerate}
+\begin{equation*}
+	\Rightarrow \{L_{\mbox{rekursiv}}\} \subsetneq \{L_{\mbox{rekursiv aufzählbar}}\} \not\subset \{L_{\mbox{nicht rekursiv aufzählbar}}\}
+\end{equation*}	
+
+\subsubsection{Game-of-Life}
+% Eine Ebene ist in einheitliche Quadrate aufgeteilt. Jedem Quadrat ist ein Automat zugeordnet, der den Folgezustand (lebendig/tot) in Abhängigkeit des Zustandes der bis zu acht Nachbarquadraten berechnet. Die Regeln sind:
+% \begin{enumerate}\itemsep0em
+% 	\item lebendig, wenn selbst lebendig und 2 oder 3 Nachbarn lebendig sind
+% 	\item lebendig, wenn selbst tod, aber genau 3 Nachbarn lebendig sind
+% 	\item tot, wenn selbst lebendig und mehr als 3 Nachbarn lebendig sind
+% 	\item tot, wenn selbst lebendig und weniger als zwei Nachbarn lebendig sind
+% \end{enumerate}
+Die Frage, ob eine gegebene Anfangskonfiguration ($w$) zu ein stabilen oder periodischen Muster, oder dem kompletten Aussterben führt, kann nicht immer beantwortet werden.
+
+\subsubsection{Collatz-Zahlen}
+Gegeben sei die Collatz-Funktion col:
+\begin{equation*}
+	 \mbox{col}(n) = \begin{cases} n/2 &\text{falls } n \equiv 0 \pmod{2}\\ 3n+1 & \text{sonst}\end{cases}
+\end{equation*}
+Wendet man die Funktion auf das Ergebnis einer ursprüngliche Eingabe $n \in \mathbb{N}$ wiederholt an, entsteht die Collatz-Folge. Sie endet bei $n = 1$. Es ist unbekannt, ob die Menge der Collatz-Zahlen rekursiv ist.
+%Die Collatz-Vermutung besagt, dass sich die Collatz-Folge für jede beliebige Zahl $n \in \mathbb{N}$ irgendwann die 1 erreicht. Es ist nur eine Vermutung, weil unbekannt ist, ob die Menge der Collatz-Zahlen rekursiv ist.
+
+\subsubsection{Fleissige Biber}
+Ein fleissiger Biber ist eine Turingmaschine mit dem Alphabet $\Sigma = \{0, 1\}$ und $n$ Zuständen, die hält und zuvor auf ein leeres (aus Nullen bestehendes) Band die maximale Anzahl $k_n$ von Einsen schreibt, verglichen mit allen anderen haltenden Turingmaschinen mit ebenfalls $n$ Zuständen (Nur Nicht-haltende-Turingmaschinen schreiben mehr einsen).
+Die Fleissige-Biber-Funktion ist definiert als $\sum(n) = k_n$. Es ist nicht entscheidbar, ob eine gegebene TM tatsächlich eine Kette maximaler Länge schreibt.
+
+\subsection{Reduktion}
+Technik um zu zeigen, dass ein Problem $P_2$ mindestens so schwer ist, wie ein bekanntes Problem $P_1$.
+Dazu wird jede Instanz von $P_1$ wird auf eine Instanz von $P_2$ mit gleicher Antwort überführt. $\Rightarrow P_1 \subset P_2$
+\begin{enumerate}\itemsep0em
+	\item $P_1$ ist unentscheidbar $\Leftrightarrow P_2$ ist unentscheidbar
+	\item $P_1$ ist nicht rekursiv aufzählbar $\Leftrightarrow P_2$ ist nicht rekursiv aufzählbar
+\end{enumerate}
+
+\subsection{Unentscheidbarkeit}
+\begin{satz}
+	Jede nicht triviale Eigenschaft der rekursiv aufzählbaren Sprachen ist unentscheidbar.
+\end{satz}
+\begin{description}\item
+	\item [Eigenschaft] einer rekursiv aufzählbaren Sprache ist eine Menge von rekursiv aufzählbaren Sprachen
+	\item [trivial] Entweder leer (d.\,h. kann keiner Sprache zugeordnet werden) oder aus allen rekursiv aufzählbaren Sprachen bestehend
+\end{description}
+
+% Die Sprachen $L_e$ und $L_{ne}$ enthalten als Binärzeichenreihe codierte TMs. Dann ist definiert:
+% \begin{enumerate}\itemsep0em
+% 	\item $L_e = \{\mathcal{M} | L(\mathcal{M}) = \emptyset\}$ d.\,h. $L_e$ enthält TMs, die keine Eingabe akzeptieren
+% 	\item $L_{ne} = \{\mathcal{M} | L(\mathcal{M}) \neq \emptyset\}$ d.\,h. enthält TMs, die mindestens eine Eingabe akzeptieren. $L_{ne}$ ist rekursiv aufzählbar aber nicht rekursiv.
+% \end{enumerate}
+
+Unentscheidbar sind u.\,a. folgende Fragen:
+\begin{itemize}\itemsep0em
+	\item ist eine von $\mathcal{M}$ akzeptierte Sprache endlich?
+	\item ist eine von $\mathcal{M}$ akzeptierte Sprache kontextfrei?
+	\item ist eine von $\mathcal{M}$ akzeptierte Sprache regulär?
+	\item berechnet eine $\mathcal{M}$ eine gegebene Funktion?
+	\item sind zwei gegebene Programme äquivalent?
+	\item ist eine berechnete Funktion injektiv, surjektiv oder monoton?
+	\item ist eine kfG eindeutig?
+\end{itemize}
+
+
+Eine Eigenschaft .

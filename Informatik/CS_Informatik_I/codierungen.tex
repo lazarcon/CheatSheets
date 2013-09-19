@@ -1,0 +1,69 @@
+\section{Codierungen}
+\subsection{ASCII (1963)}
+ASCII steht für \enquote{American Standard Code for Information Interchange}, 7 Bit, 95 druckbare + 33 Steuerzeichen = 128 Zeichen.
+\begin{center}
+\begin{tabular}{c|c||c|c|c|c|c|c|c|c|}
+			\multicolumn{2}{c||}{}  & \textbf{0} 	& \textbf{1} 	& \textbf{2} 	& \textbf{3}			& \textbf{4} 	& \textbf{5} 	& \textbf{6} 	&  \textbf{7}	\\\hline
+\textbf{0}	& $0000_2$	&	NUL			& DLE			& SP			& 0				& @ 			& P				& `				& p				\\
+\hline
+\textbf{1}	& $0001_2$	& SOH			& DC1			& !				& 1				& A				& Q				& a				& q				\\
+\hline
+\textbf{2}	& $0010_2$	& STX			& DC2 			& "' 			& 2 			& B				& R 			& b 			& r 			\\
+\hline
+\textbf{3}	& $0011_2$	& ETX 			& DC3 			& \# 			& 3 			& C 			& S 			& c 			& s 			\\
+\hline
+\textbf{4}	& $0100_2$ 	& EOT 			& DC4 			& \$ 			& 4 			& D 			& T 			& d 			& t 			\\
+\hline
+\textbf{5}	& $0101_2$	& ENQ 			& NAK 			& \% 			& 5 			& E 			& U 			& e 			& u 			\\
+\hline
+\textbf{6}	& $0110_2$ 	& ACK 			& SYN 			& \& 			& 6 			& F 			& V 			& f 			& v 			\\
+\hline
+\textbf{7} 	& $0111_2$	& BEL 			& ETB 			& ' 			& 7 			& G 			& W 			& g 			& w 			\\
+\hline
+\textbf{8} 	& $1000_2$	& BS 			& CAN 			& ( 			& 8 			& H 			& X 			& h 			& x 			\\
+\hline
+\textbf{9} 	& $1001_2$	& TAB 			& EM 			& ) 			& 9 			& I 			& Y 			& i 			& y 			\\
+\hline
+\textbf{A} 	& $1010_2$	& LF 			& SUB 			& * 			& : 			& J 			& Z 			& j 			& z 			\\
+\hline
+\textbf{B} 	& $1011_2$	& VT 			& ESC 			& + 			& ; 			& K 			& [ 			& k 			& \{ 			\\
+\hline
+\textbf{C} 	& $1100_2$	& FF 			& FS 			& , 			& < 			& L 			& \textbackslash& l 			& $\mid$ 		\\
+\hline
+\textbf{D} 	& $1101_2$	& CR 			& GS 			& - 			& = 			& M 			& ] 			& m 			& \} 			\\
+\hline
+\textbf{E} 	& $1110_2$	& SO 			& RS 			& . 			& > 			& N 			& \^{} 			& n 			& "~ 			\\
+\hline
+\textbf{F} 	& $1111_2$	& SI 			& US 			& / 			& ? 			& O 			& \_ 			& o 			& DEL 			\\
+\end{tabular}	
+\end{center}
+
+Beispiel Zeichen \enquote{j} = 6A
+
+\subsection{ISO 8859}
+8 Bit Erweiterung von ASCII. ISO 8859-1 = LATIN-1 (Europa). Aufbau:
+\settowidth{\MyLenA}{Position 160 ($A0_{16}$) -- 255 ($FF_{16}$)~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Position 0 ($00_{16}$) -- 127 ($7F_{16}$) & ASCII\\
+	Position 128 ($80_{16}$) -- 159 ($9F_{16}$) & Steuerzeichen\\
+	Position 160 ($A0_{16}$) -- 255 ($FF_{16}$) & regionale Sonderzeichen\\
+\end{tabular}
+
+\subsection{Unicode (1991)}
+Zeichensatz bestehend aus 17 Bereiche zu je 65\,536 Zeichen.
+
+\subsubsection{UTF-8}
+UTF-8 ist eine Codierungsform für Unicode, die 1 bis 4 Bytes verwendet:
+\settowidth{\MyLenA}{Form 0xxx\,xxxx~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Form 0xxx\,xxxx & 1 Byte, codiert ist der ASCII Zeichensatz (128)\\
+	Form 110x\,xxxx & 2 Byte, häufige Sonderzeichen ($2^{5+6} = 2\,048$)\\
+	Form 1110\,xxxx & 3 Byte, weniger häufige Zeichen($2^{4+6+6} = 65\,536$)\\
+	Form 1111\,0xxx & 4 Byte, selten Zeichen ($2^{3+6+6+6} = 2\,097\,152$)\\
+	Form 10xx\,xxxx & Folgebyte\\
+\end{tabular}
+Jedes Zeichen, das mit mehr als einem Byte codiert ist, wird hat so viele Folgebytes, wie es selbst lang ist. (Bsp. 1110\,xxxx~10xx\,xxxx~10xx\,xxxx)
+
+UTF-16 und UTF-32 verwenden für jedes Zeichen 2 respektive 4 Bytes.

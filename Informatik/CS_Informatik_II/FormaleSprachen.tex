@@ -1,0 +1,126 @@
+\section{Formale Sprachen}
+(Noam) Chomsky-Hierarchie (50er Jahre):
+\settowidth{\MyLenA}{~Typ 0~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+~Typ 0 & rekursiv aufzählbare Sprachen: Turing-Maschine\\
+~Typ 1 & kontextsensitive Grammatiken: ohne praktische Bedeutung\\
+~Typ 2 & kontextfreie Grammatiken: Kellerautomat\\
+~Typ 3 & reguläre Ausdrücke: endlicher Automat\\
+\end{tabular}
+
+\subsection{Definitionen}
+\begin{description}
+	\item [Alphabet]
+	ist eine endliche, nicht leere Menge von Symbolen ($\Sigma = \{a, b, c, \dots\}$)
+
+	\item [Zeichenreihe] 
+	ist eine endliche Folgen von Symbolen eines Alphabets ($w|x|y|z$) Synonyme: Wort, String.
+
+	\item [Leere Zeichenreihe] enthält keine Symbole und wird als $\epsilon$ dargestellt.
+
+	\item [Länge] bezeichnet die Anzahl Symbole einer Zeichenreihe ($|w|$)
+
+	\item [$\Sigma^k$] Die Menge aller Zeichenreihen über dem Alphabet $\Sigma$ mit der Längek $k$. $\Sigma^0 = \{\epsilon\}$
+
+	\item [$\Sigma^*$] Die Menge aller Zeichenreihen über einem Alphabet. $\Sigma^* = \Sigma^0 \cup \Sigma^1 \cup \dots$
+
+	\item [$\Sigma^+$] Die Menge aller nichtleeren Zeichenreihen über einem Alphabet. $\Sigma^+ = \Sigma^* \setminus \Sigma^0$
+
+	\item [Konkatenation] 
+	bezeichnet die Verbindung zweier Zeichenreihen $x$ und $y$ zu $xy$.
+	Es gilt:
+	\begin{itemize}\itemsep0em
+		\item $x \neq y \Leftrightarrow xy \neq yx$
+		\item $|xy| = |x| + |y|$
+		\item $w\epsilon = \epsilon w = w$ ($\epsilon$ ist das neutrale Element)
+	\end{itemize}
+
+	\item [Sprache] 
+	ist eine Menge von Zeichenreihen aus $\Sigma^*$ die als Sprache $L$ über dem Alphabet $\Sigma$ bezeichnet wird.\\
+	Es seien $s(L) := L$ ist eine Sprache, $c(w(L_1), w(L_2)) := $ Die Menge aller Konkatenation von eines beliebigen $w \in L_1$ und einem beleibigen $w \in L_2$.
+	\begin{itemize}\itemsep0em
+		\item Das Alphabet ist immer endlich, aber es kann unendliche viele Wörter geben.
+		\item $\emptyset$ ist die leere Sprache für jedes Alphabet $\Sigma$
+		\item $\Sigma^*$ ist eine Sprache für jedes Alphabet $\Sigma$
+		\item $L \subseteq \Sigma^*$
+		\item $\Sigma_1 \subseteq \Sigma_2 \wedge L \subseteq \Sigma_1^* \Rightarrow L \subseteq \Sigma_2^*$
+		\item $\{\epsilon\}$ ist die Sprache, die aus der leeren Zeichenkette $\epsilon$ besteht ($\emptyset \neq \epsilon$)
+		\item Vereinigung: $s(L) \wedge s(M) \Rightarrow s(L \cup M)$
+		\item Konkatenation: $s(L) \wedge s(M) \Rightarrow s(c(w(L), w(M)))$
+		\item (Kleensche) Hülle, Stern: $s(L) \Rightarrow s(L^*)$ mit $L^* = \{c(w(L), w(L))\}$
+	\end{itemize}
+	\item[Problem] 
+	bezeichnet die Entscheidung, ob eine Zeichenreihe $w$ aus $\Sigma^*$ in einer Sprache $L$ über dem Alphabet $\Sigma$ enthalten ist. D.\,h. Entscheidung ob eine Zeichenreihe zu einer Sprache gehört oder nicht
+
+\end{description}
+
+\subsection{Notationen}
+Folgenden Definitionen sind synonym:
+\begin{align*}
+L& = \{1^n0^n | n \in \mathbb{N}\}\\
+L& = \{\epsilon, 10, 1100, 111000, \dots\}\\
+L& = \{w | w \mbox{ enthält } n \cdot 1 \mbox{ gefolgt von } n \cdot 0 \mbox{ für } n \in \mathbb{N}\}\\
+L& \mbox{ ist die Menge aller Zeichenreihen über dem Alphabet} \{0, 1\}\mbox{,}\\
+&\mbox{die aus }n\mbox{ Einsen und }n\mbox{ Nullen besteht}
+\end{align*}
+
+\subsection{Reguläre Ausdrücke}
+\begin{enumerate}\itemsep0em
+	\item $\epsilon$ und $\emptyset$ sind reguläre Ausdrücke und beschreiben
+	die Sprache $L(\epsilon) = \epsilon$ bzw. $L(\emptyset) = \emptyset$
+	
+	\item Wenn $a$ ein Symbol ist, dann ist $a$ auch ein regulärer Ausdruck und
+	beschreibt die Sprache $L(a) = \{a\}$.
+	
+	\item Wenn $R$ ein regulärer Ausdruck ist, dann ist auch $(R)$ ein regulärer
+	Ausdruck, der die gleiche Sprache spezifiziert: $L((R)) = L(R)$ 
+	d.\,h. Klammern sind optional und dienen der Lesbarkeit.
+
+	\item Wenn $R_1$ und $R_2$ reguläre Ausdrücke sind, dann ist auch $R_1 + R_2$ ein regulärer Ausdruck und es gilt: 
+	\begin{enumerate}\itemsep0em
+		\item $L(R_1 + R_2) = L(R_1) \cup L(R_2)$
+		\item $L(R_1R_2) = L(R_1)L(R_2)$
+	\end{enumerate}
+
+	\item Wenn $R$ ein regulärer Ausdruck ist, dann ist auch $R^*$ ein regulärer Ausdruck und es gilt: $L(R^*) = (L(R))^*$
+
+\end{enumerate}
+
+Reihenfolge Auswertung: $R^* > R_1R_2 > R_1 + R_2$\\
+$R? = R + \epsilon$ (Auftreten: ein oder keinmal)
+\subsubsection{Erweiterungen (Unix)}
+\settowidth{\MyLenA}{$[a_1, a_2, \dots, a_n]$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+. & beliebiges Zeichen\\
+$[a_1, a_2, \dots, a_n]$ & Folgen\\
+$[$~\dots~$]$ & Bereichsangaben wie [0-9] oder Schlüsselwörter
+\end{tabular}
+
+\subsection{Gesetze}
+\settowidth{\MyLenA}{Kommutativgesetz~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+Kommutativgesetz & $L + M = M + L$\\
+Assoziativgesetz & $(L + M) + N = L + (M + N)$\\
+Verkettung & $(LM)N = L(MN)$\\
+Distributivgesetz & $L(M + N) = LM + LN$\\ 
+Idempotenzgesetz & $L + L = L$
+\end{tabular}
+\subsection{Rechenregeln}
+\begin{align*}
+	\emptyset + L &= L = L + \emptyset 			&  \{\epsilon\}^* &= \{\epsilon\}\\
+ 	\{\epsilon\} L &= L = \{L\epsilon\} 			& LL^* &= L^*L = L^+\\
+ 	\emptyset L & = \emptyset = L \emptyset 	& (L^*)^* &= L^*\\
+ 	\emptyset^* &= \{\epsilon\} & L^* 			&= L + \{\epsilon\}
+\end{align*}
+
+Anwendungen:
+\begin{enumerate}\itemsep0em
+	\item Mustersuche in Texten
+	\item Lexikalische Analyse (Compiler), Erkennung von Schlüsselwörtern (\enquote{Token})
+	\item Darstellung von Symbolmengen
+	\item Nachweis der Gültigkeit von gültigen Gesetzen (Gleichheit regulärer Ausdrücke) wird
+	auf die Frage der Gleichheit der Sprachen reduziert (via endliche Automaten, Minimierung und Vergleich)
+\end{enumerate}

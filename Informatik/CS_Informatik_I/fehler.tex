@@ -1,0 +1,98 @@
+\section{Fehler}
+\settowidth{\MyLenA}{Synchronistationsfehler~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Fehler & Ein Fehler liegt vor, wenn sich die gesendeten und empfangen bzw. abgespeicherte und ausgelesene $n$-Bits
+	an mindestens einer Stelle unterscheiden (Bitweises XOR $\neq$ 0)\\
+	Mehrfachfehler & Ein Mehrfachfehler von $x$-Bit liegt vor, wenn sich die gesendeten und empfangenen bzw. diesem
+	abgespeicherten und ausgelesenen $n$-Bits an mindestens $x, x > 1$ Stellen unterscheiden.\\
+	Einzelbitfehler & statistisch voneinander unabhängig -- das Auftreten eines Fehlers hängt nicht von
+	anderen Fehlern ab.\\
+	Bündelfehler  & (Blockfehler, Bursts) mehrere direkt aufeinanderfolgende Bits fehlerhaft
+	sind -- das Auftreten hängt von anderen/früheren Fehlern ab.\\
+	Synchronistationsfehler & lange Bündelfehler
+\end{tabular}
+
+\subsection{Fehlerursachen}
+Typische physikalische Ursachen für Fehler sind:
+\begin {itemize}
+	\item Rauschen (Wärme- oder Impulsrauschen) verursacht langfristig gleichmässig verteilte Einzelbitfehler. 
+	\item Dämpfung, Dispersion (Aufgrund von Leitungswiderstand, Dämpfung, Reflexion) verusacht Einzelbitfehler oder Bündelfehler.
+	\item Strahlung (kosmische, radioaktive) verusacht langfristig gleichmässig verteilte Einzelbitfehler. 
+	\item Störungen (elektr. Funken, Kratzer) führen zu Bündelfehlern. Die Fehler sind ungleichmässig verteilt.
+	\item Nebensprechen (kapazitive Kopplung benachbarter Datenleitungen) verursacht ungleichmässig verteilte Bündelfehler.
+\end{itemize}
+
+\subsection{Einfache Parität}
+Die einfache Parität wird auch einfach gebildet:
+\begin{enumerate}
+	\item Die Code-Wörter werden um ein zusätzliches Bit, das Paritäts-Bit erweitert.
+	\item Der Wert dieses Bits wird bei:
+		\begin{description}
+			\item [gerader Parität (even parity)] so gesetzt, dass die Summe der Einsen im Code-Wort inkl. des Paritäts-Bits gerade ist.
+			(Beispiel: Das Code-Wort sei $0100.1110 \rightarrow $ 4 Einsen sind gerade $\implies$ Paritätsbit = 0) 
+			\item [ungerader Parität (ungerade)] so gesetzt, dass die Summe der Einsen im Code-Wort inkl. des Paritäts-Bits ungerade ist.
+			(Beispiel: Das Code-Wort sei $0100.1110 \rightarrow $ 4 Einsen sind gerade $\implies$ Paritätsbit = 1) 
+		\end{description}
+\end{enumerate}
+
+\begin{itemize}
+	\item Alle ungeraden-Bit-Fehler können erkannt werden
+	\item Gerade-Bit-Fehler können nicht erkannt werden
+	\item Bündelfehler können nur zu 50\% erkannt werden
+	\item Fehler können nicht korrigiert werden.
+\end{itemize}
+
+\subsection{Zweidimensionale Parität}
+Ansatz:
+\begin{itemize}
+	\item Ein Block-Code aus $n$-Bits wird in Wörter gleicher Länge $l$ aufgeteilt.
+	\item Jedes Wort wird um ein Paritätsbit ergänzt
+	\item Jedes $i$-te Bit (inkl. Paritätsbit) jedes Wortes wird ebenfalls um ein Paritätsbit ergänzt.
+\end{itemize}
+
+Im Ergebnis:
+\begin{itemize}
+	\item 1-Bit-Fehler werden doppelt erkannt (Zeile und Spalte) und können korrigiert werden
+	\item ungerade-Bit-Fehler werden erkannt, können aber nicht korrigiert werden (Maskierung)
+	\item 2, 6, 10, \dots-Bit-Fehler werden erkannt (Zeile oder Spalte), können aber nicht korrigiert werden
+	\item Vielfache von 4-Bit-Fehler werden in aller Regel erkannt. Es sei denn, sie maskieren sich doppelt, was nur extrem selten 
+	(Bsp. bei einer Anordnung im Viereck) der Fall ist
+	\item Bündelfehler werden nur Ausnahmsweise nicht erkannt.
+\end{itemize}
+
+\subsection{Blockcode - CRC}
+$(n, k)$-Block Code bedeutet, dass für $k$ übertragene Nutzdatenbits $n-k$ Prüfbits und somit insgesamt $n$-Bits übertragen werden.
+
+\subsubsection{Algorithmus}
+Eine Bitfolge von $n$-Bits wirt als Nachrichtenpolynom vom Grad $n-1$ dargestellt:
+\begin{equation*}
+ I(x) = a_{n-1}x^{n-1} + a_{n-2}x^{n-2} + \dots + a_1x^1 + a_0x^0 = \sum_{i=0}^{n-1} a_i \cdot x^i
+\end{equation*}
+
+Ein Generatorpolynom $C(x)$ mit Grad $n-k, n > k, n \in \mathbb{N}$ wird zwischen Sender und Empfänger
+vereinbart.
+
+Der genaue Algorithmus zur Übermittlung einer Nachricht $I(x)$ und dem Generatorpolynom $C(x)$ vom Grad $n-k$ 
+liesst sich folgendermassen:
+\begin{enumerate}
+ \item Sender erzeugt $N(x)$:
+    \begin{enumerate}
+      \item $M(x) = I(x)\cdot x^{n-k}$
+      \item $R_s(x) = I(x) \mod C(x)$
+      \item $N(x) = (M(x) + R_s(x))$
+    \end{enumerate}
+  \item Sender sendet $N(x)$
+  \item Empfänger berechnet: $R_e = N(x) \mod C(x)$ und entscheidet:
+    \begin{itemize}
+     \item Falls $R_e = 0$: Kein Fehler, also $I(x) = M(x) + R_s(x)$
+     \item Falls $R_e \neq 0$: Ein Fehler ist aufgetreten, also nochmal senden
+    \end{itemize}
+\end{enumerate}
+
+\begin{description}
+ \item [Ungerade-Bit-Fehler] können sicher erkannt werden, wenn das Generatorpolynom den Term $x-1$ enthält
+ \item [Gerade-Bit-Fehler]  werden erkannt, deren Polynomdarstellung einen kleineren Grad als das Generatorpolynom hat,
+Sie werden nur dann nicht erkannt, wenn sie ein Vielfaches des Generatorpolynoms sind
+  \item [Bündelfehler] werden erkannt, wenn ihre Länge $l \leq n-k$
+\end{description}

@@ -1,0 +1,119 @@
+\subsection{Kompression}
+\settowidth{\MyLenA}{Hamming-Abstand~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Präfixfreiheit & Kein Wort ist der Anfang eines anderen Wortes (Fano-Bedingung)\\
+	Zyklisch & Wenn aus einem Code-Wort alle anderen gültigen Code-Wörter abgeleitet werden können. (Bsp: abc, bca, cab)\\
+	Hamming-Abstand & Anzahl unterschiedlicher Zeichen zweier gleichlanger Wörter\\
+	Hamming-Distanz & Minimum des Hamming-Abstandes aller Wörter eines Codes\\
+	Gray-Code		& Benachbarte Wörter haben den Hamming-Abstand 1\\
+	Gleichverteilung & Alle Wörter gleich $n$ Bits lang: $\lceil n\rceil = \log_2 |Z|$\\
+\end{tabular}
+
+Umwandlung einer Dezimalzahl ($d$) in Graycode:
+\begin{enumerate}
+	\item Setze $s$ = Rechts-Shift von dezimal um 1 Bit
+	\item Setze $g$ = XOR($d$, $s$)
+	\item Gebe $g$ zurück
+\end{enumerate}
+
+\subsection{Shannon-Fano-Algorithmus}
+Betrachte alle Zeichen als eine Gruppe.\\
+Erstelle einen neuen Knoten auf der aktuellen Ebene.\\
+Solange (Die Gruppe aus mehr als einem Zeichen besteht):
+\begin{enumerate}
+	\item Sortiere die Zeichen nach ihrer Häufigkeit.
+	\item Teile die Zeichen entlang dieser Reihenfolge so in 2 Gruppen, dass die Summe der Häufigkeiten in den beiden Gruppen möglichst gleich ist.
+	\item Führe diesen Algorithmus mit jeder Gruppe aus.
+\end{enumerate}
+Das Ergebnis weisst eine unnötig hohe Redundanz auf ($R = \frac{\mbox{mittlere Länge}}{\mbox{Entropie}} - 1$).
+Die Anzahl der Ebenen unterhalb der Wurzel, gibt die Anzahl zu verwendender Bits an.
+
+\subsection{Huffmann-Algorithmus}
+Erstelle eine Wald mit einem Baum für jedes Zeichen.\\
+Jeder dieser Bäume enthält nur einen einzigen Knoten: das Zeichen.\\ 
+Schreibe die Häufigkeit an die Kante.\\
+Wiederhole:
+\begin{enumerate}
+	\item Suche die beiden Bäume, die die geringste Häufigkeit haben.
+	\item Fasse beide Bäume zusammen, indem sie die Teilbäume einer neuen Wurzel werden.
+	\item Benutze die Summe der Häufigkeiten dieses neuen Baumes zur weiteren Analyse.
+\end{enumerate}
+bis nur noch ein Baum übrig ist.\\
+Die Anzahl der Ebenen unterhalb der Wurzel, gibt die Anzahl zu verwendender Bits an.
+
+\subsection{Arithmetische Codierung}
+Kodierer und Dekodierer einigen sich auf ein Intervall. Normalerweise wird hier das halboffene Intervall $[0,1)$ verwendet.
+Kodierer und Dekodierer bei der De- bzw. Kodierung eines Zeichens immer identische Tabellen 
+Wahrscheinlichkeitstabellen aller dekodierbaren Zeichen. Der Algorithmus für die Codierung sieht dann wie folgt aus:
+\begin{enumerate}
+	\item Initialisiere das aktuelle Intervall mit dem vereinbarten Startintervall
+	\item Zerlege das aktuelle Intervall auf die identische Art wie der Dekodierer in Subintervalle, 
+		und weise jedem Subintervall ein Zeichen zu.
+	\item Das Subintervall, das dem nächsten Zeichen der Eingabe entspricht, wird zum aktuellen Intervall.
+	\item Sind noch weitere Zeichen zu kodieren, dann weiter bei Punkt 2. Sonst weiter beim nächsten Punkt.
+	\item Gib eine beliebige Zahl aus dem aktuellen Intervall und zusätzlich die Anzahl der kodierten Zeichen aus. 
+	Dieses ist die Zahl $x$, die vom Dekodierer wie oben beschrieben entschlüsselt werden kann. 
+	Diese Zahl wird so gewählt, dass sie möglichst wenig Nachkommastellen hat, also möglichst „rund“ ist 
+	und sich daher mit relativ wenigen Bits darstellen lässt.
+\end{enumerate}
+
+Beispiel: Gegeben sei das Wort \enquote{bad}.\\
+\begin{tabular}{lclcl}
+	$p(a) = 0{,}65$ & ~ & 
+	$p(b) = 0{,}15$ & ~ &
+	$p(c) = 0{,}10$ \\
+	$p(d) = 0{,}04$ & ~ & 
+	$p(e) = 0{,}04$ & ~ &
+	$p(f) = 0{,}02$ 
+\end{tabular}
+\begin{enumerate}
+	\item Startintervall sei $I_0 = [0, 1)$.
+	\item Aufgrund der Häufigkeiten gelten folgende Teil-Intervalle:\\
+		\begin{tabular}{lll}
+			$I_a = [0, 0{,}65)$  & $I_b = [0{,}65, 0{,}80)$  & $I_c = [0{,}80, 0{,}90)$ \\
+			$I_d = [0{,}90, 0{,}94)$  & $I_e = [0{,}94, 0{,}98)$  & $I_f = [0{,}98, 1{,}0)$ \\			
+		\end{tabular}
+	\item Erstes Zeichen = $b \rightarrow $ neues Startintervall = $I_0 = [0{,}65, 0{,}80)$
+	\item Aufgrund der Häufigkeiten gelten folgende Teil-Intervalle:\\
+		\begin{tabular}{lll}
+			$I_a = [0{,}65, 0{,}7475)$  & $I_b = [0{,}7475, 0{,}77)$  & $I_c = [0{,}77, 0{,}785)$ \\
+			$I_d = [0{,}785, 0{,}791)$  & $I_e = [0{,}791, 0{,}797)$  & $I_f = [0{,}797, 0{,}80)$ \\			
+		\end{tabular}
+	\item Zweites Zeichen = $a \rightarrow$ neues Startintervall = $I_0 = [0{,}65, 0{,}7475)$
+	\item Aufgrund der Häufigkeiten gelten folgende Teil-Intervalle:\\
+		\begin{tabular}{ll}
+			$I_a = [0{,}65, 0{,}713375)$  & $I_b = [0{,}713375, 0{,}728)$\\  
+			$I_c = [0{,}728, 0{,}73775)$  & $I_d = [0{,}73775, 0{,}74165)$\\
+			$I_e = [0{,}74165, 0{,}74555)$  & $I_f = [0{,}74555, 0{,}7475)$ \\			
+		\end{tabular}
+	\item Drittes Zeichen = $d \rightarrow $ neues Startintervall = $[0{,}73775, 0{,}74165)$
+	\item Da keine weiteren Zeichen vorhanden sind, eine möglichst kleine Zahl aus $[0{,}73775, 0{,}74165)$ wählen: $0{,}74 = \frac{74}{100}$
+\end{enumerate}
+
+Dekodierung:
+Beispiel: Gegeben sei die Zahl $0{,}74$ für ein Wort bestehend aus drei Zeichen. Welches Wort verbirgt sich darin?
+\begin{enumerate}
+	\item Startintervall sei $I_0 = [0, 1)$.
+	\item Aufgrund der Häufigkeiten gelten folgende Teil-Intervalle:\\
+		\begin{tabular}{lll}
+			$I_a = [0, 0{,}65)$  & $I_b = [0{,}65, 0{,}80)$  & $I_c = [0{,}80, 0{,}90)$ \\
+			$I_d = [0{,}90, 0{,}94)$ & $I_e = [0{,}94, 0{,}98)$ & $I_f = [0{,}98, 1{,}0)$ \\			
+		\end{tabular}
+	\item $0{,}74$ liegt im Teil-Intervall von $I_b = [0{,}65, 0{,}80) \rightarrow$ das erste Zeichen ist ein $b$.
+	\item Aufgrund der Häufigkeiten gelten folgende Teil-Intervalle:\\
+		\begin{tabular}{lll}
+			$I_a = [0{,}65, 0{,}7475)$ & $I_b = [0{,}7475, 0{,}77)$ & $I_c = [0{,}77, 0{,}785)$ \\
+			$I_d = [0{,}785, 0{,}791)$ & $I_e = [0{,}791, 0{,}797)$ & $I_f = [0{,}797, 0{,}80)$ \\			
+		\end{tabular}
+	\item $0{,}74$ liegt im Teil-Intervall von $I_a = [0{,}65, 0{,}7475) \rightarrow$ das zweite Zeichen ist ein $a$.
+	\item Aufgrund der Häufigkeiten gelten folgende Teil-Intervalle:\\
+		\begin{tabular}{ll}
+			$I_a = [0{,}65, 0{,}713375)$ & $I_b = [0{,}713375, 0{,}728)$\\
+			$I_c = [0{,}728, 0{,}73775)$ & $I_d = [0{,}73775, 0{,}74165)$ \\
+			$I_e = [0{,}74165, 0{,}74555)$ & $I_f = [0{,}74555, 0{,}7475)$ \\			
+		\end{tabular}
+	\item $0{,}74$ liegt im Teil-Intervall von $I_d = [0{,}73775, 0{,}74165) \rightarrow$ das dritte Zeichen ist ein $d$.
+	\item Das gesuchte Wort ist \enquote{bad}
+\end{enumerate}
+Die Länge des gesuchten Wortes muss bekannt sein!

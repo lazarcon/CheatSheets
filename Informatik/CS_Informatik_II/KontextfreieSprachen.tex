@@ -1,0 +1,153 @@
+\section{Kontextfreie Grammatik (kfG)}
+Eine kontextfreie Grammatik wird als 4-Tupel definiert:
+\begin{equation*}
+	G = (V, T, P, S)
+\end{equation*}
+\begin{itemize}\itemsep0em
+	\item [V] Endliche Menge von Zeichenreihen ($A, B, C, \dots$)
+	\item [T] Endliche Menge von Terminalsymbolen ($a, b, c, \dots$)
+	\item [P] Endliche Menge von Produktionen/Regeln, definieren die Sprache rekursiv ($A \rightarrow AA$)
+	\item [S] Das Startsymbol ($S \in V$)
+\end{itemize}
+
+\subsection{Beispiel: Palindrome ($\Sigma = \{0, 1\}$)}
+\begin{gather*}
+	G_P = (\{A\}, \{0,1\}, P, A)\\
+	P: A \rightarrow \epsilon, A \rightarrow 0, A \rightarrow 1, 
+	A \rightarrow 0A0,  A \rightarrow 1A1\\
+	\mbox{oder }P: A \rightarrow \epsilon|0|1|0A0|1A1
+\end{gather*}
+
+\begin{description}\itemsep0em
+	\item [Ableitungsschritt] 
+	Gegeben sei eine kfG $G$ und eine Wort $\alpha A\beta$, mit $\alpha$ und $\beta$ sind Wörter aus $V \cup T$ und $A \in V$ sowie einer Produktion $A \rightarrow \gamma \in P$. Dann ist die Relation $\alpha A\beta \Rightarrow \alpha\gamma\beta$ ein Ableitungsschritt in $G$.\\
+	Beispiel: $0A0 \Rightarrow 00A00$ ist ein Ableitungsschritt.\\
+
+	\item[Ableitung]
+	Ein Ableitungsschritt kann zu einer Ableitung aus $0-n$ Ableitungsschritten erweitert werden: $\alpha \overset{\centerdot}{\underset{G}{\Rightarrow}} \gamma$ ist eine Ableitung in $G$.\\
+	Beispiel: $A \overset{\centerdot}{\underset{G}{\Rightarrow}} 1101011: A \underset{G}{\Rightarrow} 1A1 \underset{G}{\Rightarrow} 11A11 \underset{G}{\Rightarrow} 110A011 \underset{G}{\Rightarrow} 1101011$
+\end{description}
+
+Um Ableitungsschritte zu definieren empfiehlt sich:
+\begin{enumerate}\itemsep0em
+	\item Ausdrucksproduktionen ($A$) bestimmen (z.\,B. $A \rightarrow A + A$)
+	\item Bezeichnerproduktionen ($B$) bestimmen (z.\,B. $B \rightarrow a|b|\dots|z$)
+	\item Ausdrücke ableiten (von links oder von rechts: $A \underset{G}{\Rightarrow} A + A$) 
+	\item Bezeichner ableiten (von links oder rechts, aber gleich wie im vorherigen Schritt: $A + A \underset{G}{\Rightarrow} a + A \underset{G}{\Rightarrow} a + b$)
+\end{enumerate}
+
+\begin{description}\itemsep0em
+	\item [Linksseitige Ableitung] in jedem Schritt wird die äusserste linke Variable durch eine Produktion ersetzt: $\alpha \overset{\centerdot}{\underset{lm}{\Rightarrow}} \gamma$.
+	\item [Rechtsseitige Ableitung] in jedem Schritt wird die äusserste rechte
+	Variable durch eine Produktion ersetzt: $\alpha \overset{\centerdot}{\underset{rm}{\Rightarrow}} \gamma$.
+	\item[Sprache der kfG] Menge der Zeichenreihen aus terminalen Symbolen,
+	die sich vom Startsymbol ableiten lassen:
+	\begin{equation*}
+		L(G) = \{w | S \overset{\centerdot}{\underset{G}{\Rightarrow}} w \wedge w \in T^*\}
+	\end{equation*}
+\end{description} 
+
+\subsection{Parsebäume}
+\begin{itemize}
+	\item stellen Ableitungen als Bäume dar
+	\item verdeutlichen wie terminale Wörter aus Teilwörtern strukturiert sind
+	\item werden von Compilern erzeugt: Datenstruktur, die Quellprogramme repräsentiert
+\end{itemize}
+
+Gegeben sei eine kfG $G = (V, T, P, S)$. Ein Baum ist ein Parsebaum von $G$ wenn:
+\begin{enumerate}
+	\item Alle inneren Knoten mit einer in $V$ enthaltenen Variable bezeichnet sind
+	\item Für jedes Blatt gilt, dass es entweder
+	\begin{itemize}
+		\item mit einer Variablen aus $V$
+		\item einem terminalen Symbol aus $T$ oder
+		\item dem leeren Wort $\epsilon$ bezeichnet ist, dann muss das Blatt aber das einzige des Vorgängerknotens sein
+	\end{itemize}
+	\item Für alle innere Knoten gilt ($A =$ Bezeichnung des Knotens und $X_1, \dots, X_n$ Bezeichnung der Nachfolgerknoten von links nach rechts): $(A \rightarrow X_1, \dots, X_n) \in P$
+\end{enumerate}
+Beispiel Programm-Ausdruck: $A \overset{\centerdot}{\underset{G}{\Rightarrow}} a + b \cdot c$:\\
+\begin{tabular}{ll}
+\settowidth{\MyLenA}{(Linksseitige) Ableitung~}
+\begin{minipage}{\the\MyLenA}
+	(Linksseitige) Ableitung:	
+	\begin{tabular}{ll}
+	$A$ & $\underset{G}{\Rightarrow} A + A$\\
+	& $\underset{G}{\Rightarrow} A + A \cdot A$\\
+	& $\underset{G}{\Rightarrow} B + A \cdot A$\\
+	& $\underset{G}{\Rightarrow} B + B \cdot A$\\
+	& $\underset{G}{\Rightarrow} B + B \cdot B$\\
+	& $\underset{G}{\Rightarrow} a + B \cdot B$\\
+	& $\underset{G}{\Rightarrow} a + b \cdot B$\\
+	& $\underset{G}{\Rightarrow} a + b \cdot c$\\
+	\end{tabular}
+\end{minipage}
+&
+\begin{minipage}{\linewidth-\the\MyLenA}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,level distance=1.25cm, sibling distance = 1.25cm, semithick]
+	\tikzstyle{every state}=[fill=black!10]
+	\node[state] {$A$}
+		child {node [state] {$A$}
+			child {node [state] {$B$}
+				child {node [state, accepting] {$a$}}
+			}
+		}
+		child {node [state, accepting] {$+$}}
+		child {node [state] {$A$}
+			child {node [state] {$A$}
+				child {node [state] {$B$}
+					child {node [state, accepting] {$b$}}
+				}
+			}
+			child {node [state, accepting] {$\cdot$}}
+			child {node [state] {$A$}
+				child {node [state] {$B$}
+					child {node [state, accepting] {$c$}}
+				}
+			}
+		}
+	;
+\end{tikzpicture}
+\end{minipage}
+\end{tabular}
+Die Blätter eines Parsebaums ergeben von links nach rechts gelesen eine
+Zeichenreihe einer kfG $G = (V, T, P, S)$ wenn:
+\begin{enumerate}\itemsep0em
+	\item Die Wurzel mit dem Startsymbol bezeichnet ist
+	\item Alle Blätter mit terminalen Symbolen oder $\epsilon$ bezeichnet sind
+\end{enumerate}
+Die Sprache $L(G)$ ist genau die Menge an Zeichenreihen, die sich aus der
+von links nach rechts gelesenen Zeichen der Blätter aller Parsebäume ergeben.
+
+\subsubsection{Mehrdeutigkeit}
+\begin{itemize}\itemsep0em
+	\item Anwendungen (Programmiersprachen) erfordern, dass die mit einer kfG erzeugten Strukturen eindeutig sind
+	\item Nicht jede kfG ist eindeutig
+	\item Es gibt Sprachen, für die jede kfG immer mindestens
+	einer Zeichenkette mehr als eine Struktur zuordnen. Diese Sprachen heissen
+	\enquote{inhärent mehrdeutig}. Im Beispiel ($A \overset{\centerdot}{\underset{G}{\Rightarrow}} a + b \cdot c$) kann nicht erkannt werden ob
+	$a + (b \cdot c)$ oder $(a + b) \cdot c$ zu rechnen ist (Aus der linksseitigen Ableitung ergibt sich $a + (b \cdot c) $, aus der rechtsseitigen ergäbe sich das andere).
+\end{itemize}
+Ein Sprache ist mehrdeutig, wenn für mindestens eine Zeichenreihe mehr als ein Parsebaum exisitiert.
+
+Häufig (aber nicht immer) lässt sich eine kfG so anpassen, dass sie eindeutig wird.
+
+\subsection{Mehrdeutigkeit eliminieren}
+Das Beispiel $A \overset{\centerdot}{\underset{G}{\Rightarrow}} a + b \cdot c$ wird eindeutig durch:
+\begin{itemize}\itemsep0em
+	\item erzwungene Klammern oder
+	\item angepasste Produktionen, so dass $\cdot > +$
+	\item Linksableitung vorgeben $A \rightarrow A + A | A \cdot A | (A)$ (Addition wird vor der Multiplikation, die wiederum vor der Klammer aufgelöst)
+\end{itemize}
+
+\subsection{Anwendungen}
+\begin{itemize}\itemsep0em
+	\item Beschreibung natürlicher Sprachen (N. Chomsky): allerdings sind kfG nicht für natürliche Sprachen geeignet, weil Mehrdeutigkeiten häufig vom Kontext abhängen
+	\item Compiler: Klammern, Blöcke, Bedingungen erfordern KfG, für andere Komponenten reichen reguläre Ausdrücke (z.\,B. $A \rightarrow \epsilon | if (A) else | if (A) | AA$)
+	\item Parsergeneratoren (Quellcode $\rightarrow$ Parsebaum):
+	\begin{itemize}
+		\item Bezeichner werden über lexikalische Analyse erkannt
+		\item Strukturen werden über kfG erkannt
+	\end{itemize}
+	\item Markupsprachen (z.\,B. HTML): wie Parsegeneratoren
+	\item XML: (kfG beschreibt die Semantik über die DTD(Dokumentendefinition))
+\end{itemize}

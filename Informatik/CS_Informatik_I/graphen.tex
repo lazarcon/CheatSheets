@@ -1,0 +1,25 @@
+\section{Graphen}
+Ein Graph ist ein Tupel $G = \{V, E\}$ mit der Knotenmenge $V$ und der Kantenmenge $E$, wobei $e_i = \{V_j, V_k\}$.
+Di-Graphen haben gerichtete Kanten.
+
+\settowidth{\MyLenA}{Zusammenhängend~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Vollständigkeit & Von jedem Knoten existiert ein Kante zu jedem anderen Knoten ($\frac{|V| \cdot (|V| - 1)}{2}$)\\
+	Verbunden & Zwei Knoten sind verbunden, wenn eine Folge von Knoten und Kanten existiert, mit der man von einem
+	Konten zum anderen gelangt\\
+	Zusammenhängend & Jeder Knoten ist mit jedem anderen Knoten verbunden\\
+	Schleife & Sind Knoten über mehr als eine nicht-identische Kantenfolge verbunden, liegt eine Schleife vor\\
+\end{tabular}
+
+\subsection{Bäume}
+Haben eine Wurzel-Knoten, der nur gerichtete Kanten hat. Jeder handere Knoten hat nur eine einlaufende Kante.
+Binäre Bäume haben pro Knoten höchstens zwei auslaufende Kanten.
+\settowidth{\MyLenA}{Minimale Höhe~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Blatt & Knoten ohne auslaufende Kanten\\
+	Höhe & Maximum der Kanten zwischen Wurzel und Blättern\\
+	Minimale Höhe & Es gibt keinen anderen Baum mit geringerer Höhe\\
+	Ausgewogenheit & Es existiert höchstens ein Knoten mit nur einer auslaufenden Kante\\
+\end{tabular}
