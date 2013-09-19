@@ -1,0 +1,61 @@
+\section{Sprachen}
+\begin{description}\itemsep0em
+
+\item [Alphabete]
+Ein Alphabet ($\Sigma$) ist eine endliche, nicht leere Menge von Symbolen.
+Allgemeine Symbole werden mit Kleinbuchstaben vom Anfang des lateinischen Alphabets ($a, b, c, $\dots) dargestellt.
+Die Symbole müssen präfixfrei sein.
+
+\item [Zeichenreihe, -kette] 
+(auch Wort oder String) ist eine endliche Folge von Symbolen eines bestimmten Alphabets.
+Zeichenreihen werden mit Kleinbuchstaben vom Ende des lateinischen Alphabets (\dots, $w, x, y, z$) dargestellt.
+
+\item [Leere Zeichenreihe] 
+enthält keine Symbole und wird als $\epsilon$ dargestellt.
+
+\item [Länge einer Zeichenreihe] 
+ist die Anzahl Positionen -- Anzahl der Symbole. Man schreibt $|w|$ für die Länge der Zeichenkette $w$.
+
+\item [$\Sigma^k$] 
+bezeichnet die Menge aller Zeichenreihen der Länge $k$ über einem Alphabet $\Sigma$ (Potenznotation)
+Es gilt für jedes $\Sigma: \Sigma^0 = \{\epsilon\}$
+
+\item [$\Sigma^*$] 
+bezeichnet die Menge aller Zeichenreihen über einem Alphabet $\Sigma$.
+Es gilt für jedes $\Sigma: \Sigma^* = \Sigma^0 \cup \Sigma^1 \cup \Sigma^2 \cup \dots$
+
+\item [$\Sigma^+$]
+bezeichnet die Menge aller nichtleeren Zeichenreihen über einem Alphabet $\Sigma$.
+Es gilt für jedes $\Sigma: \Sigma^+ = \Sigma^* \setminus \{\epsilon\}$
+
+\item [Konkatenation] 
+Seien $x$ und $y$ beliebige Zeichenreihen, dann steht $xy$ für die
+Verbindung von $x$ und $y$. Es gelten:
+\begin{itemize}\itemsep0em
+	\item $x \neq y \Leftrightarrow xy \neq yx$
+	\item $|xy| = |x| + |y|$
+	\item $w\epsilon = \epsilon w = w$
+\end{itemize}
+
+\item [Sprache] 
+Sei $L$ eine Menge von Zeichenreihen aus $\Sigma^*$ ($L \subseteq \Sigma^*)$, dann
+wird $L$ als Sprache über dem Alphabet $\Sigma$ bezeichnet. Es gelten:
+\begin{itemize}\itemsep0em
+	\item $\Sigma_1 \subseteq \Sigma_2 \wedge L \subseteq \Sigma_1^* \Rightarrow L \subseteq \Sigma_2^*$
+	\item $\Sigma^*$ ist eine Sprache für jedes Alphabet $\Sigma$
+	\item $\emptyset$ ist die leere Sprache für jedes Alphabet $\Sigma$
+	\item $\epsilon$ ist die Sprache, die aus der leeren Zeichenkette $\epsilon$ besteht ($\emptyset \neq \epsilon$)
+	\item Sprachen können aus unendlich vielen Zeichenreihen bestehen, müssen aber aus einem festen, endlichen Alphabet gebildet werden
+	\item Sind $L$ und $M$ Sprachen, dann ist $L \cup M$ auch eine Sprache (Vereinigung)
+	\item Sind $L$ und $M$ Sprachen, dann ist auch die Menge aller Zeichenreihen, 
+	die aus allen Konkatenationen einer Zeichenreihe aus $L$ mit einer Zeichenreihe aus $M$ besteht,
+	eine Sprache.
+	\item Ist $L$ eine Sprache, dann ist auch die Menge aller Zeichenreihen, die durch beliebige Konkatenationen
+	von Zeichenreihen aus $L$ besteht, eine Sprache (Kleensche Hülle). Sie wird durch $L^*$ angegeben. ($L^*$ hat i.\,d.\,R. unendliche viele Zeichenreihen)
+\end{itemize}
+\item[Problem] bezeichnet die Entscheidung, ob eine Zeichenreihe $w$ aus $\Sigma^*$ in einer Sprache $L$ über dem
+	Alphabet $\Sigma$ enthalten ist. (Problem = Entscheidung ob eine Zeichenreihe zu einer Sprache oder nicht)
+
+\end{description}
+
+

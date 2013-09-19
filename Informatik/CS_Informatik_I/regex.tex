@@ -1,0 +1,63 @@
+\section{Reguläre Ausdrücke}
+\begin{enumerate}\itemsep0em
+	\item $\epsilon$ und $\emptyset$ sind reguläre Ausdrücke und beschreiben
+	die Sprache $L(\epsilon) = \epsilon$ bzw. $L(\emptyset) = \emptyset$
+	
+	\item Wenn $a$ ein Symbol ist, dann ist $a$ auch ein regulärer Ausdruck und
+	beschreibt die Sprache $L(a) = \{a\}$.
+	
+	\item Wenn $R$ ein regulärer Ausdruck ist, dann ist auch $(R)$ ein regulärer
+	Ausdruck, der die gleiche Sprache spezifiziert: $L((R)) = L(R)$ 
+	d.\,h. Klammern sind optional und dienen der Lesbarkeit.
+
+	\item Wenn $R_1$ und $R_2$ reguläre Ausdrücke sind, dann ist auch $R_1 + R_2$ ein
+	regulärer Ausdruck und es gilt: 
+	\begin{enumerate}\itemsep0em
+		\item $L(R_1 + R_2) = L(R_1) \cup L(R_2)$
+		\item $L(R_1R_2) = L(R_1)L(R_2)$
+	\end{enumerate}
+
+	\item Wenn $R$ ein regulärer Ausdruck ist, dann ist auch $R^*$ ein regulärer Ausdruck
+	und es gilt: $L(R^*) = (L(R))^*$
+
+\end{enumerate}
+
+Reihenfolge Auswertung: $R^* > R_1R_2 > R_1 + R_2$\\
+$R? = R + \epsilon$ (Auftreten: ein oder keinmal)
+\subsection{Konventionen}
+\settowidth{\MyLenA}{$[a_1, a_2, \dots, a_n]$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+. & beliebiges Zeichen\\
+$[a_1, a_2, \dots, a_n]$ & Folgen\\
+$[\dots]$ & Bereichsangaben wie [0-9] oder Schlüsselwörter
+\end{tabular}
+
+\subsection{Gesetze}
+\settowidth{\MyLenA}{Kommutativgesetz~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+Kommutativgesetz & $L + M = M + L$\\
+Assoziativgesetz & $(L + M) + N = L + (M + N)$\\
+Verkettung & $(LM)N = L(MN)$\\
+Distributivgesetz & $L(M + N) = LM + LN$\\ 
+Idempotenzgesetz & $L + L = L$
+\end{tabular}
+\subsection{Rechenregeln}
+\begin{align*}
+	\emptyset + L &= L = L + \emptyset 		&  \epsilon^* &= \epsilon\\
+	\epsilon L &= L = L\epsilon 				& LL^* &= L^*L = L^+\\
+	\emptyset L & = \emptyset = L \emptyset 	& (L^*)^* &= L^*\\
+	\emptyset^* &= \epsilon & L^* 				&= L + \epsilon
+\end{align*}
+
+Anwendungen:
+\begin{enumerate}\itemsep0em
+	\item Mustersuche in Texten
+	\item Lexikalische Analyse (Compiler), Erkennung von Schlüsselwörtern (\enquote{Token})
+	\item Darstellung von Symbolmengen
+	\item Nachweis der Gültigkeit von gültigen Gesetzen (Gleichheit regulärer Ausdrücke) wird
+	auf die Frage der Gleichheit der Sprachen reduziert (via endliche Automaten, Minimierung und Vergleich)
+\end{enumerate}
+
+
