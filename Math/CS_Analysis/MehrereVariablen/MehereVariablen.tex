@@ -1,0 +1,26 @@
+\section{Differential mit mehreren Variablen}
+Eine Funktion von $n$ unabhängigen Variablen ist eine Vorschrift, die jedem geordneten Zahlenpaar $(x_1; x_2; \dots; x_n)$ aus einer Definitionsmenge $D$ genau ein Element $y$ aus einem Wertebereich $W$ zuordnet: $y = f(x_1; x_2; \dots; x_n)$.
+\subsection{Darstellungen}
+\begin{description}\itemsep0em
+	\item [Explizit] $y = f(x_1; x_2; \dots; x_n)$
+	\item [Implizit] $F(x_1; x_2; \dots; x_n; y) = 0$
+	\item Funktionstabelle: Bei zwei unabhängigen gibt es eine Matrix ($x_1$-Werte in den Zeilen, $x_2$-Werte in den Spalten). Mit mehreren unabhängigen kommen weiteren Tabellen
+	für $x_3$ usw. dazu.
+	\item [Graphisch]
+		\begin{itemize}\itemsep0em
+			\item Fläche (3d) Geht nur mit zwei unabhängigen Variablen.
+			\item Schnittkurvendiagramm (2d) (mit zwei unabhängigen Variablen): $f(x_1; x_2) = $ Konstant
+		\end{itemize}
+\end{description}
+ 
+\subsection{Grenzwert}
+Eine Funktion zweier Variablen hat an der Stelle $(x_0, y_0)$ den Grenzwert $g$, wenn sich die Funktionswerte von $f(x, y)$ beim Grenzübergang $(x, y) \rightarrow (x_0, y_0)$ unabhängig vom Weg dem Grenzwert $g$ beliebig annähern.
+\begin{equation*}
+	g = \lim_{(x, y) \rightarrow (x_0, y_0)} f(x, y)
+\end{equation*}
+Lösungswege: Man nähere sich $(x_0, y_0)$ entlang einer geraden $y = mx$. So kann man in die Funktionsgleichung für jedes $y$ den Wert $mx$ einsetzen. Ergibt sich dann ein konstanter Wert, hat die Funktion einen Grenzwert. Falls das Ergebnis noch von $m$ abhängt, hat sie keinen Grenzwert.
+
+\subsection{Stetigkeit}
+Eine Funktion ist an einer Stelle stetig, wenn der Grenzwert vorhanden ist und mit dem Funktionswert übereinstimmt.
+
+Funktionen, die an jeder Stelle des Definitionsbereich stetig sind, heissen stetige Funktionen.

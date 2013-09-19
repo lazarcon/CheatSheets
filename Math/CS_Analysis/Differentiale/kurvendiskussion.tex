@@ -1,0 +1,62 @@
+\section{Kurvendiskussion}
+% \begin{tikzpicture}[domain=-0.2:3.5, info/.style={very thin, color=gray}]
+% 	\coordinate (x0w) at (2,0.666);
+% 	\coordinate (x0wx) at (2,0);
+% 	\coordinate (x0wy) at (0,0.666);
+% 	\coordinate (x0max) at (1,1.333);
+% 	\coordinate (x0maxx) at (1,0);
+% 	\coordinate (x0maxy) at (0,1.333);
+%     \coordinate (x0min) at (3,0);
+% 	\coordinate (zero) at (0,0);
+% 
+% 	%\draw[very thin,color=gray] (-1.1,-1.1) grid (3.9,3.9);
+%     \draw[->] (-0.7,0) -- (3.7,0) node[right] {$x$};
+%     \draw[->] (0,-0.7) -- (0,3.7) node[above] {$f(x)$};
+%     \draw[thick] plot[id=x] function{(x*x*x)/3 - 2*x*x + 3*x} 
+%         node[right] {$f(x) = \frac{1}{3}x^3 - 2x^2 + 3x$};
+%     \draw plot[id=x1] function{x*x - 4 * x + 3} 
+%         node[right] {$f'(x) = x^2 - 4 x + 3$};
+%     \draw[dashed] plot[id=x2,domain=1.5:3.5] function{2*x - 4} 
+%         node[right] {$f''(x) = 2x - 4$};
+% 	\draw[info] (x0maxx) -- (x0max) node[above,color=black] {Maximum};
+% 	\draw[info] (x0maxy) -- (x0max);
+% 	\draw[info] (x0wx) -- (x0w) node[above,color=black] {Wendepunkt}; 
+% 	\draw[info] (x0wy) -- (x0w);
+% 	\node[below right] at (x0min) {Minimum};
+% 	\node[below left] at (zero) {0};
+% \end{tikzpicture}
+
+\subsection{Definitionsbereich und Definitionslücken}
+Definitionslücken liegen vor bei nicht-definierten Werten:\\
+Division durch 0, negative Wurzeln, Logarithmus von 0.\\
+
+\subsection{Symmetrie}
+\begin{align*}
+	f(x)& = f(-x) \Rightarrow \mbox{gerade, gespiegelt y-Achse}\\
+	f(-x)& = -f(x) \Rightarrow \mbox{ungerade, gespiegelt 0-Punkt}
+\end{align*}
+
+\subsection{Nullstellen}
+\begin{equation*}
+	f(x) = 0	
+\end{equation*}
+
+\subsection{Pole}
+$x_0$ sei eine Definitionslücke, dann Pol, wenn $\lim_{x_0 \rightarrow 0}f(x_0) = \pm \infty$
+
+\subsection{Ableitungen}
+$f'(x), f''(x), f'''(x)$ berechnen
+
+\subsection{Extremwerte}
+Extremwerte: $f'(x) = 0, f''(x) < 0 \Rightarrow \mbox{max.}, f''(x) > 0 \Rightarrow \mbox{min.}$
+$f^{(n)}(x_0) \neq 0 \Rightarrow (n = \mbox{gerade} \Rightarrow \mbox{Extremwert}) \wedge (n = \mbox{ungerade} \Rightarrow \mbox{Sattelpunkt})$
+
+\subsection{Wende- und Sattelpunkte}
+Wendepunkt: $f''(x) = 0, f'''(x) \neq 0$\\
+Sattelpunkt: $f'(x) = 0, f''(x) = 0, f'''(x) \neq 0$
+
+\subsection{Asymptoten}
+$\lim_{x \rightarrow \infty} f(x), \lim_{x \rightarrow -\infty} f(x)$
+
+\subsection{Wertebereich}
+Entweder aus der Zeichnung oder aus Definitionlücken der Umkehrfunktion.

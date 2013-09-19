@@ -1,0 +1,5 @@
+# Create files
+*.pdf
+*.tex.backup
+*.*~
+

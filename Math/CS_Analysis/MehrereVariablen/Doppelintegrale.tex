@@ -1,0 +1,48 @@
+\section{Doppelintegrale}
+Der Grenzwert $\lim_{n \rightarrow \infty, \Delta A_k \rightarrow 0} \sum_{k=1}^n f(x_k; y_k) \Delta A_k$ wird (falls vorhanden) als Doppelintegral bezeichnet und als $\iint_A f(x;y) \mathrm dA$ geschrieben. Dabei ist $\mathrm dA = \mathrm dx \cdot \mathrm dy$.
+
+\subsection{Berechnung}
+\subsubsection{$x$ konstant, $y$ zwischen Funktionen}
+\begin{equation*}
+	\iint_A f(x; y) \mathrm dA = \int_{x=a}^b \int_{y = f_u(x)}^{f_o(x)} f(x; y) \mathrm dy \mathrm dx
+\end{equation*}
+Dabei sind $f_u(x)$ und $f_o(x)$ die untere bzw. die obere einschliessende Funktion.
+\begin{enumerate}\itemsep0em
+	\item Innere Integration nach $y$
+	\item Äussere Integration nach $x$
+\end{enumerate}
+
+
+\subsection{$y$ konstant, $x$ zwischen Funktionen}
+\begin{equation*}
+	\iint_A f(x; y) \mathrm dA = \int_{y=a}^b \int_{x = g_l(y)}^{g_r(y)}
+\end{equation*}
+Dabei sind $g_l(y)$ und $g_r(y)$ die linke bzw. rechte einschliessende Funktion.
+\begin{enumerate}\itemsep0em
+	\item Innere Integration nach $x$
+	\item Äussere Integration nach $y$
+\end{enumerate}
+
+\subsection{Doppelintegral in Polarkoordinaten}
+($x = r \cos \varphi, y = r \sin \varphi, \mathrm dA = r\mathrm dr \mathrm d\varphi$)
+Transformation Doppelintegral:
+\begin{equation*}
+	\iint_A f(x; y)\, \mathrm dA = \int_{\varphi = \varphi_1}^\varphi \int_{r=r_i(\varphi)}^{r_a(\varphi)} f(r \cdot \cos \varphi; r \cdot \sin \varphi) \cdot r\,\mathrm dr \,\mathrm d\varphi
+\end{equation*}
+
+\subsection{Flächenberechnungen}
+Das Doppelintegral lässt beliebige Flächen berechnen. Dabei wird die Funktionsgleichung $f(x; y) = 1$ gesetzt:
+\begin{align*}
+	A& = \iint_a \mathrm dA\\
+	A& = \int_{x=a}^b \int_{y=f_u(x)}^{f_o(x)} \mathrm dy\, \mathrm dx\\
+	A& = \int_{\varphi = \varphi_1}^{\varphi_2} \int_{r=r_i(\varphi)}^{r_a(\varphi)} r\, \mathrm dr\, \mathrm d\varphi
+\end{align*}
+Beispiel:
+\begin{align*}
+	r(\varphi)& = 1 + \cos \varphi\mbox{ im Intervall } 0 \leq \varphi < 2 \pi\\
+ 	A & = \int_{\varphi = 0}^{2\pi}\int_{r=0}^{1 + \cos \varphi}\\
+ 	& = \int_{\varphi = 0}^{2\pi} \left[\frac{1}{2}r^2 \right]_0^{1 + \cos \varphi} \mathrm d\varphi\\
+ 	& = \int_{\varphi = 0}^{2\pi} \frac{(1 + \cos \varphi)^2}{2} \mathrm d\varphi\\
+	& = \frac{1}{2} \int_{\varphi = 0}^{2\pi} (1 + 2 \cdot \cos \varphi + \cos^2 \varphi) \, \mathrm d\varphi\\
+ 	& = \frac{1}{2}\left[\varphi + 2 \cdot \sin \varphi + \frac{1}{2} \varphi + \frac{1}{4} \sin 2\varphi \right]_0^{2\pi} = \frac{3}{2}\pi
+\end{align*}

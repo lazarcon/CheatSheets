@@ -1,0 +1,14 @@
+\section{Scripts}
+\subsection{iptablesload}
+iptablesload:\\
+\texttt{\#!/bin/sh}\\
+\texttt{iptables-restore < /etc/iptables.rules}\\
+\texttt{exit 0}\\
+
+\subsection{iptablessave}
+\texttt{\#!/bin/sh}\\
+\texttt{iptables-save -c > /etc/iptables.rules}\\
+\texttt{if [ -f /etc/iptables.downrules ]; then}\\
+~~~~\texttt{iptables-restore < /etc/iptables.downrules}\\
+\texttt{fi}\\
+\texttt{exit 0}\\

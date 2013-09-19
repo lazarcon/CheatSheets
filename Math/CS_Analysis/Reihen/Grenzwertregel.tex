@@ -1,0 +1,26 @@
+\section{Grenzwertregel Bernoulli/de L'Hospital}
+\begin{equation*}
+	\lim_{x \to x_0} \frac{f(x)}{g(x)} = \lim_{x \to x_0} \frac{f'(x)}{g'(x)}
+\end{equation*}
+\begin{itemize}\itemsep0em
+	\item Voraussetzung: $f(x)$ und $g(x)$ sind in der Umgebung von $x_0$ stetig differenzierbar
+	\item Gilt auch für Grenzübergänge $x \to \pm \infty$
+	\item Manchmal muss die Regel mehrfach angewendet werden
+	\item Es gibt Fälle, in denen die Regel versagt
+\end{itemize}
+
+\subsection{Umformungen}
+\subsubsection{Typ A: $u(x) \cdot v(x)$ für $0 \cdot \infty$}
+\begin{align*}
+	u(x) \cdot v(x)& = \frac{u(x)}{\frac{1}{v(x)}} & u(x) \cdot v(x)& = \frac{v(x)}{\frac{1}{u(x)}} 
+\end{align*}
+
+\subsubsection{Typ B: $u(x) - v(x)$ für $\infty - \infty$}
+\begin{equation*}
+	u(x) - v(x) = \frac{\frac{1}{v(x)} - \frac{1}{u(x)}}{\frac{1}{u(x) \cdot v(x)}}
+\end{equation*}
+
+\subsubsection{Typ C: $u(x)^{v(x)}$ für $0^0, \infty^0, 1^\infty$}
+\begin{equation*}
+	u(x)^{v(x)} = \mathrm e^{v(x) \cdot \ln u(x)}
+\end{equation*}

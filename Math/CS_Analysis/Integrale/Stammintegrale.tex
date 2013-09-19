@@ -1,0 +1,27 @@
+\subsection{Grund- oder Stammintegrale}
+\begin{align*}
+	\int 0 \dop{x}& = C \\ 
+	\int 1 \dop{x}& = x + C \\
+	\int x^n \dop{x}& = \frac{x^{n + 1}}{n + 1} + C \\
+	\int \frac{1}{x} \dop{x}& = \ln |x| + C\\
+	\int \mathrm e^x \dop{x}& = \mathrm e^x + C \\
+	\int a^x \dop{x}& = \frac{a^x}{\ln a} + C\\
+	\int \sin x \dop{x}& = - \cos x + C \\
+	\int \cos x \dop{x}& = \sin x + C\\
+	\int \frac{1}{\sin^2 x} \dop{x}& = - \cot x + C \\
+	\int \frac{1}{\cos^2 x} \dop{x}& = \tan x + C \\
+ 	\int \frac{1}{\sqrt{1 - x^2}} \dop{x}& = \arcsin x + C_1 = -\arccos x + C_2 \\
+ 	\int \frac{1}{1 + x^2} \dop{x}& = \arctan x + C_1 = -\arccot x + C_2\\
+\end{align*}
+
+\subsubsection{Beweistechniken}
+Verifizierung: Ableiten der Stammfunktion ($I(x)$ muss den Integrand ($f(x)$) ergeben.
+\textbf{Beispiel}
+\begin{proof}[Verifizierung]
+	\begin{align*}
+		\int \ln x \dop{x}& = x \cdot \ln x - x + C & (C \in \mathbb{R})\\
+		\frac{\mathrm d}{\dop x} (x \cdot \ln x - x + C) & = 1 \cdot \ln x + x \cdot \frac{1}{x} - 1\\
+		& = \ln x + 1 - 1\\
+		& = \ln x\qedhere
+	\end{align*}
+\end{proof}

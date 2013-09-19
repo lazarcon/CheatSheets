@@ -1,0 +1,39 @@
+\section{Device Management}
+\subsection{Mounting drives}
+\settowidth{\MyLen}{\texttt{mount -t }\textit{filesystem}~~}
+
+Mount device \textit{device} with filesystem \textit{filesystem} to directory \textit{directory}:\\
+\verb!mount -t !\textit{filesystem }\verb!/dev/!\textit{device} \textit{directory}	\\
+Mount a CDRom: \verb!mount -t iso9660 /dev/cdrom /media/cdrom! \\
+Unmount device mounted at directory \textit{directory}:	\verb!umount !\textit{directory} \\
+\verb!/etc/fstab! stores commands for mounting devices at startup\\
+
+\subsection{Devices}
+\settowidth{\MyLen}{\texttt{cdrom}~~}
+Types:\\
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!sd!		& SATA, SCSI and USB devices\\
+	\verb!hd! 		& IDE devices\\
+	\verb!cdrom!	& CDRom or DVDRom\\
+	\verb!cdrw!		& Writeable CDRom or DVDRom\\
+\end{tabular}
+Devices are found in \verb!\dev!. Devices of the same type get letters to identify them. The letter is followed by a number indicating the partition. Partitions $1-4$ are primary partitions, $5-15$ are logical partitions.
+So devices are indicated as \verb!/dev/!\textit{type}\verb![a-z][a-z][1-15]!.
+e.g.\\
+\verb!/dev/sdc5! indicates the first logical partition of the third SATA/SCSI or USB device.
+
+\subsection{Filesystems}
+\settowidth{\MyLen}{\texttt{ext[2-4]}~~}
+Types:\\
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!ext!			& Linux: extended filesystem\\
+	\verb!ext[2-4]! 	& Linux: successors of \verb!ext!\\
+	\verb!ntfs!			& Windows: journaling filesystem\\
+	\verb!fat16!		& Windows: names must be 8.3, max. file size = 2 GiB\\
+	\verb!fat32!		& Windows: max. file size = 4 GiB\\
+	\verb!iso9660!		& Format for DVDs and CDs\\
+\end{tabular}
+
+

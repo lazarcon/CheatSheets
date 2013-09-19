@@ -1,0 +1,73 @@
+\section{Differentialrechnung}
+Berechnet die Steigung der Kurventangente an der Stelle $x_0$.\\
+Voraussetzungen:
+\begin{equation*}
+	\lim_{\Delta x \to 0} \frac{\Delta y}{\Delta x} = \lim_{\Delta x \to 0} \frac{f(x_0 + \Delta x) - f(x_0)}{\Delta x}
+\end{equation*}
+und linksseitiger Grenzwert = rechtsseitiger Grenzwert.
+Dann:
+\begin{align*}
+	m& = \tan \alpha = \frac{\Delta y}{\Delta x} = \frac{y_2 - y_1}{x_2 - x_1}\\
+	\alpha& = \arctan m = \arctan \frac{\Delta y}{\Delta x}
+\end{align*}
+Eine Funktion ist differenzierbar wenn:
+Stetigkeit $\nRightarrow$ diff.-bar, diff.-bar $\Rightarrow$ Stetigkeit, unstetig $\Rightarrow$ undiff.-bar
+
+\subsection{Ableitungsregeln}
+Ableitungen zusammengesetzter Funktionen, z.B. $y = \sin(2x)$ oder $ y = x^2 \cdot \mathrm e^{-x^2} $ auf elementare  
+Ableitungen zurückführen.
+
+Seien $f(x), g(x)$  und $h(x)$ (im Definitionsbereich) differenzierbare, reelle Funktionen,  und $a, b$ reelle Zahlen, dann gelten:
+ 
+\settowidth{\MyLenA}{Konstante Funktion~~}
+\begin{tabular}
+	{
+		@{}p{\the\MyLenA}%
+		@{}p{\linewidth - \the\MyLenA}%
+	}
+	Konstante Funktion 	& $(a)' = 0$\\
+	Faktorregel		& $(a \cdot f(x))' = a \cdot f'(x)$\\
+	Summenregel		& $(f(x) \pm g(x))' = f'(x) \pm g'(x)$\\
+	Produktregel		& $(f(x) \cdot g(x))' = f'(x) \cdot g(x) + f(x) \cdot g'(x)$\\
+	Quotientenregel		& $(\frac{f(x)}{g(x)})' = \frac{f'(x)\cdot g(x) - f(x) \cdot g'(x)}{(g(x))^2}$\\
+	Potenzregel		& $(x^n)' = nx^{n-1}$\\
+	Kettenregel		& $(f(g(x)))' = (f \circ g)'(x) = f'(g(x)) \cdot g'(x)$\\
+	Logarithmisch		& $f'(x) = (g(x)^{h(x)}) = f(x) \cdot (h'(x) \cdot \ln (g(x)) + h(x) \cdot \frac{g'(x)}{g(x)})$\\
+\end{tabular}
+Die Kettenregel ist im wesentlichen äussere Ableitung mal innere Ableitung. Beispiel:
+\begin{align*}
+	f:x \rightarrow f(x)& = (x^2 + 4)^3\\
+	u:x \rightarrow u(x)& = x^2 + 4 \rightarrow u'(x) = 2x\\
+	v:u \rightarrow v(u)& = u^3 \rightarrow v'(u) = 3u^2\\
+	f(x)& = (v \circ u)(x) = v(u(x)) \rightarrow f'(x) = 3(x^2 + 4)^2 \cdot 2x
+\end{align*}
+
+\subsubsection{Ableitung Umkehrfunktion}
+1. Umkehrfunktion bestimmen: $y = f(x) \Rightarrow x = g(y)$\\
+2. $g'(y) = \frac{1}{f'(x)}$\\
+3. Mit Hilfe von $y = f(x)$ $g'(y)$ als Funktion von $y$ schreiben\\
+4. $x$ und $y$ in $g'(y)$ vertauschhen\\
+
+\subsubsection{Ableitung in Parameterform}
+$(x = x(t), y = y(t))' \Rightarrow y' = \frac{y'(t)}{x'(t)} = \frac{\dot{y}}{\dot{x}}$
+
+\subsection{Differential}
+$\mathrm dy = \mathrm df = f'(x_0) \cdot \mathrm dx$: Zuwachs der Ordinate an der Stelle $x_0$ bei Änderung von $x$ um $\mathrm dx$.
+
+\subsection{Tangente und Normale}
+\begin{align*}
+	y_T& = f'(x_0)(x - x_0) + y_0 & \mbox{Tangente}\\
+	y_N& = \frac{1}{f'(x)} \cdot (x - x_0) + y_0 & \mbox{Normale}
+\end{align*}
+
+\subsection{Linearisierung}
+In der Umgebung von $P(x_0, y_0)$ gilt $\Delta y = f'(x_0) \Delta x$.
+
+\subsection{Monotonie}
+$y' = f'(x) > 0 \Rightarrow \mbox{streng monoton wachsend}$\\
+$y' = f'(x) < 0 \Rightarrow \mbox{streng monoton fallend}$\\
+
+\subsubsection{Krümmung}
+Linkskrümmung: $y'' = f''(x_0) > 0$\\
+Rechtskrümmung: $y'' = f''(x_0) < 0$\\
+ 

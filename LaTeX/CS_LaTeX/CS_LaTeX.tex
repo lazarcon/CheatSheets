@@ -1,0 +1,845 @@
+\documentclass[10pt,landscape]{scrartcl}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+% Umlaute ermöglichen
+\usepackage[T1]{fontenc}
+% Format dieses Dokuments
+\usepackage[utf8]{inputenc}
+% Deutsche Trennungsregeln
+\usepackage[ngerman]{babel}
+\usepackage[babel,german=quotes]{csquotes}
+
+\usepackage{listings}
+\usepackage{color}
+\definecolor{lightgrey}{gray}{0.75}
+\definecolor{darkgrey}{gray}{0.25}
+\lstloadlanguages{TeX} 
+\lstset{% general command to set parameter(s)
+basicstyle=\footnotesize, 										% print whole listing small
+keywordstyle=\color{black}\bfseries, 	% bold black keywords
+identifierstyle=, 										% nothing happens
+commentstyle=\color{darkgrey},				% grey comments
+stringstyle=\ttfamily, 								% typewriter type for strings
+showstringspaces=false								% no special string spaces
+%numbers=left, 												% show line numbers
+%numberstyle=\tiny,										% make line numbers tiny (or small, or large), 
+%stepnumber=1, 												% counter for line numbers
+%numbersep=5pt												% offset of linenumbers
+%backgroundcolor=\color{lightgrey}			% backgroundcolor
+}
+\lstset{tabsize=4, breaklines=true}
+\lstset{
+  literate=	{ö}{{\"o}}1
+           	{ä}{{\"a}}1
+           	{ü}{{\"u}}1
+		   	{Ö}{{\"O}}1
+		  	{Ä}{{\"A}}1
+		   	{Ü}{{\"U}}1
+}
+
+\usepackage{hyperref}
+%\pdfoutput=1
+\hypersetup{
+	pdfauthor   = {Lazari, Constantin},
+	pdftitle    = {LaTeX Cheat Sheet},
+	pdfsubject  = {LaTeX},
+	pdfkeywords = {},
+	pdfcreator  = {Kile},		% Texnic Center oder Kile z.B.
+	pdfproducer = {pdflatex},
+	colorlinks  = false		% Links nicht farbig hervorheben (sieht Scheisse aus).
+} 
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+
+% If you're reading this, be prepared for confusion.  Making this was
+% a learning experience for me, and it shows.  Much of the placement
+% was hacked in; if you make it better, let me know...
+
+
+% 2008-04
+% Changed page margin code to use the geometry package. Also added code for
+% conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
+% for the suggestions.
+
+% 2006-08
+% Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
+
+
+% To Do:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+ 
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+  \Large{\textbf{\LaTeXe\ Cheat Sheet}} \\
+\end{center}
+
+%\section{Beispiel \LaTeX-Dokument}
+%\lstinputlisting[language=TeX]{SampleDocument.tex}
+
+\section{Allgemeiner Aufbau}
+\begin{lstlisting}
+\documentclass{dokumentklasse}
+\begin{document} 
+  % Hier steht text ...
+\end{document} 
+\end{lstlisting}
+
+\section{Wichtige Dokumentklassen}
+\begin{tabular}{@{}ll@{}}
+\verb!scrbook!   & Zweiseitig, Vor- und Nachwort\\
+\verb!scrreprt!  & Einseitig, ohne Vor- und Nachwort\\
+\verb!scrartcl!  & Ohne \verb!\chapter! Gliederung \\
+%\verb!chletter!  & Brief im Schweizer Format\\
+%\verb!beamer!    & Präsentationen
+\end{tabular}
+
+\section{Klassenoptionen der \enquote{scr}-Klassen}
+Allgmeine Syntax:\\
+\lstinline$\documentclass[option, option, ...]{documentklasse}$
+
+\newlength{\MyLen}
+\settowidth{\MyLen}{\texttt{a}$x$\texttt{paper}/\texttt{b}$x$\texttt{paper}~}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\texttt{10pt}/\texttt{11pt}/\texttt{12pt} & Schriftgrösse \\
+\texttt{a}$x$\texttt{paper}/\texttt{b}$x$\texttt{paper} & Papiergrösse, $x=0\dots6$ \\
+\texttt{BCOR}$x$\texttt{cm}&Bindekorrektur $x$ cm, $x=0,0\dots20$\\
+\texttt{DIV=}$x$&Satzspiegel berechnen, $x$=1,2\dots,\textbf{14}, 15\\
+\texttt{fleqn} & Formeln linksbündig, statt zentriert \\
+\texttt{leqno} & Formeln links nummerieren statt rechts\\
+\texttt{twocolumn} & In zwei Spalten drucken \\
+\texttt{twoside}   & Vorder- Rückseiten bedrucken \\
+\texttt{landscape} & Ausgabe im Querformat. Benötigt zusätzlich \lstinline$\usepackage[landscape]{geometry}$\\
+\texttt{draft}     & Rahmen statt Bildern, Satzprobleme hervorgehoben\\
+\texttt{titlepage} & Eigenständiges Titelblatt (\texttt{scrartcl})\\
+\texttt{notitlepage} & Kein eigenes Titelblatt (\texttt{scrreprt}, \texttt{scrbook})\\
+\texttt{openright} & Kapitel immer auf rechter Seite beginnen (\texttt{scrreprt})\\ 
+\texttt{openany} & Kapitel überall beginnen (\texttt{scrbook})
+\end{tabular}
+
+\section{Titel(seite)}
+\settowidth{\MyLen}{\texttt{.publishers.text.} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\author{!\textit{text}\verb!}! & Autor\\
+\verb!\title{!\textit{text}\verb!}!  & Titel\\
+\verb!\date{!\textit{text}\verb!}!   & Datum\\
+\verb!\subtitle{!\textit{text}\verb!}! & Untertitel\\
+\verb!\subject{!\textit{text}\verb!}! & Betreff/Thema\\
+\verb!\titlehead{!\textit{text}\verb!}! & Titelkopf/Serie\\
+\verb!\publishers{!\textit{text}\verb!}! & Herausgeber\\
+\end{tabular}
+
+Diese Angaben stehen vor \verb!\begin{document}!\\
+Mit \verb!\maketitle! nach \verb!\begin{document}! Titelei erzeugen
+
+Mehrere Autoren oder Herausgeber nach dem Muster:\\
+\verb!\author{ich \and{du} \and{er}}!
+
+\section{Dokumentstruktur}
+\subsection{Gliederungsebenen}
+\begin{multicols}{2}
+\verb!\part{!\textit{title}\verb!}!  \\
+\verb!\chapter{!\textit{title}\verb!}!  \\
+\verb!\section{!\textit{title}\verb!}!  \\
+\verb!\subsection{!\textit{title}\verb!}!  \\
+\verb!\subsubsection{!\textit{title}\verb!}!  \\
+\verb!\paragraph{!\textit{title}\verb!}!  \\
+\verb!\subparagraph{!\textit{title}\verb!}!
+\end{multicols}
+{\raggedright
+Strukturkommandos kann ein \texttt{*} folgen, wie z.B.
+\verb!\section*{!\textit{title}\verb!}! um die Nummerierung zu unterdrücken. \verb!\setcounter{secnumdepth}{!$x$\verb!}!
+unterdrückt alle Strukturnummern für die gilt: $>x$. \verb!chapter! hat die \verb!secnumdepth! 0
+
+Die Option \verb![!\textit{text}\verb!]! erzeugt einen Kurztitel für das Inhaltsverzeichnis. Beispiel:
+\lstinline$\section[Kurz]{Langer Titel}$
+}
+
+\subsection{Umgebungen}
+\settowidth{\MyLen}{\texttt{.begin.quotation.}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{comment}!    &  Kommentarblock -- wird nicht gedruckt \\
+\verb!\begin{quote}!      &  Eingerückter Zitat--Block \\
+\verb!\begin{quotation}!  &  Wie \texttt{quote} mit eingerückten Absätzen \\
+\verb!\begin{verse}!      &  Zitatblock für Verse
+\end{tabular}
+
+Umgebungen enden immer mit \verb!\end{!\textit{umgebung}\verb!}!.
+
+\subsubsection{Listen}
+\settowidth{\MyLen}{\texttt{.begin.description.}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{enumerate}!        &  Nummerierte Liste \\
+\verb!\begin{itemize}!          &  Unnumerierte Liste \\
+\verb!\begin{description}!      &  Liste von Beschreibungen \\
+\verb!\item! \textit{text}      &  Listenpunkt \\
+\verb!\item[!\textit{x}\verb!]! \textit{text}
+                                &  Ersetzt die das normale Zeichen mit \textit{x}. Erforderlich bei Beschreibungen \\
+\end{tabular}
+
+\subsubsection{Fliessumgebungen}
+\settowidth{\MyLen}{\texttt{.begin.equation..place.}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{table}[!\textit{ort}\verb!]!     &  Nummerierte Tabelle \\
+\verb!\begin{figure}[!\textit{ort}\verb!]!    &  Nummerierte Abbildung \\
+\verb!\begin{equation}[!\textit{ort}\verb!]!  &  Nummerierte Gleichung \\
+\verb!\caption{!\textit{text}\verb!}!           &  Unterschrift der Umgebung \\
+\end{tabular}
+
+Der \textit{ort} ist eine Liste gültiger Platzierungen.  \texttt{t}=top/oben,
+\texttt{h}=hier, \texttt{b}=bottom/unten, \texttt{p}=page/separate Seite, \texttt{!}=Setzen, auch wenn
+\enquote{hässlich}
+
+Die Marker \verb!\caption{!\textit{text}\verb!}! und \verb!\label{!\textit{text}\verb!}! müssen vor dem Ende der
+Umgebung kommen
+
+\subsection{Referenzen}
+\settowidth{\MyLen}{\texttt{.nameref.marker..}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\label{!\textit{marker}\verb!}!   &  Setzt einen Marker für Referenzen. 
+                          Meist in der Form: \verb!\label{sec:item}!. \\
+\verb!\ref{!\textit{marker}\verb!}!   &  Gibt die Nummer des Markers zurück \\
+\verb!\pageref{!\textit{marker}\verb!}! &  Gibt die Seitennummer des Markers \\
+\verb!\nameref{!\textit{marker}\verb!}! &  Gibt den Text des Markers zurück\\
+\verb!\footnote{!\textit{text}\verb!}!  &  Erzeugt eine Fussnote am Ende der Seite \\
+\end{tabular}
+\verb!\newcommand{\see}[2]{#1 \ref{#2}: \nameref{#2},!\\\verb!Seite \pageref{#2}}! erzeugt neuen Befehl für
+Referenzen. \verb!\see{Abbildung}{fig:Bild}! erzeugt die Ausgabe: Abbildung 1: Bildunterschrift, Seite 1
+
+%---------------------------------------------------------------------------
+\subsection{Layouteinstellungen}
+
+\subsection{Seitenstile}
+\settowidth{\MyLen}{\texttt{.pagestyle.headings.} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\pagestyle{empty}!     &   Keine Kopf- oder Fusszeile \\
+\verb!\pagestyle{headings}!     &   Erzeugt Kopf- und Fusszeilen \\
+
+\end{tabular}
+
+\subsection{Textausrichtung}
+\begin{tabular}{@{}ll@{}}
+\textit{Umgebung}  &  \textit{Deklaration}  \\
+\verb!\begin{center}!      & \verb!\centering!  \\
+\verb!\begin{flushleft}!  & \verb!\raggedright! \\
+\verb!\begin{flushright}! & \verb!\raggedleft!  \\
+\end{tabular}
+
+\subsection{Absatzformatierung}
+\begin{tabular}{@{}ll@{}}
+\verb!\setlength{\parindent}{!$x$\verb!}!	& Absätze um $x$ einrücken\\
+\verb!\setlength{\parskip}{!$x$\verb!}!	& Absatzabstand $x$\\
+\end{tabular}
+
+\subsection{Zeilenabstand}
+\verb!\linespread{!$x$\verb!}! Ändert den Zeilenabstand auf $x$
+
+\subsection{Andere Abstände und Linien}
+\settowidth{\MyLen}{\texttt{.rule.w..h.} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\hspace{!$l$\verb!}! & Horizontaler Abstand der Länge $l$
+                                (Bsp: $l=\mathtt{20pt}$). \\
+\verb!\vspace{!$l$\verb!}! & Vertikaler Abstand der Länge $l$. \\
+\verb!\rule{!$w$\verb!}{!$h$\verb!}! & Linie der Breite $w$ und Höhe $h$. \\
+\end{tabular}
+
+\subsection{Zeilen- und Seitenumbruch}
+\settowidth{\MyLen}{\texttt{.pagebreak} }
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\verb!\\!          &  Neue Zeile, aber kein neuer Absatz  \\
+\verb!\\*!         &  Kein Seitenumbruch nach Zeilenumbruch \\
+\verb!\kill!       &  Zeile nicht drucken \\
+\verb!\pagebreak!  &  Seitenumbruch \\
+\verb!\noindent!   &  Zeile nicht einrücken \\
+\verb!~!       		&  Abstand aber kein Zeilenumbruch (\verb!D.E.~Knuth!).
+\end{tabular}
+
+\section{Schrift}
+
+\subsection{Schriftstil}
+\newcommand{\FontCmd}[3]{\PBS\verb!\#1{!\textit{text}\verb!}!  \> %
+                         \verb!{\#2 !\textit{text}\verb!}! \> %
+                         \#1{#3}}
+\begin{tabular}{@{}l@{}l@{}l@{}}
+\textit{Befehl} & \textit{Deklaration} & \textit{Effekt} \\
+\verb!\textrm{!\textit{text}\verb!}!                    & %
+        \verb!{\rmfamily !\textit{text}\verb!}!               & %
+        \textrm{Roman} \\
+\verb!\textsf{!\textit{text}\verb!}!                    & %
+        \verb!{\sffamily !\textit{text}\verb!}!               & %
+        \textsf{Sans serif} \\
+\verb!\texttt{!\textit{text}\verb!}!                    & %
+        \verb!{\ttfamily !\textit{text}\verb!}!               & %
+        \texttt{Typewriter} \\
+\verb!\textmd{!\textit{text}\verb!}!                    & %
+        \verb!{\mdseries !\textit{text}\verb!}!               & %
+        \textmd{Medium Serie} \\
+\verb!\textbf{!\textit{text}\verb!}!                    & %
+        \verb!{\bfseries !\textit{text}\verb!}!               & %
+        \textbf{Fett} \\
+\verb!\textup{!\textit{text}\verb!}!                    & %
+        \verb!{\upshape !\textit{text}\verb!}!               & %
+        \textup{Aufrecht} \\
+\verb!\textit{!\textit{text}\verb!}!                    & %
+        \verb!{\itshape !\textit{text}\verb!}!               & %
+        \textit{Kursiv} \\
+\verb!\textsl{!\textit{text}\verb!}!                    & %
+        \verb!{\slshape !\textit{text}\verb!}!               & %
+        \textsl{Schräg} \\
+\verb!\textsc{!\textit{text}\verb!}!                    & %
+        \verb!{\scshape !\textit{text}\verb!}!               & %
+        \textsc{Kapitälchen} \\
+\verb!\emph{!\textit{text}\verb!}!                      & %
+        \verb!{\em !\textit{text}\verb!}!               & %
+        \emph{Betont} \\
+\verb!\textnormal{!\textit{text}\verb!}!                & %
+        \verb!{\normalfont !\textit{text}\verb!}!       & %
+        \textnormal{Dokumentschrift} \\
+\verb!\underline{!\textit{text}\verb!}!                 & %
+                                                        & %
+        \underline{Unterstrichen}
+\end{tabular}
+
+\subsection{Schriftgrösse}
+\setlength{\columnsep}{14pt} % Need to move columns apart a little
+\begin{multicols}{2}
+\begin{tabbing}
+\verb!\footnotesize!          \= \kill
+\verb!\tiny!                  \>  \tiny{tiny} \\
+\verb!\scriptsize!            \>  \scriptsize{scriptsize} \\
+\verb!\footnotesize!          \>  \footnotesize{footnotesize} \\
+\verb!\small!                 \>  \small{small} \\
+\verb!\normalsize!            \>  \normalsize{normalsize} \\
+\verb!\large!                 \>  \large{large} \\
+\verb!\Large!                 \=  \Large{Large} \\  % Tab hack for new column
+\verb!\LARGE!                 \>  \LARGE{LARGE} \\
+\verb!\huge!                  \>  \huge{huge} \\
+\verb!\Huge!                  \>  \Huge{Huge}
+\end{tabbing}
+\end{multicols}
+\setlength{\columnsep}{1pt} % Set column separation back
+
+Zum gezielten Verwenden diese Befehle in der Form 
+\verb!{\small! \ldots\verb!}! einsetzen
+
+
+\section{Sonderzeichen}
+
+\subsection{Bindestriche}
+\begin{tabular}{@{}llll@{}}
+\textit{Name} & \textit{Code} & \textit{Beispiel} & \textit{Verwendung} \\
+hyphen  & \verb!-!   & Dipl.-Ing.     & In Wörtern \\
+en-dash & \verb!--!  & 1--5           & Zwischen Zahlen \\
+em-dash & \verb!---! & Ja---oder nein?    & Gedankenstrich
+\end{tabular}
+
+\subsection{\LaTeX-Symbole}
+\begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{\hspace{2em}}l@{
+\hspace{1em}}l@{}}
+\&              &  \verb!\&! &
+\_              &  \verb!\_! &
+\ldots          &  \verb!\ldots! &
+\textbullet     &  \verb!\textbullet! \\
+\$              &  \verb!\$! &
+\^{}            &  \verb!\^{}! &
+\textbar        &  \verb!\textbar! &
+\textbackslash  &  \verb!\textbackslash! \\
+\%              &  \verb!\%! &
+\~{}            &  \verb!\~{}! &
+\#              &  \verb!\#! &
+\S              &  \verb!\S! \\
+\end{tabular}
+
+\subsection{Trennzeichen}
+\begin{tabular}{@{}l@{\ }ll@{\ }ll@{\ }ll@{\ }ll@{\ }ll@{\ }l@{}}
+`       & \verb!`!  &
+``      & \verb!``! &
+\{      & \verb!\{! &
+\lbrack & \verb!\lbrack! &
+(       & \verb!(! &
+\textless  &  \verb!\textless! \\
+'       & \verb!'!  &
+''      & \verb!''! &
+\}      & \verb!\}! &
+\rbrack & \verb!\rbrack! &
+)       & \verb!)! &
+\textgreater  &  \verb!\textgreater! \\
+\end{tabular}
+
+
+\section{Tabellen}
+
+\subsection{\texttt{tabbing} Tabulatoren Umgebung}
+\begin{tabular}{@{}l@{\hspace{1.5ex}}l@{\hspace{10ex}}l@{\hspace{1.5ex}}l@{}}
+\verb!\=!  &   Tabulator setzen &
+\verb!\>!  &   Zum Tabulator springen
+\end{tabular}
+
+\verb!\\! zum Abschluss der Zeilen verwenden
+
+\subsection{\texttt{tabular} Tabellen Umgebung}
+\verb!\begin{array}[!\textit{pos}\verb!]{!\textit{cols}\verb!}!   \\
+\verb!\begin{tabular}[!\textit{pos}\verb!]{!\textit{cols}\verb!}! \\
+\verb!\begin{tabular*}{!\textit{breite}\verb!}[!\textit{pos}\verb!]{!\textit{spalten}\verb!}!
+
+
+\subsubsection{\texttt{tabular} Spaltenspezifikation}
+\settowidth{\MyLen}{\texttt{p}\{\textit{width}\} \ }
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\texttt{l}    &   Links ausgerichtete Spalte\\
+\texttt{c}    &   Zentrierte Spalte\\
+\texttt{r}    &   Rechts ausgerichte Spalte\\
+\verb!p{!\textit{width}\verb!}!  &  Spalte mit fixer Breite\\
+\verb!|!      &   Fügt eine vertikale Linie zwischen Spalten ein 
+\end{tabular}
+
+\subsubsection{\texttt{tabular} Elemente}
+\settowidth{\MyLen}{\texttt{.cline.x-y..}}
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\verb!\hline!           &  Horizontale Linie zwischen Zeilen \\
+\verb!\cline{!$x$\verb!-!$y$\verb!}!  &
+                        Horizontal Linie von Spalte $x$ bis $y$ \\
+\verb!\multicolumn{!\textit{n}\verb!}{!\textit{spec}\verb!}{!\textit{text}\verb!}! \\
+        &  Vereinigt \textit{n} Spalten, mit der \textit{spec} Spaltenspezifikation und dem Text \textit{text}
+\end{tabular}
+
+% \subsubsection{\texttt{tabular} \enquote{Hübsche Linien}}
+% \verb!\usepackage{booktabs}!
+% \settowidth{\MyLen}{\texttt{bottomrule}~~}
+% \begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+% \verb!\toprule!           &  Breite horizontale Linie \\
+% \verb!\midrule!  & Dünnere horizontale Linie \\
+% \verb!\bottomrule! & Breite horizontale Linie\\
+% \end{tabular}
+
+\subsubsection{Beispielcode Tabelle}
+
+\begin{lstlisting}
+\begin{table}[ht!]
+ \begin{tabular}{rrr}
+  \multicolumn{1}{c}{\textbf{A}} &
+  \multicolumn{1}{c}{\textbf{B}} &
+  \multicolumn{1}{c}{\textbf{C}} \\
+  \hline
+  0 & 0 & 7 \\
+ \end{tabular}
+ \caption{Beispiel Tabelle}
+ \label{tab:Beispiel}
+\end{table}
+\end{lstlisting}
+% 
+% 
+% \begin{center}
+%  \begin{tabular}{rrr}
+%   \multicolumn{1}{c}{\textbf{A}} &
+%   \multicolumn{1}{c}{\textbf{B}} &
+%   \multicolumn{1}{c}{\textbf{C}} \\
+%   \hline
+%   0 & 0 & 7 \\
+%  \end{tabular}
+% 
+% Tabelle 1: Beispiel
+% \end{center}
+
+% \subsection{\texttt{longtable} Mehrseitige Tabelle}
+% \verb!\usepackage{booktabs}! verteilt eine Tabelle auf mehrere Seiten. Die Spaltenüberschriften werden übernommen
+% werden. Beispiel:
+% \begin{lstlisting}
+% \begin{center}
+%   \begin{longtable}{|l|l|}
+% 	\caption[Beispiel 2]{Lange Tabelle} 
+% 	\label{tab:longtable} \\
+% 	\hline 
+% 	\multicolumn{1}{|c|}{\textbf{Zeit}} & 
+% 	\multicolumn{1}{c|}{\textbf{Strecke}} \\
+% 	\hline \endfirsthead
+% 	\multicolumn{2}{c}
+% 	{{\bfseries \tablename\ \thetable{} -- Fortsetzung von vorheriger Seite}} \\
+% 	\hline 
+% 	\multicolumn{1}{|c|}{\textbf{Zeit}} & 
+% 	\multicolumn{1}{c|}{\textbf{Strecke}} \\
+% 	\hline \endhead
+% 	\hline 
+% 	\multicolumn{3}{|r|}{{Fortsetzung nächste Seite}} \\ 
+% 	\hline \endfoot
+% 	\hline \hline \endlastfoot
+% 	% Tabellendaten ab hier
+% 	10 s & 100 m \\
+% 	% usw.
+%   \end{longtable}
+% \end{center}
+% \end{lstlisting}
+
+\section{Listings}
+\verb!\usepackage{listings}! Erlaubt es Programmiercode direkt einzubinden. Syntax wird automatisch hervorgehoben
+
+\subsection{Formatierung}
+\verb!\lstset{!\textit{einstellung}\verb!}! Definiert die Formatierung:
+
+\settowidth{\MyLen}{\texttt{showstringspace=\lbrack true\textbar false\rbrack~}}
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\verb!basicstyle=!\textit{schriftcmd} & Allgemeiner Stil \\
+\verb!keywortstyle=!\textit{schriftcmd} & Schlüsselwörter Stil \\
+\verb!commentstyle=!\textit{schriftcmd} & Kommentar Stil \\
+\verb!stringstyle=!\textit{schriftcmd} & String Stil \\
+\verb!showstringspace=[true|false]! & Leerzeichen anzeigen \\
+\verb!numbers=[left|right]! & Zeilennummern links oder rechts\\
+\verb!numberstyle=!\textit{schriftcmd} & Stil Zeilennummern\\
+\verb!stepnumber=!$x$ & $x$ Differenz zwischen Zeilennummern\\
+\verb!tabsize=!$x$ & $x$ Leerzeichen pro Tabulator\\
+\verb!numbers=[true|false]! & Zeilenumbrechen\\
+\end{tabular}
+
+\subsubsection{Umlaute in Listings}
+%Mit Hilfe von:
+\begin{lstlisting}
+\lstset{
+  literate=	
+	{ä}{{\"a}}1 {ö}{{\"o}}1 {ü}{{\"u}}1
+	{Ä}{{\"A}}1 {Ö}{{\"O}}1 {Ü}{{\"U}}1
+}
+\end{lstlisting}
+
+\subsection{Sprachen}
+\verb!\lstloadlanguages{!\textit{sprache}\verb!}! lädt die Sprachdateien (Komma getrennt)
+Dialekte stehen in eckigen Klammern.
+
+\begin{multicols}{3}
+  ABAP\\
+  ACSL\\
+  Ada\\
+  Algol\\
+  Ant\\
+  Assembler\\
+  Awk\\
+  bash\\
+  Basic\\
+  \lbrack ANSI, Handel, Objective, Sharp\rbrack~C\\
+  \lbrack ANSI, GNU, ISO, Visual\rbrack~C++\\ 
+  Caml\\
+  Clean\\
+  Cobol\\
+  Comal\\
+  command.com.\\
+  csh\\
+  Delphi\\
+  Eiffel\\
+  Elan\\
+  erlang\\
+  Euphoria\\
+  Fortran\\
+  GCL\\
+  Gnuplot\\
+  Haskell\\
+  HTML\\
+  IDL\\
+  inform\\
+  Java\\
+  JVMIS\\
+  ksh\\
+  Lisp\\
+  Logo\\
+  make\\
+  Mathematica1\\
+  Matlab\\
+  Mercury\\
+  MetaPost\\
+  Miranda\\
+  Mizar\\
+  ML\\
+  Modula-2\\
+  MuPAD\\
+  NASTRAN\\
+  Oberon-2\\
+  OCL\\
+  Octave\\
+  Oz\\
+  Pascal\\
+  Perl\\
+  PHP\\
+  PL/I\\
+  Plasm\\
+  POV\\
+  Prolog\\
+  Promela\\
+  Python\\
+  R\\
+  Reduce\\
+  Rexx\\
+  RSL\\
+  Ruby\\
+  S\\
+  SAS\\
+  Scilab\\
+  sh\\
+  SHELXL\\
+  Simula\\
+  SQL\\
+  tcl\\
+  \lbrack AlLaTeX, common, LaTeX, plain, primitive\rbrack~TeX\\ 
+  VBScript\\
+  Verilog\\
+  VHDL\\
+  VRML\\
+  XML\\
+  XSLT
+\end{multicols}
+
+
+\subsection{Einbinden von Listings}
+\settowidth{\MyLen}{\texttt{\textbackslash lstinputlisting.relativerPfad...}~}
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\verb!\begin{lstlisting}! & Listing Umgebung \\
+\verb!\lstinline{!\textit{code}\verb!}! & Innerhalb einer Textzeile \\
+\verb!\lstinputlisting{!\textit{relativerPfad}\verb!}! & Externe Datei \\
+\end{tabular}
+
+\subsubsection{Listing Optionen}
+\settowidth{\MyLen}{\texttt{language=\textit{sprache}}~}
+\begin{tabular}{@{}p{\the\MyLen}@{}p{\linewidth-\the\MyLen}@{}}
+\verb!language=!\textit{sprache} & Sprache des Listings\\
+\verb!caption={!\textit{text}\verb!}! & Überschrift des Listings \\
+\verb!label=!\textit{label} & Referenz Marker \\
+\verb!firstline=!$x$ & $x$ Erste darzustellende Zeile \\
+\verb!lastline=!$x$ & $x$ Letzte darzustellende Zeile \\
+\end{tabular}
+Verwendung im Stil: \verb!\lstinputlisting[language=C, caption={Code}]{datei}!
+
+
+\section{Mathematik}
+Mathematische Ausdrücke entweder mit \texttt{\$} oder mit
+\verb!\begin{equation}! umschliessen
+
+\begin{tabular}{@{}l@{\hspace{1em}}l@{\hspace{2em}}l@{\hspace{1em}}l@{}}
+Superscript$^{x}$       &
+\verb!^{x}!             &  
+Subscript$_{x}$         &
+\verb!_{x}!             \\  
+$\frac{x}{y}$           &
+\verb!\frac{x}{y}!      &  
+$\sum_{k=1}^n$          &
+\verb!\sum_{k=1}^n!     \\  
+$\sqrt[n]{x}$           &
+\verb!\sqrt[n]{x}!      &  
+$\prod_{k=1}^n$         &
+\verb!\prod_{k=1}^n!    \\ 
+\end{tabular}
+
+\subsection{Mathematische Symbole}
+
+% The ordering of these symbols is slightly odd.  This is because I had to put all the
+% long pieces of text in the same column (the right) for it all to fit properly.
+% Otherwise, it wouldn't be possible to fit four columns of symbols here.
+
+\begin{tabular}{@{}l@{\hspace{1ex}}l@{\hspace{1em}}l@{\hspace{1ex}}l@{\hspace{1em}}l@{\hspace{1ex}}
+l@{\hspace{1em}}l@{\hspace{1ex}}l@{}}
+$\leq$          &  \verb!\leq!  &
+$\geq$          &  \verb!\geq!  &
+$\neq$          &  \verb!\neq!  &
+$\approx$       &  \verb!\approx!  \\
+$\times$        &  \verb!\times!  &
+$\div$          &  \verb!\div!  &
+$\pm$           & \verb!\pm!  &
+$\cdot$         &  \verb!\cdot!  \\
+$^{\circ}$      & \verb!^{\circ}! &
+$\circ$         &  \verb!\circ!  &
+$\prime$        & \verb!\prime!  &
+$\cdots$        &  \verb!\cdots!  \\
+$\infty$        & \verb!\infty!  &
+$\neg$          & \verb!\neg!  &
+$\wedge$        & \verb!\wedge!  &
+$\vee$          & \verb!\vee!  \\
+$\supset$       & \verb!\supset!  &
+$\forall$       & \verb!\forall!  &
+$\in$           & \verb!\in!  &
+$\rightarrow$   &  \verb!\rightarrow! \\
+$\subset$       & \verb!\subset!  &
+$\exists$       & \verb!\exists!  &
+$\notin$        & \verb!\notin!  &
+$\Rightarrow$   &  \verb!\Rightarrow! \\
+$\cup$          & \verb!\cup!  &
+$\cap$          & \verb!\cap!  &
+$\mid$          & \verb!\mid!  &
+$\Leftrightarrow$   &  \verb!\Leftrightarrow! \\
+$\dot a$        & \verb!\dot a!  &
+$\hat a$        & \verb!\hat a!  &
+$\bar a$        & \verb!\bar a!  &
+$\tilde a$      & \verb!\tilde a!  \\
+
+$\alpha$        &  \verb!\alpha!  &
+$\beta$         &  \verb!\beta!  &
+$\gamma$        &  \verb!\gamma!  &
+$\delta$        &  \verb!\delta!  \\
+$\epsilon$      &  \verb!\epsilon!  &
+$\zeta$         &  \verb!\zeta!  &
+$\eta$          &  \verb!\eta!  &
+$\varepsilon$   &  \verb!\varepsilon!  \\
+$\theta$        &  \verb!\theta!  &
+$\iota$         &  \verb!\iota!  &
+$\kappa$        &  \verb!\kappa!  &
+$\vartheta$     &  \verb!\vartheta!  \\
+$\lambda$       &  \verb!\lambda!  &
+$\mu$           &  \verb!\mu!  &
+$\nu$           &  \verb!\nu!  &
+$\xi$           &  \verb!\xi!  \\
+$\pi$           &  \verb!\pi!  &
+$\rho$          &  \verb!\rho!  &
+$\sigma$        &  \verb!\sigma!  &
+$\tau$          &  \verb!\tau!  \\
+$\upsilon$      &  \verb!\upsilon!  &
+$\phi$          &  \verb!\phi!  &
+$\chi$          &  \verb!\chi!  &
+$\psi$          &  \verb!\psi!  \\
+$\omega$        &  \verb!\omega!  &
+$\Gamma$        &  \verb!\Gamma!  &
+$\Delta$        &  \verb!\Delta!  &
+$\Theta$        &  \verb!\Theta!  \\
+$\Lambda$       &  \verb!\Lambda!  &
+$\Xi$           &  \verb!\Xi!  &
+$\Pi$           &  \verb!\Pi!  &
+$\Sigma$        &  \verb!\Sigma!  \\
+$\Upsilon$      &  \verb!\Upsilon!  &
+$\Phi$          &  \verb!\Phi!  &
+$\Psi$          &  \verb!\Psi!  &
+$\Omega$        &  \verb!\Omega!  
+\end{tabular}
+\footnotesize
+
+\section{Nützliche Packages}
+\settowidth{\MyLen}{\texttt{microtype}\hspace{2pt}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\texttt{inputenc} & Eingabecodierung. Option: \texttt{utf8} oder \texttt{ansinew} \\
+\texttt{fontenc} & Schriftcodierung. Option: \texttt{T1} für Umlaute \\
+\texttt{lmodern} & \enquote{Moderne} Schrift \\
+\texttt{babel} & Mit der Option \texttt{ngerman} für deutsche Trennungsregeln \\
+\texttt{csquotes} & Anführungszeichen. Optionen: \verb!babel,german=quotes!\\
+\texttt{microtype} & Optischer Randausgleich \\
+\texttt{graphicx}  &  Bilder verwenden:
+                        \verb!\includegraphics[width=!%
+                        \textit{x}\verb!]{!%
+                        \textit{datei}\verb!}!. Optionen: \texttt{dvips, pdftex}\\
+\texttt{subfigure} & Abbildung unterteilen in Unterabbildungen\\
+\texttt{wrapfig} & Abbildungen mit umfliessenden Text\\
+\texttt{pdfpages} & PDFs einbinden. Option: \texttt{final}. Einbinden über:
+  \verb!\includepdf[pages=-]{!\textit{pdfDatei}\verb!}!\\
+\texttt{hyperref}  & PDF mit klickbarem Inhaltsverzeichnis. Optionen: 
+  \verb!pdfborder={0 0 0},plainpages=false,pdfpagelabels!. 
+  Bsps.: \verb!\url{!%
+                        \textit{http://\ldots}%
+                        \verb!}!, \verb!\href{!\textit{http://\dots}\verb!}{!\textit{text}\verb!}!.\\
+\texttt{longtable} & Mehrseitige Tabellen\\
+\texttt{booktabs} & Verschönert Tabellen\\
+\texttt{tikz-er2} & Zeichnungen in \LaTeX\ erstellen\\
+\end{tabular}
+
+Pakete vor \verb!\begin{document}! einbinden.\\
+Syntax: \verb!\usepackage[!\textit{optionen}\verb!]{!\textit{package}\verb!}!
+
+\subsection{PDF-Ausgabe}
+%\verb!\pdfoutput=1! Erzeugt ein PDF
+Mit \verb!\hypersetup{!\textit{einstellung}\verb!}! werden der PDF-Datei Metadaten hinzugefügt. Einstellungen:
+
+\settowidth{\MyLen}{\texttt{colorlinks=\lbrack true\textbar false\rbrack}}
+\begin{tabular}{@{}p{\the\MyLen}%
+                @{}p{\linewidth-\the\MyLen}@{}}
+\texttt{pdfauthor=\{}\textit{text}\texttt{\}} & Author(en) \\
+\texttt{pdftitle=\{}\textit{text}\texttt{\}} & Titel \\
+\texttt{pdfsubject=\{}\textit{text}\texttt{\}} & Thema \\
+\texttt{pdfcreator=\{}\textit{text}\texttt{\}} & Erzeugender Editor \\
+\texttt{pdfproducer=\{}\textit{text}\texttt{\}} & Erzeugendes Programm \\
+\texttt{colorlinks=\lbrack true\textbar false\rbrack} & Links farblich hervorheben\\
+\end{tabular}
+
+
+%\subsection{Special symbols}
+%\begin{tabular}{@{}ll@{}}
+%$^{\circ}$  &  \verb!^{\circ}! Ex: $22^{\circ}\mathrm{C}$: \verb!$22^{\circ}\mathrm{C}$!.
+%\end{tabular}
+
+
+\rule{0.3\linewidth}{0.25pt}\\
+\scriptsize
+Copyright \copyright\ 2011 Constantin Lazari\\
+% Should change this to be date of file, not current date.
+Revision: 1.0, Datum: \today\\
+\end{multicols}
+\end{document}

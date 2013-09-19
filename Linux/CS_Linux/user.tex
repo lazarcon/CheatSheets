@@ -1,0 +1,15 @@
+\section{User Management}
+\settowidth{\MyLen}{\texttt{usermod -G -a}~\textit{group user}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!adduser !\textit{user}					& Create new user \textit{user}\\
+	\verb!adduser -r !\textit{user}					& Create new system user \textit{user}\\
+	\verb!passwd !\textit{user}						& Give user \textit{user} a new password\\
+	\verb!groupadd !\textit{group}					& Create new group \textit{group}\\
+	\verb!usermod -G -a !\textit{group user}		& Add user \textit{user} to group \textit{group}\\
+	\verb!/etc/passwd!								& Stores users\\
+	\verb!/etc/shadow!								& Stores encrypted passwords\\
+	\verb!/etc/group!								& Stores groups\\
+	\verb!/etc/aliases!								& Stores email nicknames\\
+	\verb!/etc/sudoers!								& Stores users with superuser privileges\\
+\end{tabular}
