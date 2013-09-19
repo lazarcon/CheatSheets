@@ -1,0 +1,8 @@
+\section{Undo/Redo}
+\settowidth{\MyLen}{\texttt{:\%s/foo/bar/gc}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+ @{}p{\linewidth-\the\MyLen}}
+\verb!u!		& Undo the last action\\
+\verb!U!		& Undo all the latest changes that were made to the current line.\\
+\verb!Ctrl + r! 	& Redo.\\
+\end{tabular}

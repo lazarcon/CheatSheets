@@ -1,0 +1,56 @@
+\section{Text Operations}
+\subsection{Inserting}
+\settowidth{\MyLen}{\texttt{q!}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+		  @{}p{\linewidth-\the\MyLen}}
+\verb!i! 	& Insert before cursor\\
+\verb!I!	& Insert to the start of the current line\\
+\verb!a!	& Append after cursor\\
+\verb!A!	& Append to the end of the current line\\
+\verb!o!	& Open a new line below and insert\\
+\verb!O!	& Open a new line above and insert\\
+\verb!C!	& Change the rest of the current line\\
+\verb!r!	& Overwrite one character. After overwriting the single character, go back to command mode\\
+\verb!R!	& Enter insert mode but replace characters rather than inserting\\
+\verb!The ESC key! &	Exit insert/overwrite mode and go back to command mode\\
+\end{tabular}
+
+\subsection{Deleting}
+\settowidth{\MyLen}{\texttt{dd}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+		  @{}p{\linewidth-\the\MyLen}}
+\verb!x! & Delete characters \textit{under} the cursor\\
+\verb!X! & Delete characters \textit{before} the cursor\\
+\verb!dd! & Delete the current line
+\end{tabular}
+
+\subsection{Highlighting}
+\settowidth{\MyLen}{\texttt{d}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+		  @{}p{\linewidth-\the\MyLen}}
+\verb!v!	& Start highlighting characters. Use movement keys and commands to select text for highlighting\\
+\verb!V!	& Start highlighting lines\\
+\end{tabular}
+
+\subsection{Editing blocks of text}
+Note: the Vim commands marked with (V) work in visual mode, when you've selected some text. The other commands work in the command mode, when you haven't selected any text.
+(Visual Mode)
+\begin{tabular}{@{}p{\the\MyLen}%
+		  @{}p{\linewidth-\the\MyLen}}
+\verb!>! & Shift right (indent)\\
+\verb!<! & Shift left (de-indent)\\
+\verb!c! & Change the highlighted text\\
+\verb!y! & (Yank) Copy the selected text to clipboard\\
+\verb!d! & Cut the selected text to clipboard
+\end{tabular}
+
+(Non-visual Mode)
+\settowidth{\MyLen}{\texttt{yy or Y}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+		  @{}p{\linewidth-\the\MyLen}}
+\verb!~! & Change the case of characters. This works both in visual and command mode.\\
+\verb!yy! or \verb!Y! & Yank the current line\\
+\verb!dd! & Delete the current line\\
+\verb!p!  & Put the text you yanked or deleted.\\
+\verb!P!  & Put characters before the cursor. Put lines above the current line.\\
+\end{tabular}
