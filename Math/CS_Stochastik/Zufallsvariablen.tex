@@ -1,0 +1,56 @@
+\section{Zufallsvariablen}
+\begin{tabular}{@{}p{\linewidth/2-1em}%
+				@{}|p{\linewidth/2-1em}}
+	\multicolumn{1}{c}{\textbf{Diskret}} & \multicolumn{1}{|c}{\textbf{Stetig}}\\\hline
+	Nur abzählbare Werte	& Nur Werte in einem Interval\\
+	Verteilungsfunktion: $X \leq x_i$
+	\begin{multline*}
+		F_X(x) = P(X \leq x)\\ = \sum_{x_i \leq x} f_X(x_i)
+	\end{multline*}
+	Die Grenzwerte streben gegen 1 bzw. gegen 0 für $x \rightarrow \pm \infty$
+	&
+	Verteilungsfunktion
+	\begin{multline*}
+		F_X(x) = P(X \leq x)\\ = \int_{-\infty}^{x} f(u)\,\mathrm du
+	\end{multline*}
+	\\
+	Wahrscheinlichkeitsfunktion (Zähldichte) 
+	\begin{multline*}
+		P(X = x_i) = f_X(x_i)\\
+		f_X(x_i) \geq 0 \mbox{ und } \sum f_X(x_i) = 1\\
+		P(a \leq X \leq b)  = \sum_{a \leq x_i \leq b} f_X(x_i)
+	\end{multline*}
+	&
+	Dichtefunktion (1te Ableitung der Verteilungsfkt.)
+	\begin{equation*}
+		f_X(x) = \frac{\mathrm dF_x(x)}{\mathrm dx}
+	\end{equation*}
+	\\
+	Erwartungswert (artithm. Mw.)
+	\begin{equation*}
+		\mu \equiv E(x) =\sum_i f_X(x_i) \cdot x_i
+	\end{equation*}
+	&
+	Erwartungswert
+	\begin{equation*}
+		E(X) = \int_{-\infty}^{\infty} x \cdot f_X(x) \, \mathrm dx
+	\end{equation*}
+	\\
+	Varianz
+	\begin{multline*}
+		\sigma^2 = E(X - E(X))^2 \\=  \sum_i (x_i - E(X))^2 f_X(x_i)\\ = E(X^2) - (E(X)^2)
+	\end{multline*}
+	&
+	Varianz
+	\begin{multline*}
+		\sigma^2 = \int_{-\infty}^{\infty} (x - E(X)^2) \cdot f_X(x) \, \mathrm dx\\ = \int_{-\infty}^{\infty} x^2 \cdot f_X(x)\, \mathrm dx - (E(x))^2
+	\end{multline*}
+\end{tabular}
+
+\section{Beschreibende Statistik}
+\begin{description}
+	\item [Histogramm] Säulendiagramm. Höhe der Säulen widerspiegelt die relative oder absolute Häufigkeit, die $x$-Achse zeigt die einzelnen Ereignisse
+	\item [Streuungsdiagrammm] Jedem Datenpaar ($x_i, y_i$) wird ein Punkt der $x, y$-Ebene zugeordnet
+	\item [Lineare Regression] geht von einem linearen Zusammenhang zwischen den Merkmalen $X$ und $Y$ aus: $Y = \alpha + \beta\cdot X + \varepsilon$. Wobei $\varepsilon$ ein Störterm ist. $X$ heisst Regressor, $Y$ heisst Regressand (die zu erklärende Variable)
+\end{description}
+
