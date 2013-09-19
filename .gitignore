@@ -2,4 +2,6 @@
 *.pdf
 *.tex.backup
 *.*~
-
+*.log
+*.aux
+*.out
