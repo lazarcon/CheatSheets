@@ -1,0 +1,73 @@
+\section{Ringe und Körper}
+Eine Struktur $(G, +, \cdot)$  heisst Ring, wenn folgende Bedingungen erfüllt sind:
+\begin{enumerate}
+	\item $(G, +)$ ist eine kommutative Gruppe
+	\item $(G, \cdot)$ ist eine Halbgruppe
+	\item Es gilt das Distributivgesetz, d.\,h. für alle Elemente $a, b, c$ des Ringes gelten:
+	\begin{itemize}
+		\item $a \cdot (b + c) = (a \cdot b) + (a \cdot c)$
+		\item $(a + b) \cdot c = (a \cdot c) + (b \cdot c)$
+	\end{itemize}
+\end{enumerate}
+
+\subsection{Konventionen}
+\begin{itemize}
+	\item Wenn $(R, +, \cdot)$ ein Ring ist, dann bezeichnen wir das neutrale Element von $(G, +)$ mit 0
+	\item Falls vorhanden bezeichnen wir das neutrale Element von $(G, \cdot)$ mit 1.
+	\item Das inverse Element von $g \in G$ bezüglich $\sim$ bezeichnen wir mit $-g$.
+	\item Das inverse Element von $g \in G$ bezüglich $\circ$ bezeichnen wir mit $g^{-1}$.
+\end{itemize}
+
+\subsection{Typische Ringe}
+$(\mathbb{Z}, +, \cdot), (\mathbb{Q}, +, \cdot)$ und $(\mathbb{Z}, +, \cdot)$. Sowie der Nullring $(\{0\}, +, \cdot)$
+
+\subsection{Potenz}
+Sei $(G, +, \cdot)$ ein Ring mit 1, dann ist die $n$-te Potenz von $g \in G$ definiert als:
+\begin{align*}
+	r^0& := 1\\
+	r^{n + 1}& := r \cdot r^n
+\end{align*}
+
+\subsection{Rechenregeln in Ringen}
+Sei $G, +, \cdot)$ ein Ring. Für alle Elemente $a, b \in R$ und alle Zahlen $n, k \in \mathbb{N}$ gelten folgende Identitäten:
+\begin{enumerate}
+	\item $0 \cdot a = a \cdot 0 = 0$
+	\item $(- a) = (-1) \cdot a$
+	\item $- (a \cdot b) = (- a) \cdot b = a \cdot (-b)$
+	\item $(- a) \cdot (- b) = a \cdot b$
+	\item $0 = 1 \Rightarrow G = \{0\}$
+	\item $a^n \cdot a^k = a^{n + k}$
+	\item $a^{n \cdot k} = (r^n)^k$
+\end{enumerate}
+
+\subsection{Begriffe}
+\settowidth{\MyLenA}{rechter Nullteiler~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+	rechter Nullteiler & $b \in G$ heisst rechter Nullteiler, falls ein $a \in G\setminus\{0\}$ existiert, so dass $a \cdot b = 0$\\
+	linker Nullteiler & $b \in G$ heisst linker Nullteiler, falls ein $a \in G\setminus\{0\}$ existiert, so dass $b \cdot a = 0$\\
+	Nullteiler & ist sowohl rechter, wie auch linker Nullteiler\\
+	Integritätsring & Die Verknüpfung $\cdot$ ist kommutativ und $0 \in G$ ist der einzige Nullteiler.\\
+	Körper & Integritätsring mit $(G\setminus \{0\}, \cdot)$ ist eine kommutative Gruppe.
+\end{tabular}
+
+In einem Integritätsring gilt stets: $1 \neq 0$.\\
+
+Ein kommuativer Ring $(G, +, \cdot)$ mit $G \neq \{0\}$, ist genau dann ein Integritätsring, wenn für jedes $g \in G\setminus\{0\}$ die Abbildung $f_g: (G, +) \rightarrow (G, +)$ mit $f_g(x) := g \cdot x$ ein injektiver Gruppenhomomorphismus ist.
+
+Ein Integritätsring $(R, +, \cdot)$ ist genau dann ein Körper, wenn alle Funktionen $f_g: G \rightarrow G$ mit $f_g(x) = r \cdot x$ mit $r \in G\setminus\{0\}$ surjektiv sind.
+
+\subsection{Folgerungen}
+\begin{enumerate}
+	\item Jeder endliche Integritätsring ist ein Körper.
+	\item Für $p \in \mathbb{N} gilt: (\mathbb{Z}_{/p}, +, \cdot)$ ist ein Körper $\Leftrightarrow p$ ist eine Primzahl.
+\end{enumerate}
+
+\subsection{Ringhomomorphismus}
+Es seien die Ringe $(R, +, \cdot)$ und $(R', +', \cdot')$ gegeben. Ein Ringhomomorphismus $f: (R, +, \cdot) \rightarrow (R', +', \cdot')$ ist eine Abbildung $f : R \rightarrow R'$, die:
+\begin{enumerate}
+	\item Ein Gruppenhomomorphismus $f: (R, +) \rightarrow (R', +')$ und
+	\item ein Halbgruppenhomomorphismus $f: (R, \cdot) \rightarrow (R', \cdot')$ ist.
+	\item Sind $(R, \cdot)$ und $(R', \cdot')$ Monoide, muss $f$ ein Monoidhomomorphismus sein.
+\end{enumerate}
+

@@ -1,0 +1,93 @@
+\section{Zahlentheorie}
+% \subsection{Satz vom kleinsten Teiler}
+% Der kleinste Teiler $d > 1$ einer natürlichen Zahl $n \geq 2$ ist eine Primzahl.
+% 
+% \begin{proof}
+% 	Sei $T(n)$ die Menge aller Teiler von $n$.\\
+% 	$T(n)\textbackslash\{1\}$ ist nicht leer, weil $n \in T(n)$\\
+% 	dann gibt es nach dem Wohlordnungsprinzip 
+% 	eine kleinste Zahl $d$ in $T(n)\textbackslash\{1\}$.\\
+% 	Zu zeigen: $d$ ist eine Primzahl\\
+% 	Annahme: $d$ ist keine Primzahl\\
+% 	Dann: $\exists a, b \in \N \setminus\{1, d\} \colon a \cdot b = d \wedge a, b < d$\\
+% 	$\Rightarrow a \mid d$\\
+% 	Da $a$ kleiner als $d$ sein muss, kann $d$ nicht das kleinste Element in $T(n)\textbackslash{1}$ sein.\\
+% 	Das ist ein Widerspruch zur Annahme. Die Annahme muss falsch sein, dann muss aber $d$ eine Primzahl sein.
+% 	\qedhere
+% \end{proof}
+
+% \subsection{Hauptsatz}
+% Jede natürliche Zahl $n \geq 2$ besitzt eine eindeutige Primfaktorzerlegung.
+% Die Reihenfolge der Primfaktoren kann variieren.
+% 
+% \begin{proof}
+% 	Sei $n \in \N \setminus\{1\}$\\
+% 	Fall I: $n$ ist eine Primzahl, ein eindeutiger Primfaktor gefunden ($n$).\\
+% 	Fall II: $n$ ist keine Primzahl\\
+% 	\begin{equation*}
+% 		\Rightarrow \exists d_1, q_1 \in \N \setminus\{1\} \colon d_1 \cdot q_1 = n
+% 	\end{equation*}
+% 	und $d_1$ ist das kleinste Element in $T(n)\setminus\{1\}$, also $d_1$ ist Primzahl\\
+% 	Betrachte $q_1$:
+% 	Fall I: $q_1$ ist eine Primzahl, eindeutige Primfaktorzerlegung gefunden.\\
+% 	Fall II: $q_1$ ist keine Primzahl, dann wiederhole diesen Prozess mit $q_1$\\ 
+% 	\qedhere
+% \end{proof}
+% Es gibt also eine Primfaktorzerlegung.
+% Bleibt zu beweisen, dass es nur eine Primfaktorzerlegung gibt.
+% \begin{proof}
+% 	Sei $n$ die kleinste natürliche Zahl mit mehr als einer Primfaktorzerlegung.\\
+% 	\begin{align*}
+% 	n& = p_1 \cdot p_2 \cdot \dots \cdot p_n = q_1 \cdot q_2 \cdot \dots \cdot q_m & p, q \in \mathbb{P}\\
+% 	\mbox{$p_i$ und $q_j$ sind paarweise verschieden}	
+% 	\end{align*}
+% 
+% \end{proof}
+
+\subsection{Primzahlen}
+Primzahlen sind folgendermassen definiert:
+\begin{align*}
+ \forall n, m \in \N& (P|n \cdot m \Rightarrow p |n \wedge p | m) \mbox{ und } p \neq 1\\
+  T(P) & = \{1, p\} \mbox{ und } p \neq 1\\
+  |T(P)|& = 2\\
+\end{align*}
+\begin{itemize}\itemsep0em
+\item Es gibt unendlich viele Primzahlen!
+\item Jede natürliche Zahl $n \in \N$ ist das Produkt endlich vieler Primzahlen: $k = \prod_{i=1}^n p_i = p_1 \cdot p_2 \cdot \dots$
+\item Der kleinste Teiler $d > 1$ einer natürlichen Zahl $n \geq 2$ ist eine Primzahl (Satz vom kleinsten Teiler) 
+\end{itemize}
+
+\subsection{Modulare Arithmetik}
+Sei $n \in \N$ beliebig. Wir definieren die Modulo-Relation $\equiv_n$ auf $\Z$ wie folgt:
+\begin{equation*}
+ r \equiv_n s :\Leftrightarrow n | (r - s)
+\end{equation*}
+Synonyme schreibweisen:
+\begin{align*}
+ r &\equiv_n x \\
+ r \mod n& = x
+\end{align*}
+
+\subsubsection{Chinesischer Restsatz}
+\begin{align*}
+  x& \equiv_{m_i} a_i\\
+  M& := \prod m_1\\
+  M_i & := M / m_i
+\end{align*}
+Finde $r_i, s_i$ sodass $r_i \cdot m_i + s_i \cdot M_i = 1$ (Euklid). Setze $e_i = s_i \cdot M_i$. Die Lösung ist dann $x = \sum a_i \cdot e_i \equiv y \mod M$
+
+Beispiel:
+\begin{align*}
+ x &\equiv_3 2& \to a_1& = 2\\
+ x &\equiv_4 3& \to a_2& = 3\\
+ x &\equiv_5 2& \to a_3& = 5\\
+ M &= m_1 \cdot m_2 \cdot m_3 = 3 \cdot 4 \cdot 5 = 60\\
+ M_1 & = M / m_1 = 20, & (M_2& = 15, M_3 = 12)\\
+\end{align*}
+Als nächstes $s_1$ mit Hilfe des erweiterten Euklid bestimmen:
+\begin{align*}
+ 1 &= r_1 \cdot m_1 + s_1 \cdot M_1  \Rightarrow r_1 = 7, s_1 = -1 \Rightarrow e_1 = -20\\
+ 1 &= r_2 \cdot m_2 + s_2 \cdot M_2  \Rightarrow r_2 = 4, s_2 = -1 \Rightarrow e_1 = -15\\
+ 1 &= r_3 \cdot m_3 + s_3 \cdot M_3  \Rightarrow r_3 = 5, s_1 = -2 \Rightarrow e_1 = -24\\
+ x &= 2 \cdot (-20) + 3 \cdot (-15) + 5 \cdot (-24) = - 133 = 47 \mod 60\\
+\end{align*}

@@ -1,0 +1,44 @@
+\section{Morphismen}
+\subsection{Homomorphismus}
+Ein (Halb-) Gruppenhomomorphismus ist die Abbildung $f: G \rightarrow G'$ einer Struktur $(G, \circ)$ in eine andere Struktur $(G', \sim)$, so dass für alle $a, b \in G$ gilt:
+\begin{equation*}
+	f(a \circ b) = f(a) \sim f(b)
+\end{equation*}
+Beim Monoidhomomorphismus wird zusätzliche das neutrale Element von $(G, \circ)$ auf das neutrale Element von $(G', ~)$ abgebildet.
+
+\begin{description}
+	\item [Monomorphismus] bezeichnet injektive (d.\,h. jedes $a \in G$ wird auf ein anderes $b \in G'$ abgebildet) Homomorphismen.
+	\item [Epimorphismus] bezeichnet surjektive (d.\,h. durch die Abbildung wird jedes $b \in G'$ erreicht) Homomorphismen
+	\item [Isomorphismus] bezeichnet Homomorphismen die sowohl injektiv als auch bijektiv sind.
+\end{description}
+
+Nicht jeder Homomorphismus zwischen zwei Monoiden ist zwingend ein Monoidhomomorphismus.
+Beispiel: 
+\begin{align*}
+f:& (\mathbb{N}, +) \rightarrow (\mathbb{N}, \cdot)	\\
+f(0)& = 0\\
+f(0 + 0)& = f(0) \cdot f(0) = 0
+\end{align*}
+Aber das neutrale Element der Addition $(1)$ wird nicht auf das neutralen Element der Multiplikation abgebildet.
+
+
+\subsection{Regeln}
+
+\begin{enumerate}
+	\item Sind $f: (G, \cdot) \rightarrow (G', \circ)$ und $h: (G', \sim) \rightarrow (G'', \bullet)$ Homomorphismen, dann ist auch $h \circ f: (G, \cdot) \rightarrow (G'', \bullet)$ ein entsprechender Homomorphismus.
+	\item Ist $f: (G, \sim) \rightarrow (G', \circ)$ ein Homomorphismus, dann ist das Bild $Im(f) \subset G'$ eine entsprechende Unterstruktur von $(G', \circ).$
+	\item Es sei $f: G \rightarrow G'$ ein Gruppenhomomorphismus zwischen den Gruppen $(G, \sim)$ und $(G', \circ)$ mit den neutralen Elementen $e$ und $e'$, dann gelten:
+	\begin{itemize}
+		\item $f(e) = e'$
+		\item $\forall a \in G(f(a^{-1}) = f(a)^{-1})$
+	\end{itemize}
+	\item Ist $f: (G, \sim) \rightarrow (G', \circ)$ ein Gruppenhomomorphismus, dann der Kern $ker(f) = \{a \in G | f(a) = e'\}$ eine Untergruppe von $(G, \sim)$
+	\item Ist $f: (G, \circ) \rightarrow (G', \sim)$ ein Gruppenhomomorphismus mit $ker(f) = \{e\}$,
+	dann ist $f$ injektiv.
+	\item Ist $f: (G, \sim) \rightarrow (G', \circ)$ ein Isomorphismus, dann ist auch $f^{-1}: (G', \circ) \rightarrow (G, \sim)$ ein Isomorphismus.
+\end{enumerate}
+
+\begin{description}
+	\item [Bild (Im)] Menge die durch eine Funktion erzeugt wird.
+	\item [Kern] Alle $g_n \in G$ die auf $e \in G'$ abgebildet werden. Wobei $e$ das neutrale Element von $G'$ ist.
+\end{description}

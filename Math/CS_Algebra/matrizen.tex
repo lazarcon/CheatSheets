@@ -1,0 +1,242 @@
+\section{Matrizen}
+Eine Matrix ist eine rechteckige Anordnung von Elementen. Matrizen können beliebige Dimensionalität besitzen. Die Elemente der Matrix über $K$ heissen Komponenten. Sie entstammen einer Menge $K$ (Körper oder Ring). Formal handelt es sich um eine Funktion:
+\begin{equation*}
+	A: \{1,\ldots,m\}\times\{1,\dots,n\} \to K,\quad (i,j) \mapsto a_{ij}
+\end{equation*}
+Sie ordnet jedem Indexpaar $(i, j)$ einen Funktionswert $a_{ij}$ zu.
+
+Eine Matrix mit $m$-Zeilen und $n$-Spalten wie folgt darstellen:
+\begin{equation*}
+A=\mathbf{A}=\underline{A}=\begin{pmatrix}
+a_{11} & a_{12} & \cdots & a_{1n}\\
+a_{21} & a_{22} & \cdots & a_{2n}\\
+\vdots & \vdots & \ddots & \vdots\\
+a_{m1} & a_{m2} & \cdots & a_{mn}\\
+\end{pmatrix} = (a_{ij})
+\end{equation*}
+\subsection{Addition}
+\begin{equation*}
+	A + B := (a_{ij} + b_{ij})_{i=1\dots\ m; j=1\dots\ n}
+\end{equation*}
+\begin{equation*}
+  \begin{pmatrix}
+    1 & -3 \\
+    1 & 2
+  \end{pmatrix}
+  +
+  \begin{pmatrix}
+    0 & 3 \\
+    2 & 1
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1+0 & (-3)+3 \\
+    1+2 & 2+1 
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    1 & 0\\
+    3 & 3
+  \end{pmatrix}
+\end{equation*}
+Die Addition ist assoziativ, kommutativ und besitzt mit der Nullmatrix ein neutrales Element.
+
+\subsection{Skalarmultiplikation}
+\begin{equation*}
+	\lambda\cdot A := (\lambda\cdot a_{ij})_{i=1, \ldots , m; \ j=1, \ldots , n}
+\end{equation*}
+\begin{equation*}
+5 \cdot
+  \begin{pmatrix}
+    1 & -3 & 2 \\
+    1 &  2 & 7
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+   5 \cdot 1 & 5 \cdot (-3) & 5 \cdot 2 \\
+   5 \cdot 1 & 5 \cdot   2  & 5 \cdot 7
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    5 & -15 & 10 \\
+    5 & 10  & 35
+  \end{pmatrix}
+\end{equation*}
+
+$\lambda$ und die Elemente entstammen demselben Ring $(K, +, \cdot, 0)$.
+
+\subsection{Multiplikation}
+Zwei Matrizen können multipliziert werden, wenn die Spaltenanzahl der linken ($A = (a_{ij})$) mit der Zeilenanzahl der rechten Matrix ($B = (b_{ij})$)übereinstimmt.
+\begin{equation*}
+	c_ {ij} = \sum_{k=1}^m a_{ik} \cdot b_{kj}
+\end{equation*}
+\newcommand{\myunit}{0.75 cm}
+\tikzset{
+    node style sp/.style={draw,circle,minimum size=\myunit},
+    node style ge/.style={circle,minimum size=\myunit},
+    arrow style mul/.style={draw,sloped,midway,fill=white},
+    arrow style plus/.style={midway,sloped,fill=white},
+}
+
+\begin{tikzpicture}[>=latex]
+% les matrices
+\matrix (A) [matrix of math nodes,%
+             nodes = {node style ge},%
+             left delimiter  = (,%
+             right delimiter = )] at (0,0)
+{%
+  a_{11} & a_{12} & \ldots & a_{1p}  \\
+  \node[node style sp] {a_{21}};%
+         & \node[node style sp] {a_{22}};%
+                  & \ldots%
+                           & \node[node style sp] {a_{2p}}; \\
+  \vdots & \vdots & \ddots & \vdots  \\
+  a_{n1} & a_{n2} & \ldots & a_{np}  \\
+};
+\node [draw,below=10pt] at (A.south) 
+    { $A$ : \textcolor{red}{$n$ Zeilen} $p$ Spalten};
+
+\matrix (B) [matrix of math nodes,%
+             nodes = {node style ge},%
+             left delimiter  = (,%
+             right delimiter =)] at (6*\myunit,6*\myunit)
+{%
+  b_{11} & \node[node style sp] {b_{12}};%
+                  & \ldots & b_{1q}  \\
+  b_{21} & \node[node style sp] {b_{22}};%
+                  & \ldots & b_{2q}  \\
+  \vdots & \vdots & \ddots & \vdots  \\
+  b_{p1} & \node[node style sp] {b_{p2}};%
+                  & \ldots & b_{pq}  \\
+};
+\node [draw,above=10pt] at (B.north) 
+    { $B$ : $p$ Zeilen \textcolor{red}{$q$ Spalten}};
+% matrice rÃƒÂ©sultat
+\matrix (C) [matrix of math nodes,%
+             nodes = {node style ge},%
+             left delimiter  = (,%
+             right delimiter = )] at (6*\myunit,0)
+{%
+  c_{11} & c_{12} & \ldots & c_{1q} \\
+  c_{21} & \node[node style sp,red] {c_{22}};%
+                  & \ldots & c_{2q} \\
+  \vdots & \vdots & \ddots & \vdots \\
+  c_{n1} & c_{n2} & \ldots & c_{nq} \\
+};
+% les fleches
+\draw[blue] (A-2-1.north) -- (C-2-2.north);
+\draw[blue] (A-2-1.south) -- (C-2-2.south);
+\draw[blue] (B-1-2.west)  -- (C-2-2.west);
+\draw[blue] (B-1-2.east)  -- (C-2-2.east);
+\draw[<->,red](A-2-1) to[in=180,out=90]
+	node[arrow style mul] (x) {$a_{21}\times b_{12}$} (B-1-2);
+\draw[<->,red](A-2-2) to[in=180,out=90]
+	node[arrow style mul] (y) {$a_{22}\times b_{22}$} (B-2-2);
+\draw[<->,red](A-2-4) to[in=180,out=90]
+	node[arrow style mul] (z) {$a_{2p}\times b_{p2}$} (B-4-2);
+\draw[red,->] (x) to node[arrow style plus] {$+$} (y)%
+                  to node[arrow style plus] {$+\raisebox{.5ex}{\ldots}+$} (z)%
+                  to (C-2-2.north west);
+
+
+\node [draw,below=10pt] at (C.south) 
+    {$ C=A\times B$ : \textcolor{red}{$n$ Zeilen}  \textcolor{red}{$q$ Spalten}};
+
+\end{tikzpicture}
+Die Multiplikation ist nicht kommutativ!
+\subsection{Einheitsmatrix}
+Die $(n \times n)$-Einheitsmatrix ist definiert als:
+\begin{equation*}
+E_n=\begin{pmatrix}
+1 & 0 & \cdots & 0\\
+0 & 1 & \cdots & 0\\
+\vdots & \vdots & \ddots & \vdots\\
+0 & 0 & \cdots & 1\\
+\end{pmatrix}
+\end{equation*}
+\subsection{Darstellende Matrix}
+Es sei $v = \lambda_1, \dots, \lambda_n) \in K^n$, für $i=1,\dots,n$. Mit $v[i] := \lambda_i$ ist die $i$-te Komponente von $v$ bezeichnet.
+\begin{itemize}\itemsep0em
+	\item [$\Theta$:] Hom$_K(K^n, K^m) \to K^{m,n}$
+	\begin{equation*}
+		\Theta (f) =   
+		\begin{pmatrix}
+   f(e_1)[1] & \cdots & f(e_i)[1] & \cdots & f(e_n)[1] \\
+	\vdots & & \vdots & & \vdots\\
+	f(e_1)[m] & \cdots & f(e_i)[m] & \cdots & f(e_n)[m]
+		\end{pmatrix}
+	\end{equation*}
+	Beispiel: $f: \mathbb{R}^3 \to \mathbb{R^2}, f(x, y, z) = (2x - 3y, x - 2y + z)$\\
+	Im Urbild ($\mathbb{R}^3$) und im Zielraum ($\mathbb{R}^2$) die Standardbasis wählen:
+	\begin{equation*}
+	A=\left(
+		\begin{pmatrix} 1\\ 0\\ 0\end{pmatrix}, \begin{pmatrix} 0\\ 1\\ 0\end{pmatrix}, \begin{pmatrix} 0\\ 0\\ 1\end{pmatrix} \right) 
+		\, , \quad
+	B=\left(
+		\begin{pmatrix} 1\\ 0\end{pmatrix}, \begin{pmatrix} 0\\ 1\end{pmatrix}
+		\right) 
+	\end{equation*}
+	Es gilt:
+	\begin{equation*}
+		f\begin{pmatrix} 1\\0\\0\end{pmatrix} = 
+		\begin{pmatrix}
+			2 \cdot 1 - 3 \cdot 0\\
+			1 - 2 \cdot 0 + 0
+		\end{pmatrix}
+		= \begin{pmatrix}2\\1\end{pmatrix}
+	\end{equation*}
+	\begin{equation*}
+		\mbox{entsprechend: }f\begin{pmatrix}0\\1\\0\end{pmatrix} = \begin{pmatrix}-3\\-2\end{pmatrix}
+		\, ,
+		f\begin{pmatrix}0\\0\\1\end{pmatrix} = \begin{pmatrix}0\\1\end{pmatrix}
+	\end{equation*}
+	Somit wird $ \Theta_B^A (f)=\begin{pmatrix} 2 & -3 & 0\\ 1 & -2 & 1\end{pmatrix} $
+
+	\item [$\Psi$:] $K^{m,n} \to $ Hom$_K(K^n, K^m)$
+	\begin{equation*}
+		\Psi (A)(v) = A \circ
+		\begin{pmatrix}
+			v[1]\\
+			\vdots\\
+			v[n]
+		\end{pmatrix}
+	\end{equation*}
+	Beispiel: $\Psi(\Theta(f))(2, 3, 1)$:
+	\begin{equation*}
+		\Psi(\Theta(f))(2, 3, 1) =
+		\begin{pmatrix}
+			2 & -3 & 0\\
+			1 & -2 & 1
+		\end{pmatrix}
+		\circ
+		\begin{pmatrix}
+			2\\3\\1
+		\end{pmatrix}
+		=
+		\begin{pmatrix}
+			2 \cdot 2 - 3 \cdot 3\\
+			2 - 2 \cdot 3 + 1\\
+		\end{pmatrix}
+	\end{equation*}
+	$ = (-5, -3) = f(2, 3, 1)$
+\end{itemize}
+% \subsubsection{Berechnung}
+% Sei $f: V \to \mathbb{R}^m$ eine lineare Abbildung und $A = (v_1, v_2, \dots, v_n)$ eine geordnete Basis von $V$.
+% \begin{enumerate}
+% 	\item Basis $B$ für $\mathbb{R}^m$ wählen: $B = (e_1, e_2, \dots, e_m)$
+% 	\item Die Abbildungsmatrix ergibt sich, indem man die Bilder der Basisvektoren von $V$ als Spalten einer Matrix auffasst:
+% 	\begin{equation*}
+% 		\Theta_B^A(f) = 
+% 		\begin{pmatrix}
+% 			\vdots 		& \vdots 		&  			& \vdots \\
+% 			f(\vec v_1) & f(\vec v_2) 	& \cdots 	& f(\vec v_n)\\
+% 			\vdots 		& \vdots 		&  			& \vdots
+% 		\end{pmatrix}
+% 	\end{equation*}
+% \end{enumerate}
+
+
+
+
+
+%Ring, darstellende Matrix, Theta (Homomorphismus ...), Phi (bis S. 83)

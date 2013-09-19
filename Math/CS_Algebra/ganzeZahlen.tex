@@ -1,0 +1,127 @@
+\section{Ganze Zahlen}
+$\Z = \{\cdots -2, -1, 0, 1, 2, \dots\}$\\
+Es gilt: $x < y \Leftrightarrow \exists n \in \N > 0 \mid x + n = y$\\
+\subsection{Rechenregeln}
+\settowidth{\MyLenA}{Neutrales Element bzgl. $+$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+		@{}p{(\linewidth - \the\MyLenA)/2}}
+					& $-1 \dot z = -z$\\
+					& $-(-z) = z$\\
+	Inverses Element bzgl. $+$ & $-z + z = 0$\\
+	Absorbtion	& $0 \cdot z = 0$\\
+	Neutrales Element bzgl. $+$ & $0 + z = z$\\
+	Neutrales Element bzgl. $\cdot$ & $1 cdot z = z$\\
+	Assoziativität bzgl. $+$ & $a + (b + c) = (a + b) + c$\\
+	Assoziativität bzgl. $\cdot$ & $a \cdot (b \cdot c) = (a \cdot b) \cdot c$\\
+	Kommutativität bzgl. $+$ & $a + b = b + a$\\
+	Kommutativität bzgl. $\cdot$ & $a \cdot b = b \cdot a$\\
+	Distributiviät & $a  \cdot (b + c) = a \cdot b + a \cdot c$\\
+\end{tabular}
+
+\subsection{Definitionen}
+\subsubsection{Subtraktion (-:$\Z \to \Z$)}
+\begin{equation*}
+	a - b = a + (- b)
+\end{equation*}
+
+\subsubsection{Betrag ($|.|: \Z \to \Z$)}
+\begin{equation*}
+	|z| = \begin{cases}
+	      	z & \mbox{falls } z \in \N\\
+			-1 \cdot z & \mbox{sonst}
+	      \end{cases}
+\end{equation*}
+
+\subsubsection{Teilbarkeit}
+\begin{equation*}
+	x \mid y \Leftrightarrow \exists q \in \Z (y = x \cdot q)
+\end{equation*}
+Teilbarkeit ist transitiv: $x \mid y \wedge y \mid z \Rightarrow x \mid z$.
+
+Beispiel: $\forall a, b, c, d \in \Z\ (a \mid b) \wedge (a \mid d) \Rightarrow (a \cdot c) \mid (b \cdot d)$
+\begin{proof}
+	Es seien $a, b, c, d$ fest, aber beliebig.\\
+	Es gelte $a \mid b$ und $c \mid d$\\
+	Zeige: $a \cdot c \mid b \cdot d$\\
+	\begin{align*}
+		a \mid b & \Leftrightarrow \exists q_1 \in \Z\ b = a \cdot q_1\\
+		c \mid d & \Leftrightarrow \exists q_2 \in \Z\ d = c \cdot q_2\\
+		(a \cdot q_1) \cdot (c \cdot q_2) = b \cdot d\\
+	\end{align*}
+Mit $q_3 = q_1 \cdot q_2$ gilt: $a \cdot c \cdot q_3 = b \cdot d \Rightarrow (a \cdot c) \mid (b \cdot d)$\qedhere
+\end{proof}
+
+Beispiel: $\forall a, b, c \in \Z\ a \mid b \wedge a \nmid c \Rightarrow a \nmid (b + c)$
+\begin{proof}
+	Es seien $a, b, c$ fest, aber beliebig.\\
+	Es gelte $a \mid b$ und $a \nmid b$.\\
+	Zeige: $a \nmid (b + c)$.
+	Anmerkung: Beweis durch Widerspruch: $\neg (a \mid b \wedge a \nmid c \Rightarrow a \nmid (b + c)) = a \mid b \wedge a \nmid c \wedge a \mid (b + c)$\\
+	Annahme: $a \mid (b + c)$\\
+	\begin{align*}
+		a \mid b& \Leftrightarrow a \cdot q_1 = b\\
+		a \mid (b + c) & \Leftrightarrow a \cdot q_2 = b + c\\
+		a \cdot q_2& = a \cdot q_1 + c\\
+		a (q_2 - q_1)& = c \Leftrightarrow a \mid c. \mbox{Widerspruch zum geltenden}\qedhere
+	\end{align*}
+\end{proof}
+
+\subsubsection{Hilfssätze}
+\begin{align*}
+  s \mid t \wedge s \mid u & \Rightarrow s \mid (t + u)\\
+  s \mid t \wedge s \mid u & \Rightarrow s \mid (t - u)
+\end{align*}
+
+\subsubsection{Teilen mit Rest}
+Sind $x, y \in \N \setminus \{0\}$, dann gibt es eindeutig bestimmte Zahlen, so dass:
+\begin{enumerate}
+	\item $y = q \cdot x + r$
+	\item $r < x$
+\end{enumerate}
+
+\subsubsection{Kleinstes gemeinsames Vielfaches (KGV)}
+(engl. \textit{least common multiple}, zum Erweitern von Brüchen)\\
+\begin{equation*}
+	\mbox{kgV}(x, y) = \min\{q \in \N \mid x \mid q \wedge y \mid q\}
+\end{equation*}
+
+
+\subsubsection{Grösster gemeinsamer Teiler (GGT)}
+(engl. \textit{greatest common divisor}, zum Kürzen von Brüchen)\\
+\begin{align*}
+	\mbox{ggT}(x, y) &= \max\{q \in \N \mid q \mid x \wedge q \mid y\}\\
+	\mbox{kgV}(x, y) \cdot \mbox{ggT}(x, y) &= x \cdot y
+\end{align*}
+
+
+\subsubsection{Euklidischer Algorithmus}
+\begin{equation*}
+	\mbox{ggt}(n, m) = \mbox{ggt}(n, m - n) = \mbox{ggt}(m, m - n)
+\end{equation*}
+
+\subsubsection{Erweiterter euklidischer Algorithmus}
+Erklärt sich am besten an einem Beispiel:
+Gesucht: ggt$(64, 14) = s \cdot 64 + t \cdot 14$
+\begin{center}
+
+\begin{tabular}
+{
+c%
+@{}|p{0.18\linewidth}%
+@{}|p{0.18\linewidth}%
+@{}|p{0.24\linewidth}%
+@{}|p{0.23\linewidth}%
+}
+ \multicolumn{1}{c}{\textbf{n}} & \multicolumn{1}{|c}{\textbf{a}} & \multicolumn{1}{|c}{\textbf{q}} & \multicolumn{1}{|c}{\textbf{s}} & \multicolumn{1}{|c}{\textbf{t}} \\\hline
+ 1 & \multicolumn{1}{c|}{64} & & \multicolumn{1}{|c}{1} & \multicolumn{1}{|c}{0} \\\hline
+ 2 & \multicolumn{1}{c|}{14} & & \multicolumn{1}{|c}{0} & \multicolumn{1}{|c}{1} \\\hline
+ 3 & $a_1 \% a_2 = 8$ & ${a_1}/{a_2} = 4$ & $s_1 - q_3 \cdot s_2 = 1$ 	& $t_1 - q_3 \cdot t_2 = -4$ \\\hline
+ 4 & $a_2 \% a_3 = 6$ & ${a_2}/{a_3} = 1$ & $s_2 - q_4 \cdot s_3 = -1$ 	& $t_2 - q_4 \cdot t_3 = 5$ \\\hline
+ \textbf{5} & $a_3 \% a_4 = 2$ & ${a_3}/{a_4} = 1$ & $s_3 - q_5 \cdot s_4 = 2$ 	& $t_3 - q_5 \cdot t_4 = -9$ \\\hline
+ 6 & $a_4 \% a_5 = 0$ & ${a_4}/{a_5} = 3$ & $s_4 - q_6 \cdot s_5 = -7$ 	& $t_4 - q_6 \cdot t_5 = 32$ \\\hline
+\end{tabular}
+\end{center}
+Die Lösung steht in Zeile 5 (mit $s = 2$ und $t = -9$):\\ ggt$(64, 14) = 2 = 2 \cdot 64 + (-9) \cdot 14 = 128 - 126 = 2$ 
+
+\subsubsection{Teilerfremdheit}
+Zahlen sind teilerfremd, wenn ggt$(m, n) = 1 \Leftrightarrow k \cdot x + k' \cdot y$.

@@ -1,0 +1,121 @@
+\section{Logik}
+\subsection{Aussagenlogik}
+\textbf{Aussage} Eine Aussage ist eine sprachliche Äusserung, 
+die wahr ($w$) oder falsch($f$) sein kann.\\
+Bsp: \enquote{Es gibt unendlich viele natürliche Zahlen.}
+
+\subsubsection{Junktoren (Verknüpfungsoperatoren)}
+\begin{tabular}{cl}
+	$\neg$				& Negation, \enquote{nicht \dots}\\
+	$\wedge$ 			& Konjunktion, \enquote{\dots\ und \dots}\\
+	$\vee$ 				& Disjunktion, \enquote{\dots\ oder \dots}\\
+	$\Rightarrow$ 		& Implikation, \enquote{wenn \dots, dann \dots}\\
+	$\Leftrightarrow$	& Äquivalenz, \enquote{\dots\ genau dann, wenn \dots} \\
+	$\bigoplus$			& Antivalenz, \enquote{entweder \dots oder  \dots}\\
+\end{tabular}\\
+
+Für eine einzelne Aussage $A$ gilt:\\
+\begin{center}
+\begin{tabular}{c||c}
+	$A$ & $\neg A$ \\\hline
+	$f$ & $w$ \\
+	$w$ & $f$ \\
+\end{tabular}
+\end{center}
+
+Für zwei Ausagen $A$ und $B$ gilt:
+\begin{center}
+\begin{tabular}{c|c||c|c|c|c|c}
+	$A$ & $B$ 	& $A \wedge B$ 	& $A \vee B$ 	& $A \Rightarrow B$ 	& $A \Leftrightarrow B$ 	& $A \bigoplus B$ \\\hline
+	$f$ & $f$ 	& $f$				& $f$			& $w$				& $w$					 	& $f$\\
+	$f$ & $w$ 	& $f$				& $w$			& $w$				& $f$					 	& $w$\\	
+	$w$ & $f$ 	& $f$				& $w$			& $f$				& $f$						& $w$\\
+	$w$ & $w$ 	& $w$				& $w$			& $w$				& $w$						& $f$\\
+\end{tabular}\\
+\end{center}
+Bindungsstärke: $\neg$ vor $\wedge$ vor $\vee$ vor $\Rightarrow$ vor $\Leftrightarrow$.\\
+
+\subsubsection{Rechenregeln}
+\settowidth{\MyLenA}{Doppelte Negation~~}
+\begin{equation*}
+\begin{array}{lrl}
+	\mbox{Duplizität}			& A \wedge A				& \Leftrightarrow A\\
+								& A \vee A					& \Leftrightarrow A\\
+	\mbox{Doppelte Negation}	& \neg\neg A 				& \Leftrightarrow A\\
+	\mbox{Kommutativität}		& A \wedge B 				& \Leftrightarrow B \wedge A\\
+								& A \vee B					& \Leftrightarrow B \vee A\\
+	\mbox{Assoziativität} 		& (A \wedge B) \wedge C 	& \Leftrightarrow A \wedge (B \wedge C)\\
+								& (A \vee B) \vee C 		& \Leftrightarrow A \vee (B \vee C)\\
+	\mbox{Distributiviät}		& A \wedge (B \vee C) 		& \Leftrightarrow (A \wedge B) \vee (A \wedge C)\\
+								& A \vee (B \wedge C) 		& \Leftrightarrow (A \vee B) \wedge (A \vee C)\\
+	\mbox{De Morgan Regeln}		& \neg (A \wedge B) 		& \Leftrightarrow \neg A \vee \neg B\\
+								& \neg (A \vee B) 			& \Leftrightarrow \neg A \wedge \neg B\\
+	\mbox{Implikation}			& (A \Rightarrow B) 		& \Leftrightarrow (\neg A \vee B)\\
+	\mbox{Kontraposition}		& (A \Rightarrow B) 		& \Leftrightarrow (\neg B \Rightarrow \neg A)\\
+	\mbox{Äquivalenz}			& (A \Leftrightarrow B)		& \Leftrightarrow (A \Rightarrow B) \wedge (B \Rightarrow A)\\
+	\mbox{Absorbtion}			& A \wedge (A \vee B)		& \Leftrightarrow A\\
+								& A \vee (A \wedge B)		& \Leftrightarrow A\\
+\end{array}
+\end{equation*}
+
+\subsection{Prädikatenlogik}
+\textbf{Aussageform} Eine Aussageform ist eine sprachliche Äusserung, in 
+der Variablen vorkommen und die in Abhängigkeit der Variablenwerte wahr ($w$) oder falsch ($f$) 
+sein kann -- Aussageformen sind manchmal wahr, manchmal falsch.\\
+Bsp: \enquote{Die Zahl $x$ ist eine gerade Zahl.}
+
+Es wird unterschieden zwischen Objekt und Prädikat (Eigenschaft): für oberes Beispiel ist \enquote{ist gerade}
+das Prädikat, während $x$ das Objekt ist.
+
+\subsubsection{Quantoren (Variablenbinder)}
+$A(x)$ sei eine Aussageform, $M$ eine Menge von Objekten.
+\settowidth{\MyLenA}{$\forall x \in M A(x))$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	$\forall x \in M A(x)$ & Für alle $x$ der Menge $M$ gilt $A(x)$\\
+	$\exists x \in M A(x)$ & Für mindestens ein $x$ der Menge $M$ gilt $A(x)$\\
+\end{tabular}
+
+\subsubsection{Besondere Ausdrücke}
+\begin{tabular}{ll}
+	Für mindestens zwei gilt~~ & $\exists x\, \exists y ((A(x) \wedge A(y)) \Rightarrow (x \neq y))$\\
+	Es gibt höchstens ein & $\forall x\, \forall y\,((A(x) \wedge A(y)) \Rightarrow (x = y))$\\
+\end{tabular}
+Beispiel: Prädikat: $L$ = $x$ liebt $y$
+\begin{itemize}\itemsep0em
+	\item Jeder wird von jemanden geliebt: $\forall x\,\exists y\,Lyx$
+	\item Jeder liebt jemanden: $\forall x\, \exists y\, Lxy$
+	\item Jemand liebt alle: $\exists x\, \forall y\, Lxy$
+	\item Jemand wird von allen geliebt: $\exists x\, \forall y\, Lyx$
+	\item Jemand liebt sich selbst: $\exists x\, Lxx$
+	\item Alle lieben sich selbst: $\forall x\, Lxx$
+	\item Einer liebt einen: $\exists x\, \exists y\, Lxy$
+	\item Einer wird geliebt: $\exists x\, \exists y\, Lyx$
+	\item Jeder liebt jeden: $\forall x\, \forall y\, Lxy$
+	\item Jeder wird von jedem geliebt: $\forall x\, \forall y\, Lyx$
+\end{itemize}
+
+\subsubsection{Rechenregeln}
+\begin{equation*}
+	\forall x A(x) \Leftrightarrow \neg \exists x \neg A(x)
+\end{equation*}
+\enquote{Für alle $x$ gilt $A(x)$} ist äquivalent zu: \enquote{Es existiert kein $x$ für das $A(x)$ nicht gilt.}
+\begin{equation*}
+		\neg \forall x A(x) \Leftrightarrow \exists x \neg A(x)
+\end{equation*}
+\enquote{Nicht für alle $x$ gilt $A(x)$.} ist äquivalent zu: \enquote{Es existiert ein $x$ für das $A(x)$ nicht gilt.}
+\begin{equation*}
+			\neg \exists x A(x) \Leftrightarrow \forall x. \neg A(x)
+\end{equation*}
+\enquote{Es existiert kein $x$ für das $A(x)$ gilt.} ist äquivalent zu: \enquote{Für alle $x$ gilt $A(x)$ nicht.}\\
+Rechenregeln mit beschränkten Quantoren:
+\begin{equation*}
+	\begin{array}{rl}
+		\forall x \in M A(x) & \Leftrightarrow \neg \exists x \in M \neg A(x)\\
+		\forall x \in M A(x) & \Leftrightarrow \forall x(x \in M \Rightarrow A(x))\\
+		\exists x \in M A(x) & \Leftrightarrow \exists x (x \in M \wedge A(x))\\
+	\end{array}
+\end{equation*}
+
+Die Rechenregel der Aussagenlogik werden mit Hilfe von Wahrheitstafeln bewiesen.
+
