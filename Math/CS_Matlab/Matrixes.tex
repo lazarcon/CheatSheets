@@ -1,1 +1,17 @@
 \section{Matrixes}
+\settowidth{\MyLenA}{\texttt{realmax}~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+		@{}p{\linewidth-\the\MyLenA}}
+  $m^{-1}$ & Creates the inverse of a matrix\\
+  \texttt{eye}& Basic Matrix (all diagonal values are 1)\\
+  \texttt{zeroes}& Matrix filled with zeros\\
+  \texttt{ones} & Matrix filled with 1's\\
+  \texttt{rand} & Matrix filled with random values\\
+  \texttt{magic} & Magic-Square matrix\\
+\end{tabular}
+
+Matrixes allow the following operations: $+, -, *, /, ^$.
+To invoke an operation on the elements contained, the operator must have \texttt{.} before it.
+
+The operator \texttt{:} means from left (including) to right (including).
+A step size operator may be included in between: \texttt{1:2:10} means the values 1, 3, 5, 7 and 9.
