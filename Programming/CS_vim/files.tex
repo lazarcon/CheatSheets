@@ -1,0 +1,8 @@
+\section{File}
+You can use the \texttt{TAB} to cycle through filenames
+\settowidth{\MyLen}{\texttt{!:w!}~\textit{filename}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+\verb!:e! \textit{filename} & Load (or create) file with name \textit{filename}\\
+\verb!:w! \textit{filename} & Write file with name \textit{filename}\\
+\end{tabular}

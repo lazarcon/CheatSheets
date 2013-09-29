@@ -1,0 +1,96 @@
+\section{Grundlagen}
+\subsection{Good to know}
+\begin{itemize}
+ \item Finishing a command with a semicolon (;) suppresses GUI output
+ \item Internally every variable is stored as a Matrix
+ \item Variablenames must start with a letter
+ \item Variablenames are case sensitive
+ \item Use up and down arrows to cycle between recently used commands
+\end{itemize}
+
+\subsection{Metacommands}
+\settowidth{\MyLenA}{\texttt{save(}~\textit{filename, variable}\texttt{)}~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+		@{}p{\linewidth-\the\MyLenA}}
+  \texttt{doc}~\textit{functioname} & Comments about function \textit{functioname}\\
+  \texttt{clc}& Clears the command window\\
+  \texttt{whos}& Lists all variables including their values\\
+  \texttt{clear} & Deletes all locally stored variables\\
+  \texttt{clear}~\textit{variable} & Deletes only variable \textit{variable}\\
+  \texttt{clear all}& Clears all (even global) variables\\
+  \texttt{save('}\textit{filename}\texttt{')} & Stores all variables in file \textit{filename}\\
+  \texttt{save('}\textit{filename}\texttt{', }\textit{variable}\texttt{)} & Stores variable \textit{variable} in file \textit{filename}\\ 
+  \texttt{load('}\textit{filename}\texttt{')} & Loads variables from file \textit{filename}\\
+  \texttt{diary}~\textit{filename}& Logs commands into file \textit{filename}\\
+  \texttt{diary off} & Stops logging into a file\\
+\end{tabular}
+
+\subsection{Build-In Constants}
+\settowidth{\MyLenA}{\texttt{realmax}~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+		@{}p{\linewidth-\the\MyLenA}}
+  \texttt{pi} & 3.14159265\dots\\
+  \texttt{i, j}& Imaginary unit\\
+  \texttt{eps}& Relative precision of floating point numbers\\
+  \texttt{realmin} & Lowest possible floating point number\\
+  \texttt{realmax} & Highest possible floating point number\\
+  \texttt{Inf} & Infinity ($\infty$)\\
+  \texttt{NaN} & Not a number\\
+\end{tabular}
+
+\subsection{Basic operations}
+\settowidth{\MyLenA}{\texttt{realmax}~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+		@{}p{\linewidth-\the\MyLenA}}
+  \texttt{+} & Add\\
+  \texttt{-}& Subtract\\
+  \texttt{*}& Multiply\\
+  \texttt{/} & Divide left by right\\
+  \texttt{\textbackslash} & Divide right by left\\
+  \texttt{mod} & Modulo division\\
+  \texttt{rem} & Reminder after division\\
+\end{tabular}
+
+\subsection{Rounding}
+\settowidth{\MyLenA}{\texttt{realmax}~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+		@{}p{\linewidth-\the\MyLenA}}
+  \texttt{fix} & Rounds to next integer closest to zero\\
+  \texttt{floor}& Rounds to next integer closest to $-\infty$\\
+  \texttt{ceil}& Rounds to next integer closes to $+ \infty$\\
+  \texttt{round} & Rounds to closest integer\\
+  \texttt{sign} & Signum\\
+\end{tabular}
+
+\subsection{Trigonometric Functions}
+\dots \texttt{h} for hyperbolic value, \texttt{a}\dots for arcus value. 
+\begin{tabular}{ccc|ccc}
+  \texttt{sin} & \texttt{sinh} & \texttt{asin} & \texttt{cos} & \texttt{cosh} & \texttt{acos} \\
+  \texttt{tan} & \texttt{tanh} & \texttt{atan} & \texttt{cot} & \texttt{coth} & \texttt{acot} \\
+\end{tabular}
+
+\subsection{Exponential- and Logarithmic Functions}
+\settowidth{\MyLenA}{\texttt{realmax}~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+		@{}p{\linewidth-\the\MyLenA}}
+  \texttt{exp} & Exponential\\
+  \texttt{expm1}& Exakt value of $\exp(x) - 1$\\
+  \texttt{log}& Natural logarithm ($\ln$)\\
+  \texttt{log1p} & Exakt value of $\ln(1 + x)$\\
+  \texttt{log10} & Base 10 logarithm\\
+  \texttt{log2} & Base 2 logarithm\\
+  \texttt{sqrt} & Square root\\
+  \texttt{nthroot} & The $n$th root\\
+\end{tabular}
+
+\subsection{Complex Number Functions}
+\settowidth{\MyLenA}{\texttt{realmax}~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+		@{}p{\linewidth-\the\MyLenA}}
+  \texttt{abs} & Length of complex number ($|a|$)\\
+  \texttt{angle}& Phase ($\varphi$) of a complex number\\
+  \texttt{complex}& Creates a complex number\\
+  \texttt{conj} & Creates the conjugated complex number\\
+  \texttt{imag} & Returns the imaginary part of a complex number\\
+  \texttt{rel} & Returns the real part of a complex number\\
+\end{tabular}

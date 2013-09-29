@@ -1,0 +1,30 @@
+\section{Moving around}
+\subsection{Up, down, left, right}
+\settowidth{\MyLen}{\texttt{q!}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+		  @{}p{\linewidth-\the\MyLen}}
+\verb!h!	& \texttt{left} one char\\
+\verb!j!	& \texttt{down} one line\\
+\verb!k!	& \texttt{up} one line\\
+\verb!l!	& \texttt{right} one char\\
+\end{tabular}
+\subsection{Wordwise}
+\begin{tabular}{@{}p{\the\MyLen}%
+		  @{}p{\linewidth-\the\MyLen}}
+\verb!b!	& Jump to beginning of a word\\
+\verb!B!	& Jump to beginning of a whitespace-delimited word\\
+\verb!e!	& Jump to end of word\\
+\verb!E!	& Jump to end of whitespace-delimited word\\
+\end{tabular}
+\subsection{Linewise}
+\begin{tabular}{@{}p{\the\MyLen}%
+		  @{}p{\linewidth-\the\MyLen}}
+\verb!0!	& Jump to beginning of a line.\\
+\verb!^!	& Jump to first non-whitespace character of a line\\
+\verb!$!	& Jump to end of a line\\
+\verb!H!	& Jump to the first line of the screen\\
+\verb!M!	& Jump to middle line of the screen\\
+\verb!L!	& Jump to last line of the screen\\
+\verb!:n!	& Jump to line number n. (\textit{e.\,g. to jump to line 42, type} \verb!:42!)
+\end{tabular}
+

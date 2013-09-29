@@ -1,0 +1,9 @@
+\section{Ending vim}
+\settowidth{\MyLen}{\texttt{wq!}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+\verb!:q!			& Quit (will prompt if unsaved changes)\\
+\verb!:q!!			& Quit without saving\\
+\verb!:wq!			& Write changes and quit\\
+\verb!:x!			& Write changes if changed and quit
+\end{tabular}

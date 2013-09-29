@@ -2,6 +2,12 @@
 *.pdf
 *.tex.backup
 *.*~
+
 *.kilepr
 *.gnuplot
 *.table
+=======
+*.log
+*.aux
+*.out
+

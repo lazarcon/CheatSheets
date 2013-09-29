@@ -1,0 +1,27 @@
+\section{Konfigurationsmanagement}
+URL: edu.panter.ch/Username: student; Passwort: hsz-t
+\subsection{Build Circle}
+\begin{description}
+ \item [clean] räumt Dateien auf (löscht target-folder)
+ \item [compile] Kompiliert das Projekt
+ \item [test] Führt Unit-Tests aus
+ \item [package] Erzeugt Artefakt (jar/war/ear)
+ \item [deploy] Verschiebt Artefakt auf einen anderen Server
+\end{description}
+
+\subsection{Typen von Artefakten}
+\begin{description}
+ \item [jar] Java Archive (enthält META-INF Ordner mit Manifest-Datei)
+ \item [war] Web Archive (kann mehrere jars enthalten, läuft in Servlet-Containern)
+ \item [ear] Enterprise Archive (kann mehrere war-files enthalten)
+\end{description}
+
+\subsection{Alternativen IDEs}
+\begin{itemize}
+ \item Eclipse, IntelliJ (IDEs)
+ \item Gradle (wie Maven, in Groovy)
+ \item Ant
+ \item make (C-Programme)
+ \item rake (...)
+\end{itemize}
+

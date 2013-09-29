@@ -1,0 +1,41 @@
+\section{Search \& Replace}
+\settowidth{\MyLen}{\texttt{:\%s/foo/bar/gc}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+ @{}p{\linewidth-\the\MyLen}}
+\verb!/pattern! & Search the file for pattern.\\
+\verb!n!	& Scan for next search match in the same direction\\
+\verb!N!	& Scan for next search match but opposite direction.
+\end{tabular}
+Search patterns to substitute \textit{foo} with \textit{bar} are of form: \verb!:rs/foo/bar/a! where \verb!r! represents the range, and \verb!a! the arguents. 
+
+Range (\verb!r!) can be:
+\settowidth{\MyLen}{\texttt{:nothing}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+ @{}p{\linewidth-\the\MyLen}}
+\textit{nothing} & current line only\\
+\textit{number}	 & Line with the number given\\
+\verb!%!	& Whole document.
+\end{tabular}
+
+%	The whole file.
+Arguments (\verb!a]!) can be
+\settowidth{\MyLen}{\texttt{m}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+ @{}p{\linewidth-\the\MyLen}}
+\verb!g! & Replace all occurrences in the line. Without this, Vim replaces only the first occurrences in each line.\\
+\verb!i! & Ignore case for the search pattern.\\
+\verb!I! & Don't ignore case.\\
+\verb!c! & Confirm each substitution. (\verb!y! to substitute, \verb!n! to skip this match, \verb!a! yes to all\\
+\end{tabular}
+
+\subsection{Examples}
+\settowidth{\MyLen}{\texttt{:\%s/foo/bar/gc}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+    @{}p{\linewidth-\the\MyLen}}
+\verb!:452s/foo/bar/!	& Replace the first occurrence of the word foo with bar on line number 452\\
+\verb!:s/foo/bar/g!	& Replace every occurrence of the word foo with bar on current line.\\
+\verb!:%s/foo/bar/g!	& Replace every occurrence of the word foo with bar in the whole file.\\
+\verb!:%s/foo/bar/gi!	& The same as above, but ignore the case of the pattern you want to substitute. This replaces foo, FOO, Foo, and so on.\\
+\verb!:%s/foo/bar/gc!	& Confirm every substitution.\\
+\verb!:%s/foo/bar/c!	& For each line on the file, replace the first occurrence of foo with bar and confirm every substitution.\\
+\end{tabular}
