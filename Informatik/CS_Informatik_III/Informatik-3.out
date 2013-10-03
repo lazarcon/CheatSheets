@@ -1,0 +1,13 @@
+\BOOKMARK [1][-]{section*.1}{Rechnerarchitektur}{}% 1
+\BOOKMARK [2][-]{section*.2}{Von-Neumann-Rechner}{section*.1}% 2
+\BOOKMARK [3][-]{section*.3}{Komponenten}{section*.2}% 3
+\BOOKMARK [3][-]{section*.4}{Register}{section*.2}% 4
+\BOOKMARK [3][-]{section*.5}{Programmablauf}{section*.2}% 5
+\BOOKMARK [3][-]{section*.6}{Von-Neumann-Flaschenhals}{section*.2}% 6
+\BOOKMARK [2][-]{section*.7}{Harvard-Architektur}{section*.1}% 7
+\BOOKMARK [3][-]{section*.8}{Super-Harvard-Architektur}{section*.7}% 8
+\BOOKMARK [1][-]{section*.9}{Prozessor}{}% 9
+\BOOKMARK [2][-]{section*.10}{Befehl laden}{section*.9}% 10
+\BOOKMARK [2][-]{section*.11}{Operanden laden, speichern}{section*.9}% 11
+\BOOKMARK [2][-]{section*.12}{Ablaufzeit eines Programms P}{section*.9}% 12
+\BOOKMARK [2][-]{section*.13}{Pipelining}{section*.9}% 13
