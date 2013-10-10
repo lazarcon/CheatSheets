@@ -45,3 +45,36 @@ sowie zugehörige Vorzeichen im Dualsystem verwendet? Was ist die kleinste und d
 \end{enumerate}
 Verschiedene Zahlen: $2^{19} \cdot 2^4 \cdot 2 \cdot 2 = 2^{25}$ Möglichkeiten. Hinzu kommt noch die 0. Also $2^{25} + 1$ Möglichkeiten.
 Minimum $= - 0.1000_2\dots \cdot 2^{1111_2}$, Maximum $= 0.111_2\dots \cdot 2^{1111_2}$ 
+
+\subsection{Umrechnung von Basen}
+Umgerechnete Zahlen werden normiert. Durch die Normierung gehen Stellen verloren. 
+\subsubsection{Vorkommaanteil}
+\begin{enumerate}
+ \item Durch neue Basis dividieren und den Rest notieren
+ \item Mit dem Divisionsergebnis wiederholen, bis das Divisionsergebnis 0 ist.
+\end{enumerate}
+Die Reste vom letzten zum ersten ergeben die Zahl im neuen System.
+
+\subsubsection{Nachkommaanteil}
+\begin{enumerate}
+ \item Mit der neuen Basis multiplizieren und den Ganzzahlanteil notieren.
+ \item Mit dem Nachkommaanteil des Multiplikationsergebnisses wiederholen, bis
+ \begin{enumerate}
+    \item das Ergebnis 0 ist
+    \item sich der Nachkommaanteil periodisch wiederholt
+    \item die gewünschte Genauigkeit erreicht ist
+ \end{enumerate}
+\end{enumerate}
+Die Ganzzahlanteile von ersten zum letzten ergeben den Nachkommaanteil.
+
+\subsection{Approximations- und Rundungsfehler}
+\subsubsection{Maschinengenauigkeit}
+$\tilde{x}$ sei die Näherung zum exakten Wert $x$.
+\begin{description}
+ \item [absoluter Fehler] $|\tilde{x} - x|$ 
+ \item [relativer Fehler] $\frac{|\tilde{x} - x|}{|x|}$ 
+\end{description}
+
+Allgemein: $|$rd$(x) - x| \leq 0.5 \cdot 10^{E-n}$ für die Basis 10. $E$ ist ein Exponent, $n$ sind die Anzahl Stellen.
+
+Definition: eps = $5 \cdot 10^{-n}$ heisst Maschinengenauigkeit. Für eine beliebige Basis $B: \mbox{eps} = \frac{B}{2} \cdot B^n$
