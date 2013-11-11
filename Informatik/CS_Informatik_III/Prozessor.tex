@@ -1,3 +1,4 @@
+% !TEX root = Informatik-3.tex
 \section{Prozessor}
 Eigenschaften:
 \begin{description}\itemsep0em
@@ -27,6 +28,11 @@ Befehlszähler addressiert Speicherzelle, der Inhalt wird ins Befehlsregister ü
 Allgemein: Schaltwerk $\rightarrow$ Schaltnetz $\rightarrow$ Schaltwerk
 Bei flankengesteuerten Schaltwerken können die Daten wieder ins selbe Schaltwerk geschrieben werden
 
+
+\subsection{Befehl}
+Besteht aus Operationscode (OP-Code), ggf. Optionen und Operanden.
+
+z.B. OP-Code, (Option), Operand-1, Operand-2, (Operand-3) 
 \subsection{Operanden laden, speichern}
 Mit Hilfe von Schaltnetzen und -werken werden Daten aufgrund der von der ALU berechneten  absolute Speicheradresse manipuliert
 
@@ -43,6 +49,22 @@ Load/Store unter Einbezug des Speichers ist wohl immer am langsamsten.
 Befehle können gruppiert werden, so dass alle Befehle einer Gruppe etwa gleich lange Pfade haben. Langsamere Befehle beanspruchen dann einfach $n$ Zyklen (so kommt dann der CPI-Wert zustande). Allerdings wird dann die Steuerung und das Design deutlich komplexer.
 
 \subsection{Pipelining}
-Mehrere Befehle werden gleichzeitig (überlappend ausgeführt)
+Mehrere Befehle werden gleichzeitig (überlappend ausgeführt).
+
+\subsubsection{Konflikte}
+\begin{description}
+\item[Strukturkonflikte] gleichzeitiger Zugriff auf Ressourcen. --> gelöst durch Pipeline-Architektur und abgestimmten Befehlssatz
+\item[Datenkonflikte] Abwarten von Zwischenresultaten --> Compiler, Forwarding
+\item[Steuerkonflikte] z.b. bedingte Sprünge --> Branch-Prediction
+\end{description}
+
+\subsubsection{Zykluszeit}
+Die Zykluszeit ist vorgegeben durch die Stufe mit der grössten Zeit, ein Befehl benötigt daher mehr Zeit (bei gleichbleibender Taktrate).
+
+Ein Programm wird bei n-stufiger Pipeline n mal schneller abgearbeitet als bei einem Prozessor ohne Pipeline, falls die längste Stufe gleiche Taktzykluszeit benötigt wie ein Zyklus des Prozessors ohne Pipeline.
+
+
+
+
 
 
