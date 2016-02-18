@@ -1,0 +1,35 @@
+\section{Begriffe}
+\settowidth{\MyLenA}{Programmiersprache Fortran (1955)~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Bit & [0,1], Masseinheit für übertragene Datenmengen und Informationsgehalt\\
+	Byte & 8-Tupel von Bit, Masseinheit für Speicherung\\
+	Word & Grundverarbeitungsdatengrösse in einem Rechner. Immer eine 2er Potenz\\
+\end{tabular}
+
+\subsection{Algorithmus}
+Ein Algorithmus ist eine Verarbeitungsvorschrift, die entweder durch einen Menschen oder eine Maschine (mechanisch/elektronisch)
+effizient durchgeführt werden kann, und bei der die Abfolge der endlichen Verarbeitungsschritte eindeutig festgelegt und ist und
+und bei welcher die einzelnen Verarbeitungsschritte eindeutig spezifiziert sind. Für den gleichen Input liefert ein Algorithmus 
+also immer den gleichen Output. 
+
+Bsp. Euklid GGT von $a$ und $b$:\\
+Widerhole:
+\begin{enumerate}
+	\item $r = a mod b$ Bestimme den Rest von $a/b$ 
+	\item $a = b$ Weise a den Wert von $b$ zu
+	\item $b = r$ Weise b den Wert von $r$ zu
+\end{enumerate}
+bis ($r=0$)
+
+\subsection{Information}
+Gegeben ist ein Alphabet $Z = \{z_1, z_2, \dots z_n\}$, jedes Zeichen $z_i$ habe die Auftrittswahrscheinlichkeit $p_z$.
+
+\settowidth{\MyLenA}{Programmiersprache Fortran (1955)~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Informationsgehalt & $I(z) = - \log_2{p_{z}}$ Bit\\
+	Entropie			& $H = \sum_{z\in Z} p_z \cdot I(p_z) = - \sum_{z\in Z} p_z \cdot \log_2 p_z$ Bit\\
+	Redundanz			& $R = \frac{\mbox{Bits gesamt}}{\mbox{Bits genutzt}} - 1$\\
+\end{tabular}
+

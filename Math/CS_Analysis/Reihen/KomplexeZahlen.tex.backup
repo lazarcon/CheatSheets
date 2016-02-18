@@ -1,0 +1,110 @@
+\section{Komplexe Zahlen $\mathbb{C}$}
+\subsection{Imaginäre Einheit $j$}
+\begin{equation*}
+	\mathrm j^2 = -1 = e^{j\pi}
+\end{equation*}
+
+Eine komplexen Zahl $z$ ist ein geordnetes Paar $(x; y)$ aus zwei reellen Zahlen $x$ und $y$.
+\begin{equation*}
+	z = x + \mathrm j y
+\end{equation*}
+$x$ ist der Realteil von $z$, $y$ heisst Imaginärteil von $z$.
+Die Menge der komplexen Zahlen $\mathbb{C} = \{z | z = x + \mathrm j y$ mit $x, y \in \mathbb{R}\}$
+Zwei komplexe Zahlen $z_1 = x_1 + \mathrm j y_1$ und $z_2 = x_2 + \mathrm j y_2$ sind gleich, wenn $x_1 = x_2$ und $y_1 = y_2$
+
+\subsection{Konjugiert komplexe Zahl}
+\begin{equation*}
+	z^* = (x + \mathrm j y)^* = x - \mathrm j y
+\end{equation*}
+
+\subsection{Betrag und Argument/Winkel/Phase}
+\begin{align*}
+	|z|& = \sqrt{x^2 + y^2}\\
+	\varphi& = \arctan \frac{y}{x} + \omega
+\end{align*}
+
+\subsection{Darstellungen}
+\subsubsection{Normalform}
+\begin{equation}
+	z = x + \mathrm j y
+\end{equation}
+
+\subsubsection{Polarformen}
+\textbf{Trigonometrische Form}
+\begin{align*}
+	z& = |z| \cos \varphi + \mathrm j \sin \varphi\\
+	\cos \varphi& = \frac{x}{|z|}\\
+	\sin \varphi& = \frac{y}{|z|}
+\end{align*}
+
+\textbf{Exponentialform}
+\begin{equation*}
+	z = \mathrm e^{\mathrm j \varphi}
+\end{equation*}
+
+\subsection{Umrechnungen}
+\subsubsection{Polar Form $\rightarrow$ Normalform}
+\begin{equation*}
+	x = |z| \cos \varphi \mbox{ und }y = |z| \sin \varphi
+\end{equation*}
+
+\subsubsection{Normalform $\rightarrow$ Polarform}
+Es gelten die Definitionen von Betrag und Argument/Winkel/Phase.\\
+In Abhängigkeit vom Quadranten ist $\omega$ zu berücksichtigen. 
+
+\begin{center}
+\begin{tikzpicture}[scale=2,cap=round]
+  \def\costhirty{0.8660256}
+  \def\sinthirty{0.5}
+  % Colors
+  \colorlet{lightgrey}{white!80!black}
+
+  % Styles
+  \tikzstyle{axes}=[]
+  \tikzstyle{important line}=[very thick]
+  \tikzstyle{vector}=[-latex]
+
+  % The graphic
+  \draw[style=help lines,step=0.5cm] (-1.1,-1.1);
+
+  \begin{scope}[style=axes]
+    \draw[->] (-1.5,0) -- (1.5,0) node[right] {$Re(z)$};
+    \draw[->] (0,-1.1) -- (0,1.1) node[above] {$Im(z)$};
+
+    \foreach \x/\xtext in {-1, -.5/-\frac{1}{2}, 1}
+      \draw[xshift=\x cm] (0pt,1pt) -- (0pt,-1pt) node[below,fill=white]
+            {$\xtext$};
+
+    \foreach \y/\ytext in {-1, -.5/-\frac{1}{2}, .5/\frac{1}{2}, 1}
+      \draw[yshift=\y cm] (1pt,0pt) -- (-1pt,0pt) node[left,fill=white]
+            {$\ytext$};
+  \end{scope}
+
+  \draw[style=important line]
+    (0,0) -- node[left=1pt,fill=white] {$z = \mathrm j y$} +(0,\sinthirty);
+
+  \draw[style=important line]
+    (0,0) -- node[below=2pt,fill=white] {$z = x$} (\costhirty,0);
+
+  \draw[vector] (0,0) -- (\costhirty, \sinthirty) node [right,fill=white] {$z = x + \mathrm j y$};
+
+  \draw[dotted] (0,\sinthirty) -- (\costhirty, \sinthirty);
+
+  \draw[dotted] (\costhirty,0) -- (\costhirty, \sinthirty);
+
+  \draw[dotted] (\costhirty,0) -- (\costhirty, -\sinthirty);
+
+  \draw[dotted] (0,-\sinthirty) -- (\costhirty, -\sinthirty);
+
+  \draw[vector, dashed] (0,0) -- (\costhirty, -\sinthirty) node [right,fill=white] {$z^* = x - \mathrm j y$};
+
+  \node (q1) at (1,1) {Q1: $\omega = 0$};
+  \node (q2) at (-1, 1) {Q2: $\omega = \pi$};
+  \node (q3) at (-1, -1) {Q3: $\omega = \pi$};
+  \node (q4) at (1, -1) {Q4: $\omega = 2\pi$};
+  \node (z) at (0.3, 0.3) {$|z|$};
+  \node (phi) at (0.3, 0.1) {$\varphi$};
+  \draw (0.5,0) arc (0:30:5mm);
+\end{tikzpicture}
+\end{center}
+

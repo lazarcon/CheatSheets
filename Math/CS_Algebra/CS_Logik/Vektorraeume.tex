@@ -1,0 +1,128 @@
+\section{Vektorräume}
+Es sei $K$ ein Körper, seine Elemente heissen \textit{Skalare}. Sie sind mit $k$ bezeichnet.
+
+\begin{description}
+	\item [$K$-Vektorraum] ($K$-VR) ist ein Tripel $(V, +, \cdot)$ mit:
+	\begin{enumerate}\itemsep0em
+		\item $(V, +)$ ist eine kommutative Gruppe (s.\,o.)
+		\item Es ist $\cdot : K \times V \rightarrow V$ und für alle Elemente $k_1, k_2 \in K$ und $v_1, v_2 \in V$ gelten:
+		\begin{enumerate}\itemsep0em
+			\item $k_1 \cdot (k_2 \cdot v_1) = k_1\cdot k_2 \cdot v_1$
+			\item $k_1 \cdot (v_1 + v_2) = k_1 \cdot v_1 + k_1 \cdot v_2$
+			\item $(k_1 + k_2) \cdot v_1 = k_1 \cdot v_1 + k_2 \cdot v_1$
+			\item Für die $1$ von $K$ gilt: $1 \cdot v_1 = v_1$
+		\end{enumerate}
+	\end{enumerate}
+	Elemente von $V$ werden mit $v$ bezeichnet.
+\end{description}
+\begin{itemize}\itemsep0em
+	\item [$\Rightarrow$] $K$ selbst mit seiner Addition und Multiplikation ist ein $K$-VR
+	\item [$\Rightarrow$] Der Körper $\mathbb{C}$ ist ein 2-dimensionaler VR über $\mathbb{R}$
+	\item [$\Rightarrow$] Der Körper $\mathbb{R}$ ist ein $\infty$-dimensionaler VR über $\mathbb{Q}$
+	\item [$\Rightarrow$] Die Menge $\mathbb{R} \times \mathbb{R}$ ist ein 2-dimensionaler $\mathbb{R}$-VR.
+\end{itemize}
+
+\subsection{Rechenregeln}
+\begin{itemize}\itemsep0em
+	\item[] $0_K \cdot v = 0_V = k \cdot 0_V$
+	\item[] $-k \cdot v = -(k \cdot v) = k \cdot (-v)$
+	\item[] $k \cdot v \Rightarrow (k = 0_K) \vee (v = 0_v)$
+\end{itemize}
+
+\subsection{Untervektorraum}
+Ist $V$ ein $K$-VR und $U \subset V$ ($U \neq \emptyset$) abgeschlossen unter den Verknüpfungen $\cdot, +$, dann ist $U$ ein Untervektorraum von $V$ und somit auch ein $K$-VR.
+
+Jede Gerade in $\mathbb{R}^2$ durch den Nullpunkt ist ein solcher 1-dimensionaler Untervektorraum.
+
+\subsubsection{Erzeugender Untervektorraum}
+\begin{equation*}
+	\langle U \rangle := \left\lbrace \sum_{i=1}^n k_i \cdot v_i | (n \in \mathbb{N}) \wedge (k_1, \dots, k_n \in K) \wedge (v_1, \dots v_n \in V) \right\rbrace
+\end{equation*}
+Beispiele: 
+\begin{itemize}\itemsep0em
+	\item $\langle \emptyset \rangle = \{(0, 0, 0)\}$
+	\item $\langle\{(1, 0), (0, 1)\}\rangle = \mathbb{R}^2$
+\end{itemize}
+
+\begin{description}
+	\item [Erzeugendensystem] 
+	bezeichnet eine Menge $U$, wenn gilt $\langle U \rangle = V$ mit $U \subset V$
+
+	\item [Lineare unabhängig] 
+	(frei) ist eine Menge $U$ wenn für alle paarweise verschiedenen Vektoren $v_1, \dots, v_n \in U$ und für alle Skalare $k_1, \dots k_n \in K$ stet gilt:
+	\begin{equation*}
+		\sum_{i=0}^n k_i \cdot v_i \neq 0 \mbox{ oder } r_1, \dots, r_n = 0  
+	\end{equation*}
+	
+	\item[Basis]
+	bezeichnet ein linear unabhängiges (freies) Erzeugendensystem (geschrieben als $B$).
+\end{description}
+Lässt sich ein Vektor eines Untervektorraums aus anderen Vektoren desselben Untervektorraums erzeugen, dann ist der Untervektorraum nicht frei.
+\begin{equation*}
+	(v = \sum_{i=1}^n k_i \cdot v_i) \wedge (v, v_1, \dots, v_n \in U) \wedge (k_1, \dots, k_n \in K) \Leftrightarrow U \mbox{ ist nicht frei} 
+\end{equation*}
+Jeder Vektor $v$ aus $V$ lässt sich aus jeder beliebigen Basis erzeugen:
+\begin{equation*}
+	v = \sum_{i=1}^n k_i \cdot b_i \Leftrightarrow B = \{b_1, \dots, b_n\} \mbox{ist eine Basis von }V
+\end{equation*}
+
+\subsection{Sätze, Axiome, Theoreme}
+\begin{itemize}\itemsep0em
+	\item Ist $A$ eine Menge und \enquote{$\leq$} eine Halbordnung auf $A$, so dass für jede total geordnete Teilmenge eine obere Schranke bezüglich $\leq$ existiert, dann besitzt $A$ maximale Elemente.
+
+	\item Ist $\mathcal{F}$ eine Familie von Mengen mit der Eigenschaft, dass mit jeder Kette $U \subset \mathcal{F}$ die Beziehung $\cup U \in \mathcal{F}$ gilt, dann hat das Paar $(\mathcal{F}, \subset)$ maximale Elemente.
+
+	\item Ist $V$ ein $K$-VR und ist $E \subset V$ ein Erzeugendensystem und $F \subset V$ eine freie Teilmenge von $V$, dann gibt es eine Menge $U \subset V$ mit $X \cap F \neq \emptyset$, so dass $F \cup U$ eine Basis von $V$ ist.
+
+	\item Jeder Vektorraum hat eine Basis. Hat ein Vektorraum eine endliche Basis, dann ist jede weitere Basis dieses Vektorraums ebenfalls endlich und besitzt gleich viele Elemente.
+\end{itemize}
+
+\subsection{Dimension}
+Die Dimension eines Vektorraums $V$ über $K$ ist dim$_K(V) = |B|$. 
+Beispiele:
+\begin{itemize}\itemsep0em
+	\item dim$_{\mathbb{Q}}(\mathbb{R}) = \infty$
+	\item dim$_{\mathbb{Q}}(\mathbb{Q}) = 1$ (weil $\{1\} \subset \mathbb{Q}$ eine Basis von $\mathbb{Q}$ ist) 
+\end{itemize}
+
+\subsection{Lineare Abbildungen und Matrizen}
+Sind $W$ und $V$ beides $K$-VR. Eine Abbildung $f: V \rightarrow W$ heisst $K$-linear oder $K$-VR Homomorphismus falls für alle Element $\lambda \in K$ und alle Vektoren $v, w \in V$ die Gleichungen:
+\begin{align*}
+	f(v + w)& = f(v) + f(w) & f(\lambda v)& = \lambda f(v)
+\end{align*}
+erfüllt werden. Die Menge aller derartiger Abbildungen wird als Hom$_K (V, W)$ bezeichnet.\\
+Für $K$-lineare Abbildungen gilt:
+\begin{equation*}
+	f(\sum_{i=1}^n \lambda_i \cdot v_i) = \sum_{i=1}^n \lambda_i \cdot f(v_i)
+\end{equation*}
+Beispiele: 
+\begin{itemize}\itemsep0em
+	\item $f: \mathbb{R}^3 \rightarrow \mathbb{R}^2$ mit $f((x, y, z)) := (y, z)$
+	\item $f: \mathbb{R}^2 \rightarrow \mathbb{R}^3$ mit $f((x, y)) := (0, y, z)$
+\end{itemize}
+
+\begin{description}
+	\item [Kern] Für $f \in $ Hom$_K(V, W)$ ist der Kern definiert als:
+	\begin{equation*}
+		\mbox{ker}(f) := \{v \in V | f(v) = 0\}
+	\end{equation*}
+\end{description}
+\begin{itemize}\itemsep0em
+	\item Sind $V$ und $W$ zwei $K$-VR und $f, g \in $ Hom$_K(V, W)$, so dass $f$ und $g$ auf einer Basis von $V$ dieselben Werte annehmen, dann gilt: $f = g$
+	\item Sind $V$ und $W$ zwei $K$-VR und ist $B = \{b_1, \dots, b_n\}$ eine Basis von $V$ sowie $f: B \rightarrow W$ eine beliebige Funktion, dann lässt sich $f$ eindeutig zu einer $K$-linearen Abbildung $f: V \rightarrow W$ fortsetzen.
+	\item Zwei $K$-VR gleicher, endlicher Dimension sind stets isomorph zueinander. $\Rightarrow$ Ist $V$ ein endlich dimensionaler $K$-VR, dann gibt es eine Zahl $n \in \mathbb{N}$, so dass $V$ isomorph zu $K^n$ ist.
+	\item Sind $V$ und $W$ zwei $K$-VR und ist $f \in$ Hom$_K(V, W)$, dann ist ker$(f)$ ein Untervektorraum von $V$ und im$(f)$ ein Untervektorraum von $W$.
+	\item Sind $V$ und $W$ zwei $K$-VR endlicher Dimension und ist $f \in$ Hom$_K(V, W)$, dann gilt:
+	\begin{equation*}
+		\mbox{dim}_K(\mbox{im}(f)) + \mbox{dim}_K(\mbox{ker}(f)) = \mbox{dim}_K(V)
+	\end{equation*}
+	\item Sind $V$ und $W$ zwei $K$-VR endlicher und gleicher Dimension, dann sind für $f \in$ Hom$_K(V, W)$ folgende Aussage äquivalent:
+	\begin{itemize}
+		\item $f$ ist ein Isomorphismus
+		\item $f$ ist ein Epimorphismus
+		\item $f$ ist ein Monomorphismus
+	\end{itemize}
+\end{itemize}
+
+
+

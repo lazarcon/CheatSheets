@@ -1,0 +1,109 @@
+\section{File Management}
+\subsection{Filestructure}
+\settowidth{\MyLen}{\texttt{Media}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!/!		& Root element\\
+	\verb!/dev!		& Interfaces for hardware control\\
+	\verb!/mnt!		& Mountpoint for primary partitions\\
+	\verb!/bin!		& Binaries: commands, executable by anyone\\
+	\verb!/sbin!	& System binaries: commands, executable by root\\
+	\verb!/lib!		& Required libraries\\
+	\verb!/usr!		& * Unix system resources: Programm-files\\
+	\verb!/opt!		& Non-standard-software\\
+	\verb!/etc!		& * Configuration files\\
+	\verb!/var!		& * Variable Data: Databases, repositiories\\
+	\verb!/sys!		& Plug-and-play user interface\\
+	\verb!/root!	& Home directory of user root\\
+	\verb!/home!	& * Directory for registered users\\
+	\verb!/media!	& Mountpoint for external devices\\
+	\verb!/tmp!		& * Temporary files\\
+\end{tabular}
+* Marked directories should be placed on seperate partitions.
+
+\subsection{Finding files}
+\settowidth{\MyLen}{\texttt{find }~\textit{directory }\texttt{-name }\enquote{*file*}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!updatedb!															& Update file location database\\
+	\verb!locate !\textit{file}												& Find all locations of \textit{file}\\
+	\verb!find !\textit{directory}\verb! -name "!\textit{*file*}\verb!"!	& Find location of \textit{*file*} in \textit{directory}\\
+	\verb!whereis !\textit{command}											& Find command related paths \\
+\end{tabular}
+
+\subsection{Working with the filestructure}
+\settowidth{\MyLen}{\texttt{ln -s }\textit{target link}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!ls!							& List files\\
+	\verb!ls -a!						& List files including hidden files\\
+	\verb!ls -l!						& List files in long format\\
+	\verb!cd!							& Change to home directory\\
+	\verb!cd !\textit{directory}		& Change to directory \textit{directory}\\
+	\verb!mkdir !\textit{directory}		& Make a Directory with name \textit{directory}\\
+	\verb!mv !\textit{source target}	& Move \textit{source} to location \textit{target}\\
+	\verb!cp !\textit{source target}	& Copy \textit{source} to location \textit{target}\\
+	\verb!rm !\textit{file}				& Remove file with name \textit{file}\\
+	\verb!rm -r !\textit{directory}		& Remove directory with name \textit{directory}\\
+	\verb!rm -f !\textit{file}			& Force remove of file \textit{file}\\
+	\verb!ln -s !\textit{target link}	& Create a symbolic link named \textit{link} to \textit{target}\\
+	\verb!touch !\textit{file}			& Change timestamps of file \textit{file} to now\\
+\end{tabular}
+\verb!ls -l! shows the filetype and the permissions (see File permissions).\\
+Filetypes are: \verb!d! = directory, \verb!.! = file, \verb!l! = link.
+
+
+
+\subsection{Inspecting files}
+\settowidth{\MyLen}{\texttt{grep -r}~\textit{pattern directory}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!more !\textit{file}					& Show contents of file \textit{file} pagewise\\
+	\verb!less !\textit{file}					& Show contents of file \textit{file} without loading all of it\\
+	\verb!head -!\textit{n file}				& Show top \textit{n} lines of file \textit{file}\\
+	\verb!tail -!\textit{n file}				& Show last \textit{n} lines of file \textit{file}\\
+	\verb!tail -f !\textit{file}				& Show last 20 lines of file \textit{file} appending new lines\\
+	\verb!grep !\textit{pattern file}			& Show all lines containing \textit{pattern} in file \textit{file}\\
+	\verb!grep -r !\textit{pattern directory}	& Show all lines containing \textit{pattern} in directory \textit{directory}\\
+\end{tabular}
+
+\subsection{File permissions}
+\settowidth{\MyLen}{\texttt{chmod}~\textit{owner file}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!chmod !\textit{octal file}	 		& Changes permission of file \textit{file} to \textit{octal}\\
+	\verb!chown !\textit{owner file}			& Change ownership of file \textit{file} to \textit{owner}\\
+	\verb!chgrp !\textit{group file}			& Change groupmembership of file \textit{file} to \textit{group}\\
+\end{tabular}
+
+\subsubsection{File permission octal}
+order: owner/group/world\\
+\begin{tabular}{llll}
+~~ & 4 & read 		& r\\
+~~ & 2 & write 		& w\\
+~~ & 1 & execute 	& x\\
+\end{tabular}\\
+eg:\\
+\verb!chmod 777! - rwx for everyone\\
+\verb!chmod 755! - rwx for owner, rx for everyone else\\
+
+\subsection{Compression}
+Works on files as well as on directories.\\
+\settowidth{\MyLen}{\texttt{tar -cwf}~\textit{archive.tar directory}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!tar -cwf !\textit{archive.tar}\textit{directory}	 		& Compress \textit{directory} to \textit{archive.tar}\\
+	\verb!tar -xwf !\textit{archive.tar}							& Extract archive \textit{archive.tar} into current directory\\
+	\verb!tar -tf !\textit{archive.tar}								& Show contents of \textit{archive.tar}\\
+	\verb!gzip !\textit{file}										& Compress \textit{file} and rename it to \textit{file}\verb!.gz!\\
+	\verb!gzip -d !\textit{file.gz}									& Extract file \textit{file.gz}\\
+\end{tabular}
+
+\subsubsection{All tar flags}
+\begin{tabular}{llllll}
+	~~ & \verb!c! & Compress 			& ~~ & \verb!j! & bzip compression \\ 
+	~~ & \verb!x! & Extract 			& ~~ & \verb!v! & Verbose output \\ 
+	~~ & \verb!t! & Table of contents 	& ~~ & \verb!w! & Ask for confirmation \\ 
+	~~ & \verb!f! & Filename 			& ~~ & \verb!k! & Don't overwrite \\ 
+	~~ & \verb!z! & Also use gzip 		& ~~ & \verb!T! & Files from file \\ 
+\end{tabular}

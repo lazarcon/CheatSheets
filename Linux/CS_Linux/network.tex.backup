@@ -1,0 +1,66 @@
+\section{Network Management}
+\settowidth{\MyLen}{\texttt{whois}~\textit{domain}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!ping !\textit{host}					& Ping host \textit{host}\\
+	\verb!whois !\textit{domain}				& Get who is information about \textit{domain}\\
+	\verb!dig !\textit{domain}					& Get DNS for \textit{domain}\\
+	\verb!dig -x !\textit{host}					& Reverse lookup \textit{host}\\
+	\verb!ifconfig!								& Show network address(es)\\
+	\verb!netstat!								& Show usage of ports and protocols\\
+	\verb!nmap!									& Scan ports (see \verb!man nmap!)\\
+	\verb!/etc/hosts/!							& Stores local dns lookup table\\
+\end{tabular}
+
+\subsection{Firewall}
+\settowidth{\MyLen}{\texttt{ufw disable}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!ufw enable!				& Enable Linux firewall (now and forever)\\
+	\verb!ufw disable!				& Disable Linux firewall (now and forever)\\
+	\verb!ufw status!				& Show status of Linux firewall\\
+\end{tabular}
+
+\subsubsection{iptables}
+\verb!iptables! contains the rules for the unix firewall.\\
+It is advisable to create a script setting up the rules, which should be loaded at startup. Create two executabscripts:
+\verb!/etc/network/if-pre-up.d/iptablesload! and \verb!/etc/network/if-post-down.d/iptablessave!
+
+Flags:\\
+\settowidth{\MyLen}{\texttt{iptables -L}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!-A!	& Append rule \\
+	\verb!-p!	& Connection protocol: \verb![]!\\
+\end{tabular}
+
+
+\subsection{wget}
+General usage to download a file: \verb!wget !\textit{url}
+\settowidth{\MyLen}{\texttt{-P }\textit{directory}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!-i !\textit{file}				& Get urls from file\\
+	\verb!-nv!							& Non verbose output\\
+	\verb!-q!							& Don't print anything on console\\
+	\verb!-t!\textit{n}					& Try maximal \textit{n} times\\
+	\verb!-N !							& Download only if newer than stored file\\
+	\verb!-O !\textit{file}				& Store downloaded file as \textit{file}\\
+	%\verb!--user=!\textit{user}			& Username for ftp-downloads\\
+	%\verb!--password=!\textit{password}	& Password for ftp-downloads\\
+	\verb!-P !\textit{directory}		& Store files to directory \textit{directory}\\
+	\verb!-nd!							& Don't make directories as in source\\
+	\verb!-x!							& Make same structure as in source\\
+	\verb!-r!							& Recursive download\\
+	\verb!-l!\textit{n}					& Go \textit{n} levels deep\\
+	\verb!-A !\textit{list}				& Comma seperated list of file extensions to download\\
+	\verb!-R !\textit{list}				& Comma seperated list of file extensions to not download\\
+	\verb!-D !\textit{list}				& Comma seperated list of domains to search\\
+	\verb!-np!							& Ignore parent directories\\
+	%\verb!--useragent="!\textit{user agent}\verb!"! & Act as user agent \textit{user agent}\\ 
+	\verb!-p!							& Pretend download of whole page\\
+\end{tabular}
+
+e.g.\\
+\verb!wget -r -l1 -A mp3,aac !\textit{url} - Download all direct linked mp3 or aac files from \textit{url}\\ 
+

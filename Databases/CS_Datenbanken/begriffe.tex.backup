@@ -1,0 +1,86 @@
+\section{Begriffe}
+\begin{description}
+ \item [Information] (lat. \enquote{informatio}, Form oder Gestalt geben) ist nicht einheitlich
+ definiert. Im allgemeinen wird darunter \enquote{übertragenes Wissen} verstanden.
+ \item [Daten] (lat. \enquote{datum}, gegebenes) ebenfalls nicht einheitlich definiert. Grundsätzlich
+ codierbare Angaben über Dinge oder Sachverhalte, die gespeichert und verarbeitet werden können.
+ Die jährlich produzierte Datenmenge liegt bei ca. 10 Zettabytes ($10^{21}$ Bytes)
+ \item [strukturierte Daten] haben eine explizite Struktur und sind in der Minderheit (Bsp. Tabellen)
+ \item [unstruktierte Daten] haben keine explizite Struktur (ggf. implizite Struktur aufgrund einer
+ zugrunde liegenden Grammatik. (Bsp. Text, Bilder, Filme, \dots)
+ \item [semistrukturierte Daten] sind nur zum Teil strukturiert (Bsp. XML)
+\end{description}
+
+\subsection{Dateisystem vs. DBMS}
+\subsubsection{Dateisystem}
+Daten werden in Dateien vom Betriebssystem verwaltet. Anwendungen lesen/schreiben die Daten direkt. (Office-Anwendungen,
+Buchhaltungssoftware, \dots)
+
+\begin{tabular}
+	\begin{tabular}{@{}p{\linewidth/2}|@{}p{\linewidth/2}}
+	\multicolumn{1}{c}{Vorteile} & \multicolumn{Nachteile}\\
+	\begin{minipage}{0.5\linewidth}
+		\begin{itemize}
+			\item [+] einfach, angepasst, effizient
+			\item [+] keine Rücksicht auf andere
+			\item [+] proprietäre Formate möglich
+		\end{itemize}
+	\end{minipage}
+	&
+	\begin{minipage}{0.5\linewidth}
+		\begin{itemize}
+			\item [-] Verwendung für unterschiedliche Zwecke problematisch
+			\item [-] i.d.R. Strukturänderung $\Rightarrow$ Programmänderung 
+			\item [-] Synchroner Zugriff aufwändig zu realisieren
+			\item [-] Abgestufte Zugriffsrechte aufwänding zu realisieren
+			\item [-] Daten häufig mehrfach gespeichert
+			\item [-] Datenaustausch, -integration komplex
+		\end{itemize}
+	\end{minipage}	
+\end{tabular}
+
+\subsubsection{Datenbanksysteme}
+Verwalten und nutzen (sehr) grosse Datenmengen. Der Zugriff ist deklarativ und mengenorientiert.
+Die Daten werden einmalig und zentral definiert. Wichtige Aufgaben (Integritätskontrolle, Redundanzverwaltung,
+Zugriffskontrolle und -optimierung, synchroner Zugriff, zentrale Datensicherung und Wiederherstellung) 
+können so automatisiert werden.
+
+\textbf{DB-Typen:} hierarchisch, relational, objekt-relational, objektorientiert, deduktiv, netzwerk, \dots
+
+\subsubsection{Datenunabhängigkeit (DU)}
+\begin{description}
+	\item [Logische DU] Anwendungsprogramme müssen die logische Gesamtstruktur nicht kennen,
+	um spezifische Verarbeitungen vorzunehmen $\Rightarrow$ sie sind von Datenbankschema-Änderungen
+	nicht betroffen.
+	\item [Physische DU] Anwendungsprogramme müssen die interne Organisation der Daten und Zugriffs- 
+	und Speicherungsmöglichkeiten nicht kennen $\Rightarrow$ sie sind von Speicher- und Zugriffstrukturänderungen
+	nicht betroffen
+\end{description}
+
+% \begin{tabular}{@{}p{\linewidth/2}|@{}p{\linewidth/2}}
+%  \multicolumn{1}{c}{Dateisystem} & \multicolumn{1}{c}{Datenbank} \\\hline
+%  + einfach, anpassbar, effizient & + langfristige Aufbewahrung\\
+%  + Proprietäre Formate möglich & + grosse Mengen\\
+%  + Keine Rücksicht auf ander & + viele Benutzer\\
+%  - Struktur = Programmänderung & + einfache Rechteverwaltung\\
+%  - Simultaner Zugriff schwierig & + logische Unabhängigkeit\\
+%  - abgest. Zugriffsrechte schwierig & + physische Unabhängigkeit\\
+%  - Mehrfachverwendung heikel &  + Automatisierung\\
+%  - Logische \& physische abhängig & - teuer und aufwändig\\
+% \end{tabular}
+
+
+
+\subsection{ANSI-SPARC-3-Ebenen-Architektur}
+(ANSI/SPARC 1975)
+\begin{description}
+ \item [Extern] Sicht einzelner Anwendungen oder Benutzergruppen
+ \item [Konzeptionell] Logische Gesamtsicht
+ \item [Intern] Speicherung, Datenorganisation, Zugriffsstrukturen
+\end{description}
+
+Auf- und Ausbau bezeichnet das erstellen verschiedener Datenbank Schemas (DDL = Data Definition Language), 
+häufig im laufenden Betrieb.
+
+Betrieb, Nutzung und Verwaltung (Anzeigen, Einfügen, Ändern, Löschen, Backup, Restore)
+mit Hilfe der DML (= Data Manipulation Language)

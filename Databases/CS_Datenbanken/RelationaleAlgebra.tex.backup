@@ -1,0 +1,51 @@
+\section{Relationale Algebra}
+Vereinigungskompatibel:
+\begin{enumerate}
+	\item Gleiche Anzahl Attribute (gleiche Namen nicht notwendig)
+	\item Übereinstimmende Attribute haben den gleichen Typ (Domäne).
+\end{enumerate}
+
+\subsection{Vereinigung ($R_1 \cup R_2$)}
+ergibt die Menge aller Tupel, die in $R_1$ oder $R_2$ vorkommen (ohne doppelte). Voraussetzung: $R_1$ und $R_2$ sind vereinigungskompatibel.
+Es gilt das Kommuntativ-Gesetz: $R_1 \cup R_2 = R_2 \cup R1$
+
+\subsection{Durchschnitt ($R_1 \cap R_2$)}
+ergibt die Menge aller Tupel, die in $R_1$ und $R_2$ vorkommen (ohne doppelte). Voraussetzung: $R_1$ und $R_2$ sind vereinigungskompatibel.
+Es gilt das Kommuntativ-Gesetz: $R_1 \cap R_2 = R_2 \cap R1$
+
+\subsection{Differenz ($R_1 - R_2$ bzw. $R_1 \setminus R_2$)}
+ergibt die Menge aller Tupel, die in $R_1$ und nicht in $R_2$ vorkommen. Voraussetzung: $R_1$ und $R_2$ sind vereinigungskompatibel.
+Das Kommuntativ-Gesetz gilt nicht.
+
+\subsection{Produkt ($R_1 \times R_2$)}
+ergibt die Menge aller Tupelkombinationen beider Relationen (ohne doppelte).
+Das Kommuntativ-Gesetz gilt nicht, aber $R_1 \times R_2 \sim R_2 \times R_1$.
+(Es gäbe auch noch die praktisch bedeutungslose Division).
+
+\subsection{Selektion ($\sigma_P (R)$)}
+$P$ steht das Prädikat, die Selektionsbedingung. Die Selektion ergibt die Menge aller Tupel aus $R$ für die $P$ gilt.
+Die Selektion hat nichts mit der Reihenfolge (Sortierung) zu tun.
+
+\subsection{Projektion ($\pi_L (R)$)}
+$L$ steht für die Attributkombination aus $R$. Die Projekt ergibt die Menger aller Attribute aus $R$, die $L$ sind.
+Theoretisch werden doppelte eliminiert.
+
+\subsection{Verbund, Join ($R_1 \Join R_2$)}
+ergibt die Verkettung der Attribute von $R_1$ mit den von $R_2$ bei denen gemeinsame, vereinigungskompatible Attribute gleich sind.
+Verknüpfbar sind zwei Tupel, wenn sie in allen gemeinsamen Attributen übereinstimmen.
+\settowidth{\MyLenA}{Right outer join ($L \fullouterjoin R$)~~}
+\begin{tabular}{
+	@{}p{\the\MyLenA}%
+	@{}p{\linewidth-\the\MyLenA}}
+	Natural, Auto Join & $\sigma_{R_1.s_1 = R_2.s_1 \wedge R_1.s_2 = R_2.s_2 \dots}$\\
+	Equi-Join & Prüfung nur auf Gleichheit. Attribute mit logischem Und verknüpft.\\
+	Theta Join ($L \Join _\theta R $) & Kartesisches Produkt mit Selektion (bsp. $R_1.a_1 > R_2.a_2$)\\
+	Cross Join & keine gemeinsamen Attribute (kartesisches Produkt)\\
+	Semi Join & Natural Join mit Selektion\\
+	Left outer join ($L \leftouterjoin R$) & Alle von Tupel von $L$ mit \texttt{NULL} für Attribute von $R$, die nicht verknüpfbar sind.\\
+	Right outer join ($L \rightouterjoin R$) & Alle von Tupel von $R$ mit \texttt{NULL} für Attribute von $L$, die nicht verknüpfbar sind.\\
+	Full outer join ($L \fullouterjoin R$) & Alle von Tupel von $L$ und $R$ mit \texttt{NULL} für Attribute, die nicht verknüpfbar sind.\\  
+\end{tabular}
+
+
+

@@ -1,0 +1,92 @@
+\section{Ganze Zahlen}
+$\Z = \{\cdots -2, -1, 0, 1, 2, \dots\}$\\
+Es gilt: $x < y \Leftrightarrow \exists n \in \N > 0 \mid x + n = y$\\
+\subsection{Rechenregeln}
+\settowidth{\MyLenA}{Neutrales Element bzgl. $+$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)/2}}
+					& $-1 \dot z = -z$\\
+					& $-(-z) = z$\\
+	Inverses Element bzgl. $+$ & $-z + z = 0$\\
+	Absorbtion	& $0 \cdot z = 0$\\
+	Neutrales Element bzgl. $+$ & $0 + z = z$\\
+	Neutrales Element bzgl. $\cdot$ & $1 cdot z = z$\\
+	Assoziativität bzgl. $+$ & $a + (b + c) = (a + b) + c$\\
+	Assoziativität bzgl. $\cdot$ & $a \cdot (b \cdot c) = (a \cdot b) \cdot c$\\
+	Kommutativität bzgl. $+$ & $a + b = b + a$\\
+	Kommutativität bzgl. $\cdot$ & $a \cdot b = b \cdot a$\\
+	Distributiviät & $a  \cdot (b + c) = a \cdot b + a \cdot c$\\
+\end{tabular}
+
+\subsection{Definitionen}
+\subsubsection{Subtraktion}
+\begin{equation*}
+	a - b = a + (- b)
+\end{equation*}
+
+\subsubsection{Betrag}
+\begin{align*}
+	|z| = \begin{cases}
+	      	z & \mbox{falls } z \in \N\\
+			-1 \cdot z & \mbox{sonst}
+	      \end{cases}
+\end{align*}
+
+\subsubsection{Teilbarkeit}
+\begin{equation*}
+	x \mid y \Leftrightarrow \exists q \in \Z (y = x \cdot q)
+\end{equation*}
+Teilbarkeit ist transitiv: $x \mid y \wedge y \mid z \Rightarrow x \mid z$.
+
+Beispiel: $\forall a, b, c, d \in \Z\ (a \mid b) \wedge (a \mid d) \Rightarrow (a \cdot c) \mid (b \cdot d)$
+\begin{proof}
+	Es seien $a, b, c, d$ fest, aber beliebig.\\
+	Es gelte $a \mid b$ und $c \mid d$\\
+	Zeige: $a \cdot c \mid b \cdot d$\\
+	\begin{align*}
+		a \mid b & \Leftrightarrow \exists q_1 \in \Z\ b = a \cdot q_1\\
+		c \mid d & \Leftrightarrow \exists q_2 \in \Z\ d = c \cdot q_2\\
+		(a \cdot q_1) \cdot (c \cdot q_2) = b \cdot d\\
+		\mbox{Mit }q_3 & = q_1 \cdot q_2 \mbox{ gilt:}
+		a \cdot c \cdot q_3 = b \cdot d \Rightarrow (a \cdot c) \mid (b \cdot d)
+	\end{align*}
+\end{proof}
+
+
+
+\subsubsection{Teilen mit Rest}
+Sind $x, y \in \N \setminus \{0\}$, dann gibt es eindeutig bestimmte Zahlen, so dass:
+\begin{enumerate}
+	\item $y = q \cdot x + r$
+	\item $r < x$
+\end{enumerate}
+
+\subsubsection{Kleinstes gemeinsames Vielfaches (KGV)}
+(engl. \textit{least common multiple}, zum erweitern von Brüchen)\\
+\begin{equation*}
+	\mbox{kgV}(x, y) = \min\{q \in \N \mid x \mid q \wedge y \mid q\}
+\end{equation*}
+
+
+\subsubsection{Grösster gemeinsamer Teiler (GGT)}
+(engl. \textit{greatest common divisor}, zum kürzen von Brüchen)\\
+\begin{equation*}
+	\mbox{ggT}(x, y) = \max\{q \in \N \mid q \mid n \wedge q \mid y\}
+\end{equation*}
+
+\begin{equation*}
+	\mbox{kgV}(x, y) = \min\{q \in \N \mid n\mid q \wedge m \mid k\}
+\end{equation*}
+
+\begin{equation*}
+	\mbox{kgV}(x, y) \cdot \mbox{ggT}(x, y) = x \cdot y
+\end{equation*}
+
+
+\subsubsection{Euklidischer Algorithmus}
+\begin{equation*}
+	\mbox{ggt}(n, m) = \mbox{ggt}(n, m - n) = \mbox{ggt}(m, m - n)
+\end{equation*}
+
+\subsubsection{Teilerfremdheit}
+Zahlen sind teilerfremd, wenn ggt$(m, n) = 1 \Leftrightarrow k \cdot x + k' \cdot y$.

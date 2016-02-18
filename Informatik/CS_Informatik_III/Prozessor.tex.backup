@@ -1,0 +1,39 @@
+\section{Prozessor}
+Eigenschaften:
+\begin{description}\itemsep0em
+	\item [Befehlssatz] Die Befehle, die hardwareseitig implementiert sind. Je grösser deren Anzahl, desto kürzere und damit schnellere Programme sind möglich. Ein Compiler macht aus einem Programmbefehl $n$ Prozessorbefehle (Befehlsarchitektur)
+	\item [Taktzyklus] beschreibt die Dauer eines Zykluses (normalerweise in Hz also Taktzyklen pro Sekunde angegeben)
+	\item [Taktzyklen pro Befehl (CPI)] (\textit{clock cyles per instruction}) gibt an, wieviele Taktzyklen ein Befehl im Durchschnitt benötigt (Einzelne Befehle gehen schneller 1 Taktzyklus, andere langsamer $>$ 1 Taktzyklus)
+\end{description}
+
+\subsection{Befehl laden}
+Befehlszähler addressiert Speicherzelle, der Inhalt wird ins Befehlsregister übertragen
+(für arithmetisch-logische Operationen). Dazu sind Schaltnetze und Schaltwerke erforderlich.
+\begin{description}\itemsep0em
+	\item [Schaltnetz] besteht ausschliesslich aus logischen Bauelementen (AND, ADD, \dots)
+	\begin{itemize}\itemsep0em
+		\item besteht aus $2^n$ Dateneingängen, $n$ Steuereingängen und einem Ausgang. 	Mit Hilfe der Steuereingänge wird bestimmt, welches der $n$-Eingangssignale durchgeleitet wird
+		\item Kombinationen von Schaltnetzen sind wieder ein Schaltnetz
+	\end{itemize}
+
+	\item [Schaltwerk] speichert intern Daten
+	\begin{itemize}\itemsep0em
+		\item mindestens ein Dateneingang, ein Datenausgang und ein Takteingang
+		\item Takteingang bestimmt, wann ein Speicherelement überschrieben wird (gelesen werden kann es immer)
+		\item Unterscheidung zwischen pegel- und flankengesteuerten Schaltwerken (heute: Flanken), d.\,h. die Spannung muss einen bestimmten Wert übersteigen, damit Schreibvorgänge stattfinden
+	\end{itemize}	
+\end{description}
+
+Allgemein: Schaltwerk $\rightarrow$ Schaltnetz $\rightarrow$ Schaltwerk
+Bei flankengesteuerten Schaltwerken können die Daten wieder ins selbe Schaltwerk geschrieben werden
+
+\subsection{Operanden laden, speichern}
+Mit Hilfe von Schaltnetzen und -werken werden Daten aufgrund der von der ALU berechneten  absolute Speicheradresse manipuliert
+
+\subsection{Ablaufzeit eines Programms $P$}
+\begin{equation*}
+	t_P = \mbox{(Anzahl Befehle)} \cdot \mbox{CPI} \cdot \mbox{Zeit pro Zyklus}
+\end{equation*}
+
+
+

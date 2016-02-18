@@ -3,10 +3,10 @@ def_graphic_ext=eps
 img_extIsRegExp=false
 img_extensions=.eps .jpg .jpeg .png .pdf .ps .fig .gif
 kileprversion=2
-kileversion=2.1.3
-lastDocument=Ladung.tex
+kileversion=2.1.2
+lastDocument=ganzeZahlen.tex
 masterDocument=
-name=ElektroTechnik
+name=Zahlen
 pkg_extIsRegExp=false
 pkg_extensions=.cls .sty .bbx .cbx .lbx
 src_extIsRegExp=false
@@ -16,109 +16,99 @@ src_extensions=.tex .ltx .latex .dtx .ins
 MakeIndex=
 QuickBuild=
 
-[document-settings,item:CheatSheet-Electrotechnik.tex]
+[document-settings,item:Math_Main.tex]
 Bookmarks=
 Encoding=UTF-8
 FoldedColumns=
 FoldedLines=
 Highlighting=LaTeX
-Indentation Mode=normal
+Indentation Mode=none
 Mode=LaTeX
 ReadWrite=true
 
-[document-settings,item:Felder.tex]
+[document-settings,item:NatuerlicheZahlen.tex]
+Bookmarks=24,48
+Encoding=UTF-8
+FoldedColumns=
+FoldedLines=
+Highlighting=LaTeX
+Indentation Mode=none
+Mode=LaTeX
+ReadWrite=true
+
+[document-settings,item:ganzeZahlen.tex]
+Bookmarks=97,100
+Encoding=UTF-8
+FoldedColumns=
+FoldedLines=
+Highlighting=LaTeX
+Indentation Mode=none
+Mode=LaTeX
+ReadWrite=true
+
+[document-settings,item:induktion.tex]
 Bookmarks=
 Encoding=UTF-8
 FoldedColumns=
 FoldedLines=
 Highlighting=LaTeX
-Indentation Mode=normal
+Indentation Mode=none
 Mode=LaTeX
 ReadWrite=true
 
-[document-settings,item:Ladung.tex]
+[document-settings,item:zahlentheorie.tex]
 Bookmarks=
 Encoding=UTF-8
 FoldedColumns=
 FoldedLines=
 Highlighting=LaTeX
-Indentation Mode=normal
+Indentation Mode=none
 Mode=LaTeX
 ReadWrite=true
 
-[document-settings,item:Potential.tex]
-Bookmarks=
-Encoding=UTF-8
-FoldedColumns=
-FoldedLines=
-Highlighting=LaTeX
-Indentation Mode=normal
-Mode=LaTeX
-ReadWrite=true
-
-[document-settings,item:SI-Einheiten.tex]
-Bookmarks=
-Encoding=UTF-8
-FoldedColumns=
-FoldedLines=
-Highlighting=LaTeX
-Indentation Mode=normal
-Mode=LaTeX
-ReadWrite=true
-
-[item:CheatSheet-Electrotechnik.tex]
-archive=true
-column=18
-encoding=UTF-8
-highlight=LaTeX
-line=121
-mode=LaTeX
-open=true
-order=0
-
-[item:Felder.tex]
-archive=true
-column=63
-encoding=UTF-8
-highlight=LaTeX
-line=18
-mode=LaTeX
-open=true
-order=3
-
-[item:Ladung.tex]
-archive=true
-column=31
-encoding=UTF-8
-highlight=LaTeX
-line=8
-mode=LaTeX
-open=true
-order=2
-
-[item:Potential.tex]
+[item:Math_Main.tex]
 archive=true
 column=0
 encoding=UTF-8
 highlight=LaTeX
-line=17
+line=75
 mode=LaTeX
 open=true
-order=4
+order=0
 
-[item:SI-Einheiten.tex]
+[item:NatuerlicheZahlen.tex]
 archive=true
-column=20
+column=17
 encoding=UTF-8
 highlight=LaTeX
-line=4
+line=116
 mode=LaTeX
 open=true
 order=1
 
-[item:elektrotechnik.kilepr]
+[item:ganzeZahlen.tex]
 archive=true
-column=1
+column=28
+encoding=UTF-8
+highlight=LaTeX
+line=30
+mode=LaTeX
+open=true
+order=2
+
+[item:induktion.tex]
+archive=true
+column=0
+encoding=UTF-8
+highlight=LaTeX
+line=5
+mode=LaTeX
+open=false
+order=-1
+
+[item:zahlen.kilepr]
+archive=true
+column=4
 encoding=
 highlight=
 line=0
@@ -126,32 +116,42 @@ mode=
 open=false
 order=-1
 
-[view-settings,view=0,item:CheatSheet-Electrotechnik.tex]
-CursorColumn=18
-CursorLine=121
-JumpList=
-ViMarks=
+[item:zahlentheorie.tex]
+archive=true
+column=28
+encoding=UTF-8
+highlight=LaTeX
+line=35
+mode=LaTeX
+open=true
+order=3
 
-[view-settings,view=0,item:Felder.tex]
-CursorColumn=63
-CursorLine=18
-JumpList=
-ViMarks=
-
-[view-settings,view=0,item:Ladung.tex]
-CursorColumn=31
-CursorLine=8
-JumpList=
-ViMarks=
-
-[view-settings,view=0,item:Potential.tex]
+[view-settings,view=0,item:Math_Main.tex]
 CursorColumn=0
-CursorLine=17
+CursorLine=75
 JumpList=
 ViMarks=
 
-[view-settings,view=0,item:SI-Einheiten.tex]
-CursorColumn=20
-CursorLine=4
+[view-settings,view=0,item:NatuerlicheZahlen.tex]
+CursorColumn=17
+CursorLine=116
+JumpList=
+ViMarks=a,48,87,b,24,0
+
+[view-settings,view=0,item:ganzeZahlen.tex]
+CursorColumn=28
+CursorLine=30
+JumpList=
+ViMarks=a,100,0,b,97,0
+
+[view-settings,view=0,item:induktion.tex]
+CursorColumn=0
+CursorLine=5
+JumpList=
+ViMarks=
+
+[view-settings,view=0,item:zahlentheorie.tex]
+CursorColumn=28
+CursorLine=35
 JumpList=
 ViMarks=

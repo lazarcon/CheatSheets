@@ -1,0 +1,99 @@
+\vfill
+\section{Reihen}
+Informell: Eine Reihe ist eine Folge, die dadurch entsteht, dass man die Glieder einer anderen Folge aufsummiert und die entstanden Partialsummen als neue Folge interpretiert.
+
+Sei $\{a_i\}$ ein Folge von Zahlen und $p$ eine natürliche Zahl. Dann betrachtet man die Summe $\sum_{i=1}^{p} a_i$
+der ersten $p$ Zahlen einer Folge. Gibt es eine Zahl $S$, so dass
+\begin{equation*}
+	\lim_{p \rightarrow \infty} \sum_{i = 1}^{p} a_i = S
+\end{equation*}
+ist, konvergiert also die bis ins unendliche fortgesetzte Summation der Folgeglieder $a_i$ gegen einen festen Wert, so sagt man, die
+Reihe konvergiert gegen $S$ und schreibt in symbolischer Notation
+\begin{equation*}
+	\sum_{i = 1}^{\infty} a_i = S
+\end{equation*}
+Die Zahl $S$ bezeichnet den Summenwert der Reihe (oder auch den Reihenwert). Liegt keine konvergenz vor, so sagt man, die Reihe divergiert.
+
+\subsection{Konvergenzkriterien}
+Damit eine Reihe $\sum_{i = 1}^{\infty} a_i$ konvergieren kann ist es notwendig, dass
+\begin{equation*}
+	\lim_{i \rightarrow \infty} a_i = 0
+\end{equation*}
+
+
+\subsubsection{Quotientenkriterium}
+Es sei eine Reihe $	\sum_{i=1}^{\infty} a_i$
+vorgelegt. Existiert ein Grenzwert
+\begin{equation*}
+	q = \lim_{i \rightarrow \infty} \left| \frac{a_{i + 1}}{a_i} \right|
+\end{equation*}
+und ist $q < 1$, so konvergiert die Reihe. Ist $q > 1$, so divergiert die Reihe.
+Ist $q = 1$ kann keine Aussage gemacht werden.
+
+\subsubsection{Wurzelkriterium}
+Es sei eine Reihe $\sum_{i=1}^{\infty} a_i$
+\begin{equation*}
+	q = \lim_{i \rightarrow \infty} \sqrt[i]{|a_i|}
+\end{equation*}
+und ist $q < 1$, so konvergiert die Reihe. Ist $q > 1$, so divergiert die Reihe.
+Ist $q = 1$ kann keine Aussage gemacht werden.
+
+\subsubsection{Leibniz-Kriterium}
+Sei $\{u_i\}$ eine Folge von Zahlen, die entweder alle positiv oder negativ sind,
+dann nennt man die Reihe
+\begin{equation*}
+	\sum_{i=1}^{\infty} (-1)^i u_i	
+\end{equation*}
+ein alternierende Reihe.\\
+
+Für alternierende Reihen gilt das Leibniz-Kriterium: Konvergiert die Folge $\{u_i\}$ streng monoton gegen 0,
+so konvergiert die Reihe ($u_1 > u_2 > \dots > u_i$)
+
+\subsection{Wichtige Reihen}
+
+\begin{align*}
+	\sum_{i=1}^{\infty} \frac{1}{i}& = \frac{1}{1} + \frac{1}{2} + \dots + \frac{1}{i} \mbox{ (harmonische Reihe, divergiert)}\\
+	\sum_{i=1}^{\infty} (-1)^{i-1}\frac{1}{i} & = 1 - \frac{1}{2} + \frac{1}{3} - \frac{1}{4} + \dots - \frac{1}{i} = \ln 2\\
+	\sum_{i=1}^{\infty} a q^{i-1}& = a + aq + aq^2 + \dots + aq^i \mbox{ geometrische Reihe} (q > 1)\\
+	\sum_{i=1}^{\infty} a q^{i-1}& = a + aq + aq^2 + \dots + aq^i = \frac{a}{1 - q} \mbox{ für } (|q| < 1) \\
+	\sum_{i=0}^{\infty} \frac{1}{i!}& = \frac{1}{0!} + \frac{1}{1!} + \frac{1}{2!} + \dots + \frac{1}{i!} = \mathrm e \\
+	\sum_{i=1}^{\infty} (-1)^{i-1}\frac{1}{2i - 1}& = 1 - \frac{1}{3} + \frac{1}{5} + \dots = \frac{\pi}{4}\\
+	\sum_{i=1}^{\infty} \frac{1}{i^2}& = 1 + \frac{1}{2^2} + \frac{1}{3^2} + \dots  = \frac{\pi^2}{6}\\
+	\sum_{i=1}^{\infty} (-1)^{i-1}\frac{1}{i^2}& = 1 - \frac{1}{2^2} + \frac{1}{3^2} - \dots = \frac{\pi^2}{12}\\	
+	\sum_{i=1}^{\infty} \frac{1}{i \cdot (i + 1)}& = \frac{1} + \frac{1}{6} + \frac{1}{12} + \dots = 1	
+\end{align*}
+Für die Eulersche Zahl gilt, das $0! = 1$
+
+\subsection{Potenzreihen}
+Unter einer Potenzreihe versteht man eine unendliche Reihe vom Typ
+\begin{equation*}
+	P(x) = \sum_{n=0}^{\infty} a_n \cdot (x - x_0)^n = a_0 + a_1 \cdot (x - x_0)^1 + a_2 \cdot (x - x_0)^2 + \dots + a_n \cdot (x - x_0)^n
+\end{equation*}
+Die Stelle $x_0$ heisst Entwicklungspunkt oder auch Entwicklungszentrum.
+Die reellen Zahlen $a_0, a_1, a_2, \dots$ heissen Koeffizienten der Potenzreihe.
+
+\subsubsection{Konvergenzbereich}
+Die Menge aller $x$-Werte, für eine Potenzreihe konvergiert heisst Konvergenzbereich.
+
+Zu jeder Potenzreihe gibt es ene positive Zahl $r$, Konvergenzradius genannt, mit folgenden Eigenschaften:
+\begin{enumerate}\itemsep0em
+	\item Die Potenzreihe konvergiert überall im Intervall $|x| < r$
+	\item Die Potenzreihe divergiert dagegen für $|x| > r$.
+	\item Über das Verhalten in $|x| = r$ lassen sich keine allgemeinen Aussagen machen $\Rightarrow$ explizit betrachten.
+\end{enumerate}
+
+Falls für alle Koeffizienten gilt $a_n \neq 0$ und der ein Grenzwert für $a_n$ vorhanden ist, lässt sich
+der Konvergenzradius $r$ wie folgt berechnen:
+\begin{align*}
+	r& = \lim_{n \rightarrow \infty} \left|\frac{a_n}{a_{n+1}}\right|\\
+	r& = \frac{1}{\lim_{n \rightarrow \infty} \sqrt[n]{|a_n|}}
+\end{align*}
+
+\pagebreak
+\begin{itemize}\itemsep0em
+	\item Für $x = 0$ konvergiert jede Potenzreihe und besitzt dort den Summenwert $P(0) = a_0$\\
+	\item Es gibt Potenzreihen, die nur für $x = 0$ konvergieren
+	\item Es gibt Potenzreihen, die für jedes $x \in \mathbb{R}$ konvergieren
+	\item Allgemein konvergiert eine Potenzreihe in einem zum Nullpunkt symmetrischen Intervall $r$
+\end{itemize}
+

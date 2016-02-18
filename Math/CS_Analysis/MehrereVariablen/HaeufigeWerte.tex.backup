@@ -1,0 +1,7 @@
+\section{Häufige Werte}
+\begin{center}
+\begin{tabular}{c|c|c|c|c}
+\textbf{Rad} & \textbf{Grad} & \textbf{sin} & \textbf{cos} & \textbf{tan} \\\hline
+
+\end{tabular}
+\end{center}

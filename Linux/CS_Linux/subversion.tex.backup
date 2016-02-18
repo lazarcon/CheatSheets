@@ -1,0 +1,30 @@
+\section{Subversion}
+\settowidth{\MyLen}{Remove files from project~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	Install subversion			& \verb!sudo apt-get install subversion! \\
+	Create repository			& \verb!svnadmin create /!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\\
+	Make a project folder		& \verb!svn mkdir file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project} \\
+	Import project				& \verb!cd /!\textit{path}\verb!/!\textit{to}\verb!/!\textit{project}\\
+								& \verb!svn import file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project} \\
+	Checkout					& \verb!svn checkout file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project}\\
+	Commit changes				& \verb!cd /!\textit{path}\verb!/!\textit{to}\verb!/!\textit{project}\\
+								& \verb!svn commit!\\
+	Revert						& \verb!cd /!\textit{path}\verb!/!\textit{to}\verb!/!\textit{project}\\ 
+								& \verb!svn revert <filename>!\\
+	Revert to earlier version	& \verb!cd /!\textit{path}\verb!/!\textit{to}\verb!/!\textit{project}\\
+								& \verb!svn update -r !\textit{number}~\verb!<filename>!\\
+	List of files in project	& \verb!svn list --verbose file:///repository_name/!\textit{project}!\\
+	Add files to a project		& Inside the project directory: \verb!svn add (!\textit{file}\verb!|!\textit{directory}\\
+	Remove files from project	& Inside the project directory: \verb!svn delete (!\textit{file}\verb!|!\textit{directory}\\
+	Creating Releases			& \verb!svn copy file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project}\verb!/trunk! \\
+								& \verb!file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project}\verb!/tags/!\textit{version} \\
+								& \verb!-m "Tagging the !\textit{version}\verb! release of the project"!\\
+\end{tabular}
+
+\verb!<filename>! is an optional name of a file.
+
+Before you can use subversion checkout a working-copy of your projects first. After importing a project you can remove it and than check it out from the projects parent directory.
+Sometimes subversions opens your default text editor. You should enter comments there.
+
+\textbf{Don't forget} to make the repository accessable (\verb!chmod 666!)

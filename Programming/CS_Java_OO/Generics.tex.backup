@@ -1,0 +1,17 @@
+\section{Collections}
+Darstellu
+
+\section{Generics}
+\settowidth{\MyLenA}{Interface~}
+\settowidth{\MyLenB}{IdentityHashMap}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\the\MyLenA}
+				@{}p{\linewidth - \the\MyLenA - \the\MyLenB}
+}
+\multicolumn{1}{c}{\texttt{Interface}} & \multicolumn{1}{c}{\texttt{Interface}} & \multicolumn{1}{c}{\texttt{Beschreibung}}\\ 
+List & ArrayList, LinkedList, Vector, Stack & Sammlung gleichartiger Objekte\\
+Set & HashSet, LinkedHashSet & Menge von Objekten (d.\,h. keine Doppelten)\\
+Map & Attributes, HashMap, Hashtable, IdentityHashMap, RenderingHints, WeakHashMap & Key-Value-Speicher\\
+SortedSet & TreeSet & Geordnete Menge von Objekten\\
+SortedMap & TreeMap & Geordnete Key-Value-Paare\\ 
+\end{tabular}

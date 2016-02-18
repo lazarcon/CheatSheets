@@ -1,0 +1,115 @@
+\section{Zahlensysteme}
+
+\subsection{Darstellung allgemein}
+Jede gebrochene Zahl $z$ mit $n$-Stellen vor und $m$ Stellen nach dem Komma ($n, m \in \mathbb{N}\textbackslash\{0\}$) 
+mit einer Basis $B$ und den Ziffern $b \in \{0, 1, \dots, B-1\}$ lässt sich als Summe darstellen:
+\begin{equation*}
+	z = \sum_{i=-m}^{n-1} b_i \cdot B^i
+\end{equation*}
+
+\subsection{Konvertierung}
+\subsubsection{Zahlensystem zur Basis $B$ ins Dezimalsystem}
+$n$ = Vorkommastellen, $m$ = Nachkommastellen
+\settowidth{\MyLenA}{Nach~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Vor  & $z = (\dots((b_n \cdot B + b_{n-1}) \cdot B + b_{n-2}) \cdot B + \dots + b_1) \cdot B + b_0$\\
+	Nach  & $z = (\dots((b_m \cdot 1/B + b_{-m+1}) \cdot 1/B + b_{-m+2}) \cdot 1/B + \dots + b_{-1}) \cdot 1/B$\\
+\end{tabular}
+
+\subsubsection{Dezimalsystem in System zur Basis $B$}
+
+\textbf{Vorkommastellen} Eingabe Vorkommastellen $n$, Basis $B$\\
+Wiederhole
+\begin{enumerate}
+	\item $y = n : B$ Rest $z$ (Dividiere durch $B$, behalte $z$)
+	\item $n = y$ (Rechne mit Divisionsergebnis ohne Rest weiter)
+\end{enumerate}
+bis ($y = 0)$\\
+Die Reste $z$ von unten nach oben ergeben die die gesuchte Zahl.
+
+Beispiel: $n = 122$, gesucht Darstellung zur Basis 8 (Oktal)
+\begin{align*}
+	122 \div 8 = 15&~\mbox{Rest}~2\\
+	15 \div 8 = 1&~\mbox{Rest}~7\\
+	1 \div 8 = 0&~\mbox{Rest}~1 \rightarrow 122_{10} = 172_8
+\end{align*}
+
+\textbf{Nachkommastellen} Eingabe Nachkommastellen $m$, Basis $B$\\
+Wiederhole
+\begin{enumerate}
+	\item $y = m \cdot B$ (Multipliziere $m$ mit $B$)
+	\item $m = \mbox{frac}(y)$ (Setze den Nachkommateil von $y$ zum neuen $m$)
+\end{enumerate}
+bis ($m = 0$)\\
+Die ganzzahligen Anteile von oben nach unten ergeben die gesuchte Zahl.
+
+Beispiel: $n = 0{,}3984375$, gesucht Darstellung zur Basis 8 (Oktal)
+\begin{align*}
+	0{,}3984375 \cdot 8 = 3{,}1875&~\mbox{Ganzzahlanteil:}~3\\
+	0{,}1875 \cdot 8 = 1{,}5&~\mbox{Ganzzahlanteil:}~1\\
+	0{,}5 \cdot 8 = 4{,}0&~\mbox{Ganzzahlanteil:}~4 \rightarrow 0{,}3984375_{10} = 0{,}314_8
+\end{align*}
+
+\subsection{Einerkomplement}
+Erstes Bit = Vorzeichen (1 für negativ), Zahl = Invertierung der positiven Zahl.
+Überlauf ist, wenn zu einer 1 ganz links, eine 1 addiert wird. Diese wird der Ziffer ganz rechts hinzugefügt.
+Nachteile: Redundante Darstellung der 0, separate Betrachtung des Überlaufs $\rightarrow$ 2 Additionen
+
+\subsection{Zweierkomplement}
+Beim Zweierkomplement werden negativen Zahlen des Einerkomplements um 1 erhöht. Beim Überlauf wird ein 
+Warnmeldungsflag (Overflow) auf wahr gesetzt.
+
+\subsection{Festpunktzahlen}
+Haben eine festgelegte Länge von Vorkommazahlen ($n$) und Nachkommazahlen ($m$).
+Sie decken jeweils nur einen bestimmten Wertebereich ab, gewisse Zahlen lassen sich exakt darstellen, andere nicht.
+Rechnen mit Werten sehr unterschiedlicher Grösse ist schwierig bis unmöglich. Festkommazahlen werden daher nur
+für Spezialanwendungen gebraucht.
+
+\subsection{Fliesskommazahlen}
+(IEEE 754): $s$ = Vorzeichen (0 positiv, 1 negativ), $M$ = Mantisse, $B$ = Basis und $E$ = Exponent.
+\begin{equation}
+x = s \cdot M \cdot B^E
+\end{equation}
+Die Mantisse ist 23 bzw. 52 Bit lang und sie ist normiert (Dargestellt als 1.xxx), wobei die führende 1 weggelassen wird 
+um die Präzision um ein Bit zu erhöhen, also zu verdoppeln.
+
+
+	\begin{tabular}{ll|l}
+							& \textbf{Single Precision} 				& \textbf{Double Precision} \\
+	\hline
+	Vorzeichen				& 1 Bit														& 1 Bit	\\
+	Exponent				& 8 Bit														& 11 Bit\\
+	Mantisse				& 23 Bit													& 52 Bit\\
+	Gesamtlänge				& 32 Bit													& 64 Bit\\
+	Biaswert				& 127														& 1\,023\\
+	Wertebereich Exponent 	& $-126 \leq e \leq 127$									& $-1\,022 \leq e \leq 1\,023$\\
+	Dezimalstellen 			& 7 \dots\ 8												& 15 \dots\ 16\\
+	Genauigkeit				& $2^{-(23 + 1)} \approx 5{,}96 \cdot 10^{-8}$				& $2^{-(52 + 1)} \approx 1{,}1\cdot 10^{16}$\\
+	Minimum					& $2^{-(23 + 126)} \approx 1 \cdot 10^{-45}$				& $2^{-(52 + 1\,022)} \approx 5 \cdot 10^{-324}$	\\
+	Maximum					& $(1 - 2^{-24}) \cdot 2^{128} \approx 3{,}4 \cot 10^{38}$	& $(1 - 2^{-52}) \cdot 2^{1\,024} \approx 1{,}8 \cdot 10^{308}$\\
+	\end{tabular}
+
+Beispiel: Darstellung von $18{,}4_{10}$ als IEEE 754 Gleitpunktzahl:
+\begin{enumerate}
+	\item Vorzeichen: positiv $\rightarrow 0$ 
+	\item Mantisse:
+		\begin{enumerate}
+			\item Umwandlung in duale Festkommazahl ohne Vorzeichen:
+			\begin{align*}
+				18_{10}& = 1\,0010_2\\
+				0.4_{10}& = 0.1100\,1100\,1100\,\dots_2\\
+				18.4_{10}& = 1\,0010.1100\,1100\,\dots_2
+			\end{align*}
+			\item Normalisierung
+			\begin{equation*}
+				18.4_{10} = 1\,0010.1100\,1100\,\dots_2 \cdot 2^0 = 1.0010\,1100\,1100\,\dots_2 \cdot 2^4 \rightarrow e = 4
+			\end{equation*}
+		\end{enumerate}
+	\item Exponent:
+		\begin{enumerate}
+			\item Exponent $e=4$, Biaswert = 127;
+			\item $E = e + Biaswert = 4_{10} + 127_{10} = 131_{10} = 1000\,0011_2$
+		\end{enumerate}
+\end{enumerate}
+Die zusammengesetzte Gleitpunktzahl ist: $0\,10000011\,00101100110011001100110$

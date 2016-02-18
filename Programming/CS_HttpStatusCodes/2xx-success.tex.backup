@@ -1,0 +1,13 @@
+\section{2xx - Success}
+\begin{description}\itemsep0em
+	\item [200] Standard response for successful \texttt{HTTP} requests
+	\item [201]	Request has been fulfilled; new resource created
+	\item [202] Request accepted, processing pending
+	\item [203] Request processed, information may be from another source
+	\item [204] Request processed, no content returned
+	\item [205] Request processed, no content returned, reset document view
+	\item [206] Partial resource returned due to request header
+	\item [207] XMLl, can contain multiple separate responses
+	\item [208] Results previously returned
+	\item [226] Request fulfilled, reponse is instance-manipulations
+\end{description}

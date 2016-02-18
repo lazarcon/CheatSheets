@@ -1,0 +1,71 @@
+\subsection{Vollständige Induktion}
+\begin{equation*}
+(E(0)\wedge \forall n \in \N (E(n) \Rightarrow E(n + 1)))\Rightarrow \forall n \in \N (E(n))
+\end{equation*}
+
+Man zeigt etwas für die 0. Anschliessend nimmt man an, dass wenn es für eine
+natürliche Zahl gilt, dann auch für deren Nachfolger.
+Wenn es für die 0 und für Nachfolger gilt, dann gilt es für alle.
+
+Zu zeigen: $\forall n \in \N \colon n + 0 = n$\\
+Problem: bisherige Theoreme lassen sich nicht anwenden.\\
+\begin{proof}[Beweis: Vollständige Induktion über $n$]
+	\begin{align*}
+		n	& = 0	& \mbox{(Induktionsanfang)}\\
+		0 + 0& = 0	& \mbox{(Addition 1: Für die 0 bewiesen)}\\
+	\end{align*}
+	Induktionschritt: Wir schliessen von $n = k$ auf $n = \sigma(k)$
+	\begin{align*}
+		k + 0 	& = k	& \mbox{Induktionsannahme; für $k$ gilt es bereits}\\
+		\sigma(k) + 0	& = \sigma(k)		& \mbox{(Neu zu zeigen: gilt für Nachfolger)}\\
+		\sigma(k) + 0	& = \sigma(k + 0)	& \mbox{(Addition 2)}\\
+						& = \sigma(k)		& \mbox{(Induktionsannahme: für $\sigma(k)$ bewiesen)}
+	\end{align*}
+	\qedhere
+\end{proof}
+Der Trick ist, die Induktionsannahme im Beweis zu verwenden. Es wird nur angenommen, dass die Formel für eine Zahl gilt.
+Bewiesen wird dann, wenn die Formel für eine Zahl gilt, gilt sie auch für alle anderen.
+
+\subsubsection{Die Ordnung der natürlichen Zahlen}
+Die Kleiner-als-Relation wird rekursiv definiert:
+\begin{enumerate} 
+	\item Keine Zahl ist kleiner als null: $\forall n \in \N \colon \neg n < 0$
+	\item Eine Zahl ist kleiner als der Nachfolger einer anderen Zahl genau dann, wenn beide Zahlen gleich gross oder die erste Zahl kleiner als die zweite ist:
+		$\forall m, n \in \N \colon m < \sigma(n) \Leftrightarrow (m = n) \vee (m < n)$
+\end{enumerate}
+Zu zeigen: $3 < 5$
+\begin{proof}
+	\begin{align*}
+		(3 < 5) & = (3 < \sigma(4))				& \mbox{(Definition der 5)}\\
+		& \Leftrightarrow (3 = 4) \vee (3 < 4)	& \mbox{(Kleiner 2: links falsch)}\\
+		(3 < 4) & = (3 < \sigma(3))				& \mbox{(Definition der 4)}\\
+		& \Leftrightarrow (3 = 3) \vee (3 < 3)	& \mbox{(Kleiner 2: (3 = 3) ist wahr)}
+	\end{align*}
+	\qedhere
+\end{proof}
+
+\subsubsection{Die Gaussche Summenformel}
+\begin{equation*}
+	1 + 2 + \dots + n = \Sigma_{i = 1}^{n} i = \frac{n \cdot (n+1)}{2}
+\end{equation*}
+Zu zeigen: $\forall n \in \N\textbackslash\{0\} \colon \Sigma_{i = 1}^n i = \frac{n \cdot (n + 1)}{2}$
+\begin{proof}
+	Induktion über $n$
+	\begin{align*}
+		n& = 1 &\mbox{(Induktionsanfang)}\\
+		\Sigma_{i=1}^1 i & = 1 = \frac{2}{2} = \frac{1 \cdot 2}{2} = \frac{1 \cdot(1 + 1)}{2} &\mbox{Beweis für 1}\\
+	\end{align*}
+	Induktionsschritt: Wir schliessen von $n = k$ auf $n = k + 1$
+	\begin{align*}
+		\Sigma_{i=1}^k i& = \frac{k \cdot (k + 1)}{2} &\mbox{Induktionsannahme}\\
+		\Sigma_{i=1}^{k+1} i& = \frac{(k + 1) \cdot ((k + 1) + 1)}{2} &\mbox{Neu zu zeigen}\\
+		\Sigma_{i=1}^{k+1} i& = \Sigma_{i=1}^{k} i + (k + 1)&\mbox{Summe um einen Term verkürzt}\\
+		& = \frac{k \cdot (k + 1)}{2} + (k + 1)& \mbox{Induktionsannahme}\\
+		& = \frac{k \cdot (k + 1)}{2} + \frac{2 \cdot (k + 1)}{2} & \mbox{Rechts um zwei erweitert}\\
+		& = \frac{k \cdot (k + 1) + 2 \cdot (k + 1)}{2}& \mbox{Zusammenzug}\\
+		& = \frac{(k + 1) \cdot (k + 2)}{2} & k + 1 \mbox{ausklammern}\\
+		& = \frac{(k + 1) \cdot ((k + 1) + 1)}{2} & \mbox{Terme vertauscht}
+	\end{align*}
+	\qedhere
+\end{proof}
+

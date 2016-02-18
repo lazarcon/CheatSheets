@@ -1,0 +1,71 @@
+\section{Nachfrage}
+\textit{ceteris paribus (cet. par.)} (lat. alles andere bleibt gleich).\\
+Einflussfaktoren:
+\begin{itemize}\itemsep0em
+	\item Preis
+	\item Nutzenerwartung
+	\item Preis anderer Güter
+	\item Einkommen
+	\item Zukunftserwartungen
+\end{itemize}
+Bezüglich Preis (cet. par.) gilt: Je höher, desto weniger Nachfrage.
+Nachfrageänderungen:
+\begin{itemize}\itemsep0em
+	\item Preisänderung: Auf der Nachfragekurve
+	\item Andere Änderungen: Verschiebung der Nachfragekurve (links oder rechts)
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}
+    %\draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+    \draw[->] (0,0) -- (5,0) node[below] {Menge};
+    \draw[->] (0,0) -- (0,4.2) node[left] {Preis};
+    \draw[domain=0.25:4.5] plot[id=xl] function{1/x} node[right] {};
+    \draw [thick, domain=1.34:4.5] plot[id=x] function{1/(x - 1) + 1}  node[right] {Nachfrage};
+    \draw [domain=2.5:4.5] plot[id=xr] function{1/(x - 2) + 2}  node[right] {};
+	% lines
+	\draw [dashed] (0,2.5)  node [left] {$P$} -- (4, 2.5);
+	\draw [dashed](4,0) node [below] {$M_r$} -- (4,2.5);
+	\draw [dashed](1.67,0) node [below] {$M$} -- (1.67, 2.5);
+	\draw [dashed](0.4, 0) node [below] {$M_l$}-- (0.4, 2.5);
+\end{tikzpicture}
+\end{center}
+
+\begin{description}\itemsep0em
+	\item [Substitutionsgut] Ein Gut, das ein anderes ersetzen kann
+	\item [Komplemtärgut] Ein Gut, das ein anderes ergänzt
+\end{description}
+
+%\settowidth{\MyLenA}{}
+ \begin{tabular}{@{}p{\linewidth/2}%
+				@{}p{\linewidth/2}}
+	\multicolumn{1}{c}{\underline{Linksverschiebung}} & \multicolumn{1}{c}{\underline{Rechtsverschiebung}}\\
+	Tiefere Nutzenerwartung & Höhere Nutzenerwartung \\
+	Substitutionsgüter $\rightarrow$ billiger & Substitutionsgüter $\rightarrow$ teurer \\
+	Komplementärgüter $\rightarrow$ teurer & Komplementärgüter $\rightarrow$ billiger \\
+	Tieferes Einkommen & Höheres Einkommen \\
+	Erwartete Preissenkungen & Erwartete Preissteigerungen \\
+	Bevölkerung nimmt zu & Bevölkerung nimmt zu \\
+\end{tabular}
+
+
+\subsection{Erstes Gossensches Gesetz}
+\textbf{Grenznutzen} bezeichnet den zusätzlicher Nutzen pro zusätzlicher Einheit.
+
+Die Grösse eines und desselben Genusses nimmt, wenn wir mit Bereitung des Genusses ununterbrochen fortfahren, 
+fortwährend ab, bis zuletzt Sättigung eintritt.
+
+$\Rightarrow$ Der Grenznutzen ist abnehmend; je mehr man von etwas hat, desto weniger will man für zusätzliche Einheiten
+bezahlen. Die Nachfragekurve ist eine Grenznutzenkurve!
+
+\subsection{Zweites Gossensches Gesetz}
+Wird ein Gut teurer, werden alle anderen Güter relativ billiger. 
+
+Der Grenznutzen ist ausgleichend; haben zwei Güter den gleichen Grenznutzen zu unterschiedlichen Preisen,
+nehmen wir das billigere Gut. Wir sind bestrebt den Grenznutzen pro Geldeinheit in allen Verwendungsrichtungen
+gleich gross zu halten.
+
+Ein Haushalt befindet sich demnach in einem Haushaltsoptimum, wenn seine Grenznutzen für alle Güter, 
+jeweils geteilt durch den Preis des Gutes, übereinstimmen. 
+Andernfalls könnte er seinen Nutzen steigern, da sich eine Umstrukturierung des Konsums so vornehmen liesse, 
+dass eine Ausgabenreduzierung bei einem Gut weniger Nutzeneinbuße als eine entsprechende Ausgabenerhöhung bei einem anderen Gut Nutzenzuwachs bedeutet. 

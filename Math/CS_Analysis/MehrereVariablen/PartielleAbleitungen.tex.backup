@@ -1,0 +1,66 @@
+\section{Partielle Ableitungen}
+Eine Funktion mit mehreren Variablen wird nach nur einer der Variablen abgeleitet. Die übrigen werden als Konstant angenommen.
+\begin{equation*}
+	\frac{\partial f}{\partial x} (x; y)= f_x(x; y) = m_x = \lim_{\Delta x \rightarrow 0} \frac{f(x + \Delta x, y) - f(x, y)}{\Delta x}
+\end{equation*}
+(Analog für alle weiteren).
+$f_x$ entspricht dem Anstieg der Flächentangente in positiver $x$-Richtung im Punkt $(x, y)$.
+Oft ist es nützlich eine oder mehrere Hilfsvariablen einzuführen:
+\begin{align*}
+	z& = f(x; 0) = xy^2 \cdot (\sin x + \sin y)\\
+	u& = xy^2 \rightarrow u_x = y^2, u_y = 2xy\\
+	v& = \sin x + \sin y \rightarrow v_x = \cos x, v_y = \cos y\\
+	z& = u \cdot v\\
+	z_x& = u_xv + uv_x = y^2(\sin x + \sin y) + xy^2 \cos x\\
+	z_y& = u_yv + uv_y = 2xy (\sin x + \sin y) + xy^2 \cos y
+\end{align*}
+
+\subsection{Partielle Ableitungen höherer Ordnung}
+Die partiellen Ableitungen erster Ordnung werden erneut abgeleitet.
+Es ergeben sich dann $f_{xx}, f_{xy}, f_{yx}, f_{yy}$ usw. Wobei die Reihenfolge des Ableitens keine Rolle spielt: $f_{xy} = f_{yx}$, wenn die partiellen Ableitungen stetige Funktionen sind.
+
+
+\subsection{Tangentialebene}
+Die Tangentialebene $z = t(x, y)$ besitzt im Punkt $P = (x_0, y_0, z_0)$ die gleiche Steigung (aka gleiche partielle Ableitungen) wie die gegebene Funktion $z = f(x, y)$ ($z_0 = f(x_0, y_0)$).
+% \begin{align*}
+% 	a& = t_x(x_0, y_0) = f_x(x_0, y_0) & b&= t_y(x_0, y_0) = f_y(x_0, y_0)\\
+% 	c& = z_0 - ax_0 - by_0 & z_0 = f(x_0, y_0)
+% \end{align*}
+\begin{equation*}
+	z = f_x(x_0; y_0) \cdot (x - x_0) + f_y(x_0; y_0) \cdot (y - y_0) + z_0
+\end{equation*}
+Beispiel:
+\begin{align*}
+	z& = f(x; y) = x^2 + y^2, P = (1; 2; 5)\\
+	f_x(x; y)& = 2x \Rightarrow f_x(1, 2) = 2\\
+	f_y(x; y)& = 2y \Rightarrow f_y(1, 2) = 4\\
+	z - 5& = 2 (x - 1) + 4 (y - 2)\\
+	z & = 2x + 4y - 5
+\end{align*}
+
+\subsection{Das totale Differential}
+Unter dem totalen (vollständigen) Differential einer Funktion $z = f(x; y)$ von zwei unabhängigen Variablen wird der linerare Ausdruck
+\begin{equation*}
+	\mathrm dz = f_x \mathrm dx + f_y \mathrm dy = \frac{\partial f}{\partial x} \mathrm dx + \frac{\partial f}{\partial y} \mathrm dy
+\end{equation*}
+verstanden. Es beschreibt die Änderung der Höhenkoordinate auf der im Berührungspunkt $P(x_0, y_0, z_0)$ errichteten Tangentialebene. d$x$, d$y$ und d$z$ sind dann Koordinaten auf der Tangentialebene bezogen auf $P$.
+
+Mit weiteren unabhängigen Variablen würden diese einfach linear hinzugefügt:
+\begin{equation*}
+	\mathrm dy = f_{x_1} \mathrm dx_1 + f_{x_2} \mathrm dx_2 + \dots + f_{x_n} \mathrm dx_n
+\end{equation*}
+
+\subsection{Anwendungen}
+\subsubsection{Implizite Differentiation}
+Der Anstieg der implizit dargestellten Funktion $F(x; y) = 0$ im Punkt $P = (x; y)$ lässt sich wie folgt bestimmen:
+\begin{equation*}
+	y'(x; y) = - \frac{F_x(x; y}{F_y(x; y)}
+\end{equation*}
+Erst ableiten, dann einsetzen!
+
+\subsubsection{Linearisierung}
+In der Umgebung eines Flächenpunktes $P = (x_0; y_0; z_0)$ kann die nichtlineare Funktion $z = f(x; y)$ näherungsweise durch die Tangentialebene ersetzt werden:
+\begin{equation*}
+	\Delta z = f_x(x_0; y_0) \, \Delta x + f_y(x_0, y_0) \, \Delta y
+\end{equation*}
+

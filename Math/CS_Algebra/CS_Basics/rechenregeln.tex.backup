@@ -1,0 +1,49 @@
+\section{Arithmetik}
+\subsection{Regeln}
+\settowidth{\MyLenA}{Kommutativität~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Kommutativität	& $a + b = b + a$\\
+					& $ab = ba$\\
+	Assoziativität 	& $a + (b + c) = (a + b) + c$\\
+					& $a(bc) = (ab)c$\\
+	Distributiviät	& $a(b + c) = ab + ac$\\
+\end{tabular}
+
+\subsection{Brüche}
+Terminologie: $\frac{\mbox{Divident(Zähler)}}{\mbox{Divisor(Nenner)}} = \mbox{Quotient(Bruch)}$\\
+Division ist nur erlaubt für $(\mbox{Divisor} \neq 0)$!
+\settowidth{\MyLenA}{Addition/Subtraktion~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Erweitern				& $\frac{a}{b} = \frac{a \cdot u}{b \cdot u}$\\
+	Kürzen					& $\frac{a \cdot u}{b \cdot u} = \frac{a \cdot \msout{u}}{b \cdot \msout{u}} = \frac{a}{b}$\\
+	Addition/Subtraktion	& $\frac{a}{b} \pm \frac{c}{d} = \frac{ad \pm c \cdot b}{d \cdot b}$\\
+	Multiplikation 			& $\frac{a}{b} \cdot \frac{c}{d} = \frac{a \cdot c}{b \cdot d}$\\
+	Division				& $\frac{a}{b} \div {\frac{c}{d}} = \frac{a \cdot d}{b \cdot c}$\\
+\end{tabular}
+
+\subsection{Beträge}
+$\left|a \pm b\right| \leq \left|a\right| + \left|b\right|$ (Dreiecksungleichung)\\
+$\left|a\right| - \left|b\right| \leq \left|a\right| + \left|b\right|$\\
+$\left|a_{1} + a_{2} + \dots + a_{n}\right| \leq \left|a_{1}\right| + \left|a_{2}\right| + \dots + \left|a_{n}\right|$\\
+$\left|ab\right| = \left|a\right| \cdot \left|b\right|$\\
+$\left|\frac{a}{b}\right| = \frac{\left|a\right|}{\left|b\right|}$
+$\left|x\right| = a \Leftrightarrow x_{1,2} = \pm a\,\,\,(a > 0)$\\
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Binomischer Lehrsatz}
+Ein Binom ist die Summe zweier Glieder der allgemeinen Form $(a + b)$.\\
+Es gilt: $(a + b)^{n} = \sum_{k=0}^n{\binom{n}{k} a^{n-k} \cdot b^{k}}$\\
+Wobei: $\binom{n}{k} = \frac{n(n - 1)(n - 2)\cdots[n - (k - 1)]}{k!}\,(0 < k \leq n)$
+Die Ergebnisse des Binominalkoeffizienten lassen sich aus dem Pascalschen Dreieck ablesen, wobei der Wert in Zeile $(n + 1)$ und Spalte $(k + 1)$ steht.
+

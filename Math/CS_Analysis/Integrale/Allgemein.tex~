@@ -1,0 +1,48 @@
+\section{Allgemein}
+Die Integration ist die Umkehrung der Ableitung.
+\begin{equation*}
+	y = f(x) \xrightarrow{\mbox{Differentiation}} y' = f'(x) \xrightarrow{\mbox{Integration}} y = f(x) 
+\end{equation*}
+
+\subsection{Stammfunktion}
+Es sei $f(x)$ eine auf dem Intervall $[a, b]$ definierte Funktion. Eine Funktion $F(x)$ heisst Stammfunktion
+von $f(x)$ falls für alle $x \in [a, b]$ gilt: $F'(x) = f(x)$.\\
+Eigenschaften:
+\begin{enumerate}\itemsep0em
+	\item Hat eine stetige Funktion $f(x)$ mindestens eine Stammfunktion, so hat sie unendliche viele Stammfunktionen.
+	\item Zwei beliebige Stammfunktione $F_1(x) und F_2(x)$ unterscheiden sich durch eine additive Konstante $C$. ($F_1(x) - F_2(x) = $ konstant.
+	\item Ist $F_1(x)$ eine beliebige Stammfunktion von $f(x)$, so ist auch $F_1(x) + C$ eine Stammfunktion von $f(x)$.
+	Die allgemeine Stammfunktion ist: $F(x) = F_1(x) + C$, wobei $C$ eine beliebige reelle Konstante ist.
+\end{enumerate}
+
+\subsection{Flächeninhalt (bestimmtes Integral)}
+Um die Fläche $A$ unterhalb einer Funktion $f(x)$ zu berechnen gilt folgendes Vorgehen:
+\begin{enumerate}\itemsep0em
+	\item Fläche in $n$ Streifen teilen
+	\item Alle Streifenflächen berechnen
+	\item Flächen aufsummieren
+\end{enumerate}
+
+In der Theorie wird eine Fläche in Rechtecke zerlegt, Untersumme ($U_n$) und Obersumme ($O_n$) berechnet. Die Fläche liegt zwischen diesen beiden Werten.
+\begin{align*}
+	U_n& = \sum_{k=1}^n f(x_{k-1}) \cdot \Delta x_k &   
+	O_n& = \sum_{k=1}^n f(x_{k}) \cdot \Delta x_k\\
+\end{align*}
+\begin{equation*}
+	A = \lim_{n \rightarrow \infty} U_n = \lim_{n \rightarrow \infty} O_n = \lim_{n \rightarrow \infty} \sum_{k=1}^n f(x_k) \cdot \Delta x_k = \int\limits_a^b f(x)\dop{x} = \int\limits_{x=a}^{x=b} \dop{A}
+\end{equation*}
+
+Das bestimmte Integral ist eine Zahl, die der Fläche entspricht.
+
+\subsection{Flächenfunktion (unbestimmtes Integral)}
+\begin{equation*}
+	I(x) = \int\limits_a^x f(t)\dop{t}
+\end{equation*}
+Die obere Intervall Grenze wird offengelassen. Das unbestimmte Integral ist eine Funktion. Eigenschaften:
+
+\begin{enumerate}\itemsep0em
+	\item Das unbestimmte Integral $I(x) = \int_a^x f(t)\dop{t}$ repräsentiert den Flächeninhalt zwischen $y = f(t)$ und der $t$-Achse im Intervall $a \leq t \leq x$ in Abhängigkeit
+	von der oberen Grenze $x$.
+	\item Zu jeder stetigen Funktion $f(t)$ gibt es unendliche viele unbestimmte Integrale, die sich in ihrer unteren Grenze voneinander unterscheiden.
+	\item Die Differenz zweier unbestimmter Integrale $I_1(x)$ und $I_2(x)$ von $f(t)$ ist eine Konstante.
+\end{enumerate}

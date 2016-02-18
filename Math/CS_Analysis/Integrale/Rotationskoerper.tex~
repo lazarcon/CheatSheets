@@ -1,0 +1,11 @@
+\section{Rotationskörper}
+\subsection{x-Achse}
+\begin{equation*}
+	V_x = \pi \cdot \lint{a}{b} y^2 \dop{x} = \pi \cdot \lint{a}{b} (f(x))^2 \dop{x}
+\end{equation*}
+
+\subsection{y-Achse}
+$y = f(x)$ in $x = g(y)$ umrechnen und Intervallgrenzen berechnen ($c = f(a), d = f(b)$)
+\begin{equation*}
+	V_y = \pi \cdot \lint{c}{d} x^2 \cdop{y} = \pi \cdot \lint{c}{d} (g(x))^2 \dop{y} 
+\end{equation*}

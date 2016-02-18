@@ -1,0 +1,124 @@
+\section{Marktwirtschaft}
+Der Mensch hat unbeschränkte Bedürfnisse, die Erde als geschlossenes System hat aber nur beschränkte Ressourcen (Knappheit) [$\Rightarrow$] Je mehr Menschen, desto grösser ist der Kampf um diese Ressourcen.
+
+\subsection{Zentrale Fragen}
+\begin{itemize}\itemsep0em
+	\item Was soll produziert werden?
+	\item Wie soll produziert werden?
+	\item Für wen soll produziert werden?
+\end{itemize}
+
+\subsection{Wirtschaftssysteme}
+Die Wirtschaftssysteme versuchen diese Fragen zu beantworten.
+
+\subsubsection{Zentrale Planwirtschaft}
+Politisch \enquote{links} angesiedeltes System, wie etwa in Kuba oder Nordkorea (typischerweise Diktaturen)
+\begin{itemize}\itemsep0em
+	\item Die staatliche Kontrolle strebt gegen 100\%
+	\item Produktionsmittel sind in staatlicher Hand
+	\item Zentrale Planstellen entscheiden über Produktionsmengen und Preise
+	\item [$\Rightarrow$] kleine Planungsfehler bezüglich Preis oder Menge haben riesige Folgen für Preis und Menge.
+\end{itemize}
+
+\subsubsection{Freie Marktwirtschaft}
+Politisch \enquote{rechts} angesiedeltes System, wie etwa in den USA oder GB (typischerweise Demokratien)
+\begin{itemize}\itemsep0em
+	\item Die staatliche Kontrolle strebt gegen 0\%
+	\item Produktionsmittel sind in privater Hand
+	\item Die Märkte entscheiden über Produktionsmengen und Preise
+	\item [$\Rightarrow$] versagen die Märkte ist das Leid gross (Immobilenblase)
+\end{itemize}
+
+\subsubsection{Sozial Marktwirtschaft}
+Politisch in der \enquote{mitte} angesiedeltes System, wie etwa CH, D oder auch F (typischerweise Demokratien)
+\begin{itemize}\itemsep0em
+	\item Der Staat kontrolliert, was notwendig ist
+	\item Die Produktionsmittel sind in privater Hand
+	\item Die Märkte entscheiden über Produktionsmengen und Preise
+	\item [$\Rightarrow$] der Kompromiss aus zentraler Planwirtschaft und freier Marktwirtschaft
+\end{itemize}
+
+
+\subsection{Markt- und Preisfunktionen}
+Der Markt ist ein Verfahren, bei dem durch Zusammenwirken von Anbietern und Nachfragern Entscheidungen über Preis und Menge von Gütern und Produktionsfaktoren getroffen werden.
+
+\begin{description}\itemsep0em
+	\item [Informationsträger] Preise zeigen an, \textbf{was} produziert werden soll
+	\item [Steuerung und Allokation] (Allokation = Zuweisung verfügbarer Mittel an die Herstellung bestimmter Güter) Preise zeigen an, \textbf{wie}, d.\,h. mit
+	welchen Mitteln, produziert werden soll (Hohe Preise $\Rightarrow$ Produktionsfaktoren für diese Güter verwenden)
+	\item [Koordination] Der Markt-Preis-Mechanismus steuert auf den Märkten für Produktionsfaktoren ebenfalls \textbf{für wen} produziert wird
+\end{description}
+
+Der Markt sorgt für die fortwährende Suche nach neuen Produkten, besseren Technologien und die Ressourcen bestmöglich zu nutzen. Das Preissystem
+signalisiert Knappheit und Überschüsse. Gemäss \textit{Adam Smith (1723-1790)} lenkt eine \enquote{unsichtbare Hand} die Handlungen aller Individuen, so dass der Nutzen aller
+maximiert wird (Wen jeder nach sich selbst schaut, ist allen geschaut).
+
+Damit die Wirtschaft blüht, braucht es risikofreudige, innovative Unternehmer, die mit neuen Produkten und Technologien die Märkte für sich erobern.  
+
+\subsection{Marktversagen}
+Der Markt funktioniert aber nicht (immer), weil die Bedingungen dafür fehlen:
+\begin{enumerate}\itemsep0em
+	\item Es gibt keine homogenen Güter
+	\item Es gibt nur wenige Anbietern
+	\item Märkte sind aufgrund von Eintrittsbarrieren selten frei zugänglich
+	\item Beide Seiten sind nicht vollständig informiert
+\end{enumerate}
+
+Ursachen für das Marktversagen können sein:
+\begin{description}\itemsep0em
+	\item [Wettbewerbsbeschränkungen] Monopole (Autoimport), Normen, Preis- und Mengenabsprachen (Kartelle, OPEC) führen zu künstlicher Knappheit
+	und damit zu höheren Preisen (\enquote{rent seeking} -- Einkommen ohne rechtfertigende Leistung)
+	\item [Öffentliche Güter] gelten beide der folgenden Bedingungen
+	\begin{enumerate}\itemsep0em
+		\item Das Ausschlussprinzip (man kann vom Konsum ausgeschlossen werden) funktioniert nicht
+		\item Es herrscht Nicht-Rivalität im Konsum, d.\,h. Konsum durch den Einen schränkt den Konsum durch einen Anderen nicht ein
+	\end{enumerate}
+	ist \enquote{freeriding} (Trittbrettfahrern) die Konsum-Option, die alle Wählen und damit das Angebot durch Private verhindern (z.\,B. saubere Umwelt)
+	\item [Externe Effekte] treten auf, wenn unbeteiligte Dritte die Folgen eines Konsums spüren. Dabei ist zu unterscheiden:
+	\begin{description}\itemsep0em
+		\item [Externe Kosten] nicht alle Kosten vom Verursacher getragen werden. Da sind die Preise zu tief und der Konsum zu hoch.
+		\item [Externer Nutzen] Vorteile ohne eigenes zu tun. Da dieser Nutzen nicht verkauft werden kann, werden kaum Güter mit externem Nutzen produziert.
+	\end{description}
+	\item[Asymmetrische Information] Weiss eine Vertragspartei mehr als die andere kommt es zur \enquote{adverse selection}, der falschen Auslese (Nicht optimaler Preis, nicht optimale Menge).
+	Hat ein Tauschpartner die Möglichkeit und einen Anreiz Kosten auf den Tauschpartner zu überwälzen liegt ein \enquote{moral hazard} ein moralisches Risiko vor. (Versicherungen, Ärzte)
+	\item[Soziale Fragen] Der Markt ist gar nicht für soziale Fragen gemacht; Alte, Kranke, Schwache nehmen nicht teil. 
+\end{description}
+
+\subsection{Staatliche Eingriffe}
+Damit der Markt funktioniert muss der Staat sicherstellen:
+\begin{enumerate}\itemsep0em
+	\item Privateigentum der Güter
+	\item Vertrags- und Rechtssicherheit
+	\item Schliessen von Zutrittsbarrieren zum Markt $\rightarrow$ offene Märkte
+	\item Sicherung des Wettbewerbs (Verhindern von \enquote{rent-seeking}; Preisüberwacher, WEKO)
+	\item Bereitstellen von öffentlichen Gütern oder deren Produktion fördern
+	\item Externe Kosten verhindern (Lärm- und Abgasvorschriften -- Internalisierung externer Kosten) 
+	\item Asymmetrische Information minimieren durch Standesrichtlinien, Konsumentenschutz und staatliche Information
+	\item Umverteilung der Einkommen zugunsten von Invaliden, Alten und Schwachen (Sozialtransfers, Versicherungen)
+\end{enumerate}
+
+\subsubsection{Staatsversagen}
+Lösen staatliche Eingriffe ein Problem nicht oder schaffen gar neue kommt es zum Staatsversagen (statt zu fördern behindert der Staat). Ursachen:
+\begin{itemize}\itemsep0em
+	\item Politisch motivierte Entscheide (Lobbyismus $\rightarrow$ \enquote{rent-seeking}
+	\item Regulierungskosten (Überregulierung verursacht marktverzerrende Kosten, Unterregulierung gewährt zu viele Freiräume)
+	\item Verzerrung der Allokationseffizienz (Durch Regulierung, etwa Importbeschränkungen, profitiert eine Branche ohne den Preis dafür zu zahlen $\rightarrow$ Konsumenten zahlen zu hohe
+	Preise, aber eigentlich müsste die Branche billiger produziern)
+\end{itemize}
+
+% 
+% \subsection{Staatsversagen}
+% 
+% \subsection{Eigentum}
+% 
+% \subsection{Die Wirtschaftsordnung der Schweiz}
+% 
+\subsection{Exkurs: Warum Butter Exporte nach Afrika schlecht sind}
+Gratis-Exporte unserer Überproduktion nach Afrika führt zu zwei Problemen:
+\begin{enumerate}
+	\item Unser Markt wird kaputt gemacht -- Die Preise sind höher als sie sein müssten
+	\item Der Markt in Afrika wird kaputt gemacht -- Die Preise dort sind tiefer als sie sein müssten
+\end{enumerate}
+% 
+% 
+% \subsection{Exkurs: Spieltheorie}

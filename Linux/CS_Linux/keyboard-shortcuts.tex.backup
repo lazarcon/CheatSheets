@@ -1,0 +1,38 @@
+%\section{Beispiel \LaTeX-Dokument}
+%\lstinputlisting[language=TeX]{SampleDocument.tex}
+
+\section{Keyboard Shortcuts}
+\subsection{Desktop}
+\settowidth{\MyLen}{Move window to workspace~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	Switch workspace			& \texttt{[Ctrl] + [Alt] + [$\leftarrow$~|~$rightarrow$]} \\
+	Move window to workspace	& \texttt{[Shift] + [Ctrl] + [Alt] + [$\leftarrow$~|~$rightarrow$]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+
+\end{tabular}
+
+\subsection{Nano}
+\settowidth{\MyLen}{~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+	Switch Workspace	& \texttt{[]} \\
+
+\end{tabular}
+

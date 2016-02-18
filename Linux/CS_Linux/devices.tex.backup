@@ -1,0 +1,8 @@
+\section{Device Management}
+\subsection{Mounting drives}
+\settowidth{\MyLen}{\texttt{mount -t iso9660 /dev/cdrom /media/cdrom}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!mount -t !\textit{filesystem }\verb!/dev/!\textit{device} \textit{directory}	& Mount device \textit{device} with filesystem \textit{filesystem} to directory \textit{directory}\\
+	\verb!mount -t iso9660 /dev/cdrom /media/cdrom! & Mou
+\end{tabular}

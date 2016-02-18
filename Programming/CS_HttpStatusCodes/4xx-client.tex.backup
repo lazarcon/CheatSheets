@@ -1,0 +1,16 @@
+\section{4xx - Client Errors}
+\begin{description}\itemsep0em
+	\item [400 - Bad Request] The request cannot be fulfilled due to bad syntax.
+	
+	\item [401 - Unauthorized] Similar to 403 Forbidden, but specifically for use when authentication is required and has failed or has not yet been provided.[2] The response must include a WWW-Authenticate header field containing a challenge applicable to the requested resource. See Basic access authentication and Digest access authentication.
+
+	\item [402 - Payment required] Reserved for future use. The original intention was that this code might be used as part of some form of digital cash or micropayment scheme, but that has not happened, and this code is not usually used. As an example of its use, however, Apple's MobileMe service generates a 402 error if the MobileMe account is delinquent.[citation needed] In addition, YouTube uses this status if a particular IP address has made excessive requests, and requires the person to enter a CAPTCHA.
+
+	\item [403 - Forbidden] The request was a valid request, but the server is refusing to respond to it. Unlike a 401 Unauthorized response, authenticating will make no difference. On servers where authentication is required, this commonly means that the provided credentials were successfully authenticated but that the credentials still do not grant the client permission to access the resource (e.g. a recognized user attempting to access restricted content).
+
+	\item [404 - Not found] The requested resource could not be found but may be available again in the future. Subsequent requests by the client are permissible.
+
+	\item [405 - Method Not Allowed] A request was made of a resource using a request method not supported by that resource; for example, using GET on a form which requires data to be presented via POST, or using PUT on a read-only resource.
+
+	\item [406 - Not Acceptable] 
+\end{description}

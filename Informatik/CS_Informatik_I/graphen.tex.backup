@@ -1,0 +1,16 @@
+\subsection{Graphen}
+Ein Graph ist ein Tupel $G = \{V, E\}$ mit der Knotenmenge $V$ und der Kantenmenge $E$, wobei $e_i = \{V_j, V_k\}$.
+Di-Graphen haben gerichtete Kanten.
+
+\settowidth{\MyLenA}{Übergangsfunktionen~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Vollständigkeit & Von jedem Knoten existiert ein Kante zu jedem anderen Knoten ($\frac{|V| \cdot (|V| - 1)}{2}$\\
+	Verbunden & Zwei Knoten sind verbunden, wenn eine Folge von Knoten und Kanten existiert, mit der man von einem
+	Konten zum anderen gelangt
+	Zusammenhängend & Jeder Knoten ist mit jedem anderen Knoten verbunden\\
+	Schleife & $A = \{a_0, a_1, \dots, a_p\}$\\
+	Übergangsfunktionen & $f: Z \times E \rightarrow Z \times A$
+	Anfangszustand	& $z_0$\\
+	Gültiger Endzustand & $z_0$\\
+\end{tabular}

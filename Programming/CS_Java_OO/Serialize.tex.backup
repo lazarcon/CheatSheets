@@ -1,0 +1,101 @@
+\subsection{Serialisierung}
+Dient dem lesen und schreiben von Objekten.
+Um ein Objekt in eine Datei zu muss es das Interface \java{Serializable} implementieren.
+
+Beispiel Code Serializerung/Deserialisierung:
+\begin{lstlisting}[language=Java]
+public void serialize(final Serializable object, final String filename) {
+	FileOutputStream fs = null;
+	ObjectOutputStream os = null;
+	try {
+		fs = new FileOutputStream(new File(filename));
+		os = new ObjectOutputStream(fs);
+		os.writeObject(object);
+		os.close();
+		fs.close();
+	} catch (final IOException e) {
+		e.printStackTrace();
+	} 
+}
+
+public Serializable load(final String filename) {
+	FileInputStream fi = null;
+	ObjectInputStream oi = null;
+	Serializable object = null;
+	try {
+		fi = new FileInputStream(filename);
+		oi = new ObjectInputStream(fi);
+		object = oi.readObject();
+		oi.close();
+		fi.close();
+	} catch (final IOException e) {
+		e.printStackTrace();
+	}
+	return (object == null) ? new Object() : object;
+}
+\end{lstlisting}
+Nach dem Deserialisieren muss das Object noch in den benötigten Typ gecasted werden.
+
+Grundsätzlich wird der gesamte Objektgraph gespeichert. Instanzvariablen werden
+dabei transient gespeichert. Falls die Superklasse nicht serialisierbar ist,
+wird einfach der Konstruktor ausgeführt.
+
+\subsubsection{Datei-Operationen}
+Nicht-Objekte lasse sich mit Hilfe von \java{File} und \java{FileWriter} schreiben.
+
+\begin{lstlisting}[language=Java]
+public void write(final String content, final String path) {
+	final BufferedWriter buffer = null;
+	try {
+		buffer = new BufferedWriter(new FileWriter(new File(path)));
+		buffer.write(content);
+	} catch (final IOException e) {
+		e.printStackTrace();
+	} finally {
+		// Close the buffer
+		try {
+			if (buffer != null) {
+				buffer.close();
+			}
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
+	}
+}
+\end{lstlisting}
+
+Das Lesen funktioniert ebenfalls über \java{File} und \java{FileReader}:
+\begin{lstlisting}
+public String read(final String path) {
+	final BufferedReader reader = null;
+	try {
+		final File file = new File(path);
+		reader = new BufferedReader(new FileReader(file));
+		final StringBuffer stringBuffer = new StringBuffer();
+		String line = reader.readLine();
+		while (line != null) {
+			buffer.append(line);
+			line = reader.readLine();
+		}
+	} catch (final FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (final IOException e) {
+		e.printStackTrace();
+	} finally {
+		// Close the buffer
+		try {
+			if (reader != null) {
+				reader.close();
+			}
+		} catch (final IOException e) {
+			e.printStackTrace();
+		}
+	}
+	return buffer.toString();
+}	
+\end{lstlisting}
+
+\java{File} repräsentiert die Datei auf einem Datenträger. Nicht den Inhalt der Datei.
+Bietet Methoden wie \java{mkdir, isDirectory, delete, setWriteable} \dots.
+
+

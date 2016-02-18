@@ -1,0 +1,10 @@
+\section{User Management}
+\settowidth{\MyLen}{\texttt{whois}~\textit{domain}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!adduser !\textit{user}					& Create new user \textit{user}\\
+	\verb!adduser -r !\textit{user}					& Create new system user \textit{user}\\
+	\verb!passwd !\textit{user}						& Give user \textit{user} a new password\\
+	\verb!groupadd !\textit{group}					& Create new group \textit{group}\\
+	\verb!!
+\end{tabular}

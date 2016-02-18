@@ -1,0 +1,38 @@
+\section{Fehler}
+\settowidth{\MyLenA}{Bündelfehler (Blockfehler, Bursts)~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Fehler & Ein Fehler liegt vor, wenn sich die gesendeten und empfangen bzw. abgespeicherte und ausgelesene $n$-Bits
+	an mindestens einer Stelle unterscheiden (Bitweises XOR $\neq$ 0)\\
+	Mehrfachfehler & Ein Mehrfachfehler von $x$-Bit liegt vor, wenn sich die gesendeten und empfangenen bzw. diesem
+	abgespeicherten und ausgelesenen $n$-Bits an mindestens $x, x > 1$ Stellen unterscheiden.\\
+	Einzelbitfehler & statistisch voneinander unabhängig -- das Auftreten eines Fehlers hängt nicht von
+	anderen Fehlern ab.\\
+	Bündelfehler (Blockfehler, Bursts) & mehrere direkt aufeinanderfolgende Bits fehlerhaft
+	sind -- das Auftreten hängt von anderen/früheren Fehlern ab.\\
+	Synchronistationsfehler & lange Bündelfehler
+\end{tabular}
+
+\subsection{Fehlerursachen}
+Typische physikalische Ursachen für Fehler sind:
+\begin {itemize}
+	\item Rauschen (Wärme- oder Impulsrauschen) verursacht langfristig gleichmässig verteilte Einzelbitfehler. 
+	\item Dämpfung, Dispersion (Aufgrund von Leitungswiderstand, Dämpfung, Reflexion) verusacht Einzelbitfehler oder Bündelfehler.
+	\item Strahlung (kosmische, radioaktive) verusacht langfristig gleichmässig verteilte Einzelbitfehler. 
+	\item Störungen (elektr. Funken, Kratzer) führen zu Bündelfehlern. Die Fehler sind ungleichmässig verteilt.
+	\item Nebensprechen (kapazitive Kopplung benachbarter Datenleitungen) verursacht ungleichmässig verteilte Bündelfehler.
+\end{itemize}
+
+\subsection{Einfache Parität}
+Die einfache Parität wird auch einfach gebildet:
+\begin{enumerate}
+	\item Die Code-Wörter werden um ein zusätzliches Bit, das Paritäts-Bit erweitert.
+	\item Der Wert dieses Bits wird bei:
+		\begin{description}
+			\item [gerader Parität (even parity)] so gesetzt, dass die Summe der Einsen im Code-Wort inkl. des Paritäts-Bits gerade ist.
+			(Beispiel: Das Code-Wort sei $0100.1110 \rightarrow $ 4 Einsen sind gerade $\implies$ Paritätsbit = 0) 
+			\item [ungerader Parität (ungerade)] so gesetzt, dass die Summe der Einsen im Code-Wort inkl. des Paritäts-Bits ungerade ist.
+			(Beispiel: Das Code-Wort sei $0100.1110 \rightarrow $ 4 Einsen sind gerade $\implies$ Paritätsbit = 1) 
+		\end{description}
+\end{enumerate}
+Ungerade Bit-Fehler werden sicher erkannt. Um auch 2-Bit-Fehler sicher zu erkennen, muss die Hamming-Distanz 3 betragen, weil gerade-Bit-Fehler sich gegenseitig maskieren.

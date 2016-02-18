@@ -1,0 +1,141 @@
+\columnbreak
+\section{Automatentheorie}
+(Stephan Kleene, Michael Rabin, Dana Scott, 40er/50er Jahre)
+
+\subsection{Endliche Automaten}
+5-Tupel: $A = (Q, \Sigma, \delta, q_0, F)$
+\begin{align*}
+	Q &= \{q_0, \dots, q_n\} & \mbox{endliche Menge von Zuständen}\\
+	\Sigma &= \{a_0, \dots, a_m\} & \mbox{Eingabe-Alphabet}\\
+	\delta &: Q \times \Sigma \rightarrow Q & \mbox{Übergangsfunktion}\\
+	q_0 &\in Q & \mbox {Startzustand}\\
+	F &= \{q_o, \dots, q_p\} & \mbox{Akzeptierende Endzustände}
+\end{align*}
+\begin{description}
+	\item [Deterministischer endlicher Automat (DEA)]
+	Geht auf Grund einer Eingabe von einem Zustand in genau einen Zustand über.
+	\item [Nichtdeterministischer endlicher Automat (NEA)]
+	Geht auf Grund einer Eingabe in einen von mehreren Zuständen über.
+	\begin{equation*}
+		\delta: Q \times \Sigma \rightarrow \mathcal{P}(Q) 
+	\end{equation*}
+	\item[$\epsilon$-NEA] wie NEA, erlaubt $\epsilon$ als Eingabe $\Rightarrow$ kann spontan wechseln.
+	\item [Erweiterte Übergangsfunktion] 
+	Ein Automat verarbeitet einem Reihe von Eingabesymbolen (das Eingabewort) in dem er mit Hilfe der Übergangsfunktion $\delta$ den jeweiligen Folgezustand ermittelt: $\delta(q_0, a_0)= q_1, \delta(q_1, a_1) = q_2, \dots$\\
+	Dies wird als erweiterte Übrgangsfunktion $\hat{\delta}: Q \times \Sigma \rightarrow Q$ (d.\,h. $\hat{\delta}(q_0, w) = q_n$) definiert
+	
+	\item[Akzeptieren] 
+	Ein Eingabewort $w$ wird dann akzeptiert, wenn $\hat{\delta}$ für $w$ in einen akzeptierenden Endzustand $q_n \in F$ führt.
+
+	\item[Sprache]
+	bzeichnet die Menge aller Zeichenreihen, die der Automat akzeptiert:
+		$L(A) = \{w | \hat{\delta(q_0, w)} \rightarrow q_n \in F\}$
+\end{description}
+
+\subsection{Beispiel}
+Gesucht wird ein endlicher Automat $A$ der die Sprache $L = \{x01y\ | x, y \in  \Sigma^* \mbox{ mit } \Sigma = \{0, 1\}\}$ akzeptiert.\\
+Lösung (DEA):
+\begin{align*}
+A = 		& (\{q_0, q_1, q_2\}, \{0, 1\}, \delta, q_0, \{q_2\})\\
+\delta = 	& \{\delta(q_0, 1) = q_0, \delta(q_0, 0) = q_1, \delta(q_1, 0) = q_1 ,\\
+			& \delta(q_1, 1) = q_2, \delta(q_2, 0) = q_2, \delta(q_2, 1) = q_2\}
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm, semithick]
+	\tikzstyle{every state}=[fill=black!10]
+	\node[state, initial] 	(q0)				{$q_0$};
+	\node[state]			(q1) [right of=q0]	{$q_1$};
+	\node[state, accepting]	(q2) [right of=q1]  {$q_2$};
+	\path 	(q0) 	edge [loop above] 	node {$1$} (q0)
+					edge				node {$0$} (q1)
+			(q1)	edge [loop above]	node {$0$} (q1)
+					edge				node {$1$} (q2)
+			(q2)	edge [loop above]	node {$0, 1$} (q2);
+\end{tikzpicture}
+\end{center}
+Lösung (NEA):
+\begin{align*}
+A = 		& (\{q_0, q_1, q_2\}, \{0, 1\}, \delta, q_0, \{q_2\})\\
+\delta = 	& \{\delta(q_0, 1) = \{q_0\}, \delta(q_0, 0) = \{q_0, q_1\}, \delta(q_1, 1) = \{q_2\}\\
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm, semithick]
+	\tikzstyle{every state}=[fill=black!10]
+	\node[state, initial] 	(q0)				{$q_0$};
+	\node[state]			(q1) [right of=q0]	{$q_1$};
+	\node[state, accepting]	(q2) [right of=q1]  {$q_2$};
+	\path 	(q0) 	edge [loop above] 	node {$0, 1$} (q0)
+					edge				node {$0$} (q1)
+			(q1)	edge				node {$1$} (q2);
+\end{tikzpicture}
+\end{center}
+Es gilt: $\mbox{RA} \Leftrightarrow \mbox{DEA} \Leftrightarrow \mbox{NEA} \Leftrightarrow \epsilon\mbox{-NEA}$
+
+\subsection{Eigenschaften regulärer Sprachen}
+Sind $L$ und $M$ reguläre Sprachen, dann gilt:
+\begin{itemize}\itemsep0em
+	\item Vereinigung: $L \cup M$ ist regulär
+	\item Durchschnitt: $L \cap M$ ist regulär
+	\item Komplement: $L^C$ ist regulär
+	\item Differenz: $L \setminus M$ ist regulär
+	\item Spiegelung: Die Menge aller gespiegelten Zeichenreihen von $L$ ist regulär
+	\item Hülle: $L^*$ ist regulär
+	\item Verkettung: Alle Ausdrücke aus der Verkettung eines Wortes aus $L$ mit einem Wort aus $M$ sind regulär
+	\item Homomorphismus: $h(L)$ ist regulär (d.\,h. jedem Zeichen kann ein Wort zugeordnet werden)
+	\item Inverser Homomorphismus: $h^{-1}(L)$ ist regulär
+\end{itemize}
+
+\subsection{Entscheidbarkeit regulärer Sprachen}
+\begin{itemize}
+	\item Die Frage, ob eine Sprache $L$ leer ist, ist entscheidbar
+	\item Die Frage, ob $w$ ein Wort aus $L$ ist, ist entscheidbar
+	\item Die Frage, ob zwei Sprachen identisch sind, ist entscheidbar
+\end{itemize}
+
+\subsection{Pumping-Lemma}
+Sei $L$ eine reguläre Sprache. Dann gibt es eine Konstante $n$, so dass jder Zeichenreihe $w \in L, |w| > n,$ in drei Teilzeichenreihen $w = xyz$ wie folgt
+zerlegt werden kann:
+\begin{align*}
+	y & \neq \epsilon\\
+	|xy| & \leq n\\
+	xy^kz &\in L, \mbox{ für alle }k \geq 0 
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm, semithick]
+	\tikzstyle{every state}=[fill=black!10]
+	\node[state, initial] 	(q0)				{$q_0$};
+	\node[state]			(q1) [right of=q0]	{$q_1$};
+	\node[state, accepting]	(q2) [right of=q1]  {$q_2$};
+	\path 	(q0) 	edge				node {$x = a_1 \dots a_i$} (q1)
+			(q1)	edge [loop above]	node {$y = a_{i+1} \dots a_j$} (q1)
+					edge				node {$z = a_{j+1} \dots a_m$} (q2);
+\end{tikzpicture}
+\end{center}
+Kann für eine Sprache gezeigt werden, dass sie das Pumping-Lemma nicht erfüllt,
+ist sie nicht regulär.
+
+\subsection{Pro Memoria: Moore- \&  Mealy-Automat}
+Beide Typen sind logisch äquivalent und lassen sich ineinander überführen. Beide unterscheiden sich von den endlichen Automaten dadurch, dass sie neben finalen Zuständen auch eine Ausgabe erzeugen.
+Sie werden als 7-Tupel definiert:
+\begin{equation*}
+	\mathcal{A} = ( Q, \Sigma, \Omega, \delta, \lambda, q_0, F )	
+\end{equation*}
+\begin{itemize}\itemsep0em
+		\item [$Q$] endliche Menge von Zuständen
+		\item [$\Sigma$] endliches Eingabealphabet
+		\item [$\Omega$] endliches Ausgabealphabet
+		\item [$\delta$] Übergangsfunktion $\delta : Q \times \Sigma \rightarrow Q$
+		\item [$\lambda$] Ausgabefunktion $\lambda : Q \rightarrow \Omega$
+		\item [$q_0$] Startzustand
+		\item [$F$] endliche Menge finaler Zustände ($F \subset Q$)
+\end{itemize}
+
+
+\begin{description}
+	\item [Moore-Automat] 
+	Die Ausgabe wird mit dem Zustand assoziiert und hängt somit nur vom Zustand ab.	
+
+	\item [Mealy-Automat] 
+	Die Ausgabe wird mit der Transition assoziiert, dass heisst, sie hängt vom Zustand und der Eingabe ab. Beim Zustandswechsel wird zusätzlich etwas ausgegeben.
+
+\end{description}

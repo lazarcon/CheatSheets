@@ -1,0 +1,79 @@
+\section{Grundstrukturen}
+\begin{description}
+	\item [n-stellige Verknüpfung]
+	Sind $A_1, \dots, A_n, B$ Mengen, dann nennt man eine Abbildung $\circ : A_1 \times \dots \times A_n \rightarrow B$
+	eine $n$-stellige Verknüpfung auf B. $\circ A^n \rightarrow A$ nennt man eine $n$-stellige Verknüpfung auf A. 
+	
+	\item[Einfache algebraische Strukur] bezeichnet ein Paar $S = (A, (f_i)_{i \in I})$. Dabei heisst die Menge $A$ Grundmenge von $S$. $(f_i)_{i \in I}$ ist eine endliche Familie von Verknüpfungen auf diese Grundmenge.
+
+	\item [Zusammengesetze algebraische Struktur] bezeichnete die verallgemeinerte einfache algebraische Struktur. Sie ist ein Tupel $S = (A_1, \dots, A_n, (f_i)_{i \in I})$. Sie besteht aus endlich vielen Grundmengen ($A_1, \dots, A_n$) und einer endlichen Familie von von Vernupfungen, so dass es für alle $i \in I$ natürliche Zahlen $p, m$ und Grundmengen $A_r, A_s, A_k$ gibt mit:
+		\begin{equation*}
+			f_i: A^p_r  \times A^m_s \rightarrow A_k
+		\end{equation*}
+
+	\item [Signatur von $S$] $(f_i)_{i \in I}$ heisst Signatur von $S$. 
+\end{description}
+
+Für zweiwertige (binäre) Verknüpfunge $\circ$ werden folgende Begriffe verwendet:
+\settowidth{\MyLenA}{Kommutativität~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+	Assoziativitat: & wenn $\forall a, b, c \in A (A \circ (b \circ c) = (a \circ b) \circ c)$\\
+	Kommutativität: & wenn $\forall a, b \in A (A \circ b = b \circ a)$\\
+\end{tabular}
+
+\subsection{Neutralität}
+Ein Element $e_i \in A$ ist:
+\settowidth{\MyLenA}{linksneutral bezüglich $\circ$ falls~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+	linksneutral bezüglich $\circ$ falls & $\forall a \in A (e_i \circ a = a)$\\
+	linksneutral bezüglich $\circ$ falls & $\forall a \in A (a \circ e_1 = a)$\\
+	neutral bezüglich $\circ$ falls & $\forall a \in A (e_i \circ a = a \circ e_i = a)$\\
+\end{tabular}
+\\
+Wenn es ein neutrales Element gibt, kann es kein zweites neutrales Element geben.
+
+
+\subsection{Halbgruppen, Gruppen und Monoide}
+Eine Struktur $(G, \circ)$ bestehend aus einer Menge $G$\\
+ und einer Verknüpfung $\circ: G \times G \rightarrow G$ heisst:
+\settowidth{\MyLenA}{Kommutative Gruppe ~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+	Halbgruppe & wenn die Verknüpfung assoziativ ist\\
+	Monoid & wenn zusätzlich ein neutrales Element $e \in G$ existiert\\
+	Gruppe & wenn zusätzlich ein für jedes $g \in G$ ein inverses Element $g^{-1}$existiert\\
+	Kommutative Gruppe & wenn die Gruppe zusätzlich kommutativ ist.\\
+\end{tabular}
+Für inverse Elemente gilt: $(a^{-1})^{-1} = a$. (Das inverse vom inversen ist das element selbst)
+
+\begin{itemize}
+	\item In Halbgruppen kann gekürzt werden ($a \cdot x = b \cdot x \Rightarrow a = b$)
+\end{itemize}
+
+\subsubsection{Beispiele für Halbgruppen, Gruppen und kommutative Gruppen}
+\settowidth{\MyLenA}{Kommutative Gruppe ~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)/2}}
+	Halbgruppen & $(\mathbb{N}, +), (\mathbb{Z, -})$\\
+	Monoid & $(\mathbb{N} \cup {0}, +)$\\
+	Gruppe & $(\mathbb{Q}, *)$\\
+	Kommutative Gruppe & $(\mathbb{Z}, +)$\\
+\end{tabular}
+
+\subsection{Unterstrukturen}
+Sei $(A, \circ)$ eine Struktur und $U \subset A$. $U$ heisst abgeschlossen falls gilt:
+	\begin{equation*}
+		\forall a, b \in U (a \circ b \in U)
+	\end{equation*}
+Je nach übergeordneter Struktur handelt es sich um Unterhalbgruppen, Untermonoide oder Untergruppen.
+
+\subsubsection{Regeln}
+\begin{itemize}
+	\item Ist $(G, \circ)$ eine Halbgruppe und seien $(U_i)_{i \in I}$ Unter\dots, dann ist $\bigcap_{i \in I} U_i$ ebenfalls eine Unter\dots.
+\end{itemize}
+
+Jede (Halb-) Gruppe besitzt eine kleinste Unter(halb)gruppe und jeder Monoid
+besitzt einen kleinsten Untermonoid, die eine gegebene Teilmenge der (Halb-) Gruppe bzw.
+des Monoids enthalten.

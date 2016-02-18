@@ -1,0 +1,16 @@
+\section{Relationenmodell}
+Erfinder: E. F. Codd (1970).
+
+\begin{description}
+	\item [Domäne] Auch Wertebereich oder Datentyp: definiert die zulässigen Werte (Ganze Zahlen, Zeichenketten, \dots)
+	als Mengen und sind nicht weiter strukturiert.
+	\item [Attribut] besteht aus zwei Teilen: einem Namen und einer Domäne. Attribute können den Wert \texttt{NULL} haben.
+	\item [Tupel] bezeichnet ein atomares Datenelement aus gewerteten zusammengehörenden Attributen
+	\item [Relation] 
+	\item [Beziehung]
+	\item [Relationale Algebra]
+	\item [Schlüssel]
+	\item [Funktionale Abhängigkeit]
+\end{description}
+
+

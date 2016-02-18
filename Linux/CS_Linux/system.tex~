@@ -1,0 +1,29 @@
+\section{System Management}
+\subsection{System info}
+\settowidth{\MyLen}{\texttt{man }\textit{command}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!date!		& Show current date/time\\
+	\verb!cal!		& Show this months calendar\\
+	\verb!uptime!	& Show uptime\\
+	\verb!w!		& Show users online\\
+	\verb!whoami!	& Show who you are logged in as\\
+	\verb!df!		& Show disk usage\\
+	\verb!du!		& Show directory space usage\\
+	\verb!du -sh!	& Show directory space usage in GB\\
+	\verb!free!		& Show Memory and swap space\\
+	\verb!man !\textit{command} & Show manual for command \textit{command}\\
+\end{tabular}
+Cronjobs are stored in \verb!/etc/cron.*! and are executed every month, week, day or hour.
+
+\subsection{Process Management}
+\settowidth{\MyLen}{\texttt{apachectl [start|stop|restart]}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!ps!						& Show currently active processes\\
+	\verb!ps aux!					& Show currently active processes in detail\\
+	\verb!kill !\textit{pid}		& End process with pid \textit{pid}\\
+	\verb!killall !\textit{process}	& End all processes named \textit{process}\\
+	\verb!apachectl [start|stop|restart]! & Start, stop or restart Apache\\
+	\verb!service !\textit{service}\verb![start|stop]! & Start, stop service \textit{service}\\
+\end{tabular}

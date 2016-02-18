@@ -1,0 +1,90 @@
+\section{Beweistechniken}
+\subsection{Direkter Beweis}
+Strategie: Zwingende Argumente für die Richtigkeit von $A$ finden.\\
+Bsp: \enquote{Beweisen, dass jede durch 4 teilbare natürliche Zahl gerade ist.}
+\begin{proof}
+Direkt
+\begin{enumerate}\itemsep0em
+	\item Sei $n$ eine beliebige durch 4 teilbare Zahl
+	\item $n$ muss also von der Form $n = 4 \cdot m (m \in \N)$ sein
+	\item Sei $k = 2 \cdot m \Rightarrow n = 2 \cdot k$ sein
+	\item Deswegen muss $n$ gerade sein \qedhere
+\end{enumerate}
+\end{proof}
+
+
+\subsection{Beweis durch Widerspruch}
+Strategie: Annehmen, das $A$ falsch sei. Unter dieser Annahme eine Folgerung
+herleiten, von der entweder bekannt ist, dass sie falsch ist, oder die im
+Widerspruch zu Annahme steht.\\
+Bsp: \enquote{Beweisen, dass es keine grösste natürliche Zahl gibt.}
+
+\begin{proof}
+\renewcommand{\qedsymbol}{\lightning}
+durch Widerspruch
+	\begin{enumerate}\itemsep0em
+		\item Sei $m$ die grösste natürliche Zahl
+		\item Es gilt für jede natürliche Zahl $n$: $n + 1$ ist ebenfalls eine natürliche Zahl $\wedge n < n + 1$
+		\item Also muss $m + 1$ eine natürliche Zahl sein $> m$ sein \qedhere
+	\end{enumerate}
+\end{proof}
+
+\subsection{Erweiterte Techniken}
+%Problem: Beweisen, dass die Verknüpfung von zwei Aussagen $A$ und $B$ wahr ist.
+
+\subsection{Beweis durch Implikation}
+Problem: Beweisen, dass $A \Rightarrow B$ wahr ist.\\
+Strategie: Unter der Annahme, dass $A$ wahr ist, folgern, dass dann $B$ wahr sein muss.\\
+Bsp: \enquote{Für jede natürliche Zahl $n$ gilt: $(n^2 + 1 = 1) \Rightarrow (n = 0)$}\\
+\begin{proof}
+durch Implikation
+\begin{enumerate}\itemsep0em
+	\item Angenommen, $n^2 + 1 = 1$ sei wahr
+	\item Dann ist $n^2 = 0$ bzw. $n = \sqrt{0} = 0$
+	\item Also: $(n^2 + 1 = 1) \Rightarrow (n = 0)$\qedhere
+\end{enumerate}
+\end{proof}
+
+\subsubsection{Beweis durch Kontraposition}
+Problem: Beweisen, dass $A \Rightarrow B$ wahr ist.\\
+Strategie: Die Kontraposition $(\neg B \Rightarrow \neg A)$ beweisen.\\
+Bsp: \enquote{Für jede natürliche Zahl $n$ gilt: $(n^2 + 1 = 1) \Rightarrow (n = 0)$}\\
+\begin{proof}
+durch Kontraposition
+\begin{enumerate}\itemsep0em
+	\item Es muss gelten: $n \neq 0 \Rightarrow (n^2 + 1 \neq 1)$
+	\item Ist $n \neq 0 \Rightarrow n^2 \neq 0$
+	\item daraus folgt, dass $n^2 + m \neq m$ für jedes $n \neq 0$
+	\item Also muss $n^2 + 1 \neq 1 (n \neq 0)$\qedhere
+\end{enumerate}
+\end{proof}
+
+\subsubsection{Beweis durch Äquivalenz}
+Problem: Beweisen, dass $A \Leftrightarrow B$ wahr ist.
+Strategie: Beweisen, dass $A \Rightarrow B \wedge B \Rightarrow A$\\
+Als erstes also beweisen, dass $A \Rightarrow B$ und als zweites
+beweisen, dass $B \Rightarrow A$
+Bsp: \enquote{Für jede natürliche Zahl $n$ gilt: $(n^2 + 1 = 1) \Leftrightarrow (n = 0)$}\\
+\begin{proof}
+	durch Äquivalenz
+\begin{enumerate}\itemsep0em
+	\item Für den Beweis $(n^2 + 1 = 1) \Rightarrow (n = 0)$ siehe z.B. Implikation
+	\item Bleibt zu beweisen, dass $n = 0 \Rightarrow n^2 + 1 = 1$
+	\begin{enumerate}\itemsep0em
+		\item Einsetzen von $n = 0: 0^2 + 1 = 1$, d.\,h. $1 = 1$, was wahr ist
+		\item Folglich gilt: $n = 0 \Rightarrow n^2 + 1 = 1$ 
+	\end{enumerate}
+	\item Beide Teilaussagen sind wahr, also ist die ganze Aussage wahr\qedhere
+\end{enumerate}
+\end{proof}
+
+\subsubsection{Beweistechnik durch vollständige Induktion}
+\begin{equation*}
+(E(0)
+\wedge \forall n \in \N (E(n) \Rightarrow E(n + 1)))
+\Leftrightarrow \forall n \in \N (E(n))
+\end{equation*}
+
+Man zeigt etwas für die 0, anschliessend nimmt man an, dass wenn es für eine
+natürliche Zahl gilt, dann auch für deren Nachfolger. Gilt es für 0 und alle Nachfolger, gilt es für alle.
+Beispiele bei der Addition der natürlichen Zahlen.

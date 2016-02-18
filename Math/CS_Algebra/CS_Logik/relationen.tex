@@ -1,0 +1,79 @@
+\section{Relationen}
+Eine Relation ist eine Teilmenge des kartesischen Produktes zweier Mengen.
+\begin{equation*}
+	R \subseteq A \times B
+\end{equation*}
+Eine Relation $R = A \times A = A^2$ heisst Relation auf $A$.
+
+Eine Relation lässt sich umkehren: $R^{-1} = \{(a,b) \in B \times A\}$
+
+Wenn $a \in A$ und $b \in B$ und $(a, b) \in R$, dann steht $a$ in Relation zu $b$ ($aRb$ oder $a \sim_R\ b$).
+
+\subsection{Eigenschaften von Relationen}
+\begin{tabular}{ll}
+	reflexiv		& $\forall a \in A :\ (a,a) \in R $\\
+					& $\Delta\subseteq R$\\
+	irreflexiv		& $\forall a \in A :\ \neg(a, a) \in R$\\ 
+					& $\Delta\cap R= \emptyset$\\
+	symmetrisch 	& $\forall a, b \in A :\ (a, b) \in R \Rightarrow (b, a) \in R$ \\
+					& $R\subseteq R^{-1}$\\
+	asymmetrisch 	& $\forall a, b \in A :\ (a, b) \in R \Rightarrow (b, a) \notin R$\\ 
+					& $R\cap R^{-1}=\emptyset$\\
+	antisymmetrisch & $\forall a, b \in A :\ (a, b) \in R \wedge (b, a) \in R \Rightarrow a = b$\\
+					& $R\cap R^{-1} \subseteq \Delta$\\
+	linear			& $\forall a, b \in A :\ (a, b) \in R \vee (b, a) \in R $\\
+					& $R\cup R^{-1}= A\times A$\\
+	transitiv 		& $\forall a, b, c \in A :\ (a, b) \in R \wedge (b, c) \in R \Rightarrow (a, c) \in R$\\
+					& $R\circ R\subseteq R$\\
+\end{tabular}
+Achtung: reflexiv $\neq \neg$irreflexiv, symmetrisch $\neq \neg$ asymmetrisch $\neq \neg$ antisymmetrisch.
+
+\subsection{Besondere Relationen}
+\begin{description}\itemsep0em
+	\item [Äquivalenzrelation]
+	Eine reflexive, symmetrische und transitive Relation heisst Äquivalenzrelation.
+
+	Beispiel: $R = $\enquote{$a$ sitzt in der selben Reihe wie $b$.} Die Relation ist:
+	\begin{itemize}
+		\item reflexiv (jeder sitzt in der selben Reihe wie er selbst,
+		\item symmetrisch (wenn $a$ in der selben Reihe sitzt wie $b$, dann sitzt auch $b$ in der selben Reihe wie $a$)
+		\item transitiv (wenn $a$ in der selben Reihe sitzt wie $b$ und $b$ in der selben Reihe sitzt wie $c$, dann sitzt auch $a$ in der selben Reihe wie $c$)
+	\end{itemize}
+	Bei Anwendung einer Äquivalenzrelation auf eine Menge, zerfällt die Menge in disjunkte Teilmengen (Äquivalenzklassen), deren Elemente in Relation zueinander stehen.
+
+	\item[Halbordnung]
+	Eine reflexive, antisymmetrische und transitive Relation heisst Halbordnung.
+	Beispiel: $R = $\enquote{$x \leq y$}
+	\begin{itemize}
+		\item reflexiv ($x \leq x$)
+		\item antisymmetrisch ($x \leq y \wedge y \leq x \Rightarrow x = y$) 
+		\item transitiv ($x \leq y \wedge y \leq z \Rightarrow x \leq z$)
+	\end{itemize}
+
+	\item[Ordnung]
+	Eine reflexive, antisymmetrische, transitive und lineare Relation heisst Ordnung.
+
+	\item[Wohlordnung]
+	Jede nicht-leere Teilmenge hat ein kleinstes Element.
+	
+\end{description}
+
+\subsubsection{Funktionen}
+Eine Funktion ist eine Relation, die jedem Element einer Menge, genau ein Element einer anderen Menge zuordnet.
+\begin{equation*}
+	F: X \rightarrow Y
+\end{equation*}
+$f(x)$ bezeichnet dann das Element $y$ von $Y$ für das gilt: $(x, y) \in F$.
+Es gelten folgende Begriffe:
+\settowidth{\MyLenA}{Definitionsmenge (Domäne)~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Definitionsmenge (Domäne) 	& $\mbox{dom}(F) := X = \{x \mid \exists y ((x, y) \in F)\}$\\
+	Bild von $F$			  	& $m(F) := \{y \in Y \mid \exists x (F(x) = y)\}$\\
+	Erweiterte Funktion			& $G \circ F: X \rightarrow Z$ oder $G \circ F(x) := G(F(x))$\\
+	Assoziativität				& $(G \circ F) \circ H = G \circ (F \circ H)$\\
+\end{tabular}
+
+Einschränkung: Sind $F: A \rightarrow B$ und $X \subseteq B$ gegeben, dann ist $F \upharpoonright X := F \cap (X \times B)$
+auch eine Funktion und es gilt: $F \upharpoonright X : X \rightarrow B$. $F \upharpoonright X$ heisst Einschränkung
+von $F$ nach $X$.

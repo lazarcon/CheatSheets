@@ -1,0 +1,13 @@
+\section{Mathematische Symbole}
+\settowidth{\MyLenA}{$\exists !$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	$w$ & wahr \\
+	$f$ & falsch \\
+	$\mid$ & für die gilt; Bsp: $\{x\mid x < 0\}$ (alle x für die gilt x < 0)\\
+	$\in$ & Element von/ist in \dots\\
+	$\notin$ & Kein Element von/ist nicht in \dots\\
+	$\forall$ & Allquantor; für alle \dots\\
+	$\exists$ & Existenzquantor; es existiert mindestens ein \dots \\
+	$\exists !$ & Sonderfall: es existiert genau ein \dots \\
+\end{tabular}

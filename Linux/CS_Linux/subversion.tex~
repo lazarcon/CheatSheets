@@ -1,0 +1,40 @@
+\section{Subversion}
+\settowidth{\MyLen}{List files in project~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	Install subversion			& \verb!sudo apt-get install subversion! \\
+	Create repository			& \verb!svnadmin create /!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\\
+	Make a project folder		& \verb!svn mkdir file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project} \\
+	Import project				& Inside the project directory:\\
+								& \verb!svn import file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project} \\
+	Checkout					& \verb!svn checkout file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project}\\
+	Commit changes				& Inside the project directory:\\ 
+								& \verb!svn commit -m "!\textit{commit message}\verb!"!\\
+	Get latest revision			& Inside the project directory:\\ 
+								& \verb!svn update!\\
+	Revert						& Inside the project directory: \\
+								&\verb!svn revert <filename>!\\
+	Revert to version			& Inside the project directory: \\
+								& \verb!svn update -r !\textit{number}~\verb!<filename>!\\
+	Add files 					& Inside the project directory:\\
+								& \verb!svn add (!\textit{file}\verb!|!\textit{directory}\verb!)!\\
+	Remove files				& Inside the project directory:\\
+								& \verb!svn delete (!\textit{file}\verb!|!\textit{directory}\verb!)!\\
+	List files in project		& \verb!svn list --verbose!\\
+								& \verb!file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project}\\
+	Creating releases			& \verb!svn copy !\\
+								& \verb!file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project}\verb!/trunk! \\
+								& \verb!file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project}\verb!/tags/!\textit{version} \\
+								& \verb!-m "Tagging the !\textit{version}\verb! release"!\\
+	Listing releases			& \verb!svn list !\\
+								& \verb!file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project}\verb!/tags!\\
+	Checkout release			& \verb!svn checkout !\\
+								& \verb!file:///!\textit{path}\verb!/!\textit{to}\verb!/!\textit{repo}\verb!/!\textit{project}\verb!/tags/!\textit{version}\\
+\end{tabular}
+
+\verb!<filename>! is an optional name of a file.
+
+Before you can use subversion checkout a working-copy of your projects first. After importing a project you can remove it and than check it out from the projects parent directory.
+Sometimes subversions opens your default text editor. You should enter comments there.
+
+\textbf{Don't forget} to make the repository accessable (\verb!chmod 666!)

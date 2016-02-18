@@ -1,0 +1,14 @@
+\subsection{Fundamentalsatz}
+Jedes unbestimmte Integral $I(x) = \int\limits_{a}^{x} f(x) \dop{x}$ der stetigen Funktion $f(x)$ ist eine Stammfunktion von $f(x)$:
+\begin{equation*}
+	I(x) = \int\limits_{a}^{x} f(x) \dop{x} \Rightarrow I'(x) = f(x)
+\end{equation*}
+heisst: Die Ableitung jedes unbestimmten Integrals ergibt die Integrandfunktion.
+\begin{itemize}\itemsep0em
+	\item $I(x)$ ist eine stetig differenzierbare Funktion.
+	\item Jedes unbestimmte Integral lässt sich schreiben als:
+	\begin{equation*}
+		I(x) = \lint{a}{x} f(x) \dop{x} = F(x) + C
+	\end{equation*}
+
+\end{itemize}

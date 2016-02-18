@@ -1,0 +1,62 @@
+\section{Komplexe Rechnung}
+\begin{itemize}\itemsep0em
+	\item Addition und Subtraktion nur in Normalform möglich.
+	\item Ungleichungen machen für komplexe Zahlen keinen Sinn.
+\end{itemize}
+
+\subsection{Addition/Subtraktion}
+\begin{equation*}
+	z_1 \pm z_2 = (x_1 \pm x_2) + \mathrm j (y_1 \pm y_2)
+\end{equation*}
+
+\subsection{Multiplikation}
+\subsubsection{Normalform}
+Das Produkt $z_1 \cdot z_2 = (x_1 + \mathrm j y_1) \cdot (x_2 + \mathrm j y_2)$ 
+wird im Reellen durch Ausmultiplizieren der Klammern unter Beachtung der Beziehung $\mathrm j^2 = -1$ berechnet.
+\subsubsection{Polarform}
+Zwei komplexe Zahlen werden multipliziert, indem man ihre Beträge multipliziert und die Argumente addiert.
+\begin{equation*}
+	z_1 \cdot z_2 = r_1 \cdot \mathrm e^{\mathrm j \varphi_1} \cdot r_2 \cdot \mathrm e^{\mathrm j \varphi_2} = r_1 \cdot r_2 \cdot \mathrm e^{\mathrm j \varphi_1 + \varphi_2}
+\end{equation*}
+
+\subsubsection{Division}
+\subsubsection{Normalform}
+Der Quotient $\frac{z_1}{z_2}$ in der Normalform lässt sich wie folgt berechnen:
+\begin{enumerate}\itemsep0em
+	\item Der Bruch wird mit $z_2^*$, dem konjugiert komplexen Nenner erweitert:
+	\begin{equation*}
+		\frac{z_1}{z_2} = \frac{z_1 \cdot z_2^*}{z_2 \cdot z_2^*} = \frac{(x_1 + \mathrm j y_1) \cdot (x_2 - \mathrm j y_2)}{(x_2 + \mathrm j y_2) \cdot (x_2 - \mathrm j y_2)}
+	\end{equation*}
+	\item Zähler und Nenner werden unter Berücksichtigung von $j^2 = - 1$ ausmultipliziert ($\rightarrow$ der Nenner wird reell)
+	\item Die im Zähler stehende komplexe Zahl wird gliedweise durch den Nenner dividiert.
+\end{enumerate}
+Die Division durch Null bleibt verboten.
+\subsubsection{Polarform}
+Zwei komplexe Zahlen werden dividiert, indem man ihre Beträge dividiert und die Argumente subtrahiert.
+\begin{equation*}
+	\frac{z_1}{z_2} = \frac{r_1 \cdot \mathrm e^{\mathrm j \varphi_1}}{r_2 \cdot \mathrm e^{\mathrm j \varphi_2}} = \frac{r_1}{r_2} \cdot \mathrm e^{\mathrm j (\varphi_1 - \varphi_2)}
+\end{equation*}
+
+Multiplikation und Division können als Drehstreckung bzw. Drehstauchung geometrisch interpretiert werden.
+
+\subsection{Potenzieren}
+Geht am einfachsten in der Polarform:
+\begin{align*}
+	z^n& = \left(r \cdot \mathrm e^{\mathrm j \varphi} \right)^n = r^n \cdot \mathrm e^{\mathrm j n \cdot \varphi}\\
+	z^n& = \left(r \cdot \cos \varphi + \mathrm j \sin \varphi \right)^n = r^n \cdot (\cos n \cdot \varphi + \mathrm j \sin n \cdot \varphi)
+\end{align*}
+
+\subsection{Radizieren}
+Geht am einfachsten in der Polarform:
+\begin{align*}
+	\sqrt[n]z& = \sqrt[n]{r \cdot \mathrm e^{\mathrm j \varphi}} = \sqrt[n]{r} \cdot \mathrm e^{\mathrm j \frac{\varphi + k \cdot 2 \pi}{n}}\\
+	\sqrt[n]z& = \sqrt[n]{r \cdot \cos \varphi + \mathrm j \sin \varphi} = \sqrt[n]{r} \cdot (\cos \frac{\varphi + k \cdot 2 \pi}{n} + \mathrm j \sin \frac{\varphi + k\cdot 2 \pi}{n})
+\end{align*}
+Mit $k = 0, 1, 2, \dots, n - 1 \righta$. Eine $n$te Wurzel hat $n$ Lösungen.
+
+\subsection{Eigenschaften der Grundrechenarten}
+\begin{itemize}\itemsep0em
+	\item Addition und Multiplikation sind kommutativ: $z_1 + z_2 = z_2 + z_1$
+	\item Addition und Multiplikation sind assoziativ: $z_1 \cdot (z_2 \cdot z_3) = (z_1 \cdot z_2) \cdot z_3$
+	\item Addition und Multiplikation sind über das Distributivgesetz verbunden: $z_1 \cdot (z_2 + z_3) = z_1 \cdot z_2 + z_1 \cdot z_3$
+\end{itemize}

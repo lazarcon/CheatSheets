@@ -1,0 +1,39 @@
+\section{Software Management}
+\settowidth{\MyLen}{\texttt{add-apt-repository ppa:}\textit{url}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!apt-get install !\textit{package}	& Install software package \textit{package}\\
+	\verb!apt-get remove !\textit{package} & Remove software package \textit{package}\\
+	\verb!add-apt-repository ppa:!\textit{url} & Add a repository at url \textit{url}\\
+	\verb!apt-get update! & Update list of repositories\\
+\end{tabular}
+
+\subsection{Recommended non-standard packages}
+\settowidth{\MyLen}{\texttt{compizconfig-settings-manager}~~}
+\begin{tabular}{@{}p{\the\MyLen}%
+				@{}p{\linewidth-\the\MyLen}}
+	\verb!rkhunter!		& Root kit hunter, searches rootkits \\
+	\verb!tcpspy!		& Monitors TCP/IP connections\\
+	\verb!mysql-server!	& mySQL database server\\
+	\verb!mysql-client!	& Frontend for mySQL server\\
+	\verb!apache2!		& Apache Webserver\\
+	\verb!snort-mysql!	& Intrusion detection system\\
+	\verb!acidbase!		& Monitoring tool for snorf\\
+	\verb!phpmyadmin!	& Web-Administration for mySQL database\\
+	\verb!wireshark!	& Network sniffer software\\
+	\verb!subversion!	& Universal versioning system\\
+	\verb!cvs!			& Software versioning system (for eclipse IDE)\\
+	\verb!compizconfig-settings-manager! & Customize Unity Desktop\\
+	\verb!activity-log-manager! & Hide files or programs (Repo: \verb!ppa:zeitgeist/ppa!)\\
+	\verb!ubuntuone-indicator! & Indicates Ubuntu one status in status bar (Repo: \verb!ppa:rye/ubuntuone-extras!)\\
+	\verb!indicator-weather! & Shows weather at defined locations\\
+	\verb!gimp!			& Picture editor (Photoshop clone)\\
+	\verb!digikam!		& Picture Management\\
+	\verb!kile!			& \LaTeX\ Editor\\
+	\verb!eclipse!		& Software development IDE\\
+	\verb!gnome-panel!	& Helpful to create custom launchers in Unity\\
+	\verb!gimp!			& Picture editor (Photoshop clone)\\
+	\verb!digikam!		& Picture Management\\
+	\verb!photofilmstrip! & Software for making slideshows\\
+\end{tabular}
+

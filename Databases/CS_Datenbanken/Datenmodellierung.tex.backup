@@ -1,0 +1,56 @@
+\section{Datenmodellierung (Konzeptioneller Entwurf)}
+Daten- und funktionale Anforderungen definieren. Anschliessend auf die Daten Abstraktionskonzepte anwenden:
+Klassifikation (gleiche oder ähnliche \enquote{Dinge}), Aggregation (Zusammenfassen von \enquote{Dingen}, Name, Strasse, \dots zu Adresse),
+Generalisierung und Spezialisierung (Verallgemeinerung, Teilmengenbeziehungen, Zerlegung in disjunkte Untermengen).
+
+Bei der Modellierung gilt es sich auf den Anwendungsbereich zu beschränken. Die Modellierung muss unabhängig von der 
+späteren Implementierung sein.
+
+\subsection{Entity-Relationship-Model (P. P. S. Chen, 1976)}
+\begin{description}
+	\item [Entität] Ein  konkretes  oder  abstraktes  Objekt  der  realen  oder  einer  
+Vorstellungswelt, welches eindeutig identifiziert werden kann. Eine Entität hat Attribute (Bsp. Herr Aebi). 
+	\item [Entitätsmenge] Gleichartige Entitäten, d.h. Entitäten mit denselben Eigenschaften (Bsp. Personen).
+	\item [Identifikationsschlüssel] Ein Attribut oder eine Menge von Attributen, welche eine Entität eines
+Entitätstyps innerhalb dieses Typs eindeutig identifiziert (Bsp. Personalnummer)
+	\item [Beziehung] Eine Beziehung zwischen Entitäten $e_1, e_2, \dots, e_n (n \geq 2)$ ist ein $n$-
+Tupel, wobei jedes $e_i$ eine Entität eines Entitätstyps $E_i (1 \leq i \leq n)$ ist. Wenn derselbe Entitätstyp mehrfach 
+vorkommt ($E_i$ und $E_j$ mit $i \neq j$), dann müssen deren verschiedene Rollen mit Hilfe zusätzlicher
+Rollennamen bezeichnet werden.\\
+	Gleichartige Beziehungen werden zu einem Beziehungstyp zusammengefasst (Bsp. Person als Autor eines Buches)
+	Identifikationsattribute einer Entität, die an einer Beziehung beteiligt ist, gehört implizit zur Beziehung.
+	Eine Beziehung kann darüber hinaus weitere Attribute haben. Der Identifikationschlüssel einer Beziehung wird
+	aus Identifikationsattributen, der an der Beziehung beteiligten Entitätstypen gebildet.
+	\item[Generalisierung (is-a)] Eine Generalisierung ist ein Enitätstyp $G$ der die gemeinsamen Attribute der
+	spezialisierten Entitäten $E_1, E_2, \dots, E_n$ umfasst.
+	Eine Spezialisierung ist disjunkt, wenn $\bigcap (E_1, E_2, \dots, E_n) = \emptyset$. Ansonsten ist er überdeckend.
+\end{description}
+
+\begin{center}
+\scalebox{.87}{
+\begin{tikzpicture}[node distance=1cm, every edge/.style={link}]
+	\node[entity] (entity) {Entität};
+	\node[attribute] (key) [above left=of entity] {\key{Schlüssel}} edge (entity);
+	\node[attribute] (attribute) [left=of entity] {Attribut} edge (entity);
+	\node[multi attribute] (mattribute) [below left=of entity] {Multiattribut} edge (entity);
+	\node[relationship] (rel) [right=of entity] {Beziehung} edge (entity);
+	\node[attribute] (relAttr) [below=of rel] {Bez.-Attribut} edge (rel);
+	\node[isa] (isa) [below=of entity] {ISA} edge (entity);
+\end{tikzpicture}
+}
+\end{center}
+
+\subsection{Beziehungstypen (Kardinalität)}
+\begin{description}
+	\item [1:1] Jedem Element aus $E_1$ ist höchstens 1 Element aus $E_2$ zugeordnet
+	\item [1:M] Jedem Element aus $E_1$ können beliebig viele Elementa aus $E_2$ zugeordnet sein,
+	jedem Element aus $E_2$ aber höchstens ein Element aus $E_1$
+	\item [M:M] Jedem Element aus $E_1$ können beliebig viele Elemente aus $E_2$ zugeordnet sein
+	und umgekehrt. Diese Beziehungen müssen für Datenbanken aufgelöst werden.
+\end{description}
+
+Attribute werden aus Gründen der Übersichtlichkeit im ERM oft weggelassen und in ergänzenden Dokumenten festgehalten.
+Die Details entstehen in der Regel beim logischen Entwurf. Der Entwurf ist ein iterativer Prozess an dem mehrere
+Personen beteiligt sein sollten.  
+
+\section{Logischer Entwurf}

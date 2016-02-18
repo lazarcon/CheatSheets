@@ -1,0 +1,59 @@
+\section{Zufallsvariablen}
+\subsection{Eindimensional}
+\subsubsection{Diskret}
+Eine Zufallsvariable ist diskret, wenn sie nur endliche oder abzählbar unendliche Werte annehmen kann.
+\begin{description}
+	\item [Wahrscheinlichkeitsfunktion] 
+	(Zähldichte) gibt die Wahrscheinlichkeit an, dass $X$ den Wert $x_i$ annimmt bzw. im Interval $[a, b]$ liegt:
+	\begin{align*}
+		P(X = x_i)& = f_X(x_i)\\
+		f_X(x_i)& \geq 0 \mbox{ und } \sum f_X(x_i) = 1\\
+		P(a \leq X \leq b) & = \sum_{a \leq x_i \leq b} f_X(x_i)
+	\end{align*}
+
+	\item[Verteilungsfunktion] 
+	gibt an, mit welche Wahrscheinlichkeit die Zufallsvariable höchstens den Wert $x_i$ annimmt:
+	\begin{equation*}
+		F_X(x) = P(X \leq x) = \sum_{x_i \leq x} f_X(x_i)
+	\end{equation*}
+	Die Grenzwerte streben gegen 1 bzw. gegen 0 für $x \rightarrow \pm \infty$. Die Funktion ist rechtsseitig stetig.
+
+	\item[Erwartungswert]
+	entspricht dem artithmetischen Mittel.
+	\begin{equation*}
+		\mu \equiv E(x) =\sum_i f_X(x_i) \cdot x_i
+	\end{equation*}
+
+	\item[Varianz]
+	durchschnittliche quadratische Abweichung vom Erwartungswert
+	\begin{equation*}
+		\sigma = E(X - E(X))^2 =  \sum_i (x_i - E(X))^2 f_X(x_i) = E(X^2) - (E(X)^2)
+	\end{equation*}
+\end{description}
+
+\subsubsection{Stetig}
+Eine Zufallsvariable ist stetig, wenn sie nur Werte in einem bestimmten Interval annehmen kann.
+
+\begin{description}
+
+	\item[Dichtefunktion]
+	entspricht der Wahrscheinlichkeitsfunktion. Gilt allerdings für Intervalle und ist die erste Ableitung der Verteilungsfunktion
+	\begin{equation*}
+		f_X(x) = \frac{\mathrm dF_x(x)}{\mathrm dx}
+	\end{equation*}
+
+	\item[Verteilungsfunktion]
+	\begin{equation*}
+		F_X(x) = P(X \leq x) = \int_{-\infty}^{\infty} f(u)\,\mathrm du
+	\end{equation*}
+
+	\item[Erwartungswert]
+	\begin{equation*}
+		E(X) = \int_{-\infty}^{\infty} x \cdot f_X(x) \, \mathrm dx
+	\end{equation*}
+
+	\item[Varianz]
+	\begin{equation*}
+		\sigma = \int_{-\infty}^{\infty} (x - E(X)^2) \cdot f_X(x) \, \mathrm dx = \int_{-\infty}^{\infty} x^2 \cdot f_X(x)\, \mathrm dx - (E(x))^2
+	\end{equation*}
+\end{description}

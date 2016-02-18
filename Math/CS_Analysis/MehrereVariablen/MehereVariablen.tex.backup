@@ -1,0 +1,15 @@
+\section{Differential/Integral mit mehreren Variablen}
+Eine Funktion von $n$ unabhängigen Variablen ist eine Vorschrift, die jedem geordneten Zahlenpaar $(x_1; x_2; \dots; x_n)$ aus einer Definitionsmenge $D$ genau ein Element $y$ aus einem Wertebereich $W$ zuordnet: $y = f(x_1; x_2; \dots; x_n)$.
+\subsection{Darstellungen}
+\begin{description}\itemsep0em
+	\item [Explizit] $y = f(x_1; x_2; \dots; x_n)$
+	\item [Implizit] $F(x_1; x_2; \dots; x_n; y) = 0$
+	\item Funktionstabelle: Bei zwei unabhängigen gibt es eine Matrix ($x_1$-Werte in den Zeilen, $x_2$-Werte in den Spalten). Mit mehreren unabhängigen kommen weiteren Tabellen
+	für $x_3$ usw. dazu.
+	\item [Graphisch]
+		\begin{itemize}\itemsep0em
+			\item Fläche (3d) Geht nur mit zwei unabhängigen Variablen.
+			\item Schnittkurvendiagramm (2d) (mit zwei unabhängigen Variablen): $f(x_1; x_2) = $ Konstant
+		\end{itemize}
+\end{description}
+ 

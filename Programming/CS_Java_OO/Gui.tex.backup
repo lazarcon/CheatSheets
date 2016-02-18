@@ -1,0 +1,114 @@
+\section{GUI}
+Es gibt verschiedene Gui-Implementationen (AWT, Swing, SWT).
+Die hier aufgeführten beziehen sich auf \enquote{Swing}.
+
+\subsection{Fenster und Dialoge}
+Haben alle einen Titel (\java{String}) und einen Inhalt (\java{contentPane}).
+\settowidth{\MyLenA}{\java{JColorChooser}~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+	\java{JFrame} & Hauptfenster, kann eine Menüleiste haben.\\
+	\java{JDialog} & Hängt von einem anderen Fenster ab.\\
+	\java{JColorChooser} & Dialog um Farben auszuwählen. Kann Teil von \java{JFrame} oder \java{JDialog} sein.\\
+	\java{JFileChoose} & Dialog um Dateien auszuwählen.\\
+	\java{JOptionPane} & Zuständig für Fehlermeldungen und Rückfragen.\\
+\end{tabular}
+\java{JOptionPane} bietet vier Darstellungen:
+\begin{itemize}
+	\item \java{showMessageDialog()}
+	\item \java{showOptionDialog()}
+	\item \java{showConfirmDialog()}
+	\item \java{showInputDialog()}
+\end{itemize}
+
+
+\subsection{Menüs}
+
+\settowidth{\MyLenA}{\java{JRadioButtonMenuItem}~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+	\java{JMenuBar} & Menüleiste eine Fenster. Kann beliebig viele \java{JMenu} Objecte enthalten\\
+	\java{JMenuBar}	& Container für \java{JMenuItem} oder weiter \java{JMenu} (Submenu)\\
+	\java{JMenuItem} & Allgemeiner Menü-Eintrag. Kann \java{JMenu} enthalten\\
+	\java{JCheckBoxMenuItem} & Menü-Eintrag mit einer Checkbox\\
+	\java{JRadioButtonMenuItem} & Menü-Eintrag mit Radio-Buttons. Radio-Buttons werden durch eine \java{ButtonGroup} zusammengehalten.\\
+	\java{JSeparator} & Trennstrich zwischen \java{JMenuItem}\\
+	\java{JPopupMenu} & Kontext-Menü, aktiviert durch rechte Maustaste.\\
+\end{tabular}
+
+\subsection{Container}
+Container strukturieren die eigentliche Bedienelemente.
+
+\settowidth{\MyLenA}{\java{JInternalFrame}~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+	\java{JPanel} & Standard-Container\\
+	\java{JTabbedPane} & verwaltet Container über Registerkarten\\
+	\java{JSplitPane} & Zweigeteilter, grössenvariabler Container\\
+	\java{JScrollPane} & Ermöglich scrollen innerhalb eines Containers\\
+	\java{JToolBar} & Werkzeugleiste\\
+	\java{JDesktopPane} & Kann innere Fenster (\java{JInternalFrame}) enthalten\\
+	\java{JInternalFrame} & Inneres Fenster (ähnlich \java{JFrame})\\
+	\java{JLayeredPane} & Wie \java{JPanel}, nur mit unterschiedlichen Ebenen\\
+\end{tabular}
+
+\subsubsection{LayoutManager}
+LayoutManager ermöglichen das Platzieren der Inhaltselemente:
+\settowidth{\MyLenA}{\java{BorderLayout}~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+	\java{BorderLayout} & Besteht aus fünf Bereichen: North, South (ganze Breite), East, West und Center, die einzeln gefüllt werden können.(Default für \java{JFrame})\\
+	\java{BoxLayout} & Stappelt die Elemente, oder platziert sie in einer Reihe.\\
+	\java{FlowLayout} & Platziert alle Elemente nebeneinander und bricht um, wenn der
+	Platz nicht ausreicht (Default für \java{JPanel})\\
+	\java{BoxLayout} & Unterteilt das Fenster in eine Tabelle, deren Zellen mit
+	Elementen gefüllt werden können\\
+\end{tabular}
+
+\subsection{Inhaltselemente}
+Können ineinander verschachtelt werden und erben von \java{JComponent}.
+\settowidth{\MyLenA}{\java{JFormattedTextField}~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+\java{JLabel} & 	 statischer Text, nicht editierbar\\
+\java{JButton} &	 Schaltfläche (Button)\\
+\java{JToggleButton} &	Button mit zwei Zuständen (an/aus)\\
+\java{JCheckBox} &	 Auswahlkästchen\\
+\java{JRadioButton} & Auswahl einer von mehreren Optionen. Sind via \java{ButtonGroup} verknüpft\\
+\java{ButtonGroup} & Gruppierung von \java{JRadioButton}\\
+\java{JComboBox} &	Dropdown-Liste (auch als Auswahlliste oder Listbox bezeichnet)\\
+\java{JList}	 & Liste, die mehrere Elemente enthalten kann. Mehrfachauswahl möglich\\
+\java{JTextField} &	Einzeilige Texteingabe\\
+\java{JTextArea}  & Mehrzeilige Texteingabe\\
+\java{JScrollBar}	&  Schieberregler zum Scrollen\\
+\java{JSlider}	 	& Skalierbarer Schieberregler\\
+\java{JProgressBar} & Fortschrittsbalken\\
+\java{JFormattedTextField} & Textfeld, für das eine Formatierung (z.\,B. Beträge) festlegbar ist\\
+\java{JPasswordField} & Textfeld zur Passworteingabe.\\
+\java{JSpinner}		&	Ähnlich der JComboBox, enthält Liste, die mit Pfeiltasten gesteuert wird.\\
+\java{JSeperator} &	Trennlinie\\
+\java{JEditorPane}	& mehrzeiliges Textfeld zur Bearbeitung von formatiertem Text, mit HTML- und RTF-Unterstützung.\\
+\java{JTextPane} &	Spezialisierung von JEditorPane, dient der Bearbeitung und Anzeige grafisch aufbereiteter Texte.\\
+\java{JTree}	& Baumstruktur.\\
+\java{JTable}	& Tabelle, kann auch Texteingaben entgegen nehmen.\\
+\end{tabular}
+
+Komponenten werden der Elternkomponente mit \java{parent.getContentPane().add(newComponent)} hinzugefügt.
+
+\subsection{Events}
+Durch Dritte (Benutzer, System) ausgelöste Ereignisse
+\settowidth{\MyLenA}{\java{ActionEvent}~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)}}
+	\java{ActionEvent} $\rightarrow$ \java{ActionListener} & Ausgelöst durch GUI-Komponenten\\
+	%%\java{FocusEvent} $\rightarrow$ & wenn eine Komponente den Fokus bekommt oder verliert\\
+	\java{MouseEvent} $\rightarrow$ \java{MouseListener} & wenn die Maus ein Komponente berührt, bewegt oder gedrückt wird.\\
+	\java{WindowEvent} $\rightarrow$ & wenn sich der Zustand eines Fensters ändert\\
+	%%\java{TextEvent} & wenn sich der Text einer Komponente ändert\\
+\end{tabular}
+
+\subsubsection{Implentieren von Listenern}
+\begin{itemize}
+	\item Das entsprechende Element (z.\,B. \java{JPanel}) den entsprechenden Listener implementieren lassen.
+	\item Durch eine anonyme innere Klasse
+\end{itemize}

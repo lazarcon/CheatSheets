@@ -1,0 +1,118 @@
+\section{Aufbau (wissenschaftlicher) Texte}
+\begin{enumerate}\itemsep0em
+	\item (Optional) Vorwort: Persönliche Begründung wie es zur Arbeit kam
+	\item (Optional) Einleitung: Verwendete Methoden, Rahmen der Arbeit, was gehört dazu, was nicht
+	\item Teile 1 \dots $n$ (Eigentlicher Inhalt; Anforderungen, Ziele, Messwerte usw.)
+	\item (Optional) Nachwort: Was wurde gelernt, was kann noch gemacht werden
+	\item Bibliographie (Verwendete Literatur)
+	\item Anhänge
+\end{enumerate}
+
+\section{Formulierungen}
+$\Rightarrow$ Kurz und prägnant formulieren $\Rightarrow$ Inhalt muss schnell und leicht verständlich sein: So ausführlich wie nötig, so kompakt und prägnant wie möglich.
+
+\subsection{Does}
+\begin{itemize}\itemsep0em
+	\item sachbezogen bleiben; nur zur Fragestellung relevantes aufführen
+	\item unmissverständlich formulieren
+	\item kurz und prägnant formulieren
+	\item Fachbegriffe richtig verwenden
+	\item objektiv formulieren; Erkenntnisse müssen nachprüfbar sein
+	\item Quellen vollständig und korrekt angeben
+	\item als Verfasser unsichtbar bleiben
+	\item im Präsenz formulieren
+	\item Unauffällige Metaphern verwenden 
+	\item Mathematische Aussagen als Ziffern darstellen
+	\item Symbole (\%, \S) mit Leerschlag absetzen
+	\item Abkürzungen mit ganzem Lehrschlag trennen (richtig: \texttt{z.\textbackslash ,B.)}
+	\item Mehrteilige Verben dicht beieinander halten
+	\item Das wesentliche zuerst nennen (z.\,B. \underline{Sprache} ist nach Keller (2003, 11) ein Folge von \dots
+	\item Regieanweisung mit Inhalt verbinden (z.\,B. Zusammenfassend kann festgestellt werden, dass \dots)
+\end{itemize}
+
+\subsection{Don'ts}
+\begin{itemize}\itemsep0em
+	\item Worthülsen benutzen (\textit{kundenbezogen, -gerichtet, -gestützt, - basiert} statt \textit{kundenorientiert})
+	\item Pleonasmen (z.\,B. \textit{Einzelindividuum}) verwenden
+	\item ungenaue Angaben (z.\,B. \textit{grösser als}) machen
+	\item Fachausdrücke falsch oder falsche Fachausdrücke verwenden
+	\item subjektive Aussagen einfliessen lassen, Wertungen vornehmen
+	\item Antrophomorphismen (Vermenschlichungen) verwenden
+	\item \enquote{ich} durch 3te Person ersetzen (z.\,B. Der Autor denkt \dots)
+	\item im Präteritum formulieren
+	\item einen \enquote{blumigen} Stil pflegen
+	\item Zahlen unter 13 als Ziffern darstellen
+	\item mehrere Zahlen direkt aufeinander folgen lassen
+	\item Sätze, die länger als drei Zeilen sind, formulieren
+	\item Genitiv-Bandwürmer erzeugen (z.\,B. Der Sohn der Cousine des Beamten der Stadverwaltung \dots)
+	\item Mehr als eine Partizipialgruppe verwenden
+	\item Inhaltsleere Sätze und Floskeln verwenden (z.\,B. Regieanweisungen: Ich komme jetzt zum nächsten Punkt \dots)
+\end{itemize}
+
+\subsection{Haupt- und Nebensätze}
+\settowidth{\MyLenA}{Auswahl/Ausschluss~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Auswahl/Ausschluss 	& \textit{entweder \dots oder, weder \dots noch}\\
+	Bedingungen			& \textit{wenn, falls, sofern, soweit}\\
+	Begründung			& \textit{weil, da, denn, deshalb}\\
+	Einräumung			& \textit{obwohl, obgleich}\\
+	Einschränkung		& \textit{aber, doch, jedoch, allein, wenn auch, nur}\\
+	Erweiterung			& \textit{darüber hinaus, nicht nur \dots sondern auch, vielmehr, sowohl \dots als auch}\\
+	Folge/Resultat		& \textit{dass, so dass}\\
+	Gegensatz			& \textit{aber, doch, jedoch, sondern, während}\\
+	Mittel/Umstand		& \textit{indem, ohne dass}\\
+	Ort					& \textit{wo}\\
+	Proportion			& \textit{je \dots desto}\\
+	Zeitlichkeit		& \textit{bevor, während, nachdem, sobald, seitdem, als}\\
+\end{tabular}
+
+\subsection{Zitieren}
+\begin{itemize}\itemsep0em
+	\item Zitat darf ursprüngliche Aussage nicht verfälschen
+	\item Nichts belangloses wörtlich zitieren
+	\item Zitieren ersetzt eigene Formulierungen nicht, ausser die Aussage ist besonders prägnant
+\end{itemize}
+
+\subsubsection{Direkte Zitate}
+sind Buchstabengetreu zu übernehmen
+\begin{itemize}\itemsep0em
+	\item stehen in Anführungszeichen
+	\item der Zitatbeleg steht am Ende z.\,B. \enquote{Bla bla} (Keller, 2003, 11)
+	\item Auslassungen werden mit [\dots] markiert
+	\item Eigene grammatikalische Anpassung sind ebenfalls in eckige Klammern zu setzen
+	\item Hervorhebungen sind zu übernehmen, oder der Text ist als \enquote{ohne Hervorhebungen} zu kennzeichnen
+	\item Rechtschreibfehler auch übernehmen und mit dem Hinweis \textit{[sic]} versehen
+\end{itemize}
+ 
+\subsubsection{Indirekte Zitate}
+\begin{itemize}\itemsep0em
+	\item werden im Indikativ formuliert
+	\item stehen nicht in Anführungszeichen
+	\item Zitatbeleg steht am Ende mit vgl. (vergleiche) z.\,B. (vgl. Keller 2003, 11)
+\end{itemize}
+
+\subsection{Titel}
+\begin{itemize}\itemsep0em
+	\item Knapp formulieren (wenn nicht vorgegeben)
+	\item Als Fragen formulieren (z.\,B. Wie kann \dots erreicht werden?)
+	\item Präzisierungen in Untertitel verbannen
+\end{itemize}
+
+\subsection{Überschriften}
+\begin{itemize}\itemsep0em
+	\item sollten kurz und aussagekräftig sein. Details können in einleitenden Sätzen stehen. 
+	\item sollten den Inhalt wiedergeben
+	\item lange Überschriften in Unterkapitel aufteilen
+	\item Monotonie bei Titeln vermeiden
+\end{itemize}
+
+\subsection{Geschlechterfragen}
+\begin{itemize}\itemsep0em
+	\item Beide Geschlechter nennen, wenn beide gemeint sind
+	\item Geschlechtsneutrale Form wenn möglich
+	\item Ggf. Abkürzungen für Kombinationen, die häufig vorkommen, einführen $\rightarrow$ Abkürzungsverzeichnis
+\end{itemize}
+
+
+

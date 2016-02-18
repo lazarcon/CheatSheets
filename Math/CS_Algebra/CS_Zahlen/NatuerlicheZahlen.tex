@@ -1,0 +1,207 @@
+\section{Natürliche Zahlen $\N$}
+\subsection{Peano-Axiome}
+\begin{enumerate}
+\item Die 0 ist eine natürliche Zahl: $0 \in \N$
+\item Der Nachfolger einer natürliche Zahl $n$ sei $\sigma(n)$: $n \in \N \Rightarrow \sigma(n) \in \mathbb{N}$
+\item Die 0 ist kein Nachfolger: $\forall n \in \N \colon \sigma(n) \neq 0$
+\item Zwei verschiedene Zahlen haben verschiedene Nachfolger: $\forall n, m \in \N: (n \neq m) \Rightarrow (\sigma(n) \neq \sigma(m))$
+\item Für jede Teilmenge $M$ von $\mathbb{N}$ gilt, wenn $M$ die folgenden Eigenschaften erfüllt:
+	\begin{enumerate}
+		\item 0 ist in $M$
+		\item Für jedes $n$ in $M$ ist auch $\sigma(n)$ in $M$
+	\end{enumerate}
+	dass $M = \N$. Formal: $0\in M \wedge \forall n \in \N \colon (n \in M \Rightarrow \sigma(n)\in M) \Rightarrow M \subseteq \N$\\
+	(Schliesst parallele Strukturen aus.) Induktionsprinzip.
+\end{enumerate}
+
+\subsection{Addition}
+Die Addition ist rekursiv definiert:
+\begin{enumerate}
+	\item Eine Zahl + 0 ist wieder die Zahl selbst. $n + 0 = n$
+	\item Wird zu einer Zahl, der Nachfolger einer anderen Zahl addiert, ist das so, wie wenn
+	erst die beiden Zahlen addiert werden und dann der Nachfolger gebildet wird: $m + \sigma(n) = \sigma(m + n)$
+\end{enumerate}
+
+\subsection{Vollständige Induktion}
+\begin{equation*}
+(E(0)\wedge \forall n \in \N (E(n) \Rightarrow E(n + 1)))\Leftrightarrow \forall n \in \N (E(n))
+\end{equation*}
+
+Man zeigt etwas für die 0, anschliessend nimmt man an, dass wenn es für eine
+natürliche Zahl gilt, dann auch für deren Nachfolger. Gilt es für 0 und alle Nachfolger, gilt es für alle.
+
+Zu zeigen: $\forall n \in \N \colon n + 0 = n$\\
+Problem: bisherige Theoreme lassen sich nicht anwenden.\\
+\begin{proof}[Beweis: Vollständige Induktion über $n$]
+	\begin{align*}
+		n	& = 0	& \mbox{(Induktionsanfang)}\\
+		0 + 0& = 0	& \mbox{(Addition 1: Für die 0 bewiesen)}\\
+	\end{align*}
+	Induktionschritt: Wir schliessen von $n = k$ auf $n = \sigma(k)$
+	\begin{align*}
+		k + 0 	& = k	& \mbox{Induktionsannahme; für $k$ gilt es bereits}\\
+		\sigma(k) + 0	& = \sigma(k)		& \mbox{(Neu zu zeigen: gilt für Nachfolger)}\\
+		\sigma(k) + 0	& = \sigma(k + 0)	& \mbox{(Addition 2)}\\
+						& = \sigma(k)		& \mbox{(Induktionsannahme: für $\sigma(k)$ bewiesen)}
+	\end{align*}
+\end{proof}
+Der Trick ist, die Induktionsannahme im Beweis zu verwenden. Es wird nur angenommen, dass die Formel für eine Zahl gilt.
+Bewiesen wird dann, wenn die Formel für eine Zahl gilt, gilt sie auch für alle anderen.
+
+\subsubsection{Direkter Beweis}
+Zu zeigen: $\forall n \in \N \colon n + 1 = \sigma(n)$
+\begin{proof}
+	Sei $n$ fest, aber beliebig
+	\begin{align*}
+	n + 1	& = n + \sigma(0) &\mbox{Definition der 1}\\
+			& = \sigma(n + 0)	& \mbox{Addition 2}\\
+			& = \sigma(n)		& \mbox{Addition 1}
+	\end{align*}
+\end{proof}
+
+% Rechenbeispiel: $1 + 2 = ?$
+% \begin{align*}
+% 	1 + 2	& = \sigma(0) + \sigma(\sigma(0))			& \mbox{Einsetzen der Definitionen}\\
+% 			& = \sigma(\sigma(0) + \sigma(0))			& \mbox{Addition 2 auf das Ganze}\\
+% 			& = \sigma(\sigma(\sigma(0) + 0))			& \mbox{Addition 2 in der Klammer}\\
+% 			& = \sigma(\sigma(\sigma(0)))				& \mbox{Addition 1 auf die innere Klammer}\\
+% 			& = 3										& \mbox{Einsetzen der Definition}
+% \end{align*}
+% Durch mehrfaches Anwenden von Addition 2 wird nach und nach ein $\sigma$ nach vorne geholt. Dieser Teil ist rekursiv.
+
+
+\subsubsection{Summen}
+\begin{align*}
+	\sum_{i=1}^0 a_i& = 0\\
+	\sum_{i=1}^{n+1} a_i& = \left( \sum_{i=1}^n a_i\right ) + a_{n+1}\\
+\end{align*}
+
+\subsubsection{Die Gaussche Summenformel}
+\begin{equation*}
+	1 + 2 + \dots + n = \Sigma_{i = 1}^{n} i = \frac{n \cdot (n+1)}{2}
+\end{equation*}
+Zu zeigen: $\forall n \in \N\textbackslash\{0\} \colon \Sigma_{i = 1}^n i = \frac{n \cdot (n + 1)}{2}$
+\begin{proof}
+	Induktion über $n$
+	\begin{align*}
+		n& = 1 &\mbox{(Induktionsanfang)}\\
+		\Sigma_{i=1}^1 i & = 1 = \frac{2}{2} = \frac{1 \cdot 2}{2} = \frac{1 \cdot(1 + 1)}{2} &\mbox{Beweis für 1}
+	\end{align*}
+	Induktionsschritt: Wir schliessen von $n = k$ auf $n = k + 1$
+	\begin{align*}
+		\Sigma_{i=1}^k i& = \frac{k \cdot (k + 1)}{2} &\mbox{Induktionsannahme}\\
+		\Sigma_{i=1}^{k+1} i& = \frac{(k + 1) \cdot ((k + 1) + 1)}{2} &\mbox{Neu zu zeigen}\\
+		\Sigma_{i=1}^{k+1} i& = \Sigma_{i=1}^{k} i + (k + 1)&\mbox{Summe um einen Term verkürzt}\\
+		& = \frac{k \cdot (k + 1)}{2} + (k + 1)& \mbox{Induktionsannahme}\\
+		& = \frac{k \cdot (k + 1)}{2} + \frac{2 \cdot (k + 1)}{2} & \mbox{Rechts um zwei erweitert}\\
+		& = \frac{k \cdot (k + 1) + 2 \cdot (k + 1)}{2}& \mbox{Zusammenzug}\\
+		& = \frac{(k + 1) \cdot (k + 2)}{2} & k + 1 \mbox{ausklammern}\\
+		& = \frac{(k + 1) \cdot ((k + 1) + 1)}{2} & \mbox{Terme vertauscht}
+	\end{align*}
+\end{proof}
+
+\subsubsection{Rechenregeln}
+\settowidth{\MyLenA}{Neutrales Element~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)/2}}
+	Neutrales Element 		& $0 + n = n$\\
+	Kommutativität			& $n + m = m + n$\\
+	Assoziativität			& $(n + m) + k = n + (m + k)$\\
+	Kürzbarkeit				& $(n + k = m + k) \Rightarrow n = m$\\
+\end{tabular}
+
+\subsection{Multiplikation}
+Die Multiplikation ist rekursiv definiert:
+\begin{enumerate}
+	\item Eine Zahl mal 0 ist 0: $n \cdot 0 = 0$\\
+	\item Wird eine Zahl mit dem Nachfolger einer anderen Zahl multipliziert, ist das so, wie wenn
+	erst die beiden Zahlen multipliziert und anschliessend die ursprüngliche Zahl addiert wird: $m \cdot \sigma(n) = \sigma(m \cdot n) + m$
+\end{enumerate}
+
+\subsubsection{Potenzen}
+\begin{enumerate}
+	\item Eine Zahl hoch 0 ist 1: $n^0 = 1$
+	\item Eine Zahl hoch dem Nachfolger einer anderen Zahl ist die eigentliche Zahl multipliziert mit der eigentlichen Zahl hoch der anderen Zahl: $m^{\sigma(n)} = m \cdot (m^n)$
+\end{enumerate}
+
+\subsubsection{Fakultät}
+\begin{enumerate}
+	\item $0! = 1$
+	\item $\sigma(m)! = \sigma(m) \cdot m!$
+\end{enumerate}
+
+Beispiel: $n! > 2^n$ für $n \geq 4$
+\begin{proof}
+	Anfang: $4! = 24 > 16 = 2^4$\\
+	Annahme: $k! > 2^k$\\
+	Zu zeigen: $(k + 1)! > 2^{k + 1}$
+	\begin{equation*}
+		(k + 1)! = (k + 1) \cdot k! > (k + 1) \cdot 2^k > 2 \cdot 2^k = 2^{k+1}
+	\end{equation*}
+\end{proof}
+Beweisstrategie: Von Links und rechts der Mitte hin annähern.
+
+
+\subsubsection{Rechenregeln}
+\settowidth{\MyLenA}{Neutrales Element~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)/2}}
+	Absorbtion				& $0 \cdot n = 0$\\
+	Neutrales Element 		& $1 \cdot n = n$\\
+	Kommutativität			& $n \cdot m = m \cdot n$\\
+	Assoziativität			& $(n \cdot m) \cdot k = n \cdot (m \cdot k)$\\
+	Distributivität			& $n \cdot (m + k) = n \cdot m + n \cdot k$\\
+\end{tabular}
+Partialsummen
+\begin{equation*}
+	\sum_{i=1}^n (c \cdot(a_1 + b_1)) = c \left (\sum_{i=1}^n a_i + \sum_{i=1}^n b_i \right )
+\end{equation*}
+
+\subsubsection{Produkte}
+\begin{align*}
+	\prod_{i=1}^0 a_i& = 1\\
+	\prod_{i=1}^{n + 1} a_i& = a_{n+1} \cdot \prod_{i=1}^n a_i\\
+\end{align*}
+
+\subsection{Die Ordnung der natürlichen Zahlen}
+Es sei $A$ eine Menge und $\preceq$ eine Ordnung auf $A$.
+\begin{enumerate}
+	\item Sei $X \subset A$, dann ist $m \in X$ dass minimale Element, wenn gilt: $\forall x \in X (m \preceq x)$.
+	\item Das Paar $(A, \preceq)$ heisst Wohlordnung, wenn jede nichtleere Teilmenge $X \subset A$ ein minimales Element besitzt.
+\end{enumerate}
+Die 0 ist die kleinste natürliche Zahl.
+
+\subsubsection{Relationen}
+\settowidth{\MyLenA}{$a \leq b$ ~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)/2}}
+	$a \leq b$				& $\Leftrightarrow \exists k \in \N (m = k + n)$\\
+	$a < b$ 				& $\Leftrightarrow (n \leq m \wedge n \neq m)$\\
+\end{tabular}
+
+Die Kleiner-als-Relation wird rekursiv definiert:
+\begin{enumerate} 
+	\item Keine Zahl ist kleiner als null: $\forall n \in \N \colon \neg n < 0$
+	\item Eine Zahl ist kleiner als der Nachfolger einer anderen Zahl genau dann, wenn beide Zahlen gleich gross oder die erste Zahl kleiner als die zweite ist:
+		$\forall m, n \in \N \colon m < \sigma(n) \Leftrightarrow (m = n) \vee (m < n)$
+\end{enumerate}
+Zu zeigen: $3 < 5$
+\begin{proof}
+	\begin{align*}
+		(3 < 5) & = (3 < \sigma(4))				& \mbox{(Definition der 5)}\\
+		& \Leftrightarrow (3 = 4) \vee (3 < 4)	& \mbox{(Kleiner 2: links falsch)}\\
+		(3 < 4) & = (3 < \sigma(3))				& \mbox{(Definition der 4)}\\
+		& \Leftrightarrow (3 = 3) \vee (3 < 3)	& \mbox{(Kleiner 2: (3 = 3) ist wahr)}
+	\end{align*}
+	\qedhere
+\end{proof}
+
+Das Paar $(\N, \leq)$ ist eine Wohlordnung.
+
+\subsubsection{Rechenregeln}
+\begin{align*}
+	n < m& \Leftrightarrow (n + 1) \leq m\\
+	n < m& \Leftrightarrow (n + k) < (m + k)\\
+	n \leq m& \Leftrightarrow (n + k) \leq (m + k)\\
+	(n \leq n') \wedge (m \leq m')& \Leftrightarrow (n + m) \leq (n' + m')\\
+\end{align*}

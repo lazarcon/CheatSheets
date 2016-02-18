@@ -1,0 +1,31 @@
+\section{Zusammenhang Angebot/Nachfrage}
+\subsection{Vollkommene Konkurrenz}
+\begin{enumerate}\itemsep0em
+	\item Die Waren einzelner Anbieter lassen sich nicht unterscheiden
+	\item Es gibt sehr viele Anbieter und Nachfrager
+	\item Der Markt ist frei zugänglich
+	\item Die Marktteilnehmenden sind bezüglich Angebot und Preis vollständig informiert
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}
+    %\draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+    \draw[->] (0,0) -- (4,0) node[below] {Menge};
+    \draw[->] (0,0) -- (0,4) node[left] {Preis};
+    \draw [thick, domain=0.1:3.6] plot[id=a] function{x} node [right] {Angebot};
+    \draw [thick, domain=0.1:3.6] plot[id=n] function{-x + 4}  node [right] {Nachfrage};
+	% Gleich
+	\draw [dashed] (0,2) node [left] {$P_G$} -- (2, 2);
+	\draw [dashed] (2,0) node [below] {$M_G$} -- (2, 2);
+	% Angebot
+	\draw [dashed] (0,3) node [left] {$P_1$} -- (3, 3);
+	\draw [dashed] (3,0) node [below] {$M_2$} -- (3, 3);
+	% Gleich
+	\draw [dashed] (0,1) node [left] {$P_2$} -- (3, 1);
+	\draw [dashed] (1,0) node [below] {$M_1$} -- (1, 3);	
+\end{tikzpicture}
+\end{center}
+\begin{enumerate}
+	\item Am Punkt $(M_G, P_G)$ befindet sich der Markt im Gleichgewicht.
+	\item Am Punkt $(M_1, P$
+\end{enumerate}

@@ -1,0 +1,10 @@
+\section{Automaten}
+Informale Spezifikation können unvollständig, redundant und Mehrdeutig sein.
+Besser: Spezifikation über Zustandstabelle oder UML-Diagramm (Zustandsübergangsdiagramm) für endliche Automaten.
+
+\subsection{Mealy-Automat}
+Die Ausgabe wird mit der Transition assoziiert, dass heisst, sie hängt vom Zustand und der Eingabe ab.
+
+
+\subsection{Moore-Automat}
+Die Ausgabe wird mit dem Zustand assoziiert und hängt somit nur vom Zustand ab.

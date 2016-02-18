@@ -1,0 +1,178 @@
+\section{Pushdown-Automaten (=Kellerautomaten)}
+Sind im Gegensatz zu endlichen Automaten unendliche Automaten.
+\begin{description}\itemsep0em
+	\item [Pushdown-Automat (PDA)] 
+	Ein (nichtdeterministischer) Pushdown-Automat $P$ wird als 7 Tupel definiert: $P = (Q, \Sigma, \Gamma, \delta, q_0, s_0, F)$
+	\begin{itemize}\itemsep0em
+		\item [$Q$] endliche Menge von Zuständen
+		\item [$\Sigma$] endliches Eingabealphabet
+		\item [$\Gamma$] endliches Stackalphabet
+		\item [$\delta$] Übergangsfunktion $\delta \colon Q \times (\Sigma \cup \{ \varepsilon \} ) \times \Gamma \rightarrow \mathcal P(Q \times \Gamma^{*})$
+		\item [$q_0$] Startzustand ($q_0 \in Q$)
+		\item [$s_o$] Startsymbol des Stacks ($s_0 \in \Gamma$) 
+		\item [$F$] Menge der akzeptieren Zustände ($F \subset Q$)
+	\end{itemize}
+
+	Die Übergangsfunktion $\delta$ bildet das Tripel $\delta(q_v \in Q, e \in \Sigma, s_v \in \Gamma)$  auf eine endliche Menge von Paaren $(q_n \in Q, s_n \in \Gamma)$ ab. Die Indexe $n$ und $v$ stehen dabei für vorher ($v$) respektive nachher ($n$).
+
+	\item [Stack]
+	Ein Stack ist ein Last In -- First Out (LIFO) Speicher. Ein PDA liest das oberste Elemente $x \in \Gamma$ und ersetzt es durch $\gamma \in \Gamma$.
+	\begin{itemize}\itemsep0em
+		\item $\gamma = \varepsilon$ (\enquote{pop}, entfernt oberstes Element)
+		\item $\gamma = x$ (\enquote{void}, Stack unverändert)
+		\item $\gamma \neq x \wedge \gamma \neq \varepsilon$ (\enquote{pop/push}, ersetzt oberstes Element)
+		\item Ist $|\gamma| > 1$ entspricht einem \enquote{pop} und $|\gamma|$ \enquote{pushs}.
+	\end{itemize}
+
+	\item [Konfiguration] Das Tripel $(q, w, \gamma)$ wird als Konfiguration $K$ von $P$ bezeichnet.
+	\begin{itemize}\itemsep0em
+		\item [$q$] aktueller Zustand
+		\item [$w$] noch nicht gelesener Teil der Eingabealphabet
+		\item [$\gamma$] Inhalt des Stacks
+	\end{itemize}
+
+	\item[Bewegung]
+	Sei $(p, \alpha)$ ein Element von $\delta(q, e, s)$, dann stellt ein Wechsel von Konfiguration $(q_v, ew, s\beta)$ nach $(q_n, w, \alpha\beta)$ eine Bewegung dar: $(q_v, ew, s\beta) \underset{P}{\vdash} (q_n, w, \alpha\beta)$
+
+	\item[Berechnung]
+	Gegeben sei ein PDA und eine Folge von Konfigurationen $K_1, \dots, K_n$ für die paarweise gilt: $K_i \vdash K_{i+1}$ ist eine Bewegung, dann stellt die Folge der Konfigurationen eine Berechnung vom PDA dar (analog $\hat{\delta}$): $K_1 \overset{\centerdot}{\underset{P}{\vdash}} K_n$
+
+	\item[Sprache (Endzustand)] 
+	Die Menge aller Zeichenreihen $w$, für die in $P$ ausgehend von der Anfangskonfiguration $K_0$ eine Berechnung exisitiert, so dass $P$ in einen akzeptierenden Endzustand wechselt wird mit $L(P)$ bezeichnet.
+	\begin{equation*}
+		L(P) = \{w | (q_0, w, s_0) \overset{\centerdot}{\underset{P}{\vdash}} (f, \varepsilon, \beta) \wedge f \in F\}
+	\end{equation*}
+	
+	$P$ akzeptiert durch seinen Endzustand. Der Stack spielt keine Rolle.
+
+	\item[Sprache (leerer Stack)] Die Menge aller Zeichenreihen $w$ für die in $P_N$ ausgehend von einer Anfangskonfiguration $K_0$ eine Berechnung existiert, so dass $P$ nach dem Einlesen von $w$ einen leeren Stack aufweist wird mit $N(P)$ bezeichnet.
+	\begin{equation*}
+		N(P) = \{w | (q_0, w, s_0) \overset{\centerdot}{\underset{P}{\vdash}} (f, \varepsilon, \varepsilon)\}
+	\end{equation*}
+
+	$P$ akzeptiert durch leeren Stack. Der Zustand spielt keine Rolle d.\,h. es gibt keine Endzustände, d.\,h. $P = (Q, \Sigma, \Gamma, \delta, q_0, s_0$) (6-Tupel!)
+
+	Der Automat schreibt also ein $\varepsilon$, wenn er $s_0$ im Keller hat und die Eingabe $\varepsilon$ liest.
+
+\end{description}
+
+\subsection{Beispiel (akzeptiert durch Endzustand)}
+Ein Automat, der die Sprache $L = \{a^{n}b^{n} | n > 0\}$ erkennt:
+\begin{equation*}
+	P = (\{q_0, q_1, q_2\}, \{a, b\}, \{a, s_0\}, \{(q_0, w, s_0) \overset{\centerdot}{\vdash} (q_3, \varepsilon, \varepsilon)\}, q_0, s_0, q_2) 
+\end{equation*}
+\begin{center}
+	\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto, node distance=2.5cm, semithick]
+	\tikzstyle{every state}=[fill=black!10, align=center]
+	\tikzstyle{every node}=[align=center]
+
+	\node[state, initial]		(A) 				{$q_0$};
+	\node[state] 				(B)	[right of=A]	{$q_1$};
+	\node[state, accepting]		(C) [right of=B]	{$q_2$};
+
+	\path 	(A) edge [loop above] 	node {$a, s_0/as_0$\\$a, a/aa$} (A)
+				edge              	node {$b, a/\varepsilon$} (B)
+			(B) edge [loop above]	node {$b, a/\varepsilon$} (B)
+				edge 				node {$\varepsilon, s_0/s_0$} (C);
+	\end{tikzpicture}
+\end{center}
+Der Automat für beispielsweise die Berechnung $(q_0, aabb, s_0) \overset{\centerdot}{\vdash} (q_3, \varepsilon, s_0)$ durch. Die Bewegungen dabei sind:
+\begin{multline*}
+	(q_0, aabb, s_0) \vdash (q_0, abb, as_0) \vdash (q_0, bb, aas_0) \vdash (q_1, b, as_0)\\ \vdash (q_1, \varepsilon, s_0) \vdash (q_2, \varepsilon, s_0)
+\end{multline*}
+
+\subsection{Sätze}
+Gegeben sei ein PDA $P = P = (Q, \Sigma, \Gamma, \delta, q_0, s_0, F)$:
+\begin{itemize}\itemsep0em
+	\item Wenn $(q, x, \alpha) \overset{\centerdot}{\underset{P}{\vdash}} (p, y, \beta)$ eine Berechnung in $P$ ist, dann gilt für alle $w \in \Sigma^*$ und alle $\gamma \in \Gamma^*$, dass auch $(q, xw, \alpha\gamma) \overset{\centerdot}{\underset{P}{\vdash}} (p, yw, \beta\gamma)$ eine Berechnung in $P$ ist.
+
+	\item Wenn $(q, xw, \alpha) \overset{\centerdot}{\underset{P}{\vdash}} (p, yw, \beta)$ eine Berechnung in $P$ ist, dann ist auch $(q, x, \alpha) \overset{\centerdot}{\underset{P}{\vdash}} (p, y, \beta)$ eine Berechnung in $P$ (Umkehrung von 1)
+
+	\item Aber aus $(q, x, \alpha\gamma) \overset{\centerdot}{\underset{P}{\vdash}} (p, \gamma, \beta\gamma)$ folgt nicht, dass auch $(q, x, \alpha) \overset{\centerdot}{\underset{P}{\vdash}} (p, y, \beta)$ eine Berechnung ist, weil die Eingabe \enquote{verbraucht} wird.
+
+	\item Für jeden Automat $P_N$, der durch leeren Stack akzeptiert, gibt es auch einen Automat $P_L$, der durch den Endzustand akzeptiert: $L = N(P_N) = L(P_L)$
+		
+	\item Für jeden Automat $P_L$, der durch Endzustand akzeptiert, gibt es auch einen Automat $P_N$, der durch leeren Stack akzeptiert: $L = L(P_L) = N(P_N)$. 
+
+	\item $L(G) \Leftrightarrow N(P) \Leftrightarrow L(P)$ (mit $G$ ist eine kfG).
+\end{itemize}
+
+\subsection{Deterministischer PDA (DPDA)}
+Ein PDA ist deterministisch wenn:
+\begin{enumerate}\itemsep0em
+	\item $\delta(q, a, s)$ höchstens ein Element enthält
+	\item $\delta(q, a, \gamma) \neq \emptyset \Rightarrow \delta(q, \varepsilon, \gamma) = \emptyset$
+\end{enumerate}
+Ein DPDA $P$ kann in jeder Konfiguration höchstens eine Bewegung ausführen. Er kann reguläre Sprachen erkennen. Allerdings kann ein DPDA nicht alles erkennen, was ein PDA erkennen kann. Weil er beispielsweise bei Palindromen die Mitte der Zeichenkette nicht ermitteln kann ohne
+den Stack zu leeren und dabei alle gespeicherten Symbole zu \enquote{vergessen}.
+\begin{equation*}
+	L^*(\mbox{DEA}) = L^*(\mbox{NEA}) = L^*(\varepsilon\mbox{NEA}) \subsetneq L^*(\mbox{DPDA}_E) \subsetneq L^*(\mbox{PDA})
+\end{equation*}
+DPDA$_E$ steht für eine Automaten, der durch Endzustand akzeptiert.
+	
+Für eine Sprache $L$ und deinen DPDA $P$, der über leeren Stack akzeptiert, gilt $N(P) = L$ genau dann wenn:
+\begin{enumerate}\itemsep0em
+	\item $L$ präfixfrei (kein Wort ist der Anfang eines anderen Wortes) ist
+	\item Es einen DPDA $P'$, der über leeren Stack akzeptiert, gibt mit $L(P) = L$ 
+\end{enumerate}
+
+Ein DPDA der durch leeren Stack akzeptiert erkennt nicht mal alle reguläre Sprachen (z.\,B.: $L = \{0\}^*$), allerdings kann er auch nicht-reguläre Sprachen (z.\,B. $L=\{wcw^R | w \in \{0, 1\}\}$).
+
+\subsubsection{DPDA und kfG}
+Gegeben sei eine Sprache $L$ und ein DPDA $P$.
+\begin{itemize}\itemsep0em
+	\item $L = N(P) \Rightarrow L$ hat eine eindeutige kontextfreie Grammatik.
+	\item $L = L(P) \Rightarrow L$ hat eine eindeutige kontextfreie Grammatik.
+	\item $L$ hat eine eindeutige kontextfreie Grammatik heisst aber nicht, dass es einen passenden DPDA gibt. (z.\,B. Palindrome)
+\end{itemize}
+
+\subsection{Eigenschaften kontextfreier Sprachen}
+Seien $L_1$ und $L_2$ kontextfreie Sprachen über $\Sigma$. Dann gelten:
+\subsection{Gesetze}
+\settowidth{\MyLenA}{ Homomorphismus~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Vereinigung & $L_1 \cup L_2$ ist kontextfrei
+	Durchschnitt & $L_1 \cap L_2$ ist nicht kontextfreie
+	Komplement & ${L_1}^C$ kann kontextfrei sein
+	Verkettung & $L_1 + L_2$ ist kontextfrei
+	Differenz & $L_1 - L_2$ kann kontextfrei sein
+	Hülle & $L_1^*$ und $ L_1^+$ sind kontextfrei
+	Homomorphismus & $h(L_1)$ und $h^{-1}(L_1)$ sind kontextfrei
+	Spiegelung & ${L_1}^R$ ist eine kontextfrei
+\end{tabular}
+
+\begin{itemize}\itemsep0em
+
+\end{itemize}
+
+\subsubsection{Entscheidbarkeit}
+\begin{itemize}\itemsep0em
+	\item Die Frage ob eine gegebene kontextfreie Sprache $L$ leer ist, ist entscheidbar
+	\item Die Frage, ob $w$ ein Wort einer gebebenen kontextfreien Sprache $L$ ist, ist entscheidbar
+	\item Die Frage, ob eine gegbene kontextfreie Sprache $L$ inhärent mehrdeutig ist, ist nicht entscheidbar
+	\item Die Frage, ob eine kontextfreie Grammatig mehrdeutig ist, ist nicht entscheibar
+	\item Die Frage, ob der Durchschnitt zweier kontextfreien Sprachen leer ist, ist nicht entscheidbar
+	\item Die Frage, ob zwei kontextfreie Sprachen gleich sind, ist nicht entscheidbar.
+\end{itemize}
+
+\subsection{Nicht kontextfreie Sprachen}
+\subsubsection{Pumping-Lemma}
+Sei $L$ eine kontextfreie Sprache. Dann gibt es eine eine Konstante $n$, so dass jede Zeichenreihe $w \in L$ und die Länge von $z \geq 0$ in fünf Teilzeichenreihen $w = uvxyz$ derart zerlegt werden kann, dass:
+\begin{enumerate}
+	\item $|vxy| \leq n$
+	\item $vx \neq \varepsilon$
+	\item $uv^kxy^kz \in L$ für alle $k \geq 0$
+\end{enumerate}
+Eine mittlere Teilzeichenreihe wird beliebig oft ($0$ bis $k$ mal) wiederholt. 
+
+Beispiel: $L = \{0^m1^m2^m | m > 0\}$\\
+Ist $L$ kontextfrei, dann gibt es eine Konstante $n$, so dass $0^n1^n2^n$ ebenfalls in $L$ ist:
+Nun muss $w$ in $uvxyz$ so zerlegt werden, dass $vx \neq \varepsilon$ und $|vxy| \leq n$ gilt.
+$vxy$ kann aber nicht zugleich $0$ und $2$ enthalten (sonst wäre der Abstand zwischen der letzen $0$ und der ersten $2 \neq n + 1$)\\
+Fall I: $vxy$ enthält keine $2$: $uwz$ enthält mindestens eine $0$ und/oder eine $1$ weniger als $2$, was ein Widerspruch zur Annahme $uwz$ sein in $L$ ist.\\
+Fall II: $vxy$ enthält keine $0$, dann enthält $uwz$ weniger $1$ und/oder $2$ was wiederum ein Widerspruch ist. 
+
+
+
+

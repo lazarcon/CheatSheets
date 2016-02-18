@@ -1,0 +1,47 @@
+\subsection{Potenzen-, Wurzel- und Logarithmusfunktionen}
+Terminologie: $\mbox{Basis}^{\mbox{Exponent}}\,\,\mathbb{D} := (a, b, u, v \in \mathbb{R})$\\
+
+\settowidth{\MyLenA}{$a^{u} \cdot a^{v} = a^{u + v}$~~}
+\settowidth{\MyLenB}{$\sqrt[u]{a} \cdot \sqrt[v]{a} = \sqrt[uv]{a^{u + v}}$~~}
+\begin{tabular}
+	{
+		@{}p{\the\MyLenA}%
+		@{}p{\the\MyLenB}%
+		@{}p{\linewidth - \the\MyLenA - \the\MyLenB}%
+	}
+	Potentenzen & Wurzeln & Logarithmen \\\hline
+	$a^{0} = 1\,\,(a \neq 0)$ & $\sqrt[u]{0} = 0$ & $\log_0{a}; \log_a{0}$ sind undefiniert.\\
+	$a^{-u} = \frac{1}{a^{u}}$ & $\sqrt[u]{a} = \frac{1}{a^{u}}$ & $\log_a{a} = 1$\\
+	$a^{u} \cdot a^{v} = a^{u + v}$ & $\sqrt[u]{a} \cdot \sqrt[v]{a} = \sqrt[uv]{a^{u + v}}$	 & $\log_a{(u\cdot v)}=\log_a{u}+\log_a{v}$\\
+	$\frac{a^{u}}{a^{v}} = a^{u - v}$ & $\frac{\sqrt[u]{a}}{\sqrt[v]{a}} = \sqrt[uv]{a^{u - v}}$ & $\log_a{\frac{u}{v}} = \log_a{u} - \log_a{v}$\\
+	$(a^{u})^v = a^{uv}$ & $\sqrt[u]{\sqrt[v]{a}} = \sqrt[u \cdot v]{a}$ & $\log_a{u^v} = v \cdot log_a{u}$\\
+	$a^u \cdot b^u = (a \cdot b)^u$ & $\sqrt[u]{a} \cdot \sqrt[u]{b} = \sqrt[u]{a \cdot b}$ & $\log_a{u} \cdot \log_b{u} = \frac{(\log_a{u})^2}{\log_a{b}}$\\
+	$\frac{a^u}{b^u} = (\frac{a}{b})^u$ & $\frac{\sqrt[u]{a}}{\sqrt[u]{b}} = \sqrt[u]{\frac{a}{b}}$ & $\frac{\log_a{u}}{\log_b{u}} = \log_a{b}$\\
+\end{tabular}
+Es gibt keine Logarithmen von negativen Zahlen. Generell löst der Logarithmus folgendes Problem: $a^x = b \rightarrow x = \log_b a$\\
+Basiswechsel: $\log_b{x} = \frac{\log_a{x}}{\log_a{b}}$, es gilt auch:  $a^{b} = \mathrm{e}^{b \cdot \ln{a}}\,\, (a > 0)$
+
+\subsubsection{Übersicht Eigenschaften}
+Die Angaben für $\mathbb{D}$ und $\mathbb{W}$ gelten allgemein. Die genauen Bereiche sind im Einzelfall zu prüfen.
+\settowidth{\MyLenA}{Monotonie~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)/2}%
+				@{}p{(\linewidth - \the\MyLenA)/2}}
+	\textbf{$f(x)$} 		& \textbf{$x^n$}  					& \textbf{$a^x$} \\\hline
+	$\mathbb{D}$ 	 		& $\mathbb{R}$						& $\mathbb{R}$	\\
+	$\mathbb{W}$			& $\mathbb{R}$						& $(0, \infty)$ \\
+	Monotonie				& wachsend							& $a < 1~\searrow, a > 1, \nearrow$\\
+	$f'(x)$					& $nx^{n-1}$						& $(\ln a) \cdot a^x$\\
+	$f^{-1}(x)$				& $\sqrt[n]{x}$						& $\log_a x$ \\
+	$f^{-1'}(x)$			& $\frac{1}{n}\sqrt[n]{x^{1-n}}$ 	& $\frac{1}{(\ln a) \cdot x}$\\ 
+\end{tabular}
+Spezialfälle:
+\settowidth{\MyLenA}{Logarithmusfunktion~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{(\linewidth - \the\MyLenA)/3}%
+				@{}p{(\linewidth - \the\MyLenA)/3}}
+Exponentialfunktion	& $f(x) = \mathrm e^x$	 	& $f'(x) = \mathrm e^x$\\
+Logarithmusfunktion	& $f(x) = \ln x$			& $f'(x) = \frac{1}{x}$\\
+\end{tabular}
+
+

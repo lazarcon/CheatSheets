@@ -1,0 +1,77 @@
+\section{Folgen}
+\begin{description}\itemsep0em
+	\item [Folge] Sei $\N$ die Menge der natürlichen Zahlen und $A$ eine nicht leere Menge.
+	Ein Folge entsteht, indem man jedem Element $n \in \N$ ein Element $a$ von $A$ zuordnet; man schreibt
+	dann für diese Zuordnung:
+	\begin{equation*}
+		n \mapsto a_n
+	\end{equation*}
+	Die entstande Folge wird selbt mit
+	\begin{equation*}
+		\{a_n\}_{n \in \N} \mbox{ oder einfach mit } \{a_n\} \mbox {bezeichnet}
+	\end{equation*}
+
+	\item[Obere Schranke] Gibt es eine reele Zahl $K_O$ so, dass
+	\begin{equation*}
+		a_n \leq K_O \mbox{ für alle } n \in \N
+	\end{equation*}
+	gilt, so ist die Folge $\{a_n\}$ nach oben beschränkt. Man nennt $K_O$ die obere Schranke der Folge.
+
+	\item[Untere Schranke] Gibt es eine reele Zahl $K_U$ so, dass
+	\begin{equation*}
+		a_n \geq K_U \mbox{ für alle } n \in \N
+	\end{equation*}
+	gilt, so ist die Folge $\{a_n\}$ nach unten beschränkt. Man nennt $K_U$ die untere Schranke der Folge.
+
+	\item[Beschränkt] falls eine Folge sowohl nach oben, wie auch nach unten beschränkt ist.
+\end{description}
+
+\subsection{Monotonie}
+\settowidth{\MyLenA}{Streng monoton wachsend~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth - \the\MyLenA}}
+Monoton steigend & $a_n \leq a_{n + 1}$ für alle $n \in \N$ \\
+Streng monoton steigend & $a_n < a_{n + 1}$ für alle $n \in \N$\\
+Monoton fallend & $a_n \geq a_{n + 1}$ für alle $n \in \N$ \\
+Streng monoton fallend & $a_n > a_{n + 1}$ für alle $n \in \N$\\
+\end{tabular}
+
+Eine monoton steigende Folge mit der Indexmenge $\N$ ist immer nach unten beschränkt.
+Die untere Schranke ist $a_1$.\\
+Eine monoton fallende Folge mit der Indexmenge $\N$ ist immer nach oben beschränkt.
+Die obere Schranke ist $a_1$
+
+\subsection{Konvergenz}
+Es sei $\{a_n\}_{n \in \N}$ eine reelle Folge und $a$ eine reelle Zahl. Man sagt,
+die Folge konvergiert gegen den Grenzwert $a$, wenn für jede beliebige reelle Zahl
+$\epsilon > 0$ ein Index $n_0$ existiert, so dass gilt:
+\begin{equation*}
+	|a_n - a| < \epsilon \mbox{ für alle } n \geq n_0
+\end{equation*}
+Man schreibt dann
+\begin{equation*}
+	a = \lim_{n \rightarrow \infty} a_n
+\end{equation*}
+oder auch
+\begin{equation*}
+	a_n \rightarrow a \mbox{ für } n \rightarrow \infty
+\end{equation*}
+
+\subsection{Rechenregeln}
+Es seien $\{a_n\}$ eine konvergierende Folge mit dem Grenzwert $a$ und 
+$\{b_n\}$ eine konvergierende Folge mit dem Grenzwert $b$. Dann gilt:
+
+\settowidth{\MyLenA}{Multiplikation~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth - \the\MyLenA}}
+Addition & Die Folge $\{a_n + b_n\}$ konvergiert gegen $a + b$ \\
+Subtraktion & Die Folge $\{a_n - b_n\}$ konvergiert gegen $a - b$ \\
+Multiplikation & Die Folge $\{a_n \cdot b_n\}$ konvergiert gegen $a \cdot b$ \\
+Division & Die Folge $\{\frac{a_n}{b_n}\}$ konvergiert gegen $\frac{a}{b}$ \\
+\end{tabular}
+
+Nach oben beschränkte, monoton steigende Folgen konvergieren.\\
+Nach unten beschränkte, monoton fallende Folgen konvergieren.\\
+Jede konvergente Folge ist beschränkt.\\
+Der Grenzwert einer konvergenten Folge ist eindeutig bestimmt:
+Jede Folge hat höchstens einen Grenzwert.

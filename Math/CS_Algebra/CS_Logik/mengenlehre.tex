@@ -1,0 +1,129 @@
+\section{Mengenlehre}
+Eine Menge ist jede Zusammenfassung von bestimmten, wohlunterscheidbarer Objekte
+unserer Anschauung oder unseres Denkens zu einem Ganzen.\\
+Kein Objekt kann in einer Menge doppelt vorkommen.
+
+\subsection{Symbole}
+\settowidth{\MyLenA}{$\mathbb{Q} = \{x\mid x = \frac{a}{b} \wedge a \in \mathbb{Z} \wedge b \in \mathbb{N}$*$\}$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	$x \in M (x \notin M)$ & $x$ ist (kein) Element der Menge $M$ \\
+	$x \mid A(x)$ & für $x$ gilt die Aussageform $A(x)$\\
+	$\emptyset = \{\}$ & Leere Menge; enthält nichts\\
+	$\mathbb{N} = \{0, 1, 2, \dots\}$	& Natürliche Zahlen\\
+	$\mathbb{N}^* = \{1, 2, 3, \dots\}$	& Positive ganze Zahlen\\
+	$\mathbb{Z} = \{0, \pm1, \pm2, \dots\}$	& Ganze Zahlen\\
+	$\mathbb{Q} = \{x\mid x = \frac{a}{b} \wedge a \in \mathbb{Z} \wedge b \in \mathbb{N}$*$\}$ & Rationale Zahlen (=Brüche)\\
+	$\mathbb{R}$ & Reelle Zahlen (= alle Zahlen)\\
+	$\mathbb{C}$ & Komplexe Zahlen\\
+\end{tabular}
+
+\subsection{Intervalle}
+Fortlaufende Mengen lassen sich als Intervalle schreiben: $(a,b) = \{x \mid a \leq x \leq b\}$.
+Runde Klammern bedeuten exklusive, eckige Klammern inklusive. $\infty$ hat immer eine Runde Klammer zur Folge.
+
+\subsubsection{Beispiele für Mengendefinitionen}
+\begin{tabular}{ll}
+	Aufzählende Notation & $M = \{x_1, x_2, \dots, x_n\}$\\
+	Intensionale Notation & $M = \{x \in X \mid A(x)\}$ 
+\end{tabular}\\
+Beispiel geraden Zahlen: $G = \{n \in \mathbb{N} \mid \exists m \in \mathbb{N}~2 \cdot m = n\}$ \\
+
+\subsection{Mächtigkeit}
+Die Mächtigkeit $|M|$ entspricht im Prinzip der Anzahl Elemente einer Menge. Allerdings nur im Prinzip,
+weil: $|\mathbb{N}^*| = |\mathbb{N}| = |\mathbb{Z}| = |\mathbb{Q}| < |\mathbb{R}|$
+
+\subsection{Mengenoperationen}
+\settowidth{\MyLenA}{$C = A \cup B$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	$A \cup B$	& Vereinigungsmenge: $\forall x \in (A \cup B) \Leftrightarrow (x \in A \vee x \in B)$ \\
+	$A \cap B$	& Schnittmenge: $\forall x \in (A \cap C) \Leftrightarrow (x \in A \wedge x \in B)$\\
+	$A \backslash B$ & Differenzmenge: $\forall x \in (A \backslash B) \Leftrightarrow ((x \in A) \wedge (x \notin B))$\\
+\end{tabular}
+Disjunkt (elementfremd) sind zwei Mengen wenn, $A \cap B = \emptyset$.
+
+\subsection{Mengenrelationen}
+\settowidth{\MyLenA}{$C = A \cup B$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	$A = B$	& Gleichheit: $(A = B) \Leftrightarrow (\forall x (x \in A) \Leftrightarrow (x \in B))$\\
+	$A \subseteq B$	& Teilmenge: $(A \subseteq B) \Leftrightarrow (\forall x (x \in A) \Rightarrow (x \in B))$\\
+	$A \subsetneq B$ & Echte Teilmenge: $(A \subsetneq B) \Leftrightarrow ((A \subseteq B) \wedge (A \neq B))$
+\end{tabular}
+
+\subsection{Rechenregeln}
+\settowidth{\MyLenA}{Doppelte Negation~~}
+\begin{equation*}
+\begin{array}{lrl}
+	\mbox{Kommutativität}		& A \cup B 									& = B \cup A\\
+								& A \cap B									& = B \cap A\\
+	\mbox{Assoziativität} 		& (A \cup B) \cup C 						& = A \cup (B \cup C)\\
+								& (A \cap B) \cap C 						& = A \cap (B \cap C)\\
+	\mbox{Distributiviät}		& A \cup (B \cap C) 						& = (A \cup B) \cap (A \cup C)\\
+								& A \cap (B \cup C) 						& = (A \cap B) \cup (A \cap C)\\
+	\mbox{De Morgan Regeln}		& (C \backslash A) \cup (C \backslash B) 	& = C \backslash (A \cap B)\\
+								& (C \backslash A) \cap (C \backslash B) 	& = C \backslash (A \cup B)\\
+	\mbox{Idempotenzgesetz}		& A \cup A 									& = A\\
+								& A \cap A									& = A
+\end{array}
+\end{equation*}
+
+Beweise in der Mengenlehre werden durch Umwandlung zu logischen Aussagen geführt.
+Bsp: Zu zeigen: $\forall x \in (A \cap B) \cap C \Leftrightarrow x \in A \cap (B \cap C)$
+\begin{proof}
+Sei $x$ fest, aber beliebig.
+\begin{align*}
+	x \in (A \cap B) \cap C	& \Leftrightarrow x \in (A \cap B) \wedge x \in C\\
+							& \Leftrightarrow (x \in A \wedge x \in B) \wedge x \in C\\
+							& \Leftrightarrow x \in A \wedge (x \in B \wedge x \in C)\\
+							& \Leftrightarrow x \in A \wedge x \in (B \cap C)\\
+							& \Leftrightarrow x \in A \cap (B \cap C)\qedhere
+\end{align*}
+\end{proof}
+
+\subsection{Mengenbildung}
+Sei $A$ ein Menge von Mengen $A = \{X, Y\}$ mit $X = \{x_1, x_2, \dots, x_n\}, Y = \{y_1, y_2, \dots, y_n\}$\\
+
+\subsubsection{Vereinigung}
+Die Vereinigung $\bigcup A$ ist die Menge aller Elemente aller in $A$ enthaltener Mengen: 
+$\bigcup_{i \in I} Y_i := \bigcup A$, wobei $I$ eine Indexmenge und $A = \{Y_i \mid i \in I\}$
+\begin{equation*}
+	x \in \bigcup A \Leftrightarrow \exists Y \in A (x \in Y)
+\end{equation*}
+
+\subsubsection{Schnittmenge}
+Die Schnittmenge $\bigcap A$ ist die Menge aller Elemente die in jeder in $A$ enthaltener Menge vorkommt:
+$\bigcap_{i \in I} Y_i := \bigcap A$, wobei $I$ eine Indexmenge und $A = \{Y_i \mid i \in I\}$
+\begin{equation*}
+	x \in \bigcap A \Leftrightarrow \forall Y \in A (x \in Y)
+\end{equation*}
+
+\subsubsection{Potenzmenge}
+Die Potenzmenge enthält alle Teilmengen von $A$ als Elemente.
+\begin{equation*}
+	\mathcal{P}(A) := \{x \mid x \subseteq A\}
+\end{equation*}
+Es gelten:
+\begin{align*}
+	|P(A)|& = 2^{|A|}\\
+	A& = \bigcup \mathcal{P}(A)\\
+	\cap \mathcal{P}(A)& = \emptyset\\
+	\mathcal{P}(A \cap B)& = \mathcal{P}(A) \cap \mathcal{P}(B) \\
+	\mathcal{P}(A \cup B)& \neq \mathcal{P}(A) \cup \mathcal{P}(B)
+\end{align*}
+
+\subsubsection{Kartesisches Produkt (Kreuzprodukt)}
+Das Kreuzprodukt zweier Mengen ist die Menge aller möglichen Kombination von Elementen aus der ersten
+Menge mit Elementen aus der zweiten Mengen. Die Ergebnismenge besteht aus Tupeln, wobei jedes Tupel
+eine mögliche Kombination darstellt. Diese 2-Tupel heissen geordnete Paare.
+\begin{equation*}
+		A \times B = \{(a, b) \mid a \in A \wedge b \in B\} \neq B \times A
+\end{equation*}
+Die Reihenfolge ist dabei relevant. Beispiel: $A = \{0, 1, 2\}, B = \{s, t\}$\\
+$ A \times B = \{(0, s), (0, t), (1, s), (1, t), (2, s), (2, t)\}$
+Die Anzahl Elemente des Kreuzproduktes errechnet sich nach $|K| = |A| \cdot |B|$.
+
+\subsubsection{$n$-Tupel}
+Ein $n$-Tupel ist ein Term der Form $(a_1, a_2, \dots, a_n)$.
+Zwei Tupel sind gleich, wenn: $(a_1, \dots, a_n) = (b_1, \dots, b_n) \Leftrightarrow (a_1 = b_1) \wedge \dots \wedge (a_n = b_n)$

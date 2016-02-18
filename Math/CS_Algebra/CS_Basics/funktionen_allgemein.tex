@@ -1,0 +1,76 @@
+\subsection{Allgemein}
+Eine Funktion ist eine Vorschrift, die jedem Element $x$ aus eine Menge $D$ genau ein Element $y$ aus einer Menge $W$ zuordnet.
+\begin{equation*}
+	\begin{matrix}
+	f: x \rightarrow y = f(x) & \mbox{mit} & x \in D\\	
+	\end{matrix}	
+\end{equation*}
+Darstellungen:\\
+1. Analytisch: $y = f(x)$ (explizit), $F(x;y) = 0$ (implizit)\\
+2. Als Wertetabelle\\
+3. Graphisch\\
+4. Parametrisch (wenn $x = x(t)$ und $y = y(t)$). Die Graphik erhält man aus einer Wertetabelle beginnend mit $t$.
+
+\subsection{Funktionseigenschaften}
+Gegeben sei eine Funktion $y = f(x)$.
+\settowidth{\MyLenA}{Streng monoton wachsend~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth - \the\MyLenA}}
+Nullstellen & $f(x_0) = 0$\\
+Symmetrie (gerade)	& $f(-x) = f(x)$ \\
+Symmetrie (ungerade) & $f(-x) = - f(x)$\\
+Monoton wachsend & $f(x_1) \leq f(x_2)$ ($x_1 < x_2$) \\
+Streng monoton wachsend & $f(x_1) < f(x_2)$ ($x_1 < x_2$)\\
+Monoton fallend & $f(x_1) \geq f(x_2)$ ($x_1 < x_2$) \\
+Streng monoton fallend & $f(x_1) > f(x_2)$ ($x_1 < x_2$)\\
+Periodisch mit Periode $p$ & $f(x \pm p) = f(x)$\\
+Umkehrbar & $x_1 \neq x_2 \Rightarrow f(x_1) \neq f(x_2)$\\
+\end{tabular}
+
+Funktionen können zu einem Teil wachsend und zu einem anderen Teil fallend sein.\\
+Bestimmen der Umkehrfunktion:\\
+1. $y = f(x)$ nach $x$ auflösen. Ergebnis: $x = f^{-1}(y)$.\\
+2. Vertauschen von $x$ und $y$ im Ergebnis: $y = f^{-1}(x)$.\\
+Bei der Umkehrfunktion sind Definitions- und Wertebereich der ursprünglichen Funktion vertauscht.\\
+Nur streng monotone Funktionen sind umkehrbar.\\
+Die Umkehrfunktion entspricht graphisch der Spiegelung an $y=x$.
+\begin{equation*}
+	x\mathop{\rightleftarrows}^{f}_{f^{-1}}f(x)
+\end{equation*}
+
+\subsection{Grenzwert}
+Reelle Zahlenfolge: $\langle{a}\rangle = f(n)$ mit $n \in \mathbb{N}$*. $f(n)$ heisst Bildungsgesetz, die Zahlen: $a_1, a_2, \dots a_n$ heissen Glieder der Folge.\\
+Eine reelle Zahl $g$ heisst Grenzwert der Zahlenfolge $\langle{A}\rangle$, wenn es zu jedem $\epsilon > 0$ eine
+natürliche Zahl $n_0 > 0$ gibt, so dass für all $n \geq n_0$ stets gilt: $\left|a_n - g\right| < \epsilon$.
+Eine Folge heisst \textit{konvergent} wenn sie eine Grenzwert besitzt. Andernfalls heisst sie \textit{divergent}.
+
+Die Funktion $f(x)$ hat an der Stelle $x_0$ einen Grenzwert $g$, wenn gilt
+\begin{equation*}
+	\lim_{x\to x_0\atop x < x_0}f(x) = \lim_{x\to x_0\atop x > x_0}f(x) = \lim_{x\to x_0}f(x) = g 
+\end{equation*}
+
+Lösungsschema zur Bestimmung des Grenzwerts an nicht definierten Stellen:\\
+1. Grundsätzlich $x_0$ in $f(x)$ einsetzen. Wenn keine Division durch Null entsteht ist $g = x_0$.\\
+2. Bei einer Division durch Null, den Divisior eliminieren.\\
+3. Annähern von links und rechts.\\
+
+Polstelle: Der Grenzwert ist $+\infty$ oder $-\infty$.
+
+\subsubsection{Rechenregeln}
+\begin{align*}
+\lim_{x\to x_0}{(k \cdot f(x))}& = k (\lim_{x\to x_0}{f(x)})\\
+\lim_{x\to x_0}{(f(x) \pm g(x))}& = (\lim_{x\to x_0}{f(x)}) \pm (\lim_{x\to x_0}{g(x)})\\
+\lim_{x\to x_0}{(f(x) \cdot g(x))}& = (\lim_{x\to x_0}{f(x)}) \cdot (\lim_{x\to x_0}{g(x)})\\
+\lim_{x\to x_0}{\frac{(f(x)}{g(x)})}& = \frac{\lim_{x\to x_0}f(x)}{\lim_{x\to x_0}g(x)}\\
+\end{align*}
+\subsection{Stetigkeit}
+Eine Funktion $f(x)$ heisst an der Stelle $x_0$ stetig, wenn der Grenzwert vorhanden ist und mit dem Funktionswert übereinstimmt:
+\begin{equation*}
+	\lim_{x\to x_0}{f(x)} = f(x_0)
+\end{equation*}
+
+Eine Funktion ist an der Stelle $x_0$ unstetig, wenn:\\
+1. $f(x)$ an der Stelle $x_0$ nicht definiert ist (Definitionslücke).\\
+2. An der Stelle $x_0$ kein Grenzwert vorhanden ist.\\
+3. Funktions- und Grenzwert zwar vorhanden, aber verschieden sind.\\
+

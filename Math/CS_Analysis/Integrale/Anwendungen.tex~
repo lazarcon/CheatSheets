@@ -1,0 +1,10 @@
+\section{Anwendungen}
+\begin{equation*}
+	\mbox{Ort: } s(t) = \int v(t) \dop{t} = \int \int a(t) \dop{t}
+\end{equation*}
+\begin{equation*}
+	\mbox{Geschwindigkeit: } v(t) = \frac{\mathrm d}{\dop{t}} s(t) = \dot s = \int a(t) \dop{t}
+\end{equation*}
+\begin{equation*}
+	\mbox{Beschleunigung: } a(t) = \frac{\mathrm d}{\dop{t}} v(t) = \dot v = \ddot s
+\end{equation*}

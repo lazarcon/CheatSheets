@@ -1,0 +1,23 @@
+\section{Grundlagen}
+
+\subsection{Zahlenmengen}
+\settowidth{\MyLenA}{$\mathbb{Q} = \{x\mid x = \frac{a}{b} \wedge a \in \mathbb{Z} \wedge b \in \mathbb{N}$*$\}$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	$\mathbb{N} = \{0, 1, 2, \cdots\}$	& Natürliche Zahlen\\
+	$\mathbb{N}$*$ = \{1, 2, 3, \cdots\}$	& Positive ganze Zahlen\\
+	$\mathbb{Z} = \{0, \pm1, \pm2, \cdots\}$	& Ganze Zahlen\\
+	$\mathbb{Q} = \{x\mid x = \frac{a}{b} \wedge a \in \mathbb{Z} \wedge b \in \mathbb{N}$*$\}$ & Rationale Zahlen (=Brüche)\\
+	$\mathbb{R}$ & Reelle Zahlen (= alle Zahlen)\\
+	$\mathbb{L}$ & Lösungsmenge; wenn leer: $\mathbb{L} = \emptyset = \{\}$
+\end{tabular}
+
+\subsection{Mengenoperationen}
+\settowidth{\MyLenA}{$C = A \cup B$~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	$A \subset B$	& A ist eine Teilmenge von B ($A = \{a\mid a \in B\}$)\\
+	$C = A \cap B$	& C ist die Schnittmenge von A und B ($C = \{c\mid c \in A \wedge c \in B\}$)\\
+	$C = A \cup B$	& C ist die Vereinigungsmenge von A und B ($C = \{c \mid c \in A \vee c \in B\}$)\\
+	$C = A \textbackslash B$ & C ist die Restmenge von A und B ($C = \{c \mid c \in A \wedge c \notin B\}$)\\
+\end{tabular}

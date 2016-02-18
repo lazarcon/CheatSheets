@@ -1,0 +1,43 @@
+\section{Miscellaneous}
+
+\subsection{Setting JAVA\_HOME}
+1. Find the location of your jvm. ex: \verb!/usr/lib/jvm/java-6-sun/!
+2. Edit your environmental variables: \verb!nano /etc/environment!
+3. Add a line: \verb!JAVA_HOME="/usr/lib/jvm/java-6-sun"!
+4. Log out
+5. Log back in
+6. Open terminal and run \verb!echo $JAVA_HOME!
+
+\subsection{Create custom launcher}
+Create a new launcher: \verb!gnome-desktop-item-edit ~/.local/share/applications/ --create-new!\\
+Drag the launcher to the unity launcher bar\\
+
+\subsection{Installing Google Chrome}
+Add the google signing key:\\
+\verb!wget -q -O - !\\
+\verb!https://dl-ssl.google.com/linux/linux_signing_key.pub |!\\ 
+\verb!sudo apt-key add -!\\
+Add google to your repositories:\\
+\verb!sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/!\\
+\verb!stable main" >> /etc/apt/sources.list.d/google.list'!\\
+Update your repositories: \verb!apt-get update!\\
+Install Goolge Chrome:\\
+\verb!apt-get install [google-chrome-stable|google-chrome-beta]!
+
+\subsection{Installing fonts}
+Place your \verb!*.ttf! Fonts inside \verb!~/.fonts!
+
+\subsection{Personalizing the terminal}
+Paste your welcome message to the end of \verb!~/.bashrc!\\
+e.g.\\
+\verb!figlet "!\textit{big message}\verb!"!\\
+\verb!echo -n "Hello "; whoami!\\
+
+\subsection{Grab youTube-Videos}
+\verb!sudo apt-get install youtube-dl!\\
+\verb!youtube-dl -o !\textit{target}\verb!.flv !\\
+\verb!"http://www.youtube.com/watch?v=!\textit{youtubeId}"!
+
+\subsection{Convert video formats}
+\verb!ffmpeg -i !\textit{source.format} \textit{target.format}
+

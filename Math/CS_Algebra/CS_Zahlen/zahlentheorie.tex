@@ -1,0 +1,45 @@
+\section{Zahlentheorie}
+\subsection{Satz vom kleinsten Teiler}
+Der kleinste Teiler $d > 1$ einer natürlichen Zahl $n \geq 2$ ist eine Primzahl.
+
+\begin{proof}
+	Sei $T(n)$ die Menge aller Teiler von $n$.\\
+	$T(n)\textbackslash\{1\}$ ist nicht leer, weil $n \in T(n)$\\
+	dann gibt es nach dem Wohlordnungsprinzip\footnote{In jeder nicht-leeren Teilmenge der natürlichen Zahlen gibt es eine kleinste Zahl} 
+	eine kleinste Zahl $d$ in $T(n)\textbackslash\{1\}$.\\
+	Zu zeigen: $d$ ist eine Primzahl\\
+	Annahme: $d$ ist keine Primzahl\\
+	Dann: $\exists a, b \in \N \setminus\{1, d\} \colon a \cdot b = d \wedge a, b < d$\\
+	$\Rightarrow a \mid d$\\
+	Da $a$ kleiner als $d$ sein muss, kann $d$ nicht das kleinste Element in $T(n)\textbackslash{1}$ sein.\\
+	Das ist ein Widerspruch zur Annahme. Die Annahme muss falsch sein, dann muss aber $d$ eine Primzahl sein.
+	\qedhere
+\end{proof}
+
+\subsection{Hauptsatz}
+Jede natürliche Zahl $n \geq 2$ besitzt eine eindeutige Primfaktorzerlegung.
+Die Reihenfolge der Primfaktoren kann variieren.
+
+\begin{proof}
+	Sei $n \in \N \setminus\{1\}$\\
+	Fall I: $n$ ist eine Primzahl, ein eindeutiger Primfaktor gefunden ($n$).\\
+	Fall II: $n$ ist keine Primzahl\\
+	\begin{equation*}
+		\Rightarrow \exists d_1, q_1 \in \N \setminus\{1\} \colon d_1 \cdot q_1 = n
+	\end{equation*}
+	und $d_1$ ist das kleinste Element in $T(n)\setminus\{1\}$, also $d_1$ ist Primzahl\\
+	Betrachte $q_1$:
+	Fall I: $q_1$ ist eine Primzahl, eindeutige Primfaktorzerlegung gefunden.\\
+	Fall II: $q_1$ ist keine Primzahl, dann wiederhole diesen Prozess mit $q_1$\\ 
+	\qedhere
+\end{proof}
+% Es gibt also eine Primfaktorzerlegung.
+% Bleibt zu beweisen, dass es nur eine Primfaktorzerlegung gibt.
+% \begin{proof}
+% 	Sei $n$ die kleinste natürliche Zahl mit mehr als einer Primfaktorzerlegung.\\
+% 	\begin{align*}
+% 	n& = p_1 \cdot p_2 \cdot \dots \cdot p_n = q_1 \cdot q_2 \cdot \dots \cdot q_m & p, q \in \mathbb{P}\\
+% 	\mbox{$p_i$ und $q_j$ sind paarweise verschieden}	
+% 	\end{align*}
+% 
+% \end{proof}

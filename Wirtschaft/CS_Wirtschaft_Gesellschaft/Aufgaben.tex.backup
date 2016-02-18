@@ -1,0 +1,27 @@
+\section{Aufgaben}
+\begin{description}\itemsep0em
+	\item [Beschreiben] von wirtschaftlichen Vorgängen
+	\item [Erklären] der wirtschaftlichen Vorgängen
+	\item [Prognostizieren] des zukünftigen Ablaufs
+	\item [Beeinflussen] der wirtschaftlichen Entwicklung
+\end{description}
+
+\subsection{Ziele}
+Die Ziele der Wirtschaftspolitik leiten sich ab aus Art. 2 und 94 BV ab:
+\begin{center}
+\tikzstyle{block} = [draw, rectangle, minimum width=2cm, minimum height=1.25cm, text width=2cm, text centered]
+\begin{tikzpicture}[auto, node distance=2.5cm,>=latex']
+	\node [block] (vb) {Voll-\\beschäftigung};
+ 	\node [block, right of=vb] (ww) {Wirtschafts-\\wachstum};
+ 	\node [block, below left of=vb] (sa) {Sozialer Ausgleich};
+ 	\node [block, below right of=ww] (uq) {Umwelt-\\qualität};
+ 	\node [block, below right of=sa] (ps) {Preis-\\stabilität};
+ 	\node [block, below left of=uq] (ag) {Aussenwirt-\\schafliches Gleichgewicht};
+	\draw [-] (vb) -- (ww);
+	\draw [-] (ww) -- (uq);
+	\draw [-] (uq) -- (ag);
+	\draw [-] (ag) -- (ps);
+	\draw [-] (ps) -- (sa);
+	\draw [-] (sa) -- (vb);
+\end{tikzpicture}
+\end{center}

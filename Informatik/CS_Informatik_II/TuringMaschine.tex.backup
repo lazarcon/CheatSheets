@@ -1,0 +1,240 @@
+\section{Turing-Maschine (TM)}
+\subsection{Hintergrund}
+Gibt es einen Algorithmus der die Wahrheit jeder mathematischen Aussage ermittelt?
+\begin{itemize}\itemsep0em
+	\item[Ja] für Aussgenlogkik 
+	\item[Nein] für die Prädikatenlogik (Gödel, 1930)
+\end{itemize}
+
+\subsection{Definition}
+Eine Turing Maschine kann alle möglichen Berechnungen ausführen und wird als 7-Tupel definiert:
+\begin{equation*}
+	\mathcal{M} = (Q, \Sigma, \Gamma, \delta, q_0, B, F)
+\end{equation*}
+$Q, \Sigma, q_0, F$ wie gehabt (Zustände, Alphabet, \dots)
+\begin{itemize}\itemsep0em
+	%\item [$Q$] endlich Menge von Zuständen
+	%\item [$\Sigma$] endliches Eingabealphabet
+	\item [$\Gamma$] endliches Bandalphabet ($\Sigma \subset \Gamma$)
+	\item [$\delta$] Übergangsfunktion: $Q \times \Gamma \rightarrow Q \times \Gamma \times D$\\
+	d.\,h. $\delta(q_v,\sigma) = (q_n, \gamma, d)$. $D$ steht für die Bewegung des Lese/Schreibkopfes ($L$ = links, $0$ = keine, $R$ = rechts)
+	%\item [$q_0$] Startzustand
+	\item [$B$] \enquote{Leerzeichen}, $B \in \Gamma \wedge B \notin \Sigma$
+	%\item [$F$] endliche Menge akzeptierender Zustände
+\end{itemize}
+% \begin{center}
+% \begin{tikzpicture}[start chain=1 going right,start chain=2 going below,node distance=-0.15mm]
+%     \node [on chain=2] {Band};
+%     \node [on chain=1] at (-1.5,-.4) {\ldots};  
+%     \foreach \x in {1,2,...,11} {
+%         \x, \node [draw,on chain=1] {};
+%     } 
+%     \node [name=r,on chain=1] {\ldots}; 
+%     \node [name=k, arrow box, draw,on chain=2,
+%         arrow box arrows={east:.25cm, west:0.25cm}] at (-0.335,-.65) {};    
+%     \node at (1.5,-.85) {Lese/Schreibkopf};
+%     \node [on chain=2] {};
+%     \node [draw,on chain=2] {Programm};
+%     \chainin (k) [join]; % Verbindung vom Programm zum Leseschreibkopf
+% \end{tikzpicture}
+% \end{center}
+\begin{itemize}\itemsep0em
+	\item Das Band besteht aus einzelnen Zellen, die ein Element aus $\Gamma$ enthalten können
+	\item Zu Beginn enthält das Band die \enquote{Eingabe} -- eine endliche Zeichreihe aus $\Sigma$. (Alle anderen enthalten das Leerzeichen $B$)
+	\item Der Lese/Schreibkopf kann jeweils eine Zelle lesen und schreiben
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[start chain=1 going right,start chain=2 going below,node distance=-0.15mm, minimum size=4ex,inner sep=0pt,textstyle]
+    \node [on chain=2] {Band};
+    \node [on chain=1] at (-1.5,-.4) {\ldots};  
+    \foreach \x in {1,2,3} {
+        \x, \node [draw,on chain=1] {$B$};
+    } 
+    \foreach \x in {4} {
+        \x, \node [draw,on chain=1] {$\sigma_1$};
+    } 
+    \foreach \x in {5} {
+        \x, \node [draw,on chain=1] {$\dots$};
+    } 
+    \foreach \x in {6} {
+        \x, \node [draw,on chain=1] {$\sigma_n$};
+    } 
+    \foreach \x in {7,8,...,11} {
+        \x, \node [draw,on chain=1] {$B$};
+    } 
+    \node [name=r,on chain=1] {\ldots}; 
+    \node [name=k, arrow box, draw,on chain=2,
+        arrow box arrows={east:.25cm, west:0.25cm}] at (0.435,-.75) {};    
+    \node at (2.1,-.95) {Lese/Schreibkopf};
+    \node [on chain=2] {};
+    \node [draw,on chain=2] {~Programm~};
+    \chainin (k) [join]; % Verbindung vom Programm zum Leseschreibkopf
+\end{tikzpicture}\\
+Turing-Maschine mit der Anfangskonfiguration $w = \sigma_1\sigma_2\dots\sigma_n$
+\end{center}
+
+\begin{description}\itemsep0em
+	\item [Konfiguration/Instanzdeskripor]
+	Gegeben sei eine Turing-Maschine $\mathcal{M}$. Die Zeichenreihe 
+	$X_1X_2\dots X_{i-1}qX_iX_{i+1}\dots X_n$ heisst Konfiguration von $\mathcal{M}$.
+	Dabei ist $q$ der Zustand von $\mathcal{M}$, $X_i$ die Position des Lese/Schreibkopfes. Alle anderen $X_a, a \neq i$ können leer sein.
+
+	\item[Bewegung]
+	Gegeben sei eine Turing-Maschine $\mathcal{M}$. Mit der Konfiguration $X_1X_2\dots X_{i-1}qX_iX_{i+1}\dots X_n$
+	\begin{itemize}
+		\item Linksbewegung: $\delta(q, X_i) = (p, Y, L)$ d.\,h. $X_i \rightarrow Y$, Kopf neu bei $X_{i-1}$
+% 		\begin{multline*}
+% 			X_1X_2\dots X_{i-1}qX_i\dots X_n \\
+% 				\underset{M}{\vdash} X_1X_2\dots X_{i-2}qX_{i-1}YX_{i+1}\dots X_n	
+% 		\end{multline*}
+		\begin{itemize}\itemsep0em
+			\item $i = 1 \Rightarrow qX_1\dots X_n \underset{\mathcal{M}}{\vdash} pBYX_2\dots X_n$
+			\item $i = n \wedge Y = B \Rightarrow X_1\dots qX_n \underset{\mathcal{M}}{\vdash} X_1\dots X_{n-2}pX_{n-1}$
+		\end{itemize}
+
+		\item Rechtsbewegung: $\delta(q, X_i) = (p, Y, R)$ d.\,h. $X_i \rightarrow Y$, Kopf neu bei $X_{i+1}$
+% 		\begin{multline*}
+% 		X_1X_2\dots X_{i-1}qX_i\dots X_n \\
+% 			\underset{M}{\vdash} X_1X_2\dots X_{i-1}YqX_{i+1}\dots X_n	
+% 		\end{multline*}
+		\begin{itemize}\itemsep0em
+			\item $i = n \Rightarrow X_1\dots X_{n-1}qX_n \underset{\mathcal{M}}{\vdash} X_1\dots X_{n-2}YpB$
+			\item $i = 1 \wedge Y = B \Rightarrow qX_1\dots X_n \underset{\mathcal{M}}{\vdash} pX_2\dots X_n$
+		\end{itemize}
+		\item 0-Bewegung: $\delta(q, X_i) = (p, Y, 0)$ d.\,h. $X_i \rightarrow Y$ ohne dass sich der Kopf bewegt
+	\end{itemize}
+
+	\item[Berechnung]
+		Gegeben sei eine Turing-Maschine $\mathcal{M}$ und ein Folge von Konfigurationen $K_1, \dots, K_n$ für die paarweise gilt: $(K_i) \underset{\mathcal{M}}{\vdash} (K_{i+1}$ ist eine Bewegung in $M$, dann stellt die Folge eine Berechnung von $M$ dar: $(K_1) \overset{\centerdot}{\underset{\mathcal{M}}{\vdash}} (K_n)$
+		\begin{itemize}\itemsep0em
+			\item Die Berechnung einer TM ist abgeschlossen wenn $\delta(q, x)$ nicht definiert ist. Sie hält an
+			\item Zahlen werden als Blöcke von \enquote{0} dargestellt. Mehrere Parameter werden mit \enquote{1} getrennt
+			\item Ist eine Funktion $f$ für alle Parameter definiert, dann ist $f$ eine total rekursive Funktion ($\widehat{=}$ rekursive Sprache)
+			\item Wird $f$ allgemein von TM berechnet, ist $f$ eine partiell rekursive Funktion ($\widehat{=}$ rekursiv aufzählbare Sprache)
+			\item Alle üblichen mathematischen Funktionen ($+, -, \cdot, \div, n!, \log, a^b, \dots$) sind total rekursive Funktionen
+		\end{itemize}
+
+
+	\item[Rekursiv aufzählbare Sprache]
+	Die Menge aller Zeichenreihen $w \in \Sigma^*$ für die eine Turing-Maschine $\mathcal{M}$ in einen akzeptierenden Endzustand übergeht:
+	\begin{equation*}
+		L(\mathcal{M}) = \{w | (q_{0}w) \overset{\centerdot}{\vdash} (\alpha p\beta) \mbox{ für ein } p \in F \wedge \alpha, \beta \in \Gamma^*\}
+	\end{equation*}
+	$w$ ist die Eingabe, $\mathcal{M}$ startet in $q_0$, der Lese/Schreibkopf beginnt beim ersten Zeichen von $w$. Solange die TM eine Eingabe bearbeitet und nicht anhält, kann nicht entschieden werden ob $w \in L(\mathcal{M})$.\\
+	Erkannt werden u.\,a. alle kontextfreien Sprachen. Es gilt: rekursive Sprache $\subset$ rekursiv aufzählbare Sprachen.
+	
+\end{description}
+
+\subsection{Beispiel Turing-Maschine für $L=\{0^n1^n | n \in \mathbb{N}\}$}
+\begin{center}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2cm, semithick]
+	\tikzstyle{every state}=[fill=black!10]
+	\tikzstyle{every node}=[align=center]
+	\node[state, initial] 	(q0)						{$q_0$};
+	\node[state]			(q1) [below right of=q0]	{$q_1$};
+	\node[state]			(q2) [below left of=q0]  	{$q_2$};
+	\node[state]			(q3) [right of=q0]	{$q_3$};
+	\node[state, accepting] (q4) [right of=q3]			{$q_4$};
+	\path 	(q0) 	edge  				node [right] {$0/X,R$} (q1)
+					edge				node {$Y/Y,R$} (q3)
+			(q1)	edge				node [above] {$1/Y,L$} (q2)
+					edge [loop below]	node {$Y/Y,R$\\$0/0R$} (q1)
+			(q2)	edge				node [left] {$X/X,R$} (q0)
+					edge [loop below]	node {$Y/Y,L$\\$0/0L$} (q2)
+			(q3)	edge 				node {$B/B,R$} (q4)
+					edge [loop above]	node {$Y/Y,R$} (q3);
+\end{tikzpicture}
+\end{center}
+\begin{align*}
+	\mathcal{M} & = (Q, \Sigma, \Gamma, \delta, q_0, B, F)& &\\
+	Q & = \{q_0, q_1, \dots, q_4\}	& \Sigma & = \{0, 1\}\\
+	\Gamma & = \{0,1,X,Y,B\}	& q_0 & = q_0\\
+	F & = \{q_4\} & &\\
+	\delta(q_0, 0)& = (q_1, X, R)	& \delta(q_0, Y)& = (q_3, Y, R)\\
+	\delta(q_1, 0)& = (q_1, 0, R)	& \delta(q_1, 1)& = (q_2, Y, L)\\
+	\delta(q_1, Y)& = (q_2, Y, R)	& \delta(q_2, 0)& = (q_2, 0, L)\\
+	\dots
+%	\delta(q_2, X)& = (q_0, X, R)	& \delta(q_2, Y)& = (q_2, Y, L)\\
+%	\delta(q_3, 0)& = (q_1, Y, R)	& \delta(q_3, B)& = (q_4, B, B)
+\end{align*}
+Berechnung von $w = 01: q_{0}01 \overset{\centerdot}{\vdash} XYBq_{4}B$
+\begin{equation*}
+	q_{0}01 \vdash Xq_{1}1 \vdash q_{2}XY \vdash Xq_{0}Y \vdash XYq_{3}B \vdash XYBq_{4}B
+\end{equation*}
+% \begin{center}
+% \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2cm, semithick]
+% 	\tikzstyle{every state}=[fill=black!10]
+% 	\tikzstyle{every node}=[align=center]
+% 	\node[state, initial] 	(q0)				{$q_0$};
+% 	\node[state]			(q1) [right of=q0]	{$q_1$};
+% 	\node[state]			(q2) [right of=q1]  {$q_2$};
+% 	\node[state,accepting]	(q3) [right of=q2]	{$q_3$};
+% 	\path 	(q0) 	edge  				node {$0/B,R$} (q1)
+% 					edge [bend right]	node [below] {$1/B,R$} (q2)
+% 			(q1)	edge				node {$1/0,R$} (q2)
+% 					edge [loop above]	node {$0/0,R$} (q1)
+% 			(q2)	edge				node {$1/B,R$} (q3)
+% 					edge [loop above]	node {$0/0,R$} (q2);
+% \end{tikzpicture}
+% Addierende Turing-Maschine
+% \end{center}
+\subsection{Codierung einer TM}
+\begin{enumerate}\itemsep0em
+	\item Jeder Zeichenreihe über $\Sigma = \{0, 1\}$ wird eine ganze Zahl in lexikographischer Ordnung zugewiesen:
+$1 = \varepsilon, 2 = 0, 3 = 1, 4 = 00, 5 = 01, 6 = 10, 7 = 11, \dots$
+	\item Die Zustände $Q$ der TM $\mathcal{M}$ werden codiert als: $q_1 = $Startzustand, $q_2 = $akzeptierender Endzustand, $q_3 \dots q_n$ für alle übrigen Zustände.
+	\item Die Bandsymbole $\Gamma$ von $\mathcal{M}$ werden codiert als: $x_1 = 0, x_2 = 1, x_3 = $Blank, $x_4 \dots x_n$ für alle weiteren Symbole
+	\item Die Richtung des Lese-Schreibkopfes wird codiert als: $d_1 = $ links, $d_2 = $ rechts
+	\item Die Übergangsfunktion $\delta$ von $\mathcal{M}$ wird codiert über die Zeichenreihe $0^i10^j10^k10^l10^m$, Übergangsfunktionen werden durch $11$ voneinander getrennt
+\end{enumerate}
+Mit diesem Bildungsgesetz lässt sich jede TM $\mathcal{M}$ als binäre Zeichenreihe bzw. als Zahl darstellen:
+\begin{align*}
+	\mathcal{M} = &(\{q_1, q_2, q_3\}, \{0,1\}, \{0,1,B\}, \delta, q_1, B, \{q_2\})\\
+	\delta = &\{\delta(q_1, 1) = (q_3, 0, R\}, \delta(q_3, 0) = (q_1, 1, L),\\
+		& \delta(q_3, 1) = (q_2, 0, R), \delta(q_3, B) = (q_3, 0, L)\}
+\end{align*}
+Die Codierung $c(\mathcal{M})$ lautet dann:
+\begin{align*}
+	\delta(q_1, 1)& = (q_3, 0, R) \mapsto 0\,1\,00\,1\,000\,1\,0\,1\,00\\
+	\delta(q_3, 0)& = (q_1, 1, L) \mapsto 000\,1\,0\,1\,0\,1\,00\,1\,0\\
+	\delta(q_3, 1)& = (q_2, 0, R) \mapsto 000\,1\,00\,1\,00\,1\,0\,1\,00\\
+	\delta(q_3, B)& = (q_3, 0, L) \mapsto 000\,1\,000\,1\,000\,1\,0\,1\,0
+\end{align*}
+\begin{multline*}
+\Rightarrow c(\mathcal{M}) = 0100100010100\,11\,000101010010\,11\,00010010010100\\11\,000100010001010_2 = 1\,480\,103\,890\, 654\,955\,658_{10}
+\end{multline*}
+
+\subsection{Sonstiges}
+\begin{itemize}\itemsep0em
+	\item Es existieren Varianten von TM: Speicher, Mehrspur, Mehrband, Semiunendliches Band, Leerzeichenverbot. Alle Varianten sind gleich mächtig
+	\item Eine TM ist gleich mächtig wie ein PDA mit 2 Stacks oder einer Zählermaschine mit zwei Zählern
+	\item Eine TM kann Aufgaben an \enquote{Unterprogramme}, d.\,h. Unter-TMs delegieren
+	\item Jede TM mit $n$ akzeptierenden Zuständen kann in eine TM mit nur einem akzeptierenden Zustand überführt werden
+\end{itemize}
+
+% \begin{description}
+% 	\item [Speicher $S$] Eine TM mit Speicher hat $|Q| \cdot |S|$ Zustände. Anwendung: Fallunterscheidungen
+% 	\item [Mehrspur] Eine TM kann mehrer Spuren haben, wobei jede Spur ein Symbol $\in \Gamma$ speichert.
+% 	Der Lese/Schreibkopf liest und schreibt alle Spuren gleichzeitig. Anwendung: Zwischenergebnisse
+% 	\item [Mehrband] Ein TM kann mehrere ($k$) Bänder haben, wobei jedes Band unabhängig bewegt wird. $\delta = Q \times \Gamma^k \rightarrow Q \times \Gamma^k \times \{R, 0, S\}^k$
+% 	\item [Unterprogramme] Eine TM delegiert Aufgaben an andere TM und verwendet deren Ergebnisband
+% 	\item [Nichtdeterministische TM] Das Tupel $(q,x)$ bildet auf eine Menge von Tripeln $(p,y,D)$ ab. Die TM wählt automatisch das richtige Tripel. 
+% 	\item [Semiunendliches Band] hat keine Speicherstellen links vom 1ten Eingabesymbol
+% 	\item [Leerzeichenverbot] Die TM darf nie ein Leerzeichen schreiben
+% 	\item [k-Stack-Maschine] Eine TM entspricht einem PDA mit $k \geq 2$ Stacks.
+% 	\item [Zählermaschine] Ein TM entspricht einer Zählermaschine mit $k \geq 2$ Zählern (Zähler $Z$ sind natürliche Zahlen die um 1 erhöht oder verringert werden können. Es kann zwischen $z = 0$ und $z \neq 0$ unterschieden werden)
+% \end{description}
+% Alle Varianten sind logisch äquivalent.
+% \subsubsection{Stack als Zahl}
+% Gegeben seien $k-1$ Stacksymbole und $n$ Symbole auf eine Stack $s$. Die Stacksymbole werden über die Zahlen $1, 2, \dots, k-1$ repräsentiert. Der Zustand des Stacks lässt sich dann als ganze Zahl zu Basis $k$ beschreiben:
+% \begin{equation*}
+% 	s = X_1X_2\dots X_n = X_nk^{n-1} + X_{n-1}k^{n-2}
+% \end{equation*}
+% Beispiel: $\Gamma = \{A, B, C\} \Rightarrow A_{\mbox{id}} = 1, B_{\mbox{id}} = 2, C_{\mbox{id}} = 3$ und $k = |\Gamma| + 1 = 4, s = ACBAC$
+% \begin{equation*}
+% 	s = 1 + 3 \cdot 4^1 + 2 \cdot 4^2 + 1 \cdot 4^3 + 3 \cdot 4^4 = 1 + 12 + 32 + 64 + 768 = 877
+% \end{equation*}
+% \begin{description}
+% 	\item [Pop]  $X_1 = s \mod k$, anschliessend $s = s - X_1$ und $X_2 = s \mod k^2$ usw. bis das Modulo-Ergebnis 0 ist.
+% 	\item [Push] $s_{\mbox{neu}} = s + \gamma_{\mbox{id}} \cdot k^{|s|}$
+% \end{description}

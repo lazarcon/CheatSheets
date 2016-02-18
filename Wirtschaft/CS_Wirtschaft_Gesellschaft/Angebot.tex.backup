@@ -1,0 +1,31 @@
+\section{Angebot}
+Je höher der Preis, desto grösser das Angebot
+\begin{center}
+\begin{tikzpicture}
+    %\draw[very thin,color=gray] (-0.1,-1.1) grid (3.9,3.9);
+    \draw[->] (0,0) -- (5,0) node[below] {Menge};
+    \draw[->] (0,0) -- (0,4.2) node[left] {Preis};
+    \draw[domain=0.1:1.6] plot[id=xl] function{1 - 1/(0.4 * x - 1)};
+    \draw [thick, domain=0.1:2.97] plot[id=x] function{0.5 - 1/(0.4 * x - 1.5)}  node[above] {Nachfrage};
+    \draw [domain=0.1:4.33] plot[id=xr] function{- 1/(0.4 * x - 2)};
+	% lines
+	\draw [dashed] (0,2.5)  node [left] {$P$} -- (4, 2.5);
+	\draw [dashed](0.83,0) node [below] {$M_l$} -- (0.83,2.5);
+	\draw [dashed](2.5,0) node [below] {$M$} -- (2.5, 2.5);
+	\draw [dashed](4, 0) node [below] {$M_r$}-- (4, 2.5);
+\end{tikzpicture}
+\end{center}
+
+ \begin{tabular}{@{}p{\linewidth/2}%
+				@{}p{\linewidth/2}}
+	\multicolumn{1}{c}{\underline{Linksverschiebung}} & \multicolumn{1}{c}{\underline{Rechtsverschiebung}}\\
+	Steigende Kosten & Sinkende Kosten \\
+	Negative externe Grössen & Positive externe Grössen \\
+	Erwartete Preiserhöhungen & Erwartete Preissenkung \\
+\end{tabular}
+
+Grundsätzlich:
+\begin{itemize}\itemsep0em
+	\item Preisänderung: Auf der Kurve
+	\item Andere Änderungen: Verschiebung der Kurve (links oder rechts)
+\end{itemize}

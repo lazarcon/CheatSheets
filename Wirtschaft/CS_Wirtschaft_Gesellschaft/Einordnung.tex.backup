@@ -1,0 +1,9 @@
+\section{Einordnung}
+% \settowidth{\MyLenA}{Word~~}
+% \begin{tabular}{@{}p{\the\MyLenA}%
+% 				@{}p{\linewidth-\the\MyLenA}}
+% 	Bit & [0,1], Masseinheit für übertragene Datenmengen und Informationsgehalt\\
+% 	Byte & 8-Tupel von Bit, Masseinheit für Speicherung\\
+% 	Word & Grundverarbeitungsdatengrösse in einem Rechner. Immer eine 2er Potenz\\
+% \end{tabular}
+

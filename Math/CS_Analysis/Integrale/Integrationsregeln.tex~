@@ -1,0 +1,30 @@
+\section{Integrationsregeln}
+\subsection{Faktorregel}
+Ein konstanter Faktor darf vor das Integral gezogen werden.
+\begin{equation*}
+	\lint{a}{b} C \cdot f(x) \dop{x} = C \cdot \lint{a}{b} f(x) \dop{x}
+\end{equation*}
+
+\subsection{Summenregel}
+Eine endliche Summe von Funktionen darf gliedweise integriert werden.
+\begin{equation*}
+	\lint{a}{b} (f_1(x) + \dots + f_n(x)) \dop{x} = \lint{a}{b} f_1(x) \dop{x} + \dots + \lint{a}{b} f_n(x) \dop{x}
+\end{equation*}
+
+\subsection{Vertauschungsregel}
+Vertauschen der Integrationsgrenzen bewirkt einen Vorzeichenwechsel.
+\begin{equation*}
+	\lint{a}{b} f(x) \dop{x} = - \lint{b}{a} f(x) \dop{x}
+\end{equation*}
+
+\subsection{Gleiche Intervallgrenzen}
+Fallen die Integrationsgrenzen zusammen ($a = b$), so ist der Integralwert gleich Null.
+\begin{equation*}
+	\lint{a}{a} f(x) \dop{x} = 0
+\end{equation*}
+
+\subsection{Zerlegen des Integrationsintervalls}
+Für jede Stelle $c$ aus dem Integrationsinterval $a \leq c \leq b$ gilt:
+\begin{equation*}
+	\lint{a}{b} f(x) \dop{x} = \lint{a}{c} f(x) \dop{x} + \lint{c}{b} f(x) \dop{x}
+\end{equation*}

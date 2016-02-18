@@ -1,0 +1,138 @@
+\section{Wortarten}
+Interpretation des Wortes \enquote{Wort} als:
+\begin{description}\itemsep0em
+	\item [Lexem] Wörterbucheinheit; so wie es im Wörterbuch steht (Nominativ singular bzw. Infinitiv)
+	\item [syntaktische Einheit] Wortform, wie sie in Sätzen vorkommt
+\end{description}
+Bildung der syntaktischen Wörter erfolgt durch Flexion des Lexems.
+
+\subsection{Flexionsmerkmale}
+\settowidth{\MyLenA}{Komparation~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+Numerus 	& Zahl: Singular, Plural\\
+Genus 		& Geschlecht: Maskulinum, Femininum, Neutrum \\
+Person 		& 1te, 2te, 3te Person\\
+Kasus 		& Fall: Nominativ, Dativ, Akkusativ, Genitiv\\
+Tempus 		& Zeit: Präsens, Perfekt, Präteritum, Plusquamperfekt, Futur I, Futur II\\
+Modus 		& Aussageweise: Indikativ, Imperativ, Konjunktiv I, Konjunktiv II\\
+Diathese 	& Handlungsrichtung/Genus Verbi: Aktiv, Passiv\\
+Komperation	& Steigerung: Positiv, Komparativ, Superlativ\\
+\end{tabular}
+
+\subsection{Systematik}
+\subsubsection{Veränderbare -- Tempus (Verben)}
+\settowidth{\MyLenA}{Infinite Form~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+Finite Form 	& nach Person und Numerus bestimmt\\
+Infinite Form	& Person nicht veränderbar (Infinitv, Partizip I/II)\\
+\end{tabular}
+
+\subsubsection{Veränderbare -- Kasus (Nomen, Pronomen, Adjektive)}
+\settowidth{\MyLenA}{Adjektive~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+Nomen 	& werden dekliniert: Genus, Numerus, Kasus\\
+Pronomen	& Begleiter oder Stellvertreter für Nomen: Kasus\\
+Adjektive	& zwischen Begleiter und Nomen: Kasus, Komparation\\
+\end{tabular}
+
+\subsubsection{Unveränderbare -- Partikel}
+\settowidth{\MyLenA}{Unterordnende Konjunktionen~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Präpositionen & bestimmen den Kasus - \textit{ohne}: Akkusativ, \textit{mit}: Dativ, \textit{wegen}: Genitiv\\
+	Beiordnende Konjunktionen & verbinden gleichrangiges: \textit{und}, \textit{sowie}, \textit{oder}, \textit{aber}, \textit{sondern}\\
+	Unterordnende Konjunktionen & leiten Nebensätze ein: \textit{dass}, \textit{ob}, \textit{wenn}, \textit{weil}, \textit{solange}\\
+	Interjektionen & Ausrufe ausserhalb des Satzes: \textit{ja}, \textit{nein}, \textit{danke}, \textit{pfui}, \textit{miau}\\
+	Adverbien & alle übrigen: \textit{oben}, \textit{heute}, \textit{fast}, \textit{deshalb}, \textit{sehr}\\
+\end{tabular}
+
+\subsection{Verben (Konjugierbar)}
+Flexionsmöglichkeiten:
+\begin{itemize}\itemsep0em
+	\item Person und Numerus: \textit{ich}, \textit{du}, \dots, \textit{ihr}, \textit{sie}
+	\item Tempus: Plusquamperfekt, Präteritum, \dots, Futur II
+	\item Modus: \textit{Geh!}, \textit{wir gingen}, \dots
+	\item Diathese: \textit{ich sehe}, \textit{ich werde gesehen}
+\end{itemize}
+
+\subsubsection{Gebrauchsweisen}
+\settowidth{\MyLenA}{intransitive Verben~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Hilfsverben & \textit{sein}, \textit{haben}, \textit{werden} wenn zur Bildung von Tempus oder Passiv gebraucht\\
+	Modalverben & \textit{wollen}, \textit{sollen}, \textit{können}, \textit{müssen}, \textit{dürfen}, \textit{mögen} wenn ein Infinitiv von ihnen abhängt\\
+	modifizerende Verben & wie Modalverben, nur das der abhängige Infinitiv mit \textit{zu} erweitert ist (z.\,B. \textit{versuchen})\\
+	transitive Verben & Das Verb verlangt ein Akkusativobjekt (z.\,B. \textit{treffen})\\
+	intransitive Verben & benötigen kein Akkusativobjekt (z.\,B. \textit{gehen})\\
+	reflexive Verben & benötigen ein Reflexivpronomen (z.\,B. \textit{sich erinnern})\\
+\end{tabular}
+
+\subsubsection{Infinite Verbformen}
+\settowidth{\MyLenA}{Partizip II~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Infinitiv & Grundform, endet auf \textit{-en} oder nur auf \textit{-n}\\
+	Partizip I & adjektivischer Gebrauch (ggf. mit Partikel \textit{zu}), endet auf \textit{-end} oder nur \textit{-nd}\\
+	Partizip II & adjektivischer Gebrauch oder mit Hilfsverb für zusammengesetzte Verbformen, endet auf \textit{-t} oder \textit{-en}, meist mit Präfix \textit{ge-}. Mit Modalverben hat das Partizip II die gleiche Form wie der Infinitiv.\\
+\end{tabular}
+\textbf{Nota bene} Partizipien II von intransitiven und reflexiven Verben, die das Perfekt mit \textit{haben} bilden, können nicht adjektivisch gebraucht werden.\\
+
+\subsubsection{Verbzusätze}
+\settowidth{\MyLenA}{Unfest zusammengesetzt~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	einfache Verben & haben keinen Zusatz (z.\,B. \textit{fragen})\\
+	Verben mit Präfix & haben eine Zusatz (z.\,B. \textit{\underline{be}fragen}\\
+	Fest zusammengesetzt & untrennbarer Zusatz (z.\,B. \textit{\underline{voll}bringen})\\
+	Unfest zusammengesetzt & trennbarer Zusatz (z.\,B. \textit{\underline{aus}fragen})\\
+\end{tabular}
+
+\subsubsection{Tempus}
+\settowidth{\MyLenA}{Plusquamperfekt~~}
+Die einzelnen Tempus lassen sich unterschiedlich verwenden:
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Futur I & offen: zukünfig, gegenwärtig, zeitlos, vergangen\\
+	Präsens & offen: zukünfig, gegenwärtig, zeitlos, vergangen\\
+	Präteritum & offen: vergangen\\
+	Futur II & abgeschlossen: zukünfig, gegenwärtig, zeitlos, vergangen\\
+	Perfekt & offen: vergangen, abgeschlossen: zukünfig, gegenwärtig, zeitlos, vergangen\\
+	Plusquamperfekt & abgeschlossen, vergangen\\
+\end{tabular}
+
+\subsubsection{Modus}
+\settowidth{\MyLenA}{Konjunktiv II~~}
+Die einzelnen Tempus lassen sich unterschiedlich verwenden:
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Indikativ & neutral, \enquote{normale} Aussageweise (Wirklichkeit) (z.\,B. Heute \textit{scheint} die Sonne.)\\
+	Imperativ & Aufforderung etwas zu tun (z.\,B. \textit{Geh} nach draussen.)\\
+	Konjunktiv I & Indirekte Rede, Anweisungen, Vergleiche, Einräumungen (z.\,B. \dots und \textit{sei} es noch so kalt)\\
+	Konjunktiv II & Unwirkliche Aussagen, bei unregelmässig Verben Bildung mit \textit{würde} + Infinitiv (z.\,B. \dots auch wenn es \textit{regnen würde}) 
+	\textit{Würde} auch verwenden, wenn Indikativ Präteritum und Konjunktiv II Präteritum die gleiche Form haben.\\
+\end{tabular}
+
+\subsubsection{Diathese}
+Passiv: Hilfsverb \textit{werden} und Partizip II. Passiv ist nur möglich für Verben, deren Subjekt eine Tat darstellt.
+Also beispielsweise nicht 
+
+\subsection{Pronomen}
+\settowidth{\MyLenA}{unbestimmter Artikel~~}
+\begin{tabular}{@{}p{\the\MyLenA}%
+				@{}p{\linewidth-\the\MyLenA}}
+	Personalp. & \textit{ich}, \textit{mich}, \textit{mir}, \dots\\
+	Reflexivp. & \textit{mich}, \textit{mir}, \dots, \textit{einander}\\
+	Possesivp. & \textit{mein}, \textit{dein}, \dots\\
+	Demonstrativp. & \textit{dieser}, \textit{jener}, \textit{derselbe}, \dots\\
+	Interrogativp. & \textit{wer}, \textit{was}, \textit{welcher}, \textit{was für ein}\\
+	Relativp. & \textit{wer}, \textit{was}, \textit{welcher}\\
+	bestimmte Zahlp. & \textit{ein}, \textit{zwei}, \dots\\
+	Indefinitp. & \textit{ein}, \textit{eine}, \textit{man}, \textit{etliche}, \textit{nichts} \dots\\
+	bestimmter Artikel & \textit{der}, \textit{die}, \textit{das}\\
+	unbestimmter Artikel & \textit{ein}, \textit{eine}\\
+\end{tabular}
+
+

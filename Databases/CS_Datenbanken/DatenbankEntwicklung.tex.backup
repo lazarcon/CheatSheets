@@ -1,0 +1,51 @@
+\section{Datenbank-Entwicklung}
+\settowidth{\MyLenA}{Anforderungsanalyse, Spezifikation~~}
+\begin{tabular}{
+	@{}p{\the\MyLenA}%
+	@{}p{\linewidth-\the\MyLenA}}
+	Anforderungsanalyse, Spezifikation & Datenanforderungen durch Interviews, Fragebögen ermitteln\\
+	Konzeptioneller Entwurf & Konzeptionelles Model beschreiben (DBMS unabhängig) $\Rightarrow$ Konzeptionelles Schema\\
+	Logischer Entwurf & Logisches Schema aus dem Datenmodell erstellen, optimieren, externe Schemas definieren (DBMS abhängig) $\Rightarrow$ Logisches Schema\\ 
+	Physischer Entwurf & Internes Schema definieren (DBMS abhängig) $\Rightarrow$ Physisches Schema\\
+	Deklaration Schemas & In der DDL des DBS\\
+\end{tabular}
+
+Kriterien: Vollständigkeit, Korrektheit, minimale Redundanzen, Lesbarkeit, Erweiterbarkeit, Normalisierung.
+
+Refactoring eines Modelles ist sehr aufwändig und wird deswegen kaum gemacht. Daher am besten mit einem kleinen
+Kernteam (Business Spezialist (Anforderungen/Konzept), Datenmodellierer(Konzept/Logik), Datenbank Designer(Logik/Physisches Model)) arbeiten, das Entwürfe macht, die von einem grösseren Team
+(Datenbankspezialisten, Projektmanager, Auftraggeber) evaluiert werden.
+
+\begin{description}
+	\item [Konzeptionelles Modell] weitgehend technologie-unabhängige Spezifikation der Daten, die in der Datenbank
+		gespeichert werden sollen
+	\item [Logisches Modell] Übersetzung des konzeptionellen Schemas in Strukturen, 
+		die mit einem konkreten DBMS implementiert werden können
+	\item [Physisches Modell] alle Anpassungen, die nötig sind um eine befriedigende Leistung im Betrieb zu erreichen
+		(Datenverteilung,  Indexierung,  ...)
+\end{description}
+
+\section{Datenmodellierung}
+Daten- und funktionale Anforderungen definieren. Anschliessend auf die Daten Abstraktionskonzepte anwenden:
+Klassifikation (gleiche oder ähnliche \enquote{Dinge}), Aggregation (Zusammenfassen von \enquote{Dingen}, Name, Strasse, \dots zu Adresse),
+Generalisierung und Spezialisierung (Verallgemeinerung, Teilmengenbeziehungen, Zerlegung in disjunkte Untermengen).
+
+Bei der Modellierung gilt es sich auf den Anwendungsbereich zu beschränken. Die Modellierung muss unabhängig von der 
+späteren Implementierung sein.
+
+\subsection{Entity-Relationship-Model (P. P. S. Chen, 1976)}
+\begin{description}
+	\item [Entität] Ein  konkretes  oder  abstraktes  Objekt  der  realen  oder  einer  
+Vorstellungswelt, welches eindeutig identifiziert werden kann. Eine Entität hat Attribute (Bsp. Herr Aebi). 
+	\item [Entitätsmenge] Gleichartige Entitäten, d.h. Entitäten mit denselben Eigenschaften (Bsp. Personen).
+	\item [Identifikationsschlüssel] Ein Attribut oder eine Menge von Attributen, welche eine Entität eines
+Entitätstyps innerhalb dieses Typs eindeutig identifiziert (Bsp. Personalnummer)
+	\item [Beziehung] Eine Beziehung zwischen Entitäten $e_1, e_2, \dots, e_n (n \geq 2)$ ist ein $n$-
+Tupel, wobei jedes $e_i$ eine Entität eines Entitätstyps $E_i (1 \leq i \leq n)$ ist. Wenn derselbe Entitätstyp mehrfach 
+vorkommt ($E_i$ und $E_j$ mit $i \neq j$), dann müssen deren verschiedene Rollen mit Hilfe zusätzlicher
+Rollennamen bezeichnet werden.\\
+	Gleichartige Beziehungen werden zu einem Beziehungstyp zusammengefasst (Bsp. Person als Autor eines Buches)
+	Identifikationsattribute einer Entität, die an einer Beziehung beteiligt ist, gehört implizit zur Beziehung.
+	Eine Beziehung kann darüber hinaus weitere Attribute haben. Der Identifikationschlüssel einer Beziehung wird
+	aus Identifikationsattributen, der an der Beziehung beteiligten Entitätstypen gebildet.
+\end{description}

@@ -1,0 +1,123 @@
+\section{Kombinatorik}
+Voraussetzung: Alle betrachteten Fälle sind gleich wahrscheinlich.
+\begin{description}
+	\item [Urnenmodell] In einer Gefäss befinden sich $n$ unterscheidbare Kugeln.
+Nach und nach werden $k$ davon zufällig ausgewählt
+	\item [Permutationen] Es gibt $n!$ Möglichkeiten, um $n$ Elemente einer Menge anzuordnen
+	\item [Binominalkoeffizient] $\binom nk = \frac{n!}{k! \cdot (n-k)!}$
+\end{description}
+
+\begin{center}
+\begin{tabular}{|c|c|p{2.5cm}|p{2.5cm}|}
+\cline{3-4}
+\multicolumn{2}{c|}{} & \multicolumn{2}{c|}{\textbf{Zurücklegen}} \\ \cline{3-4}
+\multicolumn{2}{c|}{} & \multicolumn{1}{c|}{\textbf{mit}} & \multicolumn{1}{c|}{\textbf{ohne}} \\ \cline{1-4}
+\multirow{2}{*}{\rotatebox{90}{\textbf{Reihenfolge}~~~~~~~~~~~~~~~~~~~~~~~~~~~~}} &
+\textbf{mit} &
+%% mit zurücklegen, mit Reihenfolge
+\begin{equation*}
+	|\Omega| = n^k
+\end{equation*}
+z.\,B. Zahlenschloss mit $k=3$ Ziffern von 0-9 ($n=10$) $\rightarrow |\Omega| = 10^3$ 
+
+& 
+% ohne zurücklegen, mit Reihenfolge
+\begin{multline*}
+	|\Omega| = \frac{n!}{(n - k)!}\\ = \mbox{npr}(n, k)
+\end{multline*}
+z.\,B. $k=5$ Plätze bei einem Rennen mit $n=12$ Läufern $\rightarrow |\Omega| = \frac{12!}{7!}$
+
+\\\cline{2-4}
+	&
+\textbf{ohne} & 
+% mit zurücklegen, ohne Reihenfolge
+\begin{multline*}
+	|\Omega| = \binom{n + k - 1}{k}\\ = \mbox{ncr}(n, k)
+\end{multline*}
+z.\,B. $k=2$ Würfel mit $n=6$ Seiten $\rightarrow |\Omega| = \binom{6 + 2 - 1}{2}$
+
+ & 
+% ohne zurücklegen, ohne Reihenfolge
+\begin{equation*}
+	|\Omega| = \binom{n}{k}
+\end{equation*}
+z.\,B. Zahlenlotto: 6 ($k$) aus 49 ($n$) Kugeln: $|\Omega| = \binom{49}{6}$
+
+\\ \cline{1-4}
+\end{tabular}
+\end{center}
+
+\subsection{Verteilungen}
+
+\subsection{Wahrscheinlichkeitsfunktion}
+Beschreibt die Wahrscheinlichkeit dafür, dass eine Zufallsvariable $X$ einen bestimmten Wert $x$ annimmt.
+\begin{itemize}\itemsep0em
+	\item Diskrete Verteilungen: $p(x) = P(X = x)$
+	\item Stetigen Verteilungen: 
+	\begin{equation*}
+	P(a \le X \le b) \, = \, \int_a^b f(x)\,\mathrm dx \mbox{ bzw. } \mu([a,b]) \, = \, \int_a^b f(x)\,\mathrm dx	
+	\end{equation*}
+\end{itemize}
+
+
+\subsubsection{Binominalverteilung}
+Beschreibt die Anzahl der Erfolge in einer Serie von gleichartigen und unabhängigen Versuchen, die jeweils genau zwei mögliche Ergebnisse haben (\enquote{Erfolg} oder \enquote{Misserfolg}) (Bernoulli-Prozesse). Für $n$ Versuche mit $k$ Erfolgen ($E$) gilt ($p = P(E)$):
+\begin{equation*}
+	p_k = \binom {n}{k}\, p^k\, (1-p)^{n-k}
+\end{equation*}
+Es werden bei $n$ Versuchen genau $k$ Erfolge erzielt. Für $p \neq 1/2$ ist die Binominalverteilung unsymmetrisch.
+
+\subsubsection{Poisson-Verteilung}
+Spezialfall der Binominalverteilung, der die Verteilung von seltenen Ereignissen beschreibt. $n$ wird weggelassen (d.\,h. schlägt ein Blitz ein? ist entscheidbar, wie oft er einschlägt kann hingegen nicht berechnet werden)
+\begin{equation*}
+	P_\lambda (k) = \frac{\lambda^k}{k!}\, \mathrm{e}^{-\lambda}
+\end{equation*}
+Mit $\lambda = g \cdot w$ und $g = $Anzahl Ereignisse pro Einheitsintervall während des Intervalls $w$. Beispiel: Blitzhäufigkeit = 10 Einschläge pro km$^2$. Wie gross ist die Wahrscheinlichkeit für Blitzeinschläge pro ha ($10{,}000$ km$^2$)?
+$\lambda = 10/\mbox{km}^2 \cdot 0.01 \mbox{km}^2 = 0.1$
+
+\subsubsection{Geometrische Verteilung}
+Beschreibt, wie oft ein Versuch wiederholt werden muss, bis $E$ Eintritt.
+\begin{equation*}
+	p_k = (1 - p)^{k-1} p
+\end{equation*}
+
+\subsubsection{Normal- oder Gauss-Verteilung}
+Dichtefunktion:
+\begin{equation*}
+	f_X(x) = \frac{1}{\sqrt{2\pi\sigma^2}}\operatorname{exp}\left(-\frac{\left(x-\mu\right)^2}{2\sigma^2}\right)
+\end{equation*}
+\begin{description}
+	\item [Erwartungswert] $E(x) = \mu$ entspricht dem Mittelwert
+	
+	\item [Varianz] $\operatorname{Var}(x) = \sigma^2$ (Standardabweichung$^2$)
+	
+	\item [Dichtefunktion der Standartnormalverteilung]
+	\begin{equation*}
+		f_x(X) = \varphi(x)=\frac{1}{\sqrt{2\pi}}  e^{-\frac{1}{2} x^2}\,.
+	\end{equation*}
+	
+	\item [Verteilungsfunktion]
+	\begin{equation*}
+		F(x) = \frac{1}{\sigma\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{1}{2} \left(\frac{t-\mu}{\sigma}\right)^2} \mathrm dt
+	\end{equation*}
+
+	\item [Maximum]
+	\begin{align*}
+		x_{\mbox{max}}& = \mu & f(x_{\mbox{max}})& = \frac{1}{\sigma\,\sqrt{2\pi}}
+	\end{align*}
+
+	\item [Wendepunkte]
+	\begin{align*}
+		x_{\mbox{wende}}& = \mu \pm \sigma & f(x_{\mbox{wende}}) = \frac{1}{\sigma\,\sqrt{2\pi \mathrm e}}
+	\end{align*}
+\end{description}
+%Standardnormalverteilung:
+%Für $X \approx N(\mu, \sigma^2)$ gilt: $X^* = \frac{X - \mu}{\sigma} \approx N(0, 1)$
+%d.\,h. 
+
+\textbf{Transformation}\\
+Eine Normalverteilung mit beliebigen $\mu$ und $\sigma$ und der Verteilungsfunktion $F$ hat folgende Beziehung zur Standardnormalverteilung:
+\begin{equation*}
+	F_X(x) = \Phi \left(\frac{x-\mu}{\sigma} \right)
+\end{equation*}
+
